@@ -9,6 +9,9 @@
 .media {
   position: absolute;
   inset: 0 45% 0 0;
+  /* V1.1: cap the photo so it isn't stretched past its resolution on very
+     wide screens; the green fade carries the remaining width. */
+  max-width: 920px;
   z-index: -1;
 }
 
@@ -16,7 +19,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(7, 33, 27, 0) 45%, var(--green-950) 100%);
+  background:
+    linear-gradient(90deg, rgba(7, 33, 27, 0) 40%, var(--green-950) 100%),
+    linear-gradient(0deg, rgba(7, 33, 27, 0.35) 0%, rgba(7, 33, 27, 0) 30%);
 }
 
 .image {
@@ -62,6 +67,7 @@
   .media {
     position: relative;
     inset: auto;
+    max-width: none;
     aspect-ratio: 567 / 342;
   }
 

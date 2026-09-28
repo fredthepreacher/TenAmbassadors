@@ -21,18 +21,7 @@ export function Hero({ eyebrow, headline, lede, image, primaryCta, secondaryCta,
 
   return (
     <section className={`${styles.hero} on-dark`} aria-labelledby="hero-title">
-      <div className={styles.media}>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority
-          sizes="(max-width: 960px) 100vw, 62vw"
-          className={styles.image}
-          style={{ objectPosition: image.focus }}
-        />
-        <div className={styles.fade} aria-hidden="true" />
-      </div>
+      <div className={styles.glow} aria-hidden="true" />
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>
@@ -50,6 +39,24 @@ export function Hero({ eyebrow, headline, lede, image, primaryCta, secondaryCta,
             </ButtonLink>
           </div>
         </div>
+
+        {/* Editorial photo panel: a controlled crop sized to the photo's real
+            resolution, rather than a full-bleed stretch behind the text. */}
+        <figure className={styles.panel}>
+          <div className={styles.frame}>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              priority
+              sizes="(max-width: 960px) calc(100vw - 2rem), (max-width: 1400px) 52vw, 720px"
+              quality={85}
+              className={styles.image}
+              style={{ objectPosition: image.focus }}
+            />
+            <div className={styles.shade} aria-hidden="true" />
+          </div>
+        </figure>
       </div>
 
       <nav aria-label="Our three pathways" className={styles.strip}>

@@ -1,6 +1,6 @@
 # Content Status — V1
 
-Last updated: 2026-09-28
+Last updated: 2026-09-28 (V1.1 visual asset pass)
 
 ## Unresolved placeholders on the site
 
@@ -51,4 +51,16 @@ Last updated: 2026-09-28
 | `events/mentorship.png` | `reference/mentorship-reference.png` | White screenshot margin cropped. No other edits. |
 | `events/community-event.png` | `reference/community-event-reference.png` | White screenshot margin cropped. No other edits. |
 
-No color, tone, face, or body changes were made. Gradient overlays in the layout are CSS only and sit around the subjects, not over their faces.
+For these V1 crops, no color, tone, face, or body changes were made. Gradient overlays in the layout are CSS only and sit around the subjects, not over their faces.
+
+
+### V1.1 — enhanced event photography (live on the site)
+
+| Site file | Made from | Size | Treatment |
+|---|---|---|---|
+| `events-enhanced/speaker-event-enhanced.jpg` | `events/speaker-event.png` | 2560 × 1319 | Non-generative: Lanczos resize, 3px median denoise, contrast ×1.08, color ×1.05, brightness ×1.02, unsharp mask |
+| `events-enhanced/group-event-enhanced.jpg` | `events/group-event.png` | 1800 × 1086 | Same |
+| `events-enhanced/mentorship-enhanced.jpg` | `events/mentorship.png` | 1800 × 1086 | Same |
+| `events-enhanced/community-event-enhanced.jpg` | `events/community-event.png` | 1800 × 1086 | Same |
+
+Script: `scripts/enhance_assets.py`. No generative or face reconstruction was used. These are still screenshot-derived, so originals from Geo remain the top asset request. The `events/` PNGs are kept for comparison and are no longer referenced by the site.

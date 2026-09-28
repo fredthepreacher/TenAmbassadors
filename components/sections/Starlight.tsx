@@ -15,7 +15,7 @@ export function Starlight({ block }: { block: FeatureBlock }) {
           src={image.src}
           alt={image.alt}
           fill
-          sizes="(max-width: 960px) 100vw, 55vw"
+          sizes="(max-width: 960px) 100vw, min(55vw, 920px)"
           className={styles.image}
           style={{ objectPosition: image.focus }}
         />
