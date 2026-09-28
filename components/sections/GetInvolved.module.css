@@ -1,0 +1,122 @@
+.section {
+  position: relative;
+  padding-block: var(--section);
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(214, 181, 116, 0.14), transparent 60%),
+    var(--green-800);
+  color: var(--on-dark);
+  overflow: hidden;
+}
+
+.head {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 52rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.title {
+  font-size: var(--step-5);
+  line-height: 0.98;
+}
+
+.title em {
+  color: var(--gold-400);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line-light);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 2rem 1.75rem 2rem 0;
+  transition: background-color 0.3s var(--ease);
+}
+
+.card + .card {
+  padding-left: 1.75rem;
+  border-left: 1px solid var(--line-light);
+}
+
+.card:hover,
+.card:focus-within {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.index {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--gold-400);
+}
+
+.cardTitle {
+  font-size: var(--step-3);
+}
+
+.summary {
+  color: var(--on-dark-muted);
+  font-size: 0.95rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  font-weight: 600;
+  color: var(--on-dark);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.arrow {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--gold-400);
+  transition: transform 0.3s var(--ease);
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card,
+  .card + .card {
+    padding: 1.75rem 1.25rem 1.75rem 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .card:nth-child(even) {
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--line-light);
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card:nth-child(even) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}

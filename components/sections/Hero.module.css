@@ -1,0 +1,175 @@
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: max(640px, 100svh);
+  background: var(--green-950);
+  color: var(--on-dark);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Photo occupies the right ~62% on desktop; face stays unobstructed. */
+.media {
+  position: absolute;
+  inset: 0 0 0 38%;
+  z-index: -1;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--green-950) 0%, rgba(7, 33, 27, 0.72) 16%, rgba(7, 33, 27, 0) 48%),
+    linear-gradient(0deg, rgba(7, 33, 27, 0.85) 0%, rgba(7, 33, 27, 0) 28%),
+    linear-gradient(180deg, rgba(7, 33, 27, 0.55) 0%, rgba(7, 33, 27, 0) 22%);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--header-h) + 3rem);
+  padding-bottom: 3rem;
+}
+
+.copy {
+  max-width: 38rem;
+}
+
+.eyebrow {
+  animation: rise 1s var(--ease) both;
+}
+
+.title {
+  margin-top: 1.5rem;
+  font-size: var(--step-5);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  animation: rise 1s 0.08s var(--ease) both;
+}
+
+.title em {
+  display: block;
+  font-style: italic;
+  color: var(--gold-400);
+}
+
+.lede {
+  margin-top: 1.75rem;
+  max-width: 32rem;
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--on-dark-muted);
+  animation: rise 1s 0.16s var(--ease) both;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2.5rem;
+  animation: rise 1s 0.24s var(--ease) both;
+}
+
+.strip {
+  position: relative;
+  border-top: 1px solid var(--line-light);
+  background: rgba(7, 33, 27, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.stripList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stripList li + li {
+  border-left: 1px solid var(--line-light);
+}
+
+.stripLink {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.4rem 1.5rem;
+  transition: background-color 0.3s var(--ease);
+}
+
+.stripList li:first-child .stripLink {
+  padding-left: 0;
+}
+
+.stripLink:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.stripIndex {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--gold-400);
+}
+
+.stripTitle {
+  font-family: var(--font-serif);
+  font-size: var(--step-2);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero {
+    min-height: 0;
+    grid-template-rows: auto auto auto;
+  }
+
+  .media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 4 / 3.4;
+    max-height: 62svh;
+    width: 100%;
+  }
+
+  .fade {
+    background:
+      linear-gradient(0deg, var(--green-950) 0%, rgba(7, 33, 27, 0) 40%),
+      linear-gradient(180deg, rgba(7, 33, 27, 0.6) 0%, rgba(7, 33, 27, 0) 30%);
+  }
+
+  .inner {
+    padding-top: 0;
+    margin-top: -3.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .stripLink {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.1rem 0.9rem;
+  }
+
+  .stripTitle {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .actions > * {
+    flex: 1 1 100%;
+  }
+}
