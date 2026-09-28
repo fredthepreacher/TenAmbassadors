@@ -12,7 +12,7 @@ export const site = {
   pillarsLine: "Scholarship · Mentorship · Service",
   description:
     "Ten Ambassadors is an initiative focused on developing future leaders through Scholarship, Mentorship, and Service.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tenambassadors.vercel.app",
   locale: "en_US",
 
   /** Relationship to the founding organization (source language). */
