@@ -26,7 +26,7 @@ const sans = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(site.url || "https://tenambassadors.org"),
   title: {
     default: `${site.name} | ${site.tagline}`,
     template: `%s | ${site.name}`,
