@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ActionButton, ButtonLink, TextLink } from "@/components/ui/Button";
 import { PendingBlock, PendingNote } from "@/components/ui/Pending";
 import { VideoFeature } from "@/components/ui/VideoFeature";
+import { OutlineNumeral } from "@/components/ui/Motifs";
 import { getScholarship, getScholarships } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
@@ -46,7 +47,7 @@ export default async function ScholarshipDetail({ params }: Props) {
 
   return (
     <>
-      <section aria-labelledby="page-title" className="relative overflow-hidden bg-evergreen-950 pt-[76px] text-paper">
+      <section aria-labelledby="page-title" className="relative overflow-hidden bg-navy-900 pt-[76px] text-paper">
         <div className="container-x pt-14 pb-16 md:pt-20 lg:pb-20">
           <nav aria-label="Breadcrumb" className="text-sm text-paper/70">
             <ol className="flex flex-wrap gap-2">
@@ -62,11 +63,18 @@ export default async function ScholarshipDetail({ params }: Props) {
           <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
               <p className="eyebrow rule-before animate-rise text-gold-300">{statusLabel[s.status]}</p>
-              <h1 id="page-title" className="mt-6 text-h1 animate-rise [animation-delay:80ms]">
-                {s.name}
+              <h1 id="page-title" className="mt-6 animate-rise font-editorial text-h1 [animation-delay:80ms]">
+                {s.name.replace(/ Scholarship$/, "")} <em className="text-gold-300">Scholarship</em>
               </h1>
             </div>
             <div className="lg:col-span-5 animate-rise [animation-delay:160ms]">
+              <ol className="mb-6 flex items-center gap-3 text-xs font-semibold tracking-[0.18em] uppercase" aria-label="The scholarship's arc">
+                <li className="text-gold-300">Legacy</li>
+                <li aria-hidden="true" className="h-px w-6 bg-gold-400/60" />
+                <li className="text-paper/80">Opportunity</li>
+                <li aria-hidden="true" className="h-px w-6 bg-gold-400/60" />
+                <li className="text-paper/80">Future</li>
+              </ol>
               <p className="font-serif text-2xl text-paper italic">
                 {s.honoree.name}
                 {s.honoree.years ? <span className="not-italic text-gold-300"> · {s.honoree.years}</span> : null}
@@ -78,10 +86,15 @@ export default async function ScholarshipDetail({ params }: Props) {
 
         {s.video ? (
           <div className="container-x pb-16 lg:pb-24" data-reveal>
-            <VideoFeature video={s.video.full} priority sizes="(max-width: 1280px) 100vw, 1280px" />
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-4 text-sm text-paper/70">
+            <div className="frame-ticks">
+              <VideoFeature video={s.video.full} priority sizes="(max-width: 1280px) 100vw, 1280px" />
+            </div>
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 text-sm text-paper/70">
               <p>{s.video.full.title}</p>
-              {!s.video.full.captions ? <PendingNote tone="dark">Captions &amp; transcript pending</PendingNote> : null}
+              <div className="flex flex-wrap gap-2">
+                <PendingNote tone="dark">Working cut: production timecode &amp; watermark visible · media clearance pending</PendingNote>
+                {!s.video.full.captions ? <PendingNote tone="dark">Captions &amp; transcript pending</PendingNote> : null}
+              </div>
             </div>
           </div>
         ) : null}
@@ -91,7 +104,7 @@ export default async function ScholarshipDetail({ params }: Props) {
         <ul className="container-x flex gap-6 overflow-x-auto py-3 text-sm font-medium whitespace-nowrap">
           {sections.map((sec) => (
             <li key={sec.id}>
-              <a href={`#${sec.id}`} className="text-ink-2 hover:text-evergreen-900">
+              <a href={`#${sec.id}`} className="text-ink-2 hover:text-royal-700">
                 {sec.label}
               </a>
             </li>
@@ -100,11 +113,11 @@ export default async function ScholarshipDetail({ params }: Props) {
       </nav>
 
       <div className="bg-ivory">
-        <DetailSection id="story" eyebrow="The story" title="Why this scholarship exists">
+        <DetailSection id="story" eyebrow="The story" title="Why this scholarship exists" index={1}>
           {s.story ? <p className="text-lede">{s.story}</p> : <PendingBlock title="Scholarship story">The story behind the scholarship — in the words of those closest to it — will be published here.</PendingBlock>}
         </DetailSection>
 
-        <DetailSection id="legacy" eyebrow="Legacy" title={`Remembering ${s.honoree.name}`}>
+        <DetailSection id="legacy" eyebrow="Legacy" title={`Remembering ${s.honoree.name}`} index={2}>
           {s.legacy ? (
             <p className="text-lede">{s.legacy}</p>
           ) : (
@@ -112,12 +125,12 @@ export default async function ScholarshipDetail({ params }: Props) {
           )}
         </DetailSection>
 
-        <DetailSection id="details" eyebrow="Scholarship details" title="Eligibility, award, and timeline">
+        <DetailSection id="details" eyebrow="Scholarship details" title="Eligibility, award, and timeline" index={3}>
           <dl className="grid border-t border-line-strong sm:grid-cols-2">
             {s.facts.map((f) => (
               <div key={f.label} className="border-b border-line py-5 sm:odd:pr-8 sm:even:border-l sm:even:pl-8">
                 <dt className="eyebrow text-gold-ink">{f.label}</dt>
-                <dd className="mt-2 font-serif text-2xl text-evergreen-900">{f.value ?? "To be announced"}</dd>
+                <dd className="mt-2 font-serif text-2xl text-royal-700">{f.value ?? "To be announced"}</dd>
               </div>
             ))}
           </dl>
@@ -136,13 +149,13 @@ export default async function ScholarshipDetail({ params }: Props) {
           </div>
         </DetailSection>
 
-        <DetailSection id="recipients" eyebrow="Recipients & impact" title="Scholars">
+        <DetailSection id="recipients" eyebrow="Recipients & impact" title="Scholars" index={4}>
           {s.recipients && s.recipients.length > 0 ? null : (
             <PendingBlock title="Scholarship recipients">Recipients and their stories will be featured here once announced and approved.</PendingBlock>
           )}
         </DetailSection>
 
-        <DetailSection id="apply" eyebrow="Apply" title="Applications">
+        <DetailSection id="apply" eyebrow="Apply" title="Applications" index={5}>
           <div className="flex flex-col items-start gap-8">
             <ActionButton action={s.apply} />
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
@@ -158,11 +171,24 @@ export default async function ScholarshipDetail({ params }: Props) {
   );
 }
 
-function DetailSection({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: React.ReactNode }) {
+function DetailSection({
+  id,
+  eyebrow,
+  title,
+  index,
+  children,
+}: {
+  id: string;
+  eyebrow: string;
+  title: string;
+  index: number;
+  children: React.ReactNode;
+}) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="border-b border-line py-16 md:py-24">
+    <section id={id} aria-labelledby={`${id}-title`} className="relative border-b border-line py-16 md:py-24">
       <div className="container-x grid gap-8 lg:grid-cols-12">
-        <div className="lg:col-span-4" data-reveal>
+        <div className="relative lg:col-span-4" data-reveal>
+          <OutlineNumeral tone="gold" className="mb-4 text-[4.5rem]">{String(index).padStart(2, "0")}</OutlineNumeral>
           <p className="eyebrow rule-before text-gold-ink">{eyebrow}</p>
           <h2 id={`${id}-title`} className="mt-4 text-h3">
             {title}

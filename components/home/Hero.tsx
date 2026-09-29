@@ -2,7 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Link as LinkT, Media, SmsStage } from "@/lib/types";
 import { ButtonLink } from "@/components/ui/Button";
+import { RingOfTen } from "@/components/ui/Motifs";
 
+/**
+ * Hero — people + possibility + leadership in the first seconds.
+ * Choreography (~1.2s, CSS only): photo resolves → identifier → headline →
+ * SMS line → CTAs → scroll cue. Everything is readable immediately with
+ * motion disabled, and text starts faintly visible so LCP is not delayed.
+ */
 export function Hero({
   eyebrow,
   headline,
@@ -21,61 +28,85 @@ export function Hero({
   stages: SmsStage[];
 }) {
   return (
-    <section aria-labelledby="hero-title" className="relative bg-ivory">
-      <div className="hero-grid pt-[76px]">
-        <div className="hero-head pl-container pr-5 pt-8 sm:pr-10 lg:self-end lg:pt-16 lg:pr-14">
-          <p className="eyebrow rule-before animate-rise text-gold-ink">{eyebrow}</p>
-          <h1 id="hero-title" className="mt-6 text-display text-evergreen-950 [animation-delay:80ms] animate-rise">
-            <span className="block">{headline[0]}</span>
-            <span className="block text-evergreen-700 italic">{headline[1]}</span>
-          </h1>
-        </div>
+    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-navy-900 text-paper">
+      {/* Depth: royal light from upper left + the ring-of-ten mark behind the copy. */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_15%_20%,rgb(35_88_192/0.55),transparent_70%)]"
+        aria-hidden="true"
+      />
 
-        <div className="hero-media relative mt-8 aspect-[4/4.2] sm:aspect-[16/11] lg:mt-0 lg:aspect-auto lg:min-h-full">
-          <div className="absolute inset-0 overflow-hidden lg:top-6">
+      <div className="hero-grid relative pt-[76px]">
+        <div className="hero-media relative aspect-[4/4.4] sm:aspect-[16/11] lg:aspect-auto lg:min-h-full">
+          <div className="absolute inset-0 overflow-hidden lg:top-4">
             <Image
               src={image.src}
               alt={image.alt}
               fill
               preload
               fetchPriority="high"
-              sizes="(max-width: 1024px) 100vw, 52vw"
+              sizes="(max-width: 1024px) 100vw, 51vw"
               className="object-cover animate-settle"
               style={{ objectPosition: image.focus }}
             />
+            {/* Blue seam and base: controlled gradients at the edges only — faces stay natural. */}
+            <div
+              className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0)_32%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.55)_9%,rgb(8_27_51/0)_24%),linear-gradient(0deg,rgb(8_27_51/0.55)_0%,rgb(8_27_51/0)_22%)]"
+              aria-hidden="true"
+            />
           </div>
-          {/* Thin gold keyline marks the frame edge on desktop. */}
-          <span className="pointer-events-none absolute top-6 bottom-0 -left-px hidden w-px bg-gold-400/60 lg:block" aria-hidden="true" />
+          <span className="pointer-events-none absolute top-4 bottom-0 left-0 hidden w-px bg-gradient-to-b from-gold-400/0 via-gold-400/70 to-gold-400/0 lg:block" aria-hidden="true" />
         </div>
 
-        <div className="hero-body pl-container pr-5 pt-8 pb-12 sm:pr-10 lg:pt-8 lg:pr-14 lg:pb-16">
-          <p className="max-w-xl text-lede text-ink-2 animate-rise [animation-delay:160ms]">{lede}</p>
-          <div className="mt-9 flex flex-col gap-3 animate-rise [animation-delay:240ms] sm:flex-row sm:flex-wrap">
-            <ButtonLink href={primary.href} arrow>
+        <div className="hero-copy relative z-10 -mt-20 pl-container pr-5 pb-12 sm:-mt-28 sm:pr-10 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:py-16 lg:pr-14">
+          <p className="eyebrow animate-rise text-[0.7rem] tracking-[0.14em] text-gold-300 [animation-delay:120ms] sm:text-eyebrow sm:tracking-[0.18em]">
+            <RingOfTen className="size-5" strokeOpacity={0.6} highlight={0} />
+            {eyebrow}
+          </p>
+          <h1 id="hero-title" className="mt-6 text-display">
+            <span className="block animate-rise [animation-delay:200ms]">{headline[0]}</span>
+            <em className="block animate-rise pb-1 text-gold-300 [animation-delay:300ms]">{headline[1]}</em>
+          </h1>
+          <p className="mt-7 max-w-xl animate-rise text-lede text-paper/80 [animation-delay:420ms]">{lede}</p>
+          <div className="mt-9 flex animate-rise flex-col gap-3 [animation-delay:540ms] sm:flex-row sm:flex-wrap">
+            <ButtonLink href={primary.href} variant="gold" arrow>
               {primary.label}
             </ButtonLink>
-            <ButtonLink href={secondary.href} variant="outline">
+            <ButtonLink href={secondary.href} variant="outline-light">
               {secondary.label}
             </ButtonLink>
           </div>
+          <a
+            href="#purpose"
+            className="mt-12 hidden w-fit items-center gap-3 text-xs font-semibold tracking-[0.18em] text-paper/60 uppercase transition-colors hover:text-paper lg:inline-flex"
+          >
+            <span className="scroll-cue-line block h-10 w-px bg-gold-400" aria-hidden="true" />
+            Begin the journey
+          </a>
         </div>
       </div>
 
-      {/* Pathway strip — the three pillars, and the cycle back to the start. */}
-      <nav aria-label="The SMS pathway" className="border-y border-line bg-paper">
-        <ol className="container-x grid grid-cols-3">
+      {/* Pathway strip: the three stages and the return to the start. */}
+      <nav aria-label="The SMS pathway" className="relative border-t border-paper/10 bg-navy-950">
+        <ol className="container-x grid grid-cols-3 lg:grid-cols-[1fr_1fr_1fr_auto]">
           {stages.map((s, i) => (
-            <li key={s.id} className={i > 0 ? "border-l border-line" : ""}>
+            <li key={s.id} className={i > 0 ? "border-l border-paper/10" : ""}>
               <Link
                 href={`/#${s.id}-stage`}
-                className="group flex flex-col gap-1 py-5 pr-3 pl-3 transition-colors hover:bg-evergreen-50 sm:flex-row sm:items-baseline sm:gap-4 sm:py-6 sm:pl-6 first:pl-0"
+                className="group flex h-full flex-col gap-1 py-5 pr-3 pl-3 transition-colors hover:bg-royal-700/25 sm:flex-row sm:items-baseline sm:gap-4 sm:py-6 sm:pl-6 first:pl-0 sm:first:pl-0"
               >
-                <span className="text-xs font-semibold tracking-[0.14em] text-gold-ink">{s.index}</span>
-                <span className="font-serif text-xl text-evergreen-900 sm:text-2xl">{s.title}</span>
-                <span className="hidden text-sm text-muted xl:inline">{s.line}</span>
+                <span className="text-xs font-semibold tracking-[0.14em] text-gold-300">{s.index}</span>
+                <span className="font-serif text-xl text-paper sm:text-2xl">{s.title}</span>
+                <span className="hidden text-sm text-paper/60 transition-colors group-hover:text-paper/85 xl:inline">{s.line}</span>
               </Link>
             </li>
           ))}
+          <li className="hidden items-center gap-3 border-l border-paper/10 pl-6 text-sm text-gold-300 lg:flex">
+            <svg viewBox="0 0 20 20" className="size-4" aria-hidden="true">
+              <path d="M15.5 6.5A6.5 6.5 0 1 0 16.5 11" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path d="M16 2.5v4.3h-4.3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            New opportunity
+          </li>
         </ol>
       </nav>
     </section>

@@ -26,9 +26,9 @@ export default async function StarlightPage() {
         <div className="container-x relative flex min-h-[80svh] flex-col items-center justify-center py-20 text-center">
           <StarIcon className="size-12 animate-rise text-starlight drop-shadow-[0_0_24px_rgb(232_201_133/0.75)]" />
           <p className="eyebrow mt-8 animate-rise self-center text-starlight">{starlightFeature.eyebrow}</p>
-          <h1 id="page-title" className="mt-6 text-display animate-rise [animation-delay:80ms]">
-            <span className="luminous-text block">{starlightFeature.title[0]}</span>
-            <span className="block italic">{starlightFeature.title[1]}</span>
+          <h1 id="page-title" className="mt-6 animate-rise font-editorial text-display [animation-delay:80ms]">
+            <span className="luminous-text luminous-once block">{starlightFeature.title[0]}</span>
+            <em className="block">{starlightFeature.title[1]}</em>
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-lede text-champagne/80 animate-rise [animation-delay:160ms]">{starlightFeature.body}</p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:items-start animate-rise [animation-delay:240ms]">

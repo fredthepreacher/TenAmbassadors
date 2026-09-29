@@ -22,7 +22,7 @@ export default async function AboutPage() {
         eyebrow="About Ten Ambassadors"
         title={
           <>
-            Developing the next generation <em className="text-evergreen-700">of leaders.</em>
+            Developing the next generation <em className="text-royal-700">of leaders.</em>
           </>
         }
         intro={about.origin}
@@ -39,7 +39,7 @@ export default async function AboutPage() {
           </div>
           <div data-reveal>
             <p className="eyebrow rule-before text-gold-ink">Vision</p>
-            <p className="mt-5 font-serif text-h3 text-evergreen-900">{about.vision}</p>
+            <p className="mt-5 font-serif text-h3 text-royal-700">{about.vision}</p>
             <ul className="mt-10 grid border-t border-line">
               {about.values.map((v, i) => (
                 <li key={v} className="flex items-baseline gap-4 border-b border-line py-4 font-serif text-2xl">
@@ -85,7 +85,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="section-y bg-evergreen-950 text-paper">
+      <section className="section-y bg-navy-900 text-paper">
         <div className="container-x flex flex-col items-start justify-between gap-8 md:flex-row md:items-end" data-reveal>
           <h2 className="max-w-2xl text-h2">See how the pathway works.</h2>
           <div className="flex flex-col gap-3 sm:flex-row">

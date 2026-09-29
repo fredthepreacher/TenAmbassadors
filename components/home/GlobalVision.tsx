@@ -1,16 +1,19 @@
+import { RingOfTen } from "@/components/ui/Motifs";
+
 /**
- * Global vision — framed explicitly as aspiration.
- * The meridian graphic is decorative and deliberately carries no locations.
+ * Global vision — immersive navy. Framed explicitly as aspiration.
+ * The meridian graphic is abstract and deliberately carries no locations.
  */
 export function GlobalVision({ eyebrow, title, body, note }: { eyebrow: string; title: string; body: string; note: string }) {
+  const [a, b] = title.split(" of ");
   return (
-    <section aria-labelledby="vision-title" className="section-y relative overflow-hidden bg-ivory">
+    <section aria-labelledby="vision-title" className="section-y relative overflow-hidden bg-navy-900 text-paper">
       <svg
         viewBox="0 0 600 600"
-        className="drift-slow pointer-events-none absolute top-1/2 right-[-18%] h-[130%] w-auto -translate-y-1/2 text-evergreen-800/15 sm:right-[-8%] lg:right-[-2%]"
+        className="drift pointer-events-none absolute top-1/2 right-[-30%] h-[125%] w-auto -translate-y-1/2 text-royal-500/40 sm:right-[-12%] lg:right-[-4%]"
         aria-hidden="true"
       >
-        <g fill="none" stroke="currentColor" strokeWidth="1">
+        <g fill="none" stroke="currentColor" strokeWidth="0.8">
           <circle cx="300" cy="300" r="280" />
           {[60, 130, 200, 250].map((rx) => (
             <ellipse key={rx} cx="300" cy="300" rx={rx} ry="280" />
@@ -21,15 +24,22 @@ export function GlobalVision({ eyebrow, title, body, note }: { eyebrow: string; 
           })}
         </g>
       </svg>
+      <RingOfTen className="pointer-events-none absolute top-1/2 right-[6%] hidden w-[34vw] max-w-[520px] -translate-y-1/2 lg:block" strokeOpacity={0.4} highlight={3} />
 
       <div className="container-x relative">
         <div className="max-w-3xl" data-reveal>
-          <p className="eyebrow rule-before text-gold-ink">{eyebrow}</p>
-          <h2 id="vision-title" className="mt-5 text-h1 text-evergreen-950">
-            {title}
+          <p className="eyebrow rule-before text-gold-300">{eyebrow}</p>
+          <h2 id="vision-title" className="mt-5 text-h1">
+            {b ? (
+              <>
+                {a} of <em className="text-gold-300">{b}</em>
+              </>
+            ) : (
+              title
+            )}
           </h2>
-          <p className="mt-8 max-w-2xl text-lede text-ink-2">{body}</p>
-          <p className="mt-8 max-w-xl border-l-2 border-gold-400 pl-4 text-sm text-muted italic">{note}</p>
+          <p className="mt-8 max-w-2xl text-lede text-paper/80">{body}</p>
+          <p className="mt-8 max-w-xl border-l-2 border-gold-400 pl-4 text-sm text-paper/70 italic">{note}</p>
         </div>
       </div>
     </section>

@@ -38,7 +38,7 @@ export function NewsletterForm() {
         />
         <button
           type="submit"
-          className="min-h-12 cursor-pointer rounded-full bg-gold-400 px-6 font-semibold text-evergreen-950 transition-colors hover:bg-gold-300"
+          className="min-h-12 cursor-pointer rounded-full bg-gold-400 px-6 font-semibold text-navy-900 transition-colors hover:bg-gold-300"
         >
           Subscribe
         </button>

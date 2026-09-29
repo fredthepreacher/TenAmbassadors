@@ -61,7 +61,7 @@ export function VideoFeature({
             />
             <span className="absolute inset-0 bg-gradient-to-t from-night-950/75 via-night-950/10 to-transparent" aria-hidden="true" />
             <span className="absolute bottom-5 left-5 flex items-center gap-4 md:bottom-7 md:left-7">
-              <span className="grid size-16 place-items-center rounded-full bg-paper/95 text-evergreen-900 transition-transform duration-500 group-hover:scale-105 md:size-20">
+              <span className="grid size-16 place-items-center rounded-full bg-paper/95 text-royal-700 transition-transform duration-500 group-hover:scale-105 md:size-20">
                 <PlayIcon className="ml-1 size-6 md:size-7" />
               </span>
               <span className="text-paper">

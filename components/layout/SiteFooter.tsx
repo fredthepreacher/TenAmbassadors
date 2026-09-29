@@ -18,7 +18,7 @@ export function SiteFooter({
   const { parentOrg, contact, nonprofitDisclosure } = site;
 
   return (
-    <footer className="bg-evergreen-950 text-paper" id="newsletter">
+    <footer className="bg-navy-950 text-paper" id="newsletter">
       <div className="container-x grid gap-12 border-b border-paper/15 py-16 md:py-20 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
         <div className="grid content-start gap-5">
           <Wordmark tone="light" />

@@ -17,8 +17,9 @@ export default async function GetInvolvedPage() {
 
   return (
     <>
-      <div className="bg-evergreen-900 pt-[76px]" />
-      <GetInvolved pathways={pathways} headingLevel="h1" />
+      <div className="bg-paper pt-[76px]">
+        <GetInvolved pathways={pathways} headingLevel="h1" />
+      </div>
 
       <section id="support" aria-labelledby="support-title" className="section-y scroll-mt-20 bg-ivory">
         <div className="container-x grid gap-12 lg:grid-cols-12">

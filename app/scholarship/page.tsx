@@ -26,7 +26,7 @@ export default async function ScholarshipPage() {
         eyebrow="Pathway 01 · Scholarship"
         title={
           <>
-            Opportunity <em className="text-evergreen-700">opens the door.</em>
+            Opportunity <em className="text-royal-700">opens the door.</em>
           </>
         }
         intro="Scholarship removes barriers — so talent and ambition can meet education, access, and possibility. It is the first stage of the Ten Ambassadors pathway, designed to connect with mentorship and service."
@@ -52,10 +52,10 @@ export default async function ScholarshipPage() {
                   ) : null}
                   <div className="flex flex-col justify-center lg:col-span-5">
                     <p className="eyebrow text-gold-ink">{statusLabel[s.status]}</p>
-                    <h3 className="mt-4 text-h2 text-evergreen-950">{s.name}</h3>
+                    <h3 className="mt-4 text-h2 text-navy-900">{s.name}</h3>
                     {s.honoree.years ? <p className="mt-2 font-serif text-xl text-muted italic">{s.honoree.name} · {s.honoree.years}</p> : null}
                     <p className="mt-5 text-ink-2">{s.summary}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 font-semibold text-evergreen-900">
+                    <span className="mt-6 inline-flex items-center gap-2 font-semibold text-royal-700">
                       View scholarship <ArrowIcon className="size-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>

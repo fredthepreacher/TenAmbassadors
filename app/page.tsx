@@ -11,6 +11,7 @@ import { GlobalVision } from "@/components/home/GlobalVision";
 import { PartnersFeature } from "@/components/home/PartnersFeature";
 import { GetInvolved } from "@/components/home/GetInvolved";
 import { Closing } from "@/components/home/Closing";
+import { JourneyIndicator } from "@/components/home/JourneyIndicator";
 import { getHomepage, getPartners, getPathways, getPrograms, getStarlight } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -35,11 +36,12 @@ export default async function HomePage() {
       <FeaturedScholarship scholarship={home.featuredScholarship} />
       <MentorshipFeature {...home.mentorshipFeature} />
       <ServiceFeature {...home.serviceFeature} initiatives={programs.serviceInitiatives} />
-      <StarlightFeature {...home.starlightFeature} pillars={starlight.pillars} actions={starlight.actions} />
       <GlobalVision {...home.globalVision} />
+      <StarlightFeature {...home.starlightFeature} pillars={starlight.pillars} actions={starlight.actions} />
       <PartnersFeature categories={partners.partnerCategories} partners={partners.partners} />
       <GetInvolved pathways={pathways} />
       <Closing {...home.closing} />
+      <JourneyIndicator />
     </>
   );
 }

@@ -22,7 +22,7 @@ export default async function PartnersPage() {
         eyebrow="Partners & sponsors"
         title={
           <>
-            Invest in the next generation <em className="text-evergreen-700">of leaders.</em>
+            Invest in the next generation <em className="text-royal-700">of leaders.</em>
           </>
         }
         intro="Ten Ambassadors is building partnerships across sectors. Partners help fund scholarships, open doors for mentorship, and extend service into communities."
@@ -42,7 +42,7 @@ export default async function PartnersPage() {
                 <li key={c.id} id={c.id} className="grid gap-6 border-b border-line py-10 lg:grid-cols-12" data-reveal>
                   <p className="text-xs font-semibold tracking-[0.14em] text-gold-ink lg:col-span-1">0{i + 1}</p>
                   <div className="lg:col-span-5">
-                    <h2 className="font-serif text-h3 text-evergreen-900">{c.title}</h2>
+                    <h2 className="font-serif text-h3 text-royal-700">{c.title}</h2>
                     <p className="mt-2 text-ink-2">{c.description}</p>
                   </div>
                   <div className="lg:col-span-6">

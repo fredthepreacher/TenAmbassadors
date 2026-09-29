@@ -1,4 +1,6 @@
-# Architecture & Recommendations — Phase 1 (V2)
+# Architecture & Recommendations — Phase 1 (V2 / V2.1)
+
+> V2.1 (`phase1-v2-visual`) replaces the ivory/evergreen palette with royal blue / navy / warm white / reward gold and adds the interaction system described in `docs/DESIGN_SYSTEM.md`. Sections 1–2 below describe V2; the storyboard order in V2.1 moves Global Vision before Starlight so Starlight is the night-time climax.
 
 ## 1. Creative system
 

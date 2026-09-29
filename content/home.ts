@@ -45,7 +45,7 @@ export const smsStages: SmsStage[] = [
     id: "mentorship",
     index: "02",
     title: "Mentorship",
-    line: "People help you walk through it.",
+    line: "Someone helps you walk through it.",
     body: "Mentorship connects emerging leaders with people who have walked the road before — guidance, perspective, and relationships that last.",
     href: "/mentorship",
   },
@@ -53,7 +53,7 @@ export const smsStages: SmsStage[] = [
     id: "service",
     index: "03",
     title: "Service",
-    line: "Then you hold the door open for someone else.",
+    line: "You hold the door open for someone else.",
     body: "Service turns development into impact — each ambassador creating opportunity for the next.",
     href: "/service",
   },
@@ -63,6 +63,11 @@ export const smsIntro = {
   eyebrow: "The SMS pathway",
   title: "More than a scholarship. A cycle of opportunity.",
   cycleLabel: ["Opportunity", "Development", "Service", "New opportunity"],
+  /** [draft] */
+  finale: {
+    line: "The cycle begins again.",
+    body: "Every ambassador who is served becomes someone who serves — and a new door opens for the next leader.",
+  },
 };
 
 export const inMotion = {
@@ -96,7 +101,7 @@ export const mentorshipFeature = {
 export const serviceFeature = {
   eyebrow: "Service",
   /** [draft] */
-  title: "Leadership, turned outward.",
+  title: "Leadership becomes action.",
   body: "Service is where development becomes impact. Ten Ambassadors will organize service initiatives that let ambassadors turn what they have gained into opportunity for their communities.",
 };
 

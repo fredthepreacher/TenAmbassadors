@@ -24,7 +24,7 @@ export default async function MentorshipPage() {
         eyebrow="Pathway 02 · Mentorship"
         title={
           <>
-            People help you <em className="text-evergreen-700">walk through it.</em>
+            Someone helps you <em className="text-royal-700">walk through it.</em>
           </>
         }
         intro={mentorship.intro}
@@ -48,7 +48,7 @@ export default async function MentorshipPage() {
             {mentorshipFeature.pillars.map((p, i) => (
               <li key={p.title} className="border-b border-line py-6">
                 <p className="text-xs font-semibold tracking-[0.14em] text-gold-ink">0{i + 1}</p>
-                <h3 className="mt-2 font-serif text-h3 text-evergreen-900">{p.title}</h3>
+                <h3 className="mt-2 font-serif text-h3 text-royal-700">{p.title}</h3>
                 <p className="mt-2 text-ink-2">{p.body}</p>
               </li>
             ))}

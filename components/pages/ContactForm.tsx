@@ -13,7 +13,7 @@ export function ContactForm() {
   const id = useId();
   const [status, setStatus] = useState<string | null>(null);
   const field =
-    "mt-2 block w-full rounded-xl border border-line-strong bg-paper px-4 py-3 text-ink placeholder:text-muted/80 focus:border-evergreen-800 focus:outline-2 focus:outline-offset-1 focus:outline-evergreen-800";
+    "mt-2 block w-full rounded-xl border border-line-strong bg-paper px-4 py-3 text-ink placeholder:text-muted/80 focus:border-royal-700 focus:outline-2 focus:outline-offset-1 focus:outline-royal-700";
   const label = "text-sm font-semibold text-ink-2";
 
   return (
@@ -64,11 +64,11 @@ export function ContactForm() {
       <div className="flex flex-col items-start gap-4">
         <button
           type="submit"
-          className="inline-flex min-h-12 cursor-pointer items-center rounded-full bg-evergreen-900 px-7 font-semibold text-paper transition-colors hover:bg-evergreen-800"
+          className="inline-flex min-h-12 cursor-pointer items-center rounded-full bg-royal-700 px-7 font-semibold text-paper transition-colors hover:bg-royal-700"
         >
           Send message
         </button>
-        <p role="status" aria-live="polite" className="text-sm text-evergreen-800 empty:hidden">
+        <p role="status" aria-live="polite" className="text-sm text-royal-700 empty:hidden">
           {status}
         </p>
       </div>

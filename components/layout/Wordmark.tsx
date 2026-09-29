@@ -20,7 +20,7 @@ export function Wordmark({ tone = "dark", className }: { tone?: "dark" | "light"
       <span
         className={cn(
           "text-[0.8rem] font-semibold tracking-[0.28em] uppercase",
-          tone === "dark" ? "text-evergreen-900" : tone === "night" ? "text-champagne" : "text-paper",
+          tone === "dark" ? "text-royal-700" : tone === "night" ? "text-champagne" : "text-paper",
         )}
       >
         {site.wordmark.rest}

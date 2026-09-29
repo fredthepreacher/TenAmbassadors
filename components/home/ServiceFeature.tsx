@@ -2,47 +2,80 @@ import type { Initiative } from "@/lib/types";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { PendingNote } from "@/components/ui/Pending";
 
+/**
+ * Service — strong blue, forward motion. The composition moves left → right:
+ * a directional rule runs through the chapter toward the initiatives.
+ * No service projects are invented; the track shows planned slots only.
+ */
 export function ServiceFeature({
   eyebrow,
   title,
   body,
   initiatives,
+  headingLevel = "h2",
 }: {
   eyebrow: string;
   title: string;
   body: string;
   initiatives: Initiative[];
+  headingLevel?: "h2" | "h1";
 }) {
+  const Heading = headingLevel;
+  const [a, b] = title.split(" becomes ");
   return (
-    <section id="service" aria-labelledby="service-title" className="section-y bg-paper">
-      <div className="container-x grid gap-14 lg:grid-cols-12">
+    <section id="service" aria-labelledby="service-title" className="section-y relative overflow-hidden bg-royal-700 text-paper">
+      {/* Directional geometry: forward momentum */}
+      <svg viewBox="0 0 1440 400" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 top-1/2 h-[60%] w-full -translate-y-1/2 opacity-60" aria-hidden="true">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <path key={i} d={`M-40 ${320 - i * 50} C 420 ${300 - i * 40}, 900 ${140 - i * 20}, 1480 ${80 + i * 18}`} fill="none" stroke="rgb(255 255 255 / 0.09)" strokeWidth="1" />
+        ))}
+      </svg>
+
+      <div className="container-x relative grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-6" data-reveal>
-          <p className="eyebrow rule-before text-gold-ink">{eyebrow}</p>
-          <h2 id="service-title" className="mt-5 text-h1 text-evergreen-950">
-            {title}
-          </h2>
-          <p className="mt-8 max-w-lg text-lede text-ink-2">{body}</p>
+          <p className="eyebrow rule-before text-gold-300">{eyebrow}</p>
+          <Heading id="service-title" className="mt-5 text-display">
+            {b ? (
+              <>
+                {a} <span className="block">becomes</span> <em className="text-gold-300">{b}</em>
+              </>
+            ) : (
+              title
+            )}
+          </Heading>
+          <p className="mt-8 max-w-lg text-lede text-paper/85">{body}</p>
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
-            <ButtonLink href="/service#volunteer" arrow>
-              Volunteer
+            <ButtonLink href="/service#volunteer" variant="light" arrow>
+              Serve with us
             </ButtonLink>
-            <TextLink href="/service">How service works</TextLink>
+            <TextLink href="/service" tone="light">
+              How service works
+            </TextLink>
           </div>
         </div>
 
-        <div className="lg:col-span-5 lg:col-start-8 lg:pt-4" data-reveal>
-          <div className="flex items-center justify-between gap-4 border-b border-line-strong pb-4">
-            <h3 className="eyebrow text-evergreen-900">Service initiatives</h3>
-            <PendingNote>To be announced</PendingNote>
+        <div className="lg:col-span-5 lg:col-start-8 lg:self-end">
+          <div className="flex items-center justify-between gap-4 border-b border-paper/25 pb-4" data-reveal>
+            <h3 className="eyebrow text-paper">Service initiatives</h3>
+            <PendingNote tone="dark">To be announced</PendingNote>
           </div>
           <ol>
             {initiatives.map((it, i) => (
-              <li key={it.id} className="grid grid-cols-[3.5rem_1fr] items-baseline gap-2 border-b border-line py-7">
-                <span className="font-serif text-4xl text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
+              <li
+                key={it.id}
+                className="group grid grid-cols-[3.5rem_1fr_auto] items-center gap-3 border-b border-paper/15 py-6"
+                data-reveal
+                style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}
+              >
+                <span className="font-sans text-3xl font-semibold tracking-[-0.04em] text-paper/60">{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <p className="font-serif text-2xl text-ink/80">{it.title ?? "Initiative to be announced"}</p>
-                  <p className="mt-1 text-sm text-muted">{it.summary ?? "Details will be published as service programs are confirmed."}</p>
+                  <p className="font-serif text-2xl text-paper">{it.title ?? "Initiative to be announced"}</p>
+                  <p className="mt-1 text-sm text-paper/70">{it.summary ?? "Details will be published as service programs are confirmed."}</p>
                 </div>
+                <span
+                  className="h-px w-6 bg-paper/40 transition-all duration-500 group-hover:w-12 group-hover:bg-gold-300"
+                  aria-hidden="true"
+                />
               </li>
             ))}
           </ol>

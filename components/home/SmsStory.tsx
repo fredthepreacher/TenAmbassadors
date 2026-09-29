@@ -5,48 +5,83 @@ import { useEffect, useRef, useState } from "react";
 import type { SmsStage } from "@/lib/types";
 import { cn } from "@/lib/cn";
 import { ArrowIcon } from "@/components/ui/Icons";
+import { OutlineNumeral } from "@/components/ui/Motifs";
 import { SmsCycle } from "./SmsCycle";
 
 /**
- * Editorial SMS sequence. As each stage scrolls into focus, the cycle diagram
- * advances. No scroll hijacking: this is ordinary document flow with a sticky
- * visual, and all content is readable without JavaScript.
+ * Signature interaction: the SMS cycle draws itself as you read.
+ * Ordinary document flow (no scroll hijacking) with a sticky diagram on
+ * desktop and a compact progress rail on mobile. Reaching the finale closes
+ * the circle with a single gold pulse. All content is readable without JS.
  */
 export function SmsStory({
   eyebrow,
   title,
   cycleLabel,
   stages,
+  finale,
 }: {
   eyebrow: string;
   title: string;
   cycleLabel: string[];
   stages: SmsStage[];
+  finale: { line: string; body: string };
 }) {
-  const [active, setActive] = useState(0);
-  const refs = useRef<(HTMLElement | null)[]>([]);
+  const [progress, setProgress] = useState(0);
+  const listRef = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
-    const els = refs.current.filter(Boolean) as HTMLElement[];
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.index));
+    const list = listRef.current;
+    if (!list) return;
+    let frame = 0;
+    let inView = false;
+
+    const measure = () => {
+      frame = 0;
+      const items = list.querySelectorAll<HTMLElement>("[data-stage]");
+      if (items.length < 2) return;
+      // Piecewise progress: each stage owns a third of the ring; the finale's
+      // arrival at mid-screen closes the circle.
+      const mid = window.innerHeight * 0.5;
+      const stagesCount = items.length - 1;
+      let p = 0;
+      items.forEach((el, i) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid) {
+          const frac = i === stagesCount ? 1 : Math.min(1, (mid - r.top) / r.height);
+          p = Math.max(p, (i + frac) / stagesCount);
         }
-      },
-      { rootMargin: "-45% 0px -45% 0px" },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+      });
+      setProgress(Math.max(0, Math.min(1, p)));
+    };
+    const onScroll = () => {
+      if (inView && !frame) frame = requestAnimationFrame(measure);
+    };
+    const io = new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      if (inView) onScroll();
+    });
+    io.observe(list);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
+
+  const complete = progress >= 0.98;
+  const active = complete ? 2 : Math.min(2, Math.floor(progress * 3));
 
   return (
     <section id="sms" aria-labelledby="sms-title" className="relative bg-paper">
-      <div className="container-x section-y pb-0">
+      <div className="container-x section-y pb-4">
         <header className="max-w-3xl" data-reveal>
           <p className="eyebrow rule-before text-gold-ink">{eyebrow}</p>
-          <h2 id="sms-title" className="mt-5 text-h2">
-            {title}
+          <h2 id="sms-title" className="mt-5 text-h2 text-navy-900">
+            {title.split(". ")[0]}. <em className="text-royal-700">{title.split(". ")[1]}</em>
           </h2>
           <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold tracking-[0.12em] text-muted uppercase">
             {cycleLabel.map((l, i) => (
@@ -61,58 +96,114 @@ export function SmsStory({
 
       {/* Mobile / tablet progress rail */}
       <div className="sticky top-[76px] z-20 border-y border-line bg-paper/95 backdrop-blur lg:hidden" aria-hidden="true">
-        <div className="container-x grid grid-cols-3">
-          {stages.map((s, i) => (
-            <div key={s.id} className="py-3">
-              <div className={cn("h-0.5 transition-colors duration-500", i <= active ? "bg-gold-500" : "bg-line")} />
-              <p className={cn("mt-2 text-xs font-semibold tracking-[0.1em] uppercase transition-colors", i === active ? "text-evergreen-900" : "text-muted")}>
-                {s.title}
-              </p>
-            </div>
-          ))}
+        <div className="container-x grid grid-cols-[1fr_1fr_1fr_auto] items-end gap-2 py-3">
+          {stages.map((s, i) => {
+            const segStart = i / 3;
+            const fill = Math.max(0, Math.min(1, (progress - segStart) * 3));
+            return (
+              <div key={s.id}>
+                <p
+                  className={cn(
+                    "text-[0.7rem] font-semibold tracking-[0.1em] uppercase transition-colors",
+                    complete ? "text-gold-ink" : i === active ? "text-royal-700" : "text-muted",
+                  )}
+                >
+                  {s.title}
+                </p>
+                <div className="mt-2 h-[3px] overflow-hidden rounded-full bg-line">
+                  <div
+                    className={cn("h-full origin-left rounded-full", complete ? "bg-gold-500" : "bg-royal-700")}
+                    style={{ transform: `scaleX(${fill})`, transition: "transform 0.2s linear, background-color 0.5s" }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+          <span
+            className={cn(
+              "grid size-7 place-items-center rounded-full border transition-colors duration-500",
+              complete ? "border-gold-500 bg-gold-500 text-navy-950" : "border-line-strong text-muted",
+            )}
+          >
+            <svg viewBox="0 0 20 20" className="size-3.5">
+              <path d="M15.5 6.5A6.5 6.5 0 1 0 16.5 11" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M16 2.5v4.3h-4.3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
         </div>
       </div>
 
       <div className="container-x grid lg:grid-cols-12 lg:gap-16">
         <div className="hidden lg:col-span-5 lg:block">
-          <div className="sticky top-[18vh] py-16">
-            <SmsCycle stages={stages} active={active} centerLabels={cycleLabel} className="mx-auto max-w-[440px]" />
+          <div className="sticky top-[16vh] py-12">
+            <SmsCycle
+              stages={stages}
+              progress={progress}
+              active={active}
+              complete={complete}
+              centerLabels={cycleLabel}
+              finaleLabel="Begins again"
+              className="mx-auto max-w-[460px]"
+            />
           </div>
         </div>
 
-        <ol className="lg:col-span-7">
-          {stages.map((s, i) => (
-            <li
-              key={s.id}
-              id={`${s.id}-stage`}
-              data-index={i}
-              ref={(el) => {
-                refs.current[i] = el;
-              }}
-              className="flex min-h-[70svh] flex-col justify-center border-b border-line py-16 last:border-b-0 lg:min-h-[82svh]"
-            >
-              <p className="flex items-baseline gap-4">
-                <span className="text-xs font-semibold tracking-[0.16em] text-gold-ink">{s.index}</span>
-                <span className="eyebrow text-evergreen-800">{s.title}</span>
-              </p>
-              <h3
+        <ol ref={listRef} className="lg:col-span-7">
+          {stages.map((s, i) => {
+            const isActive = i === active && !complete;
+            return (
+              <li
+                key={s.id}
+                id={`${s.id}-stage`}
+                data-stage
+                className="relative flex min-h-[64svh] flex-col justify-center overflow-hidden border-b border-line py-16 lg:min-h-[78svh]"
+              >
+                <OutlineNumeral className="absolute right-0 bottom-6 text-[clamp(7rem,16vw,13rem)] opacity-60">{s.index}</OutlineNumeral>
+                <p className="relative flex items-baseline gap-4">
+                  <span className="text-xs font-semibold tracking-[0.16em] text-gold-ink">{s.index}</span>
+                  <span className="eyebrow text-royal-700">{s.title}</span>
+                </p>
+                <h3
+                  className={cn(
+                    "relative mt-6 max-w-[15ch] font-sans text-h1 font-semibold tracking-[-0.035em] transition-colors duration-500",
+                    isActive || complete ? "text-navy-900" : "text-navy-900/55",
+                  )}
+                >
+                  {s.line}
+                </h3>
+                <p className="relative mt-6 max-w-xl text-lede text-ink-2">{s.body}</p>
+                <Link href={s.href} className="link-reward relative mt-8 w-fit text-royal-700">
+                  Explore {s.title.toLowerCase()}
+                  <ArrowIcon className="link-arrow" />
+                </Link>
+              </li>
+            );
+          })}
+
+          {/* Finale: the circle closes */}
+          <li
+            id="cycle-complete"
+            data-stage
+            className="relative flex min-h-[56svh] flex-col justify-center py-16 lg:min-h-[64svh]"
+          >
+            <p className="relative flex items-center gap-3">
+              <span
                 className={cn(
-                  "mt-6 max-w-[16ch] text-h1 transition-colors duration-700",
-                  i === active ? "text-evergreen-950" : "text-evergreen-950/55",
+                  "grid size-7 place-items-center rounded-full border transition-colors duration-700",
+                  complete ? "border-gold-500 bg-gold-500 text-navy-950" : "border-line-strong text-muted",
                 )}
+                aria-hidden="true"
               >
-                {s.line}
-              </h3>
-              <p className="mt-6 max-w-xl text-lede text-ink-2">{s.body}</p>
-              <Link
-                href={s.href}
-                className="group mt-8 inline-flex w-fit items-center gap-2 font-semibold text-evergreen-900 underline decoration-evergreen-900/30 underline-offset-[6px] hover:decoration-evergreen-900"
-              >
-                Explore {s.title.toLowerCase()}
-                <ArrowIcon className="size-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </li>
-          ))}
+                <svg viewBox="0 0 20 20" className="size-3.5">
+                  <path d="M15.5 6.5A6.5 6.5 0 1 0 16.5 11" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <path d="M16 2.5v4.3h-4.3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="eyebrow text-gold-ink">New opportunity</span>
+            </p>
+            <h3 className="mt-6 max-w-[14ch] font-serif text-h1 text-navy-900 italic">{finale.line}</h3>
+            <p className="mt-6 max-w-xl text-lede text-ink-2">{finale.body}</p>
+          </li>
         </ol>
       </div>
     </section>

@@ -15,6 +15,9 @@ const serif = localFont({
   ],
   variable: "--font-newsreader",
   display: "swap",
+  // Editorial accents only — not preloaded, so it never competes with the
+  // hero image and UI font for early bandwidth (fallback metrics prevent shift).
+  preload: false,
   fallback: ["Iowan Old Style", "Georgia", "serif"],
 });
 
