@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
+import { scholarships } from "@/content/scholarships";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Planned placeholder pages are noindex and intentionally excluded.
-  // Add routes here as they are built out with real content.
-  return [{ url: site.url, lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
+  const routes = ["", "/about", "/scholarship", "/mentorship", "/service", "/starlight", "/partners", "/get-involved", "/contact"];
+  const now = new Date();
+  return [
+    ...routes.map((r) => ({ url: `${site.url}${r}`, lastModified: now, priority: r === "" ? 1 : 0.7 })),
+    ...scholarships.map((s) => ({ url: `${site.url}/scholarship/${s.slug}`, lastModified: now, priority: 0.8 })),
+  ];
 }

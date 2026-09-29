@@ -1,48 +1,57 @@
-import type { SocialLink } from "@/lib/types";
+import type { NavItem, SocialLink } from "@/lib/types";
 
-export const primaryNav = [
-  { label: "About", href: "/#about" },
-  { label: "Pathways", href: "/#pathways" },
-  { label: "Impact", href: "/#impact" },
-  { label: "Opportunities", href: "/#opportunities" },
-  { label: "Starlight", href: "/#starlight" },
+export const primaryNav: NavItem[] = [
+  { label: "About", href: "/about" },
+  { label: "Scholarship", href: "/scholarship" },
+  { label: "Mentorship", href: "/mentorship" },
+  { label: "Service", href: "/service" },
+  { label: "Starlight", href: "/starlight" },
+  { label: "Partners", href: "/partners" },
 ];
 
-export const headerCta = { label: "Get Involved", href: "/#get-involved" };
+export const headerCta: NavItem = { label: "Get Involved", href: "/get-involved" };
 
-export const footerNav = [
+export const footerNav: { heading: string; links: NavItem[] }[] = [
   {
-    heading: "Explore",
+    heading: "Organization",
     links: [
-      { label: "About", href: "/about" },
+      { label: "Mission & Vision", href: "/about" },
+      { label: "Our Story", href: "/about#story" },
+      { label: "Leadership", href: "/about#leadership" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    heading: "Programs",
+    links: [
       { label: "Scholarship", href: "/scholarship" },
+      { label: "Dr. Christopher A. Phang Scholarship", href: "/scholarship/dr-christopher-a-phang" },
       { label: "Mentorship", href: "/mentorship" },
       { label: "Service", href: "/service" },
-      { label: "Starlight Awards", href: "/starlight-awards" },
     ],
   },
   {
     heading: "Get involved",
     links: [
-      { label: "Give", href: "/donate" },
-      { label: "Partner", href: "/partner" },
-      { label: "Volunteer", href: "/volunteer" },
-      { label: "Apply", href: "/apply" },
-      { label: "Events", href: "/events" },
+      { label: "Become a Mentor", href: "/mentorship#become-a-mentor" },
+      { label: "Volunteer", href: "/service#volunteer" },
+      { label: "Partner With Us", href: "/partners" },
+      { label: "Support the Mission", href: "/get-involved#support" },
+      { label: "Starlight Awards", href: "/starlight" },
     ],
   },
 ];
 
-export const legalNav = [
+export const legalNav: NavItem[] = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
-  { label: "Contact", href: "/contact" },
+  { label: "Accessibility", href: "/accessibility" },
 ];
 
-/** PENDING: add verified URLs. `null` renders as a disabled, labelled chip. */
+/** PENDING: verified URLs. `null` renders a disabled, labelled chip. */
 export const socialLinks: SocialLink[] = [
   { platform: "Instagram", url: null },
-  { platform: "Facebook", url: null },
   { platform: "LinkedIn", url: null },
+  { platform: "Facebook", url: null },
   { platform: "YouTube", url: null },
 ];

@@ -27,17 +27,6 @@ export function StarIcon({ className }: IconProps) {
   );
 }
 
-export function QuoteIcon({ className }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 40 32" fill="none" aria-hidden="true">
-      <path
-        d="M0 32V19.2C0 8.5 5.6 2.1 16.8 0l1.6 4.2C12.3 5.8 9.4 9.3 9.2 14.4H16V32H0Zm22 0V19.2C22 8.5 27.6 2.1 38.8 0l1.2 4.2c-6 1.6-9 5.1-9.2 10.2H38V32H22Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
 export function MenuIcon({ open, className }: IconProps & { open: boolean }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">

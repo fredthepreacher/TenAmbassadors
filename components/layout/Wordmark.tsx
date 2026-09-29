@@ -1,20 +1,30 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import styles from "./Wordmark.module.css";
+import { cn } from "@/lib/cn";
 
 /**
- * Typographic wordmark — a stand-in until the official logo is supplied.
- * Swap the inner markup for the logo SVG when brand files arrive.
+ * Typographic wordmark — stand-in until the official logo files are supplied.
+ * Replace the inner markup with the logo SVG when brand files arrive.
  */
-export function Wordmark({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
+export function Wordmark({ tone = "dark", className }: { tone?: "dark" | "light" | "night"; className?: string }) {
   return (
-    <Link
-      href="/"
-      className={[styles.mark, tone === "light" ? styles.light : "", className].filter(Boolean).join(" ")}
-      aria-label={`${site.name} — home`}
-    >
-      <span className={styles.lead}>{site.wordmark.lead}</span>
-      <span className={styles.rest}>{site.wordmark.rest}</span>
+    <Link href="/" aria-label={`${site.name} — home`} className={cn("inline-flex items-baseline gap-2 whitespace-nowrap", className)}>
+      <span
+        className={cn(
+          "font-serif text-[1.7rem] leading-none italic",
+          tone === "dark" ? "text-gold-ink" : tone === "night" ? "text-starlight" : "text-gold-300",
+        )}
+      >
+        {site.wordmark.lead}
+      </span>
+      <span
+        className={cn(
+          "text-[0.8rem] font-semibold tracking-[0.28em] uppercase",
+          tone === "dark" ? "text-evergreen-900" : tone === "night" ? "text-champagne" : "text-paper",
+        )}
+      >
+        {site.wordmark.rest}
+      </span>
     </Link>
   );
 }

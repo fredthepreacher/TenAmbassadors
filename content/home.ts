@@ -1,181 +1,125 @@
+import type { SmsStage } from "@/lib/types";
 import { site } from "@/lib/site";
-import type {
-  FeatureBlock,
-  GalleryItem,
-  Metric,
-  Opportunity,
-  Partner,
-  Pathway,
-  Pillar,
-  Story,
-} from "@/lib/types";
 import { media } from "./media";
 
-/* ---------------------------------------------------------------------------
- * Homepage content. Source language from existing Ten Ambassadors material is
- * marked [source]. Everything else is presentation copy that makes no factual
- * claims. Values set to `null` are pending from Geo.
- * ------------------------------------------------------------------------ */
+/*
+ * Homepage copy.
+ * [source]  = existing Ten Ambassadors language.
+ * [draft]   = presentation copy written for this build, pending client approval.
+ *             It makes no factual claims.
+ */
 
 export const hero = {
   eyebrow: site.pillarsLine,
-  headline: "Developing the next generation of leaders.",
-  lede: `${site.name} connects opportunity, guidance, and service to help future leaders move forward with purpose.`,
-  image: media.speaker,
-  primaryCta: { label: "Explore Our Mission", href: "/#about" },
-  secondaryCta: { label: "Get Involved", href: "/#get-involved" },
+  /** [draft] */
+  headline: ["Opening pathways.", "Building leaders."],
+  /** [draft] */
+  lede: "Ten Ambassadors opens pathways for the next generation through Scholarship, Mentorship, and Service.",
+  image: media.hero,
+  primary: { label: "Explore the pathway", href: "/#sms" },
+  secondary: { label: "Get involved", href: "/get-involved" },
 };
 
-export const origin = {
-  eyebrow: "Who we are",
+export const purpose = {
+  eyebrow: "Why we exist",
+  /** [draft] */
+  statement:
+    "Talent is everywhere. Access is not. Ten Ambassadors exists to close that distance — connecting emerging leaders with the opportunity, people, and purpose that turn potential into leadership.",
+  /** [source] */
+  origin: `Launched by ${site.parentOrg.name}, ${site.name} is an initiative focused on developing future leaders through Scholarship, Mentorship, and Service.`,
   /** [source] */
   themes: ["Strengthening Communities.", "Building Leaders.", "Expanding Opportunity."],
-  /** [source] — brand name is injected so it follows the global setting. */
-  statement: `Launched by ${site.parentOrg.name}, ${site.name} is an initiative focused on developing future leaders through Scholarship, Mentorship, and Service.`,
-  image: media.group,
-  imageCaption: "Community, in the room.",
 };
 
-export const pillars: Pillar[] = [
+/** The SMS cycle — Opportunity → Development → Service → New opportunity. [draft] */
+export const smsStages: SmsStage[] = [
   {
     id: "scholarship",
     index: "01",
-    letter: "S",
     title: "Scholarship",
-    summary:
-      "Opening doors to education, access, and opportunity for the next generation of leaders.",
-    pendingDetail: "Criteria, awards, and application schedule to be announced.",
-    cta: { label: "Scholarship pathway", href: "/scholarship" },
+    line: "Opportunity opens the door.",
+    body: "Scholarship removes barriers — so talent and ambition can meet education, access, and possibility.",
+    href: "/scholarship",
   },
   {
     id: "mentorship",
     index: "02",
-    letter: "M",
     title: "Mentorship",
-    summary:
-      "Connecting emerging leaders with people, perspective, and networks that help them grow.",
-    pendingDetail: "Mentorship structure and how to join to be announced.",
-    cta: { label: "Mentorship pathway", href: "/mentorship" },
+    line: "People help you walk through it.",
+    body: "Mentorship connects emerging leaders with people who have walked the road before — guidance, perspective, and relationships that last.",
+    href: "/mentorship",
   },
   {
     id: "service",
     index: "03",
-    letter: "S",
     title: "Service",
-    summary:
-      "Turning leadership into meaningful action that strengthens communities and expands possibility.",
-    pendingDetail: "Service initiatives and volunteer opportunities to be announced.",
-    cta: { label: "Service pathway", href: "/service" },
+    line: "Then you hold the door open for someone else.",
+    body: "Service turns development into impact — each ambassador creating opportunity for the next.",
+    href: "/service",
   },
 ];
 
-export const featuredStory: Story = {
-  eyebrow: "Mentorship in motion",
-  headline: "Leadership grows through access to people who have walked the road before.",
-  image: media.mentorship,
-  quote: null,
-  personName: null,
-  personRole: null,
-  cta: { label: "Explore mentorship", href: "/mentorship" },
+export const smsIntro = {
+  eyebrow: "The SMS pathway",
+  title: "More than a scholarship. A cycle of opportunity.",
+  cycleLabel: ["Opportunity", "Development", "Service", "New opportunity"],
 };
 
-export const gallery: GalleryItem[] = [
-  { id: "group", kind: "image", image: media.group, caption: "Together", layout: "feature" },
-  { id: "community", kind: "image", image: media.community, caption: "Community", layout: "standard" },
-  { id: "mentorship", kind: "image", image: media.mentorship, caption: "Connection", layout: "standard" },
-  { id: "video", kind: "video", image: null, videoUrl: null, caption: "Event film", layout: "wide" },
-];
-
-/** Metric slots only — labels are proposed; values must be verified. */
-export const metrics: Metric[] = [
-  { id: "scholarships", label: "Scholarships awarded", value: null, source: null },
-  { id: "mentorships", label: "Mentorship connections", value: null, source: null },
-  { id: "service", label: "Service hours", value: null, source: null },
-  { id: "communities", label: "Communities reached", value: null, source: null },
-];
-
-export const opportunities: Opportunity[] = [
-  {
-    id: "scholarship-applications",
-    pathway: "scholarship",
-    title: "Scholarship applications",
-    summary: "A future application pathway for students pursuing education and leadership.",
-    status: "coming-soon",
-    deadline: null,
-    eligibility: null,
-    cta: { label: "Application details", href: "/apply" },
+export const inMotion = {
+  eyebrow: "Opportunity in motion",
+  /** [draft] */
+  title: "Opportunity moves through people.",
+  body: "Every pathway begins with a relationship — an introduction, a conversation, a door someone chose to open. These are the rooms where that happens.",
+  images: {
+    lead: media.communityNetwork,
+    side: media.communityProfessionals,
   },
-  {
-    id: "mentorship-program",
-    pathway: "mentorship",
-    title: "Mentorship program",
-    summary: "A future pathway for emerging leaders and the mentors who guide them.",
-    status: "coming-soon",
-    deadline: null,
-    eligibility: null,
-    cta: { label: "Mentorship details", href: "/mentorship" },
-  },
-  {
-    id: "service-initiatives",
-    pathway: "service",
-    title: "Service initiatives",
-    summary: "Future community service projects open to ambassadors and volunteers.",
-    status: "coming-soon",
-    deadline: null,
-    eligibility: null,
-    cta: { label: "Volunteer details", href: "/volunteer" },
-  },
-  {
-    id: "events",
-    pathway: "events",
-    title: "Events & gatherings",
-    summary: "A future calendar of convenings, celebrations, and community moments.",
-    status: "coming-soon",
-    deadline: null,
-    eligibility: null,
-    cta: { label: "Events", href: "/events" },
-  },
-];
-
-export const starlight: FeatureBlock = {
-  eyebrow: "Coming soon",
-  title: "The Starlight Awards",
-  body: "A dedicated home for Starlight Awards media, honorees, and event details — to be featured here once confirmed.",
-  image: media.community,
-  cta: { label: "Starlight Awards", href: "/starlight-awards" },
 };
 
-/** Six empty partner slots. Replace with approved names + logo files. */
-export const partners: Partner[] = Array.from({ length: 6 }, (_, i) => ({
-  id: `partner-${i + 1}`,
-  name: null,
-  logo: null,
-  url: null,
-}));
+export const mentorshipFeature = {
+  eyebrow: "Mentorship",
+  /** [source — V1 baseline copy] */
+  title: "Leadership grows through access to people who have walked the road before.",
+  /** [draft] — the network relationship is supplied context (The Upmixer). */
+  body: "Ten Ambassadors is rooted in a professional network built by The Upmixer — leaders across industries who can offer what no classroom can: perspective, introductions, and honest guidance.",
+  pillars: [
+    { title: "Access", body: "Rooms, conversations, and introductions that are hard to reach alone." },
+    { title: "Guidance", body: "Perspective from people a few steps — or a generation — further along." },
+    { title: "Relationships", body: "Connections that outlast a single program or event." },
+  ],
+  images: {
+    generational: media.mentorshipGenerational,
+    peers: media.mentorshipPeers,
+  },
+};
 
-export const pathways: Pathway[] = [
-  {
-    id: "support",
-    title: "Support",
-    summary: "Invest in scholarship, mentorship, and service for future leaders.",
-    cta: { label: "Give", href: "/donate" },
-  },
-  {
-    id: "partner",
-    title: "Partner",
-    summary: "Align your organization with the next generation of leadership.",
-    cta: { label: "Become a partner", href: "/partner" },
-  },
-  {
-    id: "volunteer",
-    title: "Volunteer",
-    summary: "Share your time, experience, and network as a mentor or volunteer.",
-    cta: { label: "Volunteer", href: "/volunteer" },
-  },
-  {
-    id: "apply",
-    title: "Apply",
-    summary: "Step into a pathway built around scholarship, mentorship, and service.",
-    cta: { label: "Apply", href: "/apply" },
-  },
-];
+export const serviceFeature = {
+  eyebrow: "Service",
+  /** [draft] */
+  title: "Leadership, turned outward.",
+  body: "Service is where development becomes impact. Ten Ambassadors will organize service initiatives that let ambassadors turn what they have gained into opportunity for their communities.",
+};
+
+export const starlightFeature = {
+  eyebrow: "The Starlight Awards",
+  /** [brief concept] */
+  title: ["Celebrate excellence.", "Fund opportunity."],
+  /** [draft] */
+  body: "The Starlight Awards is envisioned as Ten Ambassadors' signature evening — honoring achievement while helping fund scholarship, mentorship, and service.",
+};
+
+export const globalVision = {
+  eyebrow: "Global vision",
+  /** [draft] — framed as aspiration, not existing reach. */
+  title: "Built for a world of emerging leaders.",
+  body: "Talent is not limited to one city, one community, or one background — and neither is our ambition. Ten Ambassadors is being built to grow: to connect leaders across industries, generations, and, in time, borders.",
+  note: "This is our vision for where Ten Ambassadors is going — not a claim about where it is today.",
+  image: media.communityNetwork,
+};
+
+export const closing = {
+  /** [draft] */
+  title: "Someone opened a door for you. Hold it open for the next leader.",
+  primary: { label: "Get involved", href: "/get-involved" },
+  secondary: { label: "Stay in touch", href: "#newsletter" },
+};

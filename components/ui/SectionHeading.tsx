@@ -1,27 +1,46 @@
 import type { ReactNode } from "react";
-import styles from "./SectionHeading.module.css";
+import { cn } from "@/lib/cn";
 
-interface SectionHeadingProps {
+type Tone = "light" | "dark" | "night";
+
+const eyebrowTone: Record<Tone, string> = {
+  light: "text-gold-ink",
+  dark: "text-gold-300",
+  night: "text-starlight",
+};
+
+const introTone: Record<Tone, string> = {
+  light: "text-muted",
+  dark: "text-paper/75",
+  night: "text-champagne/75",
+};
+
+export function SectionHeading({
+  id,
+  eyebrow,
+  title,
+  intro,
+  tone = "light",
+  as: Tag = "h2",
+  className,
+  titleClassName,
+}: {
   id?: string;
   eyebrow: string;
   title: ReactNode;
   intro?: ReactNode;
-  align?: "split" | "stack";
-  action?: ReactNode;
-}
-
-/** Consistent section header: eyebrow + serif title + optional intro/action. */
-export function SectionHeading({ id, eyebrow, title, intro, align = "split", action }: SectionHeadingProps) {
+  tone?: Tone;
+  as?: "h1" | "h2";
+  className?: string;
+  titleClassName?: string;
+}) {
   return (
-    <header className={[styles.head, align === "stack" ? styles.stack : ""].join(" ")} data-reveal>
-      <p className="eyebrow">{eyebrow}</p>
-      <div className={styles.body}>
-        <h2 id={id} className={styles.title}>
-          {title}
-        </h2>
-        {intro ? <p className={styles.intro}>{intro}</p> : null}
-        {action ? <div className={styles.action}>{action}</div> : null}
-      </div>
+    <header className={cn("max-w-3xl", className)} data-reveal>
+      <p className={cn("eyebrow rule-before", eyebrowTone[tone])}>{eyebrow}</p>
+      <Tag id={id} className={cn("mt-5", Tag === "h1" ? "text-h1" : "text-h2", titleClassName)}>
+        {title}
+      </Tag>
+      {intro ? <p className={cn("mt-6 max-w-2xl text-lede", introTone[tone])}>{intro}</p> : null}
     </header>
   );
 }

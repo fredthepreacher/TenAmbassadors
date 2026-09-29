@@ -10,8 +10,8 @@ import "./globals.css";
 /* Fonts are self-hosted (SIL OFL) so builds never depend on a network call. */
 const serif = localFont({
   src: [
-    { path: "./fonts/newsreader-latin-opsz-normal.woff2", style: "normal", weight: "200 800" },
-    { path: "./fonts/newsreader-latin-opsz-italic.woff2", style: "italic", weight: "200 800" },
+    { path: "./fonts/newsreader-latin-wght-normal.woff2", style: "normal", weight: "200 800" },
+    { path: "./fonts/newsreader-latin-wght-italic.woff2", style: "italic", weight: "200 800" },
   ],
   variable: "--font-newsreader",
   display: "swap",
@@ -45,11 +45,10 @@ export const metadata: Metadata = {
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
   },
-  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07211b",
+  themeColor: "#f6f2ea",
   width: "device-width",
   initialScale: 1,
 };
@@ -66,7 +65,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     name: site.name,
     url: site.url,
     description: site.description,
-    parentOrganization: { "@type": "Organization", name: site.parentOrg.name },
+    // "Launched by The Upmixer" (source language).
+    founder: { "@type": "Organization", name: site.parentOrg.name },
   };
 
   return (
@@ -78,7 +78,15 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <SiteHeader nav={nav.primaryNav} cta={nav.headerCta} />
+        <SiteHeader
+          nav={nav.primaryNav}
+          cta={nav.headerCta}
+          secondary={[
+            { label: "Dr. Christopher A. Phang Scholarship", href: "/scholarship/dr-christopher-a-phang" },
+            { label: "Support the Mission", href: "/get-involved#support" },
+            { label: "Contact", href: "/contact" },
+          ]}
+        />
         <main id="main" tabIndex={-1}>
           {children}
         </main>

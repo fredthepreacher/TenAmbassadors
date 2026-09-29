@@ -1,13 +1,12 @@
 /**
  * CMS-ready content model.
  *
- * These types describe every piece of content the site renders. Today the data
- * lives in /content as typed TypeScript; when a CMS (Sanity, Contentful,
- * Supabase, etc.) is connected, map its documents to these shapes inside
- * lib/content.ts and the components will not need to change.
+ * Data currently lives as typed TypeScript in /content. When a CMS is
+ * connected (see docs/ARCHITECTURE.md), map its documents to these shapes in
+ * lib/content.ts — components will not need to change.
  *
- * Convention: a value of `null` means "not supplied yet — render a clearly
- * labelled placeholder". Never fill these with invented facts.
+ * Convention: `null` means "not supplied yet" and renders a clearly labelled
+ * placeholder. Never fill a null with invented facts.
  */
 
 export type PillarId = "scholarship" | "mentorship" | "service";
@@ -17,83 +16,103 @@ export interface Media {
   alt: string;
   width: number;
   height: number;
-  /** CSS object-position used when the image is cropped responsively. */
+  /** CSS object-position for responsive crops. */
   focus?: string;
-  /** True while the file is a screenshot-derived reference, not the original. */
-  isReference?: boolean;
 }
 
-export interface CallToAction {
+export interface VideoAsset {
+  title: string;
+  src: string;
+  poster: Media;
+  durationLabel: string;
+  /** WebVTT captions URL. PENDING until a verified transcript exists. */
+  captions: string | null;
+  /** Plain-text transcript. PENDING. */
+  transcript: string | null;
+}
+
+export interface Link {
   label: string;
   href: string;
 }
 
-export interface Pillar {
+/** A call to action that may not be live yet (e.g. applications not open). */
+export interface Action extends Link {
+  available: boolean;
+  /** Shown instead of a link when `available` is false. */
+  pendingNote?: string;
+}
+
+export interface SmsStage {
   id: PillarId;
   index: string;
-  letter: string;
   title: string;
-  summary: string;
-  /** What this pathway will cover once program details are confirmed. */
-  pendingDetail: string;
-  cta: CallToAction;
+  line: string;
+  body: string;
+  href: string;
 }
 
-export interface Story {
-  eyebrow: string;
-  headline: string;
-  image: Media;
-  /** Approved participant story. `null` until supplied and approved. */
-  quote: string | null;
-  personName: string | null;
-  personRole: string | null;
-  cta: CallToAction;
-}
-
-export interface GalleryItem {
-  id: string;
-  kind: "image" | "video";
-  image: Media | null;
-  caption: string;
-  /** For future video embeds (YouTube / Vimeo / Mux). */
-  videoUrl?: string | null;
-  layout: "feature" | "tall" | "wide" | "standard";
-}
-
-export interface Metric {
-  id: string;
+export interface ScholarshipFact {
   label: string;
-  /** Verified value, e.g. "120+". `null` until confirmed. */
   value: string | null;
-  source: string | null;
 }
 
-export type OpportunityStatus = "coming-soon" | "open" | "closed";
-
-export interface Opportunity {
-  id: string;
-  pathway: PillarId | "events";
-  title: string;
+export interface Scholarship {
+  slug: string;
+  name: string;
+  honoree: {
+    name: string;
+    /** As shown in the approved scholarship film. Confirm with the family/client. */
+    years: string | null;
+    portrait: Media | null;
+  };
+  status: "in-development" | "open" | "closed";
   summary: string;
-  status: OpportunityStatus;
-  /** ISO date string. `null` until confirmed. */
-  deadline: string | null;
-  eligibility: string | null;
-  cta: CallToAction;
+  story: string | null;
+  legacy: string | null;
+  facts: ScholarshipFact[];
+  timeline: { label: string; date: string }[] | null;
+  recipients: { name: string; year: string; photo: Media | null }[] | null;
+  impact: string | null;
+  video: { featured: VideoAsset; full: VideoAsset } | null;
+  apply: Action;
+}
+
+export interface Initiative {
+  id: string;
+  title: string | null;
+  summary: string | null;
+  status: "planned" | "active" | "completed";
+}
+
+export type PartnerCategoryId = "corporate" | "university" | "foundation" | "community" | "association";
+
+export interface PartnerCategory {
+  id: PartnerCategoryId;
+  title: string;
+  description: string;
 }
 
 export interface Partner {
   id: string;
-  name: string | null;
+  name: string;
+  category: PartnerCategoryId;
   logo: Media | null;
   url: string | null;
 }
 
 export interface Pathway {
-  id: "support" | "partner" | "volunteer" | "apply";
+  id: string;
   title: string;
   summary: string;
-  cta: CallToAction;
+  action: Action;
+}
+
+export interface Leader {
+  name: string;
+  role: string;
+  photo: Media | null;
+  bio: string | null;
 }
 
 export interface SocialLink {
@@ -101,19 +120,14 @@ export interface SocialLink {
   url: string | null;
 }
 
-export interface FeatureBlock {
-  eyebrow: string;
-  title: string;
-  body: string;
-  image: Media;
-  cta: CallToAction;
+export interface NavItem {
+  label: string;
+  href: string;
 }
 
-export interface PlannedPage {
-  slug: string;
-  eyebrow: string;
+export interface LegalDoc {
+  slug: "privacy" | "terms" | "accessibility";
   title: string;
   summary: string;
-  /** Inputs needed before this page can be built out. */
-  pending: string[];
+  body: string | null;
 }

@@ -17,16 +17,18 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          background: "linear-gradient(135deg, #07211b 0%, #103f35 100%)",
-          color: "#f5f1e8",
+          background: "#f6f2ea",
+          color: "#11352d",
+          borderLeft: "24px solid #11352d",
           fontFamily: "Georgia, serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 26, letterSpacing: 8, textTransform: "uppercase", color: "#d6b574" }}>
+        <div style={{ display: "flex", fontSize: 26, letterSpacing: 8, textTransform: "uppercase", color: "#775819" }}>
           {site.pillarsLine}
         </div>
-        <div style={{ display: "flex", fontSize: 92, lineHeight: 1.02, maxWidth: 900 }}>
-          Developing the next generation of leaders.
+        <div style={{ display: "flex", flexDirection: "column", fontSize: 104, lineHeight: 1 }}>
+          <span>Opening pathways.</span>
+          <span style={{ fontStyle: "italic", color: "#245e4c" }}>Building leaders.</span>
         </div>
         <div style={{ display: "flex", fontSize: 30, letterSpacing: 6, textTransform: "uppercase" }}>{site.name}</div>
       </div>

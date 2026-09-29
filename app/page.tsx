@@ -1,30 +1,45 @@
-import { Hero } from "@/components/sections/Hero";
-import { Origin } from "@/components/sections/Origin";
-import { Pillars } from "@/components/sections/Pillars";
-import { FeaturedStory } from "@/components/sections/FeaturedStory";
-import { Gallery } from "@/components/sections/Gallery";
-import { ImpactMetrics } from "@/components/sections/ImpactMetrics";
-import { Opportunities } from "@/components/sections/Opportunities";
-import { Starlight } from "@/components/sections/Starlight";
-import { Partners } from "@/components/sections/Partners";
-import { GetInvolved } from "@/components/sections/GetInvolved";
-import { getHomepage } from "@/lib/content";
+import type { Metadata } from "next";
+import { Hero } from "@/components/home/Hero";
+import { Purpose } from "@/components/home/Purpose";
+import { SmsStory } from "@/components/home/SmsStory";
+import { InMotion } from "@/components/home/InMotion";
+import { FeaturedScholarship } from "@/components/home/FeaturedScholarship";
+import { MentorshipFeature } from "@/components/home/MentorshipFeature";
+import { ServiceFeature } from "@/components/home/ServiceFeature";
+import { StarlightFeature } from "@/components/home/StarlightFeature";
+import { GlobalVision } from "@/components/home/GlobalVision";
+import { PartnersFeature } from "@/components/home/PartnersFeature";
+import { GetInvolved } from "@/components/home/GetInvolved";
+import { Closing } from "@/components/home/Closing";
+import { getHomepage, getPartners, getPathways, getPrograms, getStarlight } from "@/lib/content";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default async function HomePage() {
-  const home = await getHomepage();
+  const [home, programs, starlight, partners, pathways] = await Promise.all([
+    getHomepage(),
+    getPrograms(),
+    getStarlight(),
+    getPartners(),
+    getPathways(),
+  ]);
 
   return (
     <>
-      <Hero {...home.hero} pillars={home.pillars} />
-      <Origin {...home.origin} />
-      <Pillars pillars={home.pillars} />
-      <FeaturedStory story={home.featuredStory} />
-      <Gallery items={home.gallery} />
-      <ImpactMetrics metrics={home.metrics} />
-      <Opportunities items={home.opportunities} />
-      <Starlight block={home.starlight} />
-      <Partners partners={home.partners} />
-      <GetInvolved pathways={home.pathways} />
+      <Hero {...home.hero} stages={home.smsStages} />
+      <Purpose {...home.purpose} />
+      <SmsStory {...home.smsIntro} stages={home.smsStages} />
+      <InMotion {...home.inMotion} />
+      <FeaturedScholarship scholarship={home.featuredScholarship} />
+      <MentorshipFeature {...home.mentorshipFeature} />
+      <ServiceFeature {...home.serviceFeature} initiatives={programs.serviceInitiatives} />
+      <StarlightFeature {...home.starlightFeature} pillars={starlight.pillars} actions={starlight.actions} />
+      <GlobalVision {...home.globalVision} />
+      <PartnersFeature categories={partners.partnerCategories} partners={partners.partners} />
+      <GetInvolved pathways={pathways} />
+      <Closing {...home.closing} />
     </>
   );
 }
