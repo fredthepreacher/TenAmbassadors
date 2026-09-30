@@ -1,6 +1,7 @@
 import type { Action } from "@/lib/types";
 import { ActionButton } from "@/components/ui/Button";
 import { StarIcon } from "@/components/ui/Icons";
+import { PendingNote } from "@/components/ui/Pending";
 
 /**
  * The Starlight Awards — "day becomes night".
@@ -69,6 +70,9 @@ export function StarlightFeature({
                 {event.city}
               </address>
             </div>
+            <PendingNote tone="night" className="mt-5">
+              Start time &amp; ticket link pending
+            </PendingNote>
           </div>
 
           <ul className="mx-auto mt-14 grid max-w-5xl border-y border-starlight/20 text-left sm:grid-cols-3">

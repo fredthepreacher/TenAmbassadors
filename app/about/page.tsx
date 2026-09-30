@@ -2,7 +2,7 @@ import Image from "next/image";
 import { PageHero } from "@/components/pages/PageHero";
 import { WhyTen } from "@/components/home/WhyTen";
 import { ButtonLink } from "@/components/ui/Button";
-import { PendingBlock } from "@/components/ui/Pending";
+import { PendingBlock, PendingNote } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getAbout } from "@/lib/content";
 import { media } from "@/content/media";
@@ -39,6 +39,7 @@ export default async function AboutPage() {
             <h2 id="mission-title" className="mt-5 text-h3 font-sans font-semibold tracking-[-0.02em] text-navy-900">
               {about.mission}
             </h2>
+            <PendingNote className="mt-6">Proposed mission · final approval pending</PendingNote>
           </div>
           <div data-reveal>
             <p className="eyebrow rule-before text-gold-ink">Vision</p>
@@ -139,12 +140,13 @@ export default async function AboutPage() {
 
       <section id="leadership" aria-labelledby="leadership-title" className="section-y scroll-mt-20 bg-ivory">
         <div className="container-x">
-          <SectionHeading id="leadership-title" eyebrow="Leadership" title="Founding Ambassadors & Board" />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <SectionHeading id="leadership-title" eyebrow="Leadership" title="Founding Ambassadors, Board & Host Committee" />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {leadership.length === 0 ? (
               <>
                 <PendingBlock title="Founding Ambassadors">The ten founding Ambassadors will be introduced here once confirmed.</PendingBlock>
                 <PendingBlock title="Board & leadership">Board members and organizational leadership will be listed once governance is finalized.</PendingBlock>
+                <PendingBlock title="Institutional Host Committee">Host Committee members will be listed once confirmed.</PendingBlock>
               </>
             ) : null}
           </div>

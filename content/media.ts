@@ -55,6 +55,13 @@ export const media = {
     height: 435,
     focus: "50% 40%",
   },
+  mentorshipConversation: {
+    src: "/media/mentorship/ta-mentorship-4006.jpg",
+    alt: "Two men in dark jackets stand face to face in conversation amid a crowded evening gathering.",
+    width: 420,
+    height: 300,
+    focus: "50% 40%",
+  },
   phangPoster30: {
     src: "/media/scholarship/dr-phang-30s-poster.jpg",
     alt: "Still from the Dr. Christopher A. Phang scholarship film: two men talk seated by a sunlit window.",
@@ -74,16 +81,17 @@ export const media = {
 export const phangVideos = {
   featured: {
     /*
-     * V2.2 homepage cut: 01:19.00 → 01:58.55 of the source (39.55s), from the
-     * supplied 01:00–02:00 segment. The requested ~02:04 end lies beyond the
-     * supplied footage; 01:58.55 is the last natural pause (held end card).
-     * Fades: video+audio in 0.9s, out 1.5s. Framing untouched; burned-in
-     * timecode and watermark untouched (media clearance still pending).
+     * V2.2 homepage cut: 01:19.00 → 02:00.00 of the source — the natural end of
+     * the supplied 01:00–02:00 segment (exactly 41.00s; nothing looped or
+     * extended). It closes on the held end card. Fades: video+audio in 0.9s,
+     * cinematic out 1.75s. Framing untouched; burned-in timecode and watermark
+     * untouched (media clearance still pending). Replace with a full ~45s cut
+     * if clean footage past 02:00 is supplied.
      */
     title: "The Dr. Christopher A. Phang Scholarship — film excerpt",
     src: "/media/scholarship/dr-phang-featured.mp4",
     poster: media.phangPoster30,
-    durationLabel: "0:40",
+    durationLabel: "0:41",
     captions: null,
     transcript: null,
   },

@@ -54,7 +54,7 @@ export function FeaturedScholarship({ scholarship }: { scholarship: Scholarship 
               </div>
               <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm text-paper/70">
                 <p>Film · {scholarship.video.featured.durationLabel}</p>
-                <PendingNote tone="dark">Working cut: shows production timecode and watermark · media clearance pending</PendingNote>
+                <PendingNote tone="dark">Working cut: shows production timecode and watermark · media clearance &amp; captions pending</PendingNote>
               </div>
             </div>
           ) : null}

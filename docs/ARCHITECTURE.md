@@ -35,7 +35,7 @@ The homepage SMS section expresses this as a scroll-linked cycle diagram. It has
 | 03 | SMS story (sticky cycle) | `home/SmsStory`, `home/SmsCycle` | — |
 | 04 | Opportunity in motion | `home/InMotion` | A7R00711 (enhanced), 499-500-2342 |
 | 05 | Featured scholarship: Dr. Christopher A. Phang | `home/FeaturedScholarship` | 30-second film + poster |
-| 06 | Mentorship | `home/MentorshipFeature` | 478-479-2292, 492-493-2321 (cropped) |
+| 06 | Mentorship | `home/MentorshipFeature` | 478-479-2292, IMG_4006 (cropped; V2.2 follow-up) |
 | 07 | Service (future initiatives) | `home/ServiceFeature` | — |
 | 08 | Starlight transition | `home/StarlightFeature` | — (typographic) |
 | 09 | Global vision (aspiration, explicitly not a claim) | `home/GlobalVision` | decorative meridian SVG |

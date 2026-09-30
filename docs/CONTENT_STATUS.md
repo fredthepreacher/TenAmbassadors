@@ -62,13 +62,25 @@ No impact numbers, amounts, recipients, dates, deadlines, partners, leaders, tes
 
 **Formation language:** the site says "being established" throughout. It makes no 501(c)(3) or tax-deductibility claims. `site.formationStatus` is shown on `/about` and `/donate`.
 
-**Decisions still needed:**
+**Still pending from the client.** Each item is marked on the site with a dashed "pending" label:
 
-- Final sign-off on mission, core message and draft headlines
-- Founding Ambassadors, Board and Host Committee members
-- Confirmed Network Partners and sponsors
-- Starlight: start time, ticketing URL, final award categories and criteria, honorees
-- Intake/CRM destination (forms are previews)
-- Donation processor; legal and tax-exempt status
-- A mentorship photo that shows real conversation
-- A Dr. Phang source beyond 02:00, plus media clearance and captions
+| Pending item | Where it is marked on the site |
+|---|---|
+| Final mission / headline approval | Homepage "What is Ten Ambassadors?" · `/about#mission` |
+| Founding Ambassadors | `/about#leadership` |
+| Board | `/about#leadership` |
+| Host Committee | `/about#leadership` (Institutional Host Committee) |
+| Starlight start time | Homepage Starlight card · `/starlight` (Time: "To be announced") |
+| Starlight ticket link | Homepage Starlight card · `/starlight` (Tickets: "To be announced") |
+| Final awards / honorees | `/starlight` awards ("Concept · pending approval") and Honorees block |
+| CRM / database | Every intake form ("Preview · not collecting yet") |
+| Donation processor | `/donate`, `/get-involved#support` |
+| Legal / tax-exempt status | Footer · `/about` · `/donate` (`site.formationStatus`) |
+| Media clearance / captions | Homepage film · `/scholarship/dr-christopher-a-phang` |
+
+Confirmed Network Partners and sponsors are also still needed.
+
+**Resolved in the V2.2 follow-up:**
+
+- **Mentorship conversation photo:** IMG_4006 is now used.
+- **Dr. Phang homepage cut:** re-cut to the source's natural end, 41.00 s. A full ~45 s version is possible if Geo supplies clean footage past 02:00.

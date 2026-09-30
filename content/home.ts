@@ -84,7 +84,8 @@ export const mentorshipFeature = {
   ],
   images: {
     generational: media.mentorshipGenerational,
-    peers: media.mentorshipPeers,
+    /** V2.2 follow-up: IMG_4006 (client-selected), cropped to the two-person conversation. */
+    conversation: media.mentorshipConversation,
   },
 };
 

@@ -1,4 +1,5 @@
 import { RingOfTen } from "@/components/ui/Motifs";
+import { PendingNote } from "@/components/ui/Pending";
 
 export function Purpose({
   eyebrow,
@@ -32,6 +33,7 @@ export function Purpose({
             <div data-reveal>
               <span className="block h-px w-16 bg-gold-500" data-reveal="rule" aria-hidden="true" />
               <p className="mt-6 text-lede text-ink-2">{origin}</p>
+              <PendingNote className="mt-6">Proposed mission &amp; headlines · final approval pending</PendingNote>
             </div>
             <ul className="grid gap-0 border-t border-line">
               {themes.map((t, i) => (

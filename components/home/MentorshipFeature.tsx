@@ -15,7 +15,7 @@ export function MentorshipFeature({
   title: string;
   body: string;
   pillars: { title: string; body: string }[];
-  images: { generational: Media; peers: Media };
+  images: { generational: Media; conversation: Media };
 }) {
   const [lead, tail] = title.split(" who have ");
   return (
@@ -47,20 +47,20 @@ export function MentorshipFeature({
 
           <figure className="group absolute right-0 bottom-0 w-[62%] sm:w-[52%] lg:w-[58%]">
             <div
-              className="photo relative aspect-[1150/820] border-[6px] border-ivory bg-stone shadow-[0_30px_60px_-30px_rgb(8_27_51/0.5)] sm:border-8"
+              className="photo relative aspect-[7/5] border-[6px] border-ivory bg-stone shadow-[0_30px_60px_-30px_rgb(8_27_51/0.5)] sm:border-8"
               data-reveal="image"
               style={{ ["--reveal-delay" as string]: "140ms" }}
             >
               <Image
-                src={images.peers.src}
-                alt={images.peers.alt}
+                src={images.conversation.src}
+                alt={images.conversation.alt}
                 fill
                 sizes="(max-width: 1024px) 60vw, 28vw"
                 className="object-cover"
-                style={{ objectPosition: images.peers.focus }}
+                style={{ objectPosition: images.conversation.focus }}
               />
               <span className="photo-caption absolute bottom-3 left-3 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-semibold tracking-[0.12em] text-royal-800 uppercase">
-                Among peers
+                In conversation
               </span>
             </div>
           </figure>

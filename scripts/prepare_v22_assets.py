@@ -7,12 +7,15 @@ Usage:
 Photos (package "ENHANCED" masters used as delivered, cropped only):
   IMG_4007 -> public/media/community/ta-community-4007.jpg  (full width, trimmed top/bottom; all seven faces kept)
   IMG_4004 -> public/media/community/ta-community-4004.jpg  (head-and-shoulders band; excludes the drinks lower in frame)
-  IMG_4006 and IMG_4001 are intentionally NOT used (see docs/ASSET_MAP.md).
+  IMG_4006 -> public/media/mentorship/ta-mentorship-4006.jpg  (ORIGINAL master; crop only to the two men in
+              conversation — excludes the #UPMIXER screen, DJ rig and dance floor; 420x300 native, no upscale)
+  IMG_4001 is intentionally NOT used (see docs/ASSET_MAP.md).
 
 Video (homepage featured cut):
   source  Dr_Phang_Scholarship_01m00s-02m00s.mp4 (covers 01:00–02:00)
-  window  01:19.00 → 01:58.55  (offsets 19.00 → 58.55; 39.55 s)
-  fades   video + audio: in 0.9 s, out 1.5 s
+  window  01:19.00 → 02:00.00  (offsets 19.00 → 60.00; exactly 41.00 s — the natural end of the source;
+          nothing looped or extended)
+  fades   video + audio: in 0.9 s, cinematic out 1.75 s (on the held end card)
   output  public/media/scholarship/dr-phang-featured.mp4 (H.264 High, CRF 21, AAC 128k, faststart)
 """
 import subprocess
@@ -32,7 +35,12 @@ im.crop((0, 40, w, 40 + int(w / 1.9))).save(out / "community/ta-community-4007.j
 im = Image.open(handoff / "assets/primary/IMG_4004_ENHANCED.jpg")
 im.crop((230, 50, 1480, 485)).save(out / "community/ta-community-4004.jpg", quality=88, subsampling=0, optimize=True)
 
-start, end, fade_in, fade_out = 19.0, 58.55, 0.9, 1.5
+# ORIGINAL chosen over ENHANCED: identical tone, but the enhanced master's sharpening adds visible
+# noise on the faces at this crop size; the original grain reads more natural.
+im = Image.open(handoff / "assets/primary/IMG_4006_ORIGINAL.jpeg")
+im.crop((1060, 630, 1480, 930)).save(out / "mentorship/ta-mentorship-4006.jpg", quality=90, subsampling=0, optimize=True)
+
+start, end, fade_in, fade_out = 19.0, 60.0, 0.9, 1.75
 dur = end - start
 subprocess.run(
     [

@@ -88,7 +88,7 @@ export default async function StarlightPage() {
               ))}
             </dl>
             <PendingNote tone="night" className="mt-6">
-              Times, tickets and honorees pending
+              Start time, ticket link, final awards &amp; honorees pending
             </PendingNote>
             {s.externalUrl ? (
               <div className="mt-8">
