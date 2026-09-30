@@ -1,6 +1,6 @@
 import type { SmsStage } from "@/lib/types";
 import { site } from "@/lib/site";
-import { media } from "./media";
+import { communityVideos, media } from "./media";
 
 /*
  * Homepage copy.
@@ -120,6 +120,10 @@ export const networkFeature = {
   lede: "Leadership becomes more powerful when networks collaborate.",
   body: "Ten Ambassadors is designed as a network of networks — professional associations, alumni groups, universities, civic and cultural organizations, young-professional groups and more, sharing opportunities and developing leaders together.",
   image: media.communityGroup,
+  /** V2.4 — ambient recap film; footage is from the wider Upmixer event community. */
+  video: communityVideos.recap,
+  videoCaption:
+    "Scenes from gatherings across the wider Upmixer event community — the kind of rooms, conversations and connections Ten Ambassadors is being built to extend.",
 };
 
 export const closing = {

@@ -62,6 +62,13 @@ export const media = {
     height: 300,
     focus: "50% 40%",
   },
+  recapPoster: {
+    src: "/media/community/ta-recap-community-poster.jpg",
+    alt: "Guests seated on a leather banquette listen to a speaker at an evening gathering.",
+    width: 864,
+    height: 1080,
+    focus: "50% 45%",
+  },
   phangPoster30: {
     src: "/media/scholarship/dr-phang-30s-poster.jpg",
     alt: "Still from the Dr. Christopher A. Phang scholarship film: two men talk seated by a sunlit window.",
@@ -102,5 +109,26 @@ export const phangVideos = {
     durationLabel: "1:00",
     captions: null,
     transcript: null,
+  },
+} satisfies Record<string, VideoAsset>;
+
+/**
+ * V2.4 community recap — 00:16–00:35 of the client-supplied Recap Reel V2
+ * (broader Upmixer event community; not Ten Ambassadors programs).
+ * Master (1920×1080, 19.0 s, ~11.7 MB) is kept in assets/recap-master/.
+ * Web derivative: centre 4:5 crop of the master (the vertical footage plus a
+ * sliver of its blurred fill) at native 864×1080 — H.264 High CRF 25, AAC
+ * 128k, faststart, ~3.8 MB. It never loads with the page (see AmbientVideo).
+ * Speech is open-captioned in the footage itself.
+ */
+export const communityVideos = {
+  recap: {
+    title: "Community in motion — event recap",
+    src: "/media/community/ta-recap-community.mp4",
+    poster: media.recapPoster,
+    durationLabel: "0:19",
+    captions: null,
+    transcript:
+      "A speaker asks: “Are you only using AI just to make money? If so, I invite you to consider that perhaps you could do more.” Guests then meet, talk and exchange contacts.",
   },
 } satisfies Record<string, VideoAsset>;

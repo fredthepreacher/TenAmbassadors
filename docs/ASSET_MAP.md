@@ -64,3 +64,18 @@ Mentorship now uses:
 | Unchanged | Framing, player UI, poster, and the watermark/timecode (not covered), plus the media-clearance note. The 60-second scholarship-page film is unchanged. The 30-second file is kept but no longer referenced. |
 
 If Geo supplies clean footage past 02:00, re-run the script with `end = 64.0` (adjusted to a natural pause) for the full ~45 s version. Also update `durationLabel` in `content/media.ts`.
+
+## V2.4 — community recap film (2026-09-30)
+
+Source: `Ten_Ambassadors_V2_4_Video_SEO_AEO_Handoff.zip`. It is 00:16–00:35 of the client-supplied Recap Reel V2. The footage comes from the wider Upmixer event community and is **not** a record of Ten Ambassadors programs. The caption on the site says so.
+
+| | |
+|---|---|
+| Master (kept, not served) | `assets/recap-master/TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4`: 1920×1080, 19.0 s (video track 18.3 s), H.264/AAC, 30 fps, 11.7 MB. The poster master is kept alongside it. |
+| Web derivative | `public/media/community/ta-recap-community.mp4`: **864×1080**, a centre 4:5 crop containing the full vertical footage plus a sliver of blurred fill. It is at native resolution (no scaling), H.264 High CRF 25, AAC 128k, faststart, **3.77 MB** (1.59 Mbps). The edit, fades and burned-in captions are unchanged. |
+| Poster | `public/media/community/ta-recap-community-poster.jpg`: the supplied poster, cropped the same way (864×1080, 86 KB). It is served through `next/image`. |
+| Placement | Homepage, **"One community. Many networks."** section (`#network`), in the right column beside the Network Partner copy. IMG_4007 stays as the section's wide image. |
+| Behavior | `components/ui/AmbientVideo.tsx`: the source is attached only near the viewport. The film plays muted, inline and looping while at least 40% visible, and pauses off-screen. There is a visible Pause/Play control plus "Play with sound" (native controls, from the start). With reduced motion or Save-Data it does not autoplay and shows the poster with a Play control. There is never autoplay audio. |
+| Pipeline | `scripts/prepare_v24_recap.py` |
+
+The client should confirm that everyone shown in the recap agreed to appear in promotional use.

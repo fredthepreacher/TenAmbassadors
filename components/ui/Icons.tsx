@@ -16,6 +16,23 @@ export function PlayIcon({ className }: IconProps) {
   );
 }
 
+export function PauseIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M8 5.5h2.6v13H8zM13.4 5.5H16v13h-2.6z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function SoundIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4.5 9.5h3.2L12 6v12l-4.3-3.5H4.5v-5Z" fill="currentColor" />
+      <path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.8a7.4 7.4 0 0 1 0 10.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function StarIcon({ className }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">

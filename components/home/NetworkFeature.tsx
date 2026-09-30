@@ -1,7 +1,8 @@
 import Image from "next/image";
-import type { Media } from "@/lib/types";
+import type { Media, VideoAsset } from "@/lib/types";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { PendingNote } from "@/components/ui/Pending";
+import { AmbientVideo } from "@/components/ui/AmbientVideo";
 
 /**
  * "One Community. Many Networks." — wide cinematic photograph (IMG_4007),
@@ -14,6 +15,8 @@ export function NetworkFeature({
   lede,
   body,
   image,
+  video,
+  videoCaption,
   types,
 }: {
   eyebrow: string;
@@ -21,6 +24,8 @@ export function NetworkFeature({
   lede: string;
   body: string;
   image: Media;
+  video?: VideoAsset;
+  videoCaption?: string;
   types: string[];
 }) {
   return (
@@ -48,8 +53,8 @@ export function NetworkFeature({
         </div>
       </figure>
 
-      <div className="container-x grid gap-12 py-16 md:py-24 lg:grid-cols-12">
-        <div className="lg:col-span-6" data-reveal>
+      <div className="container-x grid gap-12 py-16 md:py-24 lg:grid-cols-12 lg:gap-y-14">
+        <div className="lg:col-span-6 lg:row-start-1" data-reveal>
           <p className="font-serif text-h3 text-royal-700 italic">{lede}</p>
           <p className="mt-6 text-lede text-ink-2">{body}</p>
           <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
@@ -59,7 +64,15 @@ export function NetworkFeature({
             <TextLink href="/network-partners">How it works</TextLink>
           </div>
         </div>
-        <div className="lg:col-span-5 lg:col-start-8" data-reveal>
+        {video ? (
+          <AmbientVideo
+            video={video}
+            caption={videoCaption ?? ""}
+            sizes="(max-width: 1024px) 100vw, 36vw"
+            className="sm:mx-auto sm:w-4/5 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:w-auto"
+          />
+        ) : null}
+        <div className={video ? "lg:col-span-6 lg:row-start-2" : "lg:col-span-5 lg:col-start-8"} data-reveal>
           <h3 className="eyebrow text-gold-ink">Networks we hope to connect</h3>
           <ul className="mt-5 flex flex-wrap gap-2">
             {types.map((t) => (
