@@ -137,8 +137,20 @@ Common nonprofit options to evaluate: Stripe Checkout / Payment Links, Givebutte
   - Client components: header, SMS story, video, forms, and the reveal observer.
 - The hero image is preloaded with `fetchPriority="high"`. Hero motion is transform-only, so it never delays LCP.
 - Video bytes load only after the visitor presses play. Posters are optimized by `next/image`.
-- Fonts are self-hosted with metric-matched fallbacks (CLS 0). The serif uses the weight-only axis files (about 120 KB, versus about 280 KB with the optical-size axis).
-- Lighthouse, run locally against `next start` on simulated mobile/4G, typically scored:
+- Fonts are self-hosted with metric-matched fallbacks (CLS 0).
+  - **V2.3:** the fonts are instanced to the weights the design actually renders (audited on every route): Newsreader 400, 400 italic and 600 (the 600 face is only fetched on `/partners`), and Inter Tight on a 400–600 axis.
+  - The outlines, metrics and average character width are unchanged, so rendering and layout are identical.
+  - The homepage now downloads about 80 KB of fonts instead of about 168 KB.
+  - The originals are in `assets/fonts-source/`; `scripts/subset_fonts.py` regenerates the served files.
+- **V2.3 homepage mobile Lighthouse** (local `next start`, simulated throttling, 14 runs each, alternating A/B, medians):
+  - Before: Performance 92, FCP 1.67 s, LCP 3.15 s.
+  - After: Performance 95, FCP 1.38 s, LCP 2.82 s.
+  - CLS stays 0. Accessibility, Best Practices and SEO stay 100.
+  - Single runs of identical code vary by roughly ±4 points, so compare medians of 5 or more runs.
+- Scroll work:
+  - The Journey indicator only measures while its three chapters are near the viewport, using an IntersectionObserver gate.
+  - SMS progress is quantized so React skips renders that wouldn't change anything visible.
+- Earlier V2 measurements, run locally against `next start` on simulated mobile/4G, typically scored:
   - Performance 81–88; Accessibility, Best Practices and SEO 100.
   - Desktop Performance 99.
   - The main mobile cost is web-font download under throttling. A CDN (Vercel) usually improves on local numbers.

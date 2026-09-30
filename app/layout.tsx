@@ -9,9 +9,12 @@ import "./globals.css";
 
 /* Fonts are self-hosted (SIL OFL) so builds never depend on a network call. */
 const serif = localFont({
+  // Instanced to the weights the design uses (see scripts/subset_fonts.py);
+  // the 600 face only downloads on pages that render it.
   src: [
-    { path: "./fonts/newsreader-latin-wght-normal.woff2", style: "normal", weight: "200 800" },
-    { path: "./fonts/newsreader-latin-wght-italic.woff2", style: "italic", weight: "200 800" },
+    { path: "./fonts/newsreader-latin-400-normal.woff2", style: "normal", weight: "400" },
+    { path: "./fonts/newsreader-latin-600-normal.woff2", style: "normal", weight: "600" },
+    { path: "./fonts/newsreader-latin-400-italic.woff2", style: "italic", weight: "400" },
   ],
   variable: "--font-newsreader",
   display: "swap",
@@ -22,7 +25,8 @@ const serif = localFont({
 });
 
 const sans = localFont({
-  src: [{ path: "./fonts/inter-tight-latin-wght-normal.woff2", style: "normal", weight: "100 900" }],
+  // Variable wght axis limited to 400–600, the range the design uses.
+  src: [{ path: "./fonts/inter-tight-latin-wght400-600-normal.woff2", style: "normal", weight: "400 600" }],
   variable: "--font-inter-tight",
   display: "swap",
   fallback: ["system-ui", "Segoe UI", "sans-serif"],

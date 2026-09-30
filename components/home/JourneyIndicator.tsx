@@ -38,13 +38,33 @@ export function JourneyIndicator() {
         prev.visible === visible && prev.active === active && prev.complete === complete ? prev : { visible, active, complete },
       );
     };
+    // Only measure while one of the three chapters is on (or near) screen;
+    // elsewhere on the page scrolling does no layout reads at all.
+    let near = false;
     const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(measure);
+      if (near && !frame) frame = requestAnimationFrame(measure);
     };
-    measure();
+    const inView = new Set<Element>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) inView.add(e.target);
+          else inView.delete(e.target);
+        }
+        near = inView.size > 0;
+        // Measure on every enter/leave so the final state is always correct.
+        if (!frame) frame = requestAnimationFrame(measure);
+      },
+      { rootMargin: "25% 0px" },
+    );
+    STEPS.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) io.observe(el);
+    });
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);

@@ -52,7 +52,8 @@ export function SmsStory({
           p = Math.max(p, (i + frac) / stagesCount);
         }
       });
-      setProgress(Math.max(0, Math.min(1, p)));
+      // Quantized (0.1% of the ring) so React skips renders when nothing visible changes.
+      setProgress(Math.round(Math.max(0, Math.min(1, p)) * 1000) / 1000);
     };
     const onScroll = () => {
       if (inView && !frame) frame = requestAnimationFrame(measure);
