@@ -7,9 +7,9 @@ import { getPrograms } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Service",
+  title: "Community Service & Leadership",
   description:
-    "Service is the third stage of the Ten Ambassadors pathway — turning development into impact for someone else. Explore future initiatives and volunteer.",
+    "Service is the third stage of the Ten Ambassadors pathway — turning leadership into community impact. Explore planned service areas and volunteer interest.",
   path: "/service",
 });
 

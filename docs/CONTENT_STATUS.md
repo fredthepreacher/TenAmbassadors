@@ -84,3 +84,10 @@ Confirmed Network Partners and sponsors are also still needed.
 
 - **Mentorship conversation photo:** IMG_4006 is now used.
 - **Dr. Phang homepage cut:** re-cut to the source's natural end, 41.00 s. A full ~45 s version is possible if Geo supplies clean footage past 02:00.
+
+## V2.4 additions needing client approval
+
+- **Recap film:** confirm that the people shown agreed to promotional use, and approve the caption wording, which states that the footage comes from the wider Upmixer event community.
+- **"Questions, answered"** (`content/about.ts` → `faqs`, shown on `/about#questions`): every answer restates existing site facts. The client should approve the wording, especially the Upmixer relationship ("Upmixer Inc. … event-production and experience partner").
+- **Meta titles and descriptions** (search snippets only; no visible copy changed): please review.
+- **Contact geography / headquarters:** still unconfirmed. No office, city or chapter is claimed anywhere.

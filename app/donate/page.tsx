@@ -6,8 +6,8 @@ import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Donate",
-  description: "Ways to support Ten Ambassadors' Scholarship, Mentorship and Service programs. Giving options are being prepared.",
+  title: "Donate & Support the Mission",
+  description: "Ways to support Ten Ambassadors’ Scholarship, Mentorship and Service work, including the Scholarship Fund and corporate giving. Online giving is being prepared.",
   path: "/donate",
 });
 

@@ -10,9 +10,9 @@ import { media } from "@/content/media";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Mentorship",
+  title: "Professional Mentorship for Emerging Leaders",
   description:
-    "Mentorship connects emerging leaders with experienced professionals for guidance, perspective, and relationships. Become a mentor or explore the future Ambassador pathway.",
+    "Ten Ambassadors mentorship connects emerging leaders with experienced professionals for guidance and lasting relationships. Become a mentor or learn more.",
   path: "/mentorship",
 });
 

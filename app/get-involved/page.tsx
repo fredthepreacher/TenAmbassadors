@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Get Involved",
+  title: "Get Involved: Mentor, Partner, Volunteer",
   description: "Become an Ambassador, nominate a leader, mentor, become a Network Partner, volunteer, sponsor or support Ten Ambassadors.",
   path: "/get-involved",
 });

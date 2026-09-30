@@ -61,7 +61,8 @@ export function WhyTen({
   notTitle: string;
   qualities: string[];
   note: string;
-  ecosystem: EcosystemRole[];
+  /** Omit on pages that already present the full ecosystem (e.g. /about). */
+  ecosystem?: EcosystemRole[];
 }) {
   const [a, b] = title.split(". ");
   return (
@@ -95,6 +96,7 @@ export function WhyTen({
       </div>
 
       {/* Founding ecosystem — concise editorial list; details live on internal pages. */}
+      {ecosystem?.length ? (
       <div className="container-x relative mt-16 border-t border-paper/15 pt-10">
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <h3 className="eyebrow text-gold-300">The founding ecosystem</h3>
@@ -115,6 +117,7 @@ export function WhyTen({
           ))}
         </ol>
       </div>
+      ) : null}
     </section>
   );
 }

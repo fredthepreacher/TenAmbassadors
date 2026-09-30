@@ -6,18 +6,27 @@ import { PendingBlock, PendingNote } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getAbout } from "@/lib/content";
 import { media } from "@/content/media";
-import { pageMetadata } from "@/lib/seo";
+import { TextLink } from "@/components/ui/Button";
+import { jsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "About",
+  absoluteTitle: "About Ten Ambassadors | A Leadership & Impact Organization",
   description:
-    "Ten Ambassadors is a leadership and impact organization being established around Scholarship, Mentorship and Service — our mission, why “Ten”, the founding ecosystem and our development horizon.",
+    "What Ten Ambassadors is: a leadership and impact organization in formation, built on Scholarship, Mentorship and Service. Mission, why “Ten”, roles and outlook.",
   path: "/about",
 });
 
 export default async function AboutPage() {
-  const { about, leadership, whyTen, ecosystem, horizon, globalDirection } = await getAbout();
+  const { about, leadership, whyTen, ecosystem, horizon, globalDirection, faqs } = await getAbout();
+
+  // FAQPage mirrors the visible "Questions, answered" list word for word.
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
 
   return (
     <>
@@ -59,7 +68,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <WhyTen {...whyTen} ecosystem={ecosystem} />
+      <WhyTen {...whyTen} />
 
       <section id="ecosystem" aria-labelledby="ecosystem-title" className="section-y scroll-mt-20 bg-ivory">
         <div className="container-x">
@@ -149,6 +158,35 @@ export default async function AboutPage() {
                 <PendingBlock title="Institutional Host Committee">Host Committee members will be listed once confirmed.</PendingBlock>
               </>
             ) : null}
+          </div>
+        </div>
+      </section>
+
+      <section id="questions" aria-labelledby="questions-title" className="section-y scroll-mt-20 bg-paper">
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(faqJsonLd)} />
+        <div className="container-x">
+          <SectionHeading
+            id="questions-title"
+            eyebrow="In brief"
+            title={
+              <>
+                Questions, <em className="text-royal-700">answered.</em>
+              </>
+            }
+            intro="Short, factual answers about who we are, how the pieces fit together, and what is still being established."
+          />
+          <div className="mt-12 grid border-t border-line-strong md:grid-cols-2 md:gap-x-12">
+            {faqs.map((f, i) => (
+              <div key={f.q} className="border-b border-line py-6" data-reveal style={{ ["--reveal-delay" as string]: `${(i % 2) * 60}ms` }}>
+                <h3 className="text-2xl text-navy-900">{f.q}</h3>
+                <p className="mt-3 text-ink-2">{f.a}</p>
+                {f.link ? (
+                  <p className="mt-3">
+                    <TextLink href={f.link.href}>{f.link.label}</TextLink>
+                  </p>
+                ) : null}
+              </div>
+            ))}
           </div>
         </div>
       </section>

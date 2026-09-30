@@ -4,13 +4,13 @@ import { PendingBlock, PendingNote } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getStarlight } from "@/lib/content";
 import { starlightFeature } from "@/content/home";
-import { pageMetadata } from "@/lib/seo";
+import { absoluteUrl, ids, jsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Starlight Awards",
+  title: "Starlight Awards 2026, New York",
   description:
-    "The Starlight Awards Holiday Soirée 2026 — Friday, December 11, 2026 at Matriarch at Cachet Boutique Hotel, New York. Ten Ambassadors' signature annual celebration of leadership and impact.",
+    "Ten Ambassadors’ signature leadership awards: Friday, December 11, 2026 at Matriarch at Cachet Boutique Hotel, 512 W. 42nd Street, New York, near Times Square.",
   path: "/starlight",
 });
 
@@ -23,7 +23,10 @@ export default async function StarlightPage() {
   const eventJsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
+    "@id": `${absoluteUrl("/starlight")}#event`,
     name: e.name,
+    url: absoluteUrl("/starlight"),
+    image: [absoluteUrl("/opengraph-image")],
     startDate: e.dateISO,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
@@ -39,13 +42,13 @@ export default async function StarlightPage() {
         addressCountry: "US",
       },
     },
-    organizer: { "@type": "Organization", name: site.name, url: site.url },
+    organizer: { "@type": "Organization", "@id": ids.organization, name: site.name, url: site.url },
     description: s.positioning,
   };
 
   return (
     <div className="bg-night-950 text-champagne">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(eventJsonLd)} />
 
       <section aria-labelledby="page-title" className="relative overflow-hidden pt-[76px]">
         <div className="starfield starfield-twinkle pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -154,12 +157,12 @@ export default async function StarlightPage() {
             tone="night"
             eyebrow="Two brands, one evening"
             title="Distinct organizations, intentionally connected."
-            intro={`Starlight is one signature program of ${site.name} — not the whole organization. ${site.parentOrg.name} Inc. leads event production.`}
+            intro={`Starlight is one signature program of ${site.name} — not the whole organization. ${site.parentOrg.legalName} is its ${site.parentOrg.starlightRole.replace(" for the Starlight Awards", "")}.`}
           />
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {[
               { name: site.name, items: s.roles.tenAmbassadors },
-              { name: `${site.parentOrg.name} Inc.`, items: s.roles.upmixer },
+              { name: site.parentOrg.legalName, items: s.roles.upmixer },
             ].map((b) => (
               <div key={b.name} className="rounded-2xl border border-starlight/25 p-6 md:p-8" data-reveal>
                 <h3 className="text-2xl text-starlight">{b.name}</h3>

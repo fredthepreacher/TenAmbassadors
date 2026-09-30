@@ -9,9 +9,9 @@ import { media } from "@/content/media";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Network Partners",
+  title: "Network Partners: A Network of Networks",
   description:
-    "Ten Ambassadors is being built as a network of networks. Professional associations, alumni groups, universities and community organizations can become Network Partners in leadership development, mentorship and service.",
+    "Network Partners are organizations — associations, alumni groups, universities, community groups — that collaborate with Ten Ambassadors to develop leaders.",
   path: "/network-partners",
   image: media.communityGroup,
 });

@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { RevealObserver } from "@/components/ui/RevealObserver";
 import { getNavigation } from "@/lib/content";
 import { site } from "@/lib/site";
+import { ids, jsonLd } from "@/lib/seo";
 import "./globals.css";
 
 /* Fonts are self-hosted (SIL OFL) so builds never depend on a network call. */
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f2ea",
+  themeColor: "#081b33",
   width: "device-width",
   initialScale: 1,
 };
@@ -66,14 +67,36 @@ const revealBootstrap = `try{if(!matchMedia('(prefers-reduced-motion: reduce)').
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const nav = await getNavigation();
 
-  const orgJsonLd = {
+  // Verified fields only: no logo, founding date, legal/tax status, address, people or sameAs until confirmed.
+  const siteJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    url: site.url,
-    description: site.description,
-    slogan: site.coreMessage.join(" "),
-    knowsAbout: ["Leadership development", "Mentorship", "Scholarship", "Community service", "Professional mentorship", "Young professional leadership"],
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": ids.organization,
+        name: site.name,
+        url: site.url,
+        description: site.description,
+        slogan: site.coreMessage.join(" "),
+        knowsAbout: [
+          "Leadership development",
+          "Scholarship",
+          "Professional mentorship",
+          "Community service",
+          "Emerging leaders",
+          "Young professional leadership",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": ids.website,
+        name: site.name,
+        url: site.url,
+        description: site.description,
+        inLanguage: "en-US",
+        publisher: { "@id": ids.organization },
+      },
+    ],
   };
 
   return (
@@ -102,7 +125,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <RevealObserver />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+          dangerouslySetInnerHTML={jsonLd(siteJsonLd)}
         />
       </body>
     </html>

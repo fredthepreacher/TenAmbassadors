@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { IntakeForm } from "@/components/forms/IntakeForm";
 import { PageHero } from "@/components/pages/PageHero";
 import { getPathway, getPathwayPages } from "@/lib/content";
-import { pageMetadata } from "@/lib/seo";
+import { TextLink } from "@/components/ui/Button";
+import { breadcrumbJsonLd, jsonLd, pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -17,7 +18,7 @@ type Props = { params: Promise<{ pathway: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = await getPathway((await params).pathway);
   if (!p) return {};
-  return pageMetadata({ title: p.eyebrow, description: p.intro, path: `/get-involved/${p.slug}` });
+  return pageMetadata({ title: p.eyebrow, description: p.metaDescription ?? p.intro, path: `/get-involved/${p.slug}` });
 }
 
 export default async function PathwayPage({ params }: Props) {
@@ -26,6 +27,15 @@ export default async function PathwayPage({ params }: Props) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(
+          breadcrumbJsonLd([
+            { name: "Get involved", path: "/get-involved" },
+            { name: p.eyebrow, path: `/get-involved/${p.slug}` },
+          ]),
+        )}
+      />
       <PageHero eyebrow={p.eyebrow} title={p.title} intro={p.intro}>
         <nav aria-label="Breadcrumb" className="text-sm text-muted">
           <Link href="/get-involved" className="underline underline-offset-4 hover:text-royal-700">
@@ -52,6 +62,16 @@ export default async function PathwayPage({ params }: Props) {
           ) : null}
           <div className={p.criteria ? "lg:col-span-7 lg:col-start-6" : "lg:col-span-8"}>
             <IntakeForm formId={p.formId} headingLevel={p.criteria ? "h3" : "h2"} />
+            <nav aria-label="Next steps" className="mt-10 border-t border-line pt-6">
+              <p className="text-sm text-muted">While submissions open, keep exploring:</p>
+              <ul className="mt-3 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8">
+                {p.nextSteps.map((n) => (
+                  <li key={n.href}>
+                    <TextLink href={n.href}>{n.label}</TextLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </div>
       </section>

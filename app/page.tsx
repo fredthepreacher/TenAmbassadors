@@ -13,11 +13,16 @@ import { ImpactFeature } from "@/components/home/ImpactFeature";
 import { GetInvolved } from "@/components/home/GetInvolved";
 import { Closing } from "@/components/home/Closing";
 import { JourneyIndicator } from "@/components/home/JourneyIndicator";
+import { pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 import { getAbout, getHomepage, getImpact, getPartners, getPathways, getPrograms, getStarlight } from "@/lib/content";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+export const metadata: Metadata = pageMetadata({
+  title: site.name,
+  absoluteTitle: `${site.name} | ${site.tagline}`,
+  description: site.description,
+  path: "/",
+});
 
 export default async function HomePage() {
   const [home, programs, starlight, partners, pathways, org, impact] = await Promise.all([

@@ -6,7 +6,7 @@ import { PendingBlock, PendingNote } from "@/components/ui/Pending";
 import { VideoFeature } from "@/components/ui/VideoFeature";
 import { OutlineNumeral } from "@/components/ui/Motifs";
 import { getScholarship, getScholarships } from "@/lib/content";
-import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, jsonLd, pageMetadata } from "@/lib/seo";
 
 /**
  * Reusable scholarship detail template. Every section renders real content
@@ -47,6 +47,15 @@ export default async function ScholarshipDetail({ params }: Props) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(
+          breadcrumbJsonLd([
+            { name: "Scholarship", path: "/scholarship" },
+            { name: s.name, path: `/scholarship/${s.slug}` },
+          ]),
+        )}
+      />
       <section aria-labelledby="page-title" className="relative overflow-hidden bg-navy-900 pt-[76px] text-paper">
         <div className="container-x pt-14 pb-16 md:pt-20 lg:pb-20">
           <nav aria-label="Breadcrumb" className="text-sm text-paper/70">

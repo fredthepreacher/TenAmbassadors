@@ -12,7 +12,7 @@ export const site = {
   /** Core message (strategy brief V2.2). */
   coreMessage: ["Developing leaders.", "Connecting communities.", "Creating impact."],
   description:
-    "Ten Ambassadors is a leadership and impact organization being established around Scholarship, Mentorship and Service — developing and connecting the next generation of leaders.",
+    "Ten Ambassadors is a leadership and impact organization being established around Scholarship, Mentorship and Service to develop the next generation of leaders.",
   /** Canonical origin. Set NEXT_PUBLIC_SITE_URL per environment (preview vs production). */
   url: process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://tenambassadors.org",
   locale: "en_US",
@@ -20,6 +20,10 @@ export const site = {
   /** Historical relationship (source language). Ten Ambassadors keeps its own identity. */
   parentOrg: {
     name: "The Upmixer",
+    /** Legal entity name used wherever the Starlight production role is described. */
+    legalName: "Upmixer Inc.",
+    /** Role relative to Ten Ambassadors (V2.4 entity definitions). */
+    starlightRole: "event-production and experience partner for the Starlight Awards",
     /** PENDING: link to The Upmixer (its site is being redesigned in Phase 2). */
     url: null as string | null,
   },

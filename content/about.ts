@@ -72,3 +72,70 @@ export const globalDirection =
 
 /** PENDING: Leadership / Founding Ambassadors / Board — names, roles, photos, bios. */
 export const leadership: Leader[] = [];
+
+/**
+ * Questions, answered (V2.4 — answer-engine clarity). Every answer restates
+ * facts already on the site; nothing here is new or unconfirmed. Keep this
+ * short: add a question only when it has a real, verified answer.
+ */
+export interface Faq {
+  q: string;
+  a: string;
+  link?: { label: string; href: string };
+}
+
+export const faqs: Faq[] = [
+  {
+    q: "What is Ten Ambassadors?",
+    a: "Ten Ambassadors is a leadership and impact organization being established around three pillars — Scholarship, Mentorship and Service — using community, partnerships and shared experiences to develop and connect the next generation of leaders.",
+  },
+  {
+    q: "What do Scholarship, Mentorship and Service mean here?",
+    a: "They form one connected pathway. Scholarship opens the door to opportunity; Mentorship connects emerging leaders with people who have walked the road before; Service turns what leaders have gained into opportunity for others — and the cycle begins again.",
+    link: { label: "The SMS pathway", href: "/#sms" },
+  },
+  {
+    q: "Why is it called Ten Ambassadors?",
+    a: "Ten founding Ambassadors represent the organization’s leadership and impact philosophy, while the wider Ten Ambassadors community is designed to grow far beyond them. The Founding Ambassadors will be introduced once confirmed.",
+    link: { label: "Why “Ten”?", href: "/about#why-ten" },
+  },
+  {
+    q: "Who can become an Ambassador?",
+    a: "Emerging and established leaders whose work already strengthens their communities and who are ready to invest in the next generation. Ambassadors are not honorary titles: candidates are considered for credibility, leadership, mission alignment, community involvement, commitment to mentorship and service, collaboration and long-term engagement.",
+    link: { label: "Become an Ambassador", href: "/get-involved/ambassador" },
+  },
+  {
+    q: "How can I become a mentor?",
+    a: "Ten Ambassadors intends to connect emerging leaders with accomplished professionals across business, finance, technology, healthcare, public service, law, media, sports and more. The mentor application is previewed on the Become a Mentor page and opens once the intake system is approved.",
+    link: { label: "Become a Mentor", href: "/get-involved/mentor" },
+  },
+  {
+    q: "What is a Network Partner, and how can an organization take part?",
+    a: "A Network Partner is an organization that already develops leaders — a professional association, alumni group, university, fraternity or sorority, young-professional group or community organization — collaborating with Ten Ambassadors as a network of networks. Corporations and foundations can explore sponsorship and partnership pathways. No partners have been announced yet.",
+    link: { label: "Network Partners", href: "/network-partners" },
+  },
+  {
+    q: "What are the Starlight Awards — and are they the whole organization?",
+    a: "Starlight is Ten Ambassadors’ signature annual celebration of leadership and impact. It is one program, not the whole organization. Upmixer Inc. is its event-production and experience partner.",
+    link: { label: "Starlight Awards", href: "/starlight" },
+  },
+  {
+    q: "When and where is Starlight 2026?",
+    a: "The Starlight Awards Holiday Soirée 2026 is on Friday, December 11, 2026, at Matriarch at Cachet Boutique Hotel, 512 W. 42nd Street, New York, NY 10036, near Times Square. Start time and tickets will be announced.",
+    link: { label: "Event details", href: "/starlight#attend" },
+  },
+  {
+    q: "How is Ten Ambassadors related to The Upmixer?",
+    a: "Ten Ambassadors is historically connected to The Upmixer, an established professional networking, events and marketing organization. They are distinct brands, intentionally connected: Ten Ambassadors carries its own mission, and Upmixer Inc. produces the Starlight Awards as its event-production and experience partner.",
+  },
+  {
+    q: "Does Ten Ambassadors operate internationally?",
+    a: "Not yet. Its global outlook is a development horizon — potential exchanges, international speakers and partnerships in future years — not a record of current operations.",
+    link: { label: "Development horizon", href: "/about#vision" },
+  },
+  {
+    q: "How can I support the work?",
+    a: "Nominate a leader, mentor, volunteer, bring your organization in as a Network Partner or sponsor, or support scholarship, mentorship and service. Online giving is being set up. Ten Ambassadors is being established, and its legal and tax-exempt status has not yet been finalized.",
+    link: { label: "Ways to get involved", href: "/get-involved" },
+  },
+];

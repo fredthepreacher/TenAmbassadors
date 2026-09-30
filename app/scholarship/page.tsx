@@ -10,9 +10,9 @@ import { getPrograms, getScholarships } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Scholarship",
+  title: "Scholarship & the Dr. Phang Scholarship",
   description:
-    "Scholarship is where the Ten Ambassadors pathway begins — opportunity that opens the door. Explore the Dr. Christopher A. Phang Scholarship and future scholarships.",
+    "Scholarship is where the Ten Ambassadors pathway begins: a scholarship platform in development, starting with the Dr. Christopher A. Phang Scholarship.",
   path: "/scholarship",
 });
 

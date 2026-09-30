@@ -110,14 +110,45 @@ No processor was chosen, so none was integrated. Every Support/Give CTA reads `s
 
 Common nonprofit options to evaluate: Stripe Checkout / Payment Links, Givebutter, Donorbox, Zeffy, PayPal Giving Fund.
 
-## 7. SEO foundation
+## 7. SEO, GEO and AEO (updated V2.4)
 
-- Per-page metadata via `lib/seo.ts`: title template, description, canonical, Open Graph.
-- A generated OG image (`app/opengraph-image.tsx`).
-- `sitemap.xml` covers real routes only; legal placeholder pages are `noindex`.
-- `robots.txt`.
-- Organization JSON-LD in `app/layout.tsx`. Founder is The Upmixer, per the source line. It uses no `NGO` type and no nonprofit claims until status is confirmed.
-- Semantic landmarks, one `h1` per page, and descriptive alt text on every photo.
+- **Metadata** (`lib/seo.ts` → `pageMetadata`):
+  - Every indexable route has a unique, descriptive title of 60 characters or less and a description of 160 or less.
+  - Every route has a canonical URL.
+  - Open Graph and Twitter tags are complete on every route: type, site name, locale, url and image. Child pages no longer lose the share image.
+  - `absoluteTitle` is available for titles that already contain the brand name.
+- **Topic mapping.** Each theme lives on its natural page, written in natural language:
+  - `/about`: leadership and impact organization; what Ten Ambassadors is.
+  - `/mentorship` and `/get-involved/mentor`: professional mentorship for emerging leaders.
+  - `/scholarship`: scholarship platform and the Dr. Phang Scholarship.
+  - `/service`: community service and leadership.
+  - `/network-partners`: Network Partners, a network of networks.
+  - `/partners`: corporate and community partnerships.
+  - `/starlight`: Starlight Awards 2026, New York, near Times Square. New York geography is used **only** to describe Starlight.
+- **Structured data.** Every block is serialized through `jsonLd()` (which escapes `<`), and all blocks reference each other by `@id`:
+  - `Organization` and `WebSite`, as a single `@graph` in `app/layout.tsx`.
+  - `Event` on `/starlight`, with verified fields only: name, date, venue, address, url, organizer.
+  - `BreadcrumbList` on `/scholarship/[slug]` and `/get-involved/[pathway]`, matching the visible breadcrumbs.
+  - `FAQPage` on `/about`, mirroring the visible "Questions, answered" list word for word.
+  - Deliberately absent: logo, founding date, founder, address, sameAs, people, ratings/reviews, offers/prices, start time, and any nonprofit/tax status.
+- **Answer-engine clarity.** `/about#questions` gives 11 short, factual answers covering:
+  - what Ten Ambassadors is, SMS, and why "Ten"
+  - who can be an Ambassador, how to mentor, and what Network Partners are
+  - Starlight, and Starlight versus the whole organization; when and where Starlight 2026 is
+  - how Ten Ambassadors relates to Upmixer; international status (not yet); and how to support
+- **Entity definitions:**
+  - Ten Ambassadors is the organization in formation.
+  - Scholarship, Mentorship and Service are its pillars.
+  - The Founding Ambassadors are its founding cohort, still pending.
+  - Network Partners are collaborating organizations.
+  - Starlight is its signature annual program.
+  - **Upmixer Inc.** is the event-production and experience partner for Starlight (`site.parentOrg.legalName`). The Starlight page previously said "The Upmixer Inc.".
+- **Crawling and indexing:**
+  - `sitemap.xml` lists the 17 indexable routes.
+  - `robots.txt` allows everything.
+  - Legal placeholders and the 404 page are `noindex, follow`.
+  - The 404 page has its own title and recovery links.
+- **Security basics** (`next.config.ts` headers): nosniff, `Referrer-Policy`, `X-Frame-Options: SAMEORIGIN`, `Permissions-Policy` and HSTS. A CSP should be added when third-party services are approved, so it can list them.
 - No rankings or traffic are promised.
 
 ## 8. Accessibility

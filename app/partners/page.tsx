@@ -7,9 +7,9 @@ import { getPartners } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Partners",
+  title: "Corporate & Community Partnerships",
   description:
-    "Partner with Ten Ambassadors — corporate sponsors, universities, foundations, community partners, and professional associations investing in the next generation of leaders.",
+    "Corporate sponsors, foundations, universities and community partners can invest in the next generation of leaders through Ten Ambassadors partnership pathways.",
   path: "/partners",
 });
 

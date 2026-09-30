@@ -5,7 +5,7 @@
  * these function bodies with CMS queries returning the same types.
  */
 import * as home from "@/content/home";
-import { about, ecosystem, globalDirection, horizon, leadership, whyTen } from "@/content/about";
+import { about, ecosystem, faqs, globalDirection, horizon, leadership, whyTen } from "@/content/about";
 import { givingPathways, impact } from "@/content/impact";
 import { getPathwayPage, pathwayPages } from "@/content/getInvolved";
 import { getLegalDoc, legalDocs } from "@/content/legal";
@@ -41,7 +41,7 @@ export async function getScholarship(slug: string) {
 }
 
 export async function getAbout() {
-  return { about, leadership, whyTen, ecosystem, horizon, globalDirection };
+  return { about, leadership, whyTen, ecosystem, horizon, globalDirection, faqs };
 }
 
 export async function getImpact() {
