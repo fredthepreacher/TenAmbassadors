@@ -40,6 +40,21 @@ export const media = {
     height: 1366,
     focus: "58% 35%",
   },
+  /* ---- V2.2 curated photography (crop only; see docs/ASSET_MAP.md) ---- */
+  communityGroup: {
+    src: "/media/community/ta-community-4007.jpg",
+    alt: "Seven women dressed for an evening event stand together, smiling at the camera.",
+    width: 1984,
+    height: 1044,
+    focus: "50% 6%",
+  },
+  communityPortrait: {
+    src: "/media/community/ta-community-4004.jpg",
+    alt: "Three smiling women stand close together at an evening gathering.",
+    width: 1250,
+    height: 435,
+    focus: "50% 40%",
+  },
   phangPoster30: {
     src: "/media/scholarship/dr-phang-30s-poster.jpg",
     alt: "Still from the Dr. Christopher A. Phang scholarship film: two men talk seated by a sunlit window.",
@@ -58,10 +73,17 @@ export const media = {
 
 export const phangVideos = {
   featured: {
-    title: "The Dr. Christopher A. Phang Scholarship — 30-second film",
-    src: "/media/scholarship/dr-phang-30s.mp4",
+    /*
+     * V2.2 homepage cut: 01:19.00 → 01:58.55 of the source (39.55s), from the
+     * supplied 01:00–02:00 segment. The requested ~02:04 end lies beyond the
+     * supplied footage; 01:58.55 is the last natural pause (held end card).
+     * Fades: video+audio in 0.9s, out 1.5s. Framing untouched; burned-in
+     * timecode and watermark untouched (media clearance still pending).
+     */
+    title: "The Dr. Christopher A. Phang Scholarship — film excerpt",
+    src: "/media/scholarship/dr-phang-featured.mp4",
     poster: media.phangPoster30,
-    durationLabel: "0:30",
+    durationLabel: "0:40",
     captions: null,
     transcript: null,
   },

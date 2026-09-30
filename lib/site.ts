@@ -9,8 +9,10 @@ export const site = {
   wordmark: { lead: "Ten", rest: "Ambassadors" },
   tagline: "Scholarship. Mentorship. Service.",
   pillarsLine: "Scholarship · Mentorship · Service",
+  /** Core message (strategy brief V2.2). */
+  coreMessage: ["Developing leaders.", "Connecting communities.", "Creating impact."],
   description:
-    "Ten Ambassadors is an initiative focused on developing future leaders through Scholarship, Mentorship, and Service.",
+    "Ten Ambassadors is a leadership and impact organization being established around Scholarship, Mentorship and Service — developing and connecting the next generation of leaders.",
   /** Canonical origin. Set NEXT_PUBLIC_SITE_URL per environment (preview vs production). */
   url: process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://tenambassadors.org",
   locale: "en_US",
@@ -39,8 +41,24 @@ export const site = {
     url: null as string | null,
   },
 
+  /**
+   * Formation status. Legal / nonprofit / tax-exempt status is NOT finalized:
+   * use formation language ("is being established") and never claim
+   * 501(c)(3) status or tax deductibility until confirmed.
+   */
+  formationStatus: "Ten Ambassadors is currently being established. Legal and tax-exempt status has not yet been finalized.",
   /** PENDING: approved nonprofit status / disclosure language. Never invent. */
   nonprofitDisclosure: null as string | null,
+
+  /**
+   * Intake (forms → CRM). OFF until a backend / CRM destination is approved.
+   * See lib/forms.ts and docs/FORMS_CRM_ANALYTICS.md.
+   */
+  intake: {
+    enabled: false,
+    /** e.g. "/api/intake" once a route handler + CRM adapter is approved. */
+    endpoint: null as string | null,
+  },
 
   /**
    * When true, clearly labelled "pending" markers render so reviewers can see

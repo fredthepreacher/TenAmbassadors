@@ -2,6 +2,7 @@ import { PageHero } from "@/components/pages/PageHero";
 import { ButtonLink } from "@/components/ui/Button";
 import { PendingBlock, PendingNote } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AreaList } from "@/components/pages/AreaList";
 import { getPrograms } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
@@ -13,7 +14,7 @@ export const metadata = pageMetadata({
 });
 
 export default async function ServicePage() {
-  const { serviceInitiatives, volunteer } = await getPrograms();
+  const { serviceInitiatives, volunteer, serviceAreas } = await getPrograms();
 
   return (
     <>
@@ -25,7 +26,7 @@ export default async function ServicePage() {
             Hold the door open <em className="text-gold-300">for someone else.</em>
           </>
         }
-        intro="Service completes the cycle. What an ambassador gains through scholarship and mentorship becomes opportunity for the next person — and the pathway begins again."
+        intro="Leadership carries responsibility. Service completes the cycle: what an ambassador gains through scholarship and mentorship becomes opportunity for the next person — and the pathway begins again."
       >
         <ButtonLink href="#volunteer" variant="light" arrow>
           Serve with us
@@ -71,13 +72,22 @@ export default async function ServicePage() {
         </div>
       </section>
 
-      <section id="volunteer" aria-labelledby="volunteer-title" className="section-y bg-ivory">
+      <AreaList
+        id="areas"
+        tone="ivory"
+        eyebrow="Areas of service"
+        title="Where service may focus"
+        intro="Potential future programming includes:"
+        areas={serviceAreas}
+      />
+
+      <section id="volunteer" aria-labelledby="volunteer-title" className="section-y bg-paper">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <SectionHeading id="volunteer-title" eyebrow="Volunteer" title="Give your time where it opens doors." intro={volunteer.intro} className="lg:col-span-6" />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
             <PendingBlock title="Volunteer roles & sign-up">Volunteer roles, time commitments, and the sign-up form will be published here.</PendingBlock>
-            <ButtonLink href="/contact" variant="outline" arrow className="w-fit">
-              Register interest
+            <ButtonLink href="/get-involved/volunteer" variant="outline" arrow className="w-fit">
+              Volunteer interest
             </ButtonLink>
           </div>
         </div>

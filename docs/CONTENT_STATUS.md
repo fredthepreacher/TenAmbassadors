@@ -1,6 +1,6 @@
 # Content Status — Phase 1 (V2)
 
-Last updated: 2026-09-29
+Last updated: 2026-09-29 (V2.2)
 
 Everything below renders on the site as a **clearly labelled placeholder**. When the client supplies the content, update the listed file (or the CMS, once connected). To hide every marker at launch, set `lib/site.ts` → `showPlaceholderNotes: false`.
 
@@ -38,3 +38,37 @@ Everything below renders on the site as a **clearly labelled placeholder**. When
 | Starlight Awards: celebrate excellence, fund opportunity | Phase 1 brief (presented as a vision: "envisioned as") |
 
 No impact numbers, amounts, recipients, dates, deadlines, partners, leaders, testimonials, geographic reach, or nonprofit status have been stated anywhere.
+
+
+## V2.2 — strategy brief integration
+
+**Now on the site, sourced from the client strategy brief** (proposed wording, pending final sign-off):
+
+- Positioning, proposed mission, and the core message "Developing leaders. Connecting communities. Creating impact."
+- Why "Ten"
+- The founding ecosystem roles
+- Network Partner types and roles (a draft framework)
+- Program areas for scholarship, mentorship industries and formats, and service areas (all labelled as planned)
+- The global direction and the 2026 / 2027–28 / 2029+ horizon
+- Ambassador criteria and form fields
+- The six sponsorship pathways
+- The seven giving pathways
+- The impact measures (no numbers are shown)
+- Starlight positioning and Global Black Tie
+- The four award concepts (labelled "Concept · pending approval")
+- The Ten Ambassadors / Upmixer Inc. operating distinction
+
+**Verified facts:** Starlight Awards Holiday Soirée 2026 · Friday, December 11, 2026 · Matriarch at Cachet Boutique Hotel · 512 W. 42nd Street, New York, NY 10036.
+
+**Formation language:** the site says "being established" throughout. It makes no 501(c)(3) or tax-deductibility claims. `site.formationStatus` is shown on `/about` and `/donate`.
+
+**Decisions still needed:**
+
+- Final sign-off on mission, core message and draft headlines
+- Founding Ambassadors, Board and Host Committee members
+- Confirmed Network Partners and sponsors
+- Starlight: start time, ticketing URL, final award categories and criteria, honorees
+- Intake/CRM destination (forms are previews)
+- Donation processor; legal and tax-exempt status
+- A mentorship photo that shows real conversation
+- A Dr. Phang source beyond 02:00, plus media clearance and captions

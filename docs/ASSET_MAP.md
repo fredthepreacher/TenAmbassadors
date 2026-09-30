@@ -26,3 +26,31 @@ Source: `Ten_Ambassadors_Approved_Assets_V2_FINAL.zip`, creative-reviewed. Web c
 3. **Dr. Phang's years:** "1968–2023" is used because it appears on the film's end card. Please confirm it with the family or client before launch.
 4. **Resolution:** the hero is 1536px wide. It is sharp at standard density but slightly soft on large high-DPI screens. A higher-resolution original (or a larger export of the enhanced file) would help.
 5. **V1 screenshot images** (`public/images/`) are no longer referenced by the site. They are kept per the earlier instruction not to delete source images and can be removed once the client agrees.
+
+## V2.2 — curated photography and film revision (2026-09-29)
+
+Source: `Ten_Ambassadors_V2_2_Claude_Handoff.zip`. Pipeline: `scripts/prepare_v22_assets.py`, which crops and cuts only. The originals are kept in `assets/approved-v22-originals/`.
+
+**The handoff's photo descriptions did not match the files.** With the client's direction ("judgment call"), the photos were placed by what each image actually shows:
+
+| File | What it actually shows | Decision | Web file / placement |
+|---|---|---|---|
+| IMG_4007 (enhanced) | Seven women dressed for an evening event, posed and smiling | **Used**: the wide cinematic "One community. Many networks." image | `public/media/community/ta-community-4007.jpg` (1984×1044; crop trims top/bottom only). Used on the homepage Network section and on `/network-partners`. |
+| IMG_4004 (enhanced) | Three women at an evening event; one holds a martini glass, another a cup | **Used, cropped** to a head-and-shoulders band that excludes the drinks | `public/media/community/ta-community-4004.jpg` (1250×435). Used on `/about#ecosystem`. |
+| IMG_4006 | A packed nightclub dance floor, DJ rig, and a large **"#UPMIXER"** screen. It is *not* two professionals in conversation | **Not used.** It reads as nightlife and as an Upmixer event, which the brief says to avoid. | — |
+| IMG_4001 | Three people at a bar with liquor bottles and a posted choking first-aid notice | **Not used** (optional; nightlife context) | — |
+
+Mentorship keeps the V2 photos (478-479-2292 and 492-493-2321), because no supplied image shows a mentoring conversation. **Still needed:** a real photo of two professionals in conversation for Mentorship.
+
+### Dr. Phang film — homepage cut
+
+| | |
+|---|---|
+| Requested | about 01:19 → 02:04 (about 45 s) |
+| Delivered | **01:19.00 → 01:58.55 (39.55 s)** |
+| Why | The supplied source (`Dr_Phang_Scholarship_01m00s-02m00s.mp4`) ends at 02:00. 01:58.55 is the last natural pause, on the held end card. |
+| Fades | Video and audio fade in over 0.9 s and out over 1.5 s |
+| File | `public/media/scholarship/dr-phang-featured.mp4`: 1920×1080 H.264 High, AAC 128k, faststart, **7.29 MB** (1.47 Mbps) |
+| Unchanged | Framing, player UI, poster, and the watermark/timecode (not covered), plus the media-clearance note. The 60-second scholarship-page film is unchanged. The 30-second file is kept but no longer referenced. |
+
+To reach 02:04, supply the source that runs past 02:00 and re-run the script with `end = 64.0` (adjusted to a natural pause).

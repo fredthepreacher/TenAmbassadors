@@ -85,7 +85,13 @@ export interface Initiative {
   status: "planned" | "active" | "completed";
 }
 
-export type PartnerCategoryId = "corporate" | "university" | "foundation" | "community" | "association";
+export type PartnerCategoryId =
+  | "scholarship"
+  | "mentorship"
+  | "service"
+  | "leadership"
+  | "starlight"
+  | "global";
 
 export interface PartnerCategory {
   id: PartnerCategoryId;
@@ -130,4 +136,37 @@ export interface LegalDoc {
   title: string;
   summary: string;
   body: string | null;
+}
+
+/** A role in the founding ecosystem (About / homepage "Why Ten?"). */
+export interface EcosystemRole {
+  id: string;
+  title: string;
+  summary: string;
+  href?: string;
+}
+
+export interface HorizonPhase {
+  period: string;
+  title: string;
+  items: string[];
+}
+
+export interface ImpactMeasure {
+  id: string;
+  label: string;
+  description: string;
+}
+
+export interface AwardConcept {
+  id: string;
+  title: string;
+  /** Concepts pending final approval. */
+  status: "concept" | "approved";
+}
+
+export interface ProgramArea {
+  title: string;
+  /** Always future-facing unless confirmed. */
+  status: "planned" | "active";
 }

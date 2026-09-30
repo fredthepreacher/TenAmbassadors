@@ -33,3 +33,52 @@ export const volunteer = {
   roles: null as string[] | null,
   signupUrl: null as string | null,
 };
+
+/* ---- V2.2 program areas (future-facing; none are claimed as active) ---- */
+
+export const scholarshipAreas = [
+  "College scholarships",
+  "Professional-development grants",
+  "Study-abroad support",
+  "Leadership-development funding",
+  "Certification & training assistance",
+  "International learning opportunities",
+  "Educational partnerships",
+];
+
+export const mentorshipIndustries = [
+  "Business",
+  "Finance",
+  "Technology",
+  "Healthcare",
+  "Public service",
+  "Entrepreneurship",
+  "Law",
+  "Engineering",
+  "Media",
+  "Sports",
+  "Hospitality",
+  "International affairs",
+];
+
+export const mentorshipFormats = [
+  "Executive mentorship",
+  "Leadership circles",
+  "Career development",
+  "Fireside conversations",
+  "Workshops",
+  "Mentor matching",
+  "Retreats",
+  "Cross-generational conversations",
+];
+
+export const serviceAreas = [
+  "Volunteer initiatives",
+  "Nonprofit partnerships",
+  "Community service",
+  "Youth leadership",
+  "Health & wellness",
+  "Education",
+  "Community development",
+  "International service",
+];

@@ -15,7 +15,7 @@ export function SiteFooter({
   social: SocialLink[];
 }) {
   const year = new Date().getFullYear();
-  const { parentOrg, contact, nonprofitDisclosure } = site;
+  const { contact, nonprofitDisclosure } = site;
 
   return (
     <footer className="bg-navy-950 text-paper" id="newsletter">
@@ -24,15 +24,7 @@ export function SiteFooter({
           <Wordmark tone="light" />
           <p className="max-w-md font-serif text-h3 text-paper">{site.tagline}</p>
           <p className="text-paper/70">
-            An initiative launched by{" "}
-            {parentOrg.url ? (
-              <a href={parentOrg.url} className="underline underline-offset-4">
-                {parentOrg.name}
-              </a>
-            ) : (
-              <span className="font-semibold text-paper">{parentOrg.name}</span>
-            )}
-            .
+            A leadership and impact organization being established around Scholarship, Mentorship and Service.
           </p>
         </div>
         <NewsletterForm />

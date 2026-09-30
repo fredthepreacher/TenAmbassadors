@@ -19,22 +19,27 @@ export default async function PartnersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Partners & sponsors"
+        eyebrow="Corporate partners & sponsors"
         title={
           <>
             Invest in the next generation <em className="text-royal-700">of leaders.</em>
           </>
         }
-        intro="Ten Ambassadors is building partnerships across sectors. Partners help fund scholarships, open doors for mentorship, and extend service into communities."
+        intro="Ten Ambassadors is preparing partnership pathways for organizations that want to invest in Scholarship, Mentorship and Service. These are pathways — no sponsors have been announced yet."
       >
-        <ButtonLink href="/contact" arrow>
-          Start a conversation
-        </ButtonLink>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href="/get-involved/sponsor" arrow>
+            Sponsorship inquiry
+          </ButtonLink>
+          <ButtonLink href="/network-partners" variant="outline">
+            Network Partners
+          </ButtonLink>
+        </div>
       </PageHero>
 
       <section aria-labelledby="ways-title" className="section-y bg-paper">
         <div className="container-x">
-          <SectionHeading id="ways-title" eyebrow="Ways to partner" title="A place for every kind of partner." />
+          <SectionHeading id="ways-title" eyebrow="Sponsorship & corporate partnership pathways" title="Six ways to invest in the mission." />
           <ul className="mt-12 border-t border-line-strong">
             {partnerCategories.map((c, i) => {
               const list = partners.filter((p) => p.category === c.id);
@@ -80,7 +85,7 @@ export default async function PartnersPage() {
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
             <PendingBlock title="Partnership & sponsorship packages">Partnership options and recognition benefits will be published here.</PendingBlock>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-              <ButtonLink href="/contact" arrow>
+              <ButtonLink href="/get-involved/sponsor" arrow>
                 Partnership inquiry
               </ButtonLink>
               <TextLink href="/starlight#sponsor">Starlight sponsorship</TextLink>

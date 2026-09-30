@@ -14,12 +14,14 @@ export function StarlightFeature({
   body,
   pillars,
   actions,
+  event,
 }: {
   eyebrow: string;
   title: string[];
   body: string;
   pillars: { title: string; body: string }[];
   actions: Action[];
+  event: { name: string; date: string; venue: string; street: string; city: string };
 }) {
   return (
     <section id="starlight" aria-labelledby="starlight-title" className="relative text-champagne">
@@ -49,7 +51,27 @@ export function StarlightFeature({
             <p className="mx-auto mt-8 max-w-2xl text-lede text-champagne/80">{body}</p>
           </div>
 
-          <ul className="mx-auto mt-16 grid max-w-5xl border-y border-starlight/20 text-left sm:grid-cols-3">
+          {/* Next event — verified details */}
+          <div className="mx-auto mt-12 max-w-3xl rounded-[1.25rem] border border-starlight/30 bg-night-900/60 px-6 py-6 text-left sm:px-8" data-reveal>
+            <p className="text-xs font-semibold tracking-[0.2em] text-starlight uppercase">Save the date</p>
+            <div className="mt-3 grid gap-4 sm:grid-cols-[1.3fr_1fr] sm:items-end">
+              <div>
+                <h3 className="font-serif text-h3 text-champagne">{event.name}</h3>
+                <p className="mt-1 font-semibold text-champagne/90">
+                  <time dateTime="2026-12-11">{event.date}</time>
+                </p>
+              </div>
+              <address className="text-sm leading-relaxed text-champagne/80 not-italic sm:text-right">
+                {event.venue}
+                <br />
+                {event.street}
+                <br />
+                {event.city}
+              </address>
+            </div>
+          </div>
+
+          <ul className="mx-auto mt-14 grid max-w-5xl border-y border-starlight/20 text-left sm:grid-cols-3">
             {pillars.map((p, i) => (
               <li
                 key={p.title}

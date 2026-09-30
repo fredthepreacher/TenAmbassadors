@@ -68,8 +68,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     name: site.name,
     url: site.url,
     description: site.description,
-    // "Launched by The Upmixer" (source language).
-    founder: { "@type": "Organization", name: site.parentOrg.name },
+    slogan: site.coreMessage.join(" "),
+    knowsAbout: ["Leadership development", "Mentorship", "Scholarship", "Community service", "Professional mentorship", "Young professional leadership"],
   };
 
   return (
@@ -86,7 +86,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           cta={nav.headerCta}
           secondary={[
             { label: "Dr. Christopher A. Phang Scholarship", href: "/scholarship/dr-christopher-a-phang" },
-            { label: "Support the Mission", href: "/get-involved#support" },
+            { label: "Corporate Partners", href: "/partners" },
+            { label: "Donate", href: "/donate" },
             { label: "Contact", href: "/contact" },
           ]}
         />

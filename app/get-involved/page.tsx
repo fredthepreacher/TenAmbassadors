@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Get Involved",
-  description: "Become a mentor, volunteer, partner with us, support the mission, or explore scholarship opportunities with Ten Ambassadors.",
+  description: "Become an Ambassador, nominate a leader, mentor, become a Network Partner, volunteer, sponsor or support Ten Ambassadors.",
   path: "/get-involved",
 });
 
@@ -31,16 +31,15 @@ export default async function GetInvolvedPage() {
             className="lg:col-span-6"
           />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            {site.donation.url ? (
-              <ButtonLink href={site.donation.url} arrow>
-                Give now
-              </ButtonLink>
-            ) : (
+            {site.donation.url ? null : (
               <PendingBlock title="Online giving is being set up">
-                A secure donation option will be connected here once the organization selects its giving provider. For
-                major gifts or partnership support, please get in touch.
+                Giving pathways — one-time, recurring, the Scholarship Fund, program sponsorship, corporate giving and event
+                contributions — are being prepared.
               </PendingBlock>
             )}
+            <ButtonLink href="/donate" arrow className="w-fit">
+              Ways to give
+            </ButtonLink>
             <ButtonLink href="/contact" variant="outline" arrow className="w-fit">
               Contact the team
             </ButtonLink>

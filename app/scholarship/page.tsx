@@ -5,7 +5,8 @@ import { ButtonLink } from "@/components/ui/Button";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { PendingBlock } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getScholarships } from "@/lib/content";
+import { AreaList } from "@/components/pages/AreaList";
+import { getPrograms, getScholarships } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -18,7 +19,7 @@ export const metadata = pageMetadata({
 const statusLabel = { "in-development": "In development", open: "Applications open", closed: "Applications closed" } as const;
 
 export default async function ScholarshipPage() {
-  const scholarships = await getScholarships();
+  const [scholarships, programs] = await Promise.all([getScholarships(), getPrograms()]);
 
   return (
     <>
@@ -29,7 +30,7 @@ export default async function ScholarshipPage() {
             Opportunity <em className="text-royal-700">opens the door.</em>
           </>
         }
-        intro="Scholarship removes barriers — so talent and ambition can meet education, access, and possibility. It is the first stage of the Ten Ambassadors pathway, designed to connect with mentorship and service."
+        intro="Scholarship is the first stage of the Ten Ambassadors pathway — a platform being built to support education and professional-development opportunities, connected to mentorship and service."
       />
 
       <section aria-labelledby="scholarships-title" className="section-y bg-paper">
@@ -65,6 +66,18 @@ export default async function ScholarshipPage() {
           </ul>
         </div>
       </section>
+
+      <AreaList
+        id="areas"
+        eyebrow="The platform we are building"
+        title={
+          <>
+            Education and development, <em className="text-royal-700">in many forms.</em>
+          </>
+        }
+        intro="Over time, the Scholarship platform may grow to include:"
+        areas={programs.scholarshipAreas}
+      />
 
       <section id="future" aria-labelledby="future-title" className="section-y bg-ivory">
         <div className="container-x grid gap-12 lg:grid-cols-12">

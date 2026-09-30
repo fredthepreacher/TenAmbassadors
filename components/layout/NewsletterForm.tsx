@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { submitIntake } from "@/lib/forms";
 
 /**
  * Newsletter sign-up UI.
@@ -14,9 +15,11 @@ export function NewsletterForm() {
   return (
     <form
       className="grid gap-3"
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        setMessage("Thank you. Newsletter sign-up isn't connected yet — it will be live before launch.");
+        const email = String(new FormData(e.currentTarget).get("email") ?? "");
+        const res = await submitIntake("newsletter-signup", { email });
+        setMessage(res.ok ? "Thank you — you're on the list." : "Thank you. Newsletter sign-up isn't connected yet — it will be live before launch.");
       }}
     >
       <label htmlFor={`${id}-email`} className="font-serif text-2xl text-paper">

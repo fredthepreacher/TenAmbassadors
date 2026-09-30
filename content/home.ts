@@ -11,24 +11,25 @@ import { media } from "./media";
 
 export const hero = {
   eyebrow: site.pillarsLine,
-  /** [draft] */
-  headline: ["Opening pathways.", "Building leaders."],
-  /** [draft] */
-  lede: "Ten Ambassadors opens pathways for the next generation through Scholarship, Mentorship, and Service.",
+  /** [brief] core message */
+  headline: [...site.coreMessage],
+  /** [brief] supporting direction */
+  lede: "Through Scholarship, Mentorship and Service, Ten Ambassadors brings together leaders, organizations and communities committed to preparing the next generation for meaningful impact.",
   image: media.hero,
   primary: { label: "Explore the pathway", href: "/#sms" },
   secondary: { label: "Get involved", href: "/get-involved" },
 };
 
 export const purpose = {
-  eyebrow: "Why we exist",
-  /** [draft] */
+  eyebrow: "What is Ten Ambassadors?",
+  /** [draft] headline + [brief] positioning */
   statement:
-    "Talent is everywhere. Access is not. Ten Ambassadors exists to close that distance — connecting emerging leaders with the opportunity, people, and purpose that turn potential into leadership.",
-  /** [source] */
-  origin: `Launched by ${site.parentOrg.name}, ${site.name} is an initiative focused on developing future leaders through Scholarship, Mentorship, and Service.`,
-  /** [source] */
-  themes: ["Strengthening Communities.", "Building Leaders.", "Expanding Opportunity."],
+    "Talent is everywhere. Access is not. Ten Ambassadors is a leadership and impact organization being established around Scholarship, Mentorship and Service — using community, partnerships and shared experiences to develop and connect the next generation of leaders.",
+  /** [brief] proposed mission */
+  origin:
+    "Our mission: to connect emerging and established leaders through scholarship, mentorship, service, shared experiences and professional engagement — strengthening communities and preparing the next generation of leaders.",
+  /** [brief] core message */
+  themes: [...site.coreMessage],
 };
 
 /** The SMS cycle — Opportunity → Development → Service → New opportunity. [draft] */
@@ -70,23 +71,12 @@ export const smsIntro = {
   },
 };
 
-export const inMotion = {
-  eyebrow: "Opportunity in motion",
-  /** [draft] */
-  title: "Opportunity moves through people.",
-  body: "Every pathway begins with a relationship — an introduction, a conversation, a door someone chose to open. These are the rooms where that happens.",
-  images: {
-    lead: media.communityNetwork,
-    side: media.communityProfessionals,
-  },
-};
-
 export const mentorshipFeature = {
   eyebrow: "Mentorship",
   /** [source — V1 baseline copy] */
   title: "Leadership grows through access to people who have walked the road before.",
   /** [draft] — the network relationship is supplied context (The Upmixer). */
-  body: "Ten Ambassadors is rooted in a professional network built by The Upmixer — leaders across industries who can offer what no classroom can: perspective, introductions, and honest guidance.",
+  body: "Ten Ambassadors intends to connect emerging leaders with accomplished professionals across business, finance, technology, healthcare, public service, law, media, sports and more — people who can offer what no classroom can: perspective, introductions, and honest guidance.",
   pillars: [
     { title: "Access", body: "Rooms, conversations, and introductions that are hard to reach alone." },
     { title: "Guidance", body: "Perspective from people a few steps — or a generation — further along." },
@@ -102,24 +92,33 @@ export const serviceFeature = {
   eyebrow: "Service",
   /** [draft] */
   title: "Leadership becomes action.",
-  body: "Service is where development becomes impact. Ten Ambassadors will organize service initiatives that let ambassadors turn what they have gained into opportunity for their communities.",
+  body: "Leadership carries responsibility. Ten Ambassadors is developing service initiatives — from youth leadership and education to community development — that turn what leaders have gained into opportunity for their communities.",
 };
 
 export const starlightFeature = {
   eyebrow: "The Starlight Awards",
   /** [brief concept] */
   title: ["Celebrate excellence.", "Fund opportunity."],
-  /** [draft] */
-  body: "The Starlight Awards is envisioned as Ten Ambassadors' signature evening — honoring achievement while helping fund scholarship, mentorship, and service.",
+  /** [brief] */
+  body: "Our signature annual celebration of leadership and impact — the gathering where leadership, achievement, service, community and culture come together, and one of the ways Ten Ambassadors supports its programs.",
 };
 
 export const globalVision = {
-  eyebrow: "Global vision",
-  /** [draft] — framed as aspiration, not existing reach. */
+  eyebrow: "Global outlook",
+  /** [draft] title; [brief] approved body */
   title: "Built for a world of emerging leaders.",
-  body: "Talent is not limited to one city, one community, or one background — and neither is our ambition. Ten Ambassadors is being built to grow: to connect leaders across industries, generations, and, in time, borders.",
-  note: "This is our vision for where Ten Ambassadors is going — not a claim about where it is today.",
+  body: "Our communities are increasingly connected across industries, generations, cultures and borders. Ten Ambassadors is being built to prepare leaders for that reality — strengthening relationships locally while laying the foundation for future global collaboration.",
+  note: "This is where Ten Ambassadors is going — not a claim about where it is today. 2026 is our foundation year.",
   image: media.communityNetwork,
+};
+
+/** "One Community. Many Networks." [brief] */
+export const networkFeature = {
+  eyebrow: "Network Partners",
+  title: ["One community.", "Many networks."],
+  lede: "Leadership becomes more powerful when networks collaborate.",
+  body: "Ten Ambassadors is designed as a network of networks — professional associations, alumni groups, universities, civic and cultural organizations, young-professional groups and more, sharing opportunities and developing leaders together.",
+  image: media.communityGroup,
 };
 
 export const closing = {

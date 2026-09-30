@@ -5,12 +5,22 @@
  * these function bodies with CMS queries returning the same types.
  */
 import * as home from "@/content/home";
-import { about, leadership } from "@/content/about";
+import { about, ecosystem, globalDirection, horizon, leadership, whyTen } from "@/content/about";
+import { givingPathways, impact } from "@/content/impact";
+import { getPathwayPage, pathwayPages } from "@/content/getInvolved";
 import { getLegalDoc, legalDocs } from "@/content/legal";
 import { footerNav, headerCta, legalNav, primaryNav, socialLinks } from "@/content/navigation";
-import { partnerCategories, partners } from "@/content/partners";
+import { networkPartnerRoles, networkPartnerTypes, networkPartners, partnerCategories, partners } from "@/content/partners";
 import { pathways } from "@/content/involvement";
-import { mentorship, serviceInitiatives, volunteer } from "@/content/programs";
+import {
+  mentorship,
+  mentorshipFormats,
+  mentorshipIndustries,
+  scholarshipAreas,
+  serviceAreas,
+  serviceInitiatives,
+  volunteer,
+} from "@/content/programs";
 import { featuredScholarship, getScholarshipBySlug, scholarships } from "@/content/scholarships";
 import { starlight } from "@/content/starlight";
 
@@ -31,11 +41,27 @@ export async function getScholarship(slug: string) {
 }
 
 export async function getAbout() {
-  return { about, leadership };
+  return { about, leadership, whyTen, ecosystem, horizon, globalDirection };
+}
+
+export async function getImpact() {
+  return impact;
+}
+
+export async function getGiving() {
+  return givingPathways;
+}
+
+export async function getPathwayPages() {
+  return pathwayPages;
+}
+
+export async function getPathway(slug: string) {
+  return getPathwayPage(slug);
 }
 
 export async function getPrograms() {
-  return { mentorship, serviceInitiatives, volunteer };
+  return { mentorship, serviceInitiatives, volunteer, scholarshipAreas, mentorshipIndustries, mentorshipFormats, serviceAreas };
 }
 
 export async function getStarlight() {
@@ -43,7 +69,7 @@ export async function getStarlight() {
 }
 
 export async function getPartners() {
-  return { partnerCategories, partners };
+  return { partnerCategories, partners, networkPartnerTypes, networkPartnerRoles, networkPartners };
 }
 
 export async function getPathways() {

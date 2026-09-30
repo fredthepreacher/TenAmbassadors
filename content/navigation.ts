@@ -6,7 +6,7 @@ export const primaryNav: NavItem[] = [
   { label: "Mentorship", href: "/mentorship" },
   { label: "Service", href: "/service" },
   { label: "Starlight", href: "/starlight" },
-  { label: "Partners", href: "/partners" },
+  { label: "Network Partners", href: "/network-partners" },
 ];
 
 export const headerCta: NavItem = { label: "Get Involved", href: "/get-involved" };
@@ -15,8 +15,9 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
   {
     heading: "Organization",
     links: [
-      { label: "Mission & Vision", href: "/about" },
-      { label: "Our Story", href: "/about#story" },
+      { label: "About", href: "/about" },
+      { label: "Mission & Vision", href: "/about#mission" },
+      { label: "Why “Ten”?", href: "/about#why-ten" },
       { label: "Leadership", href: "/about#leadership" },
       { label: "Contact", href: "/contact" },
     ],
@@ -28,16 +29,18 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
       { label: "Dr. Christopher A. Phang Scholarship", href: "/scholarship/dr-christopher-a-phang" },
       { label: "Mentorship", href: "/mentorship" },
       { label: "Service", href: "/service" },
+      { label: "Starlight Awards", href: "/starlight" },
     ],
   },
   {
-    heading: "Get involved",
+    heading: "Community",
     links: [
-      { label: "Become a Mentor", href: "/mentorship#become-a-mentor" },
-      { label: "Volunteer", href: "/service#volunteer" },
-      { label: "Partner With Us", href: "/partners" },
-      { label: "Support the Mission", href: "/get-involved#support" },
-      { label: "Starlight Awards", href: "/starlight" },
+      { label: "Become an Ambassador", href: "/get-involved/ambassador" },
+      { label: "Nominate an Ambassador", href: "/get-involved/nominate" },
+      { label: "Become a Mentor", href: "/get-involved/mentor" },
+      { label: "Network Partners", href: "/network-partners" },
+      { label: "Corporate Partners", href: "/partners" },
+      { label: "Donate", href: "/donate" },
     ],
   },
 ];

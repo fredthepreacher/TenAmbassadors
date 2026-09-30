@@ -62,12 +62,21 @@ export function Hero({
             <RingOfTen className="size-5" strokeOpacity={0.6} highlight={0} />
             {eyebrow}
           </p>
-          <h1 id="hero-title" className="mt-6 text-display">
-            <span className="block animate-rise [animation-delay:200ms]">{headline[0]}</span>
-            <em className="block animate-rise pb-1 text-gold-300 [animation-delay:300ms]">{headline[1]}</em>
+          <h1 id="hero-title" className="mt-6 text-[clamp(2.2rem,0.4rem+4.6vw,3.25rem)] leading-[1.0] lg:text-[min(3.1rem,calc(4.15vw-8px))]">
+            {headline.map((line, i) =>
+              i === headline.length - 1 ? (
+                <em key={line} className="block animate-rise pb-1 text-gold-300" style={{ animationDelay: `${200 + i * 90}ms` }}>
+                  {line}
+                </em>
+              ) : (
+                <span key={line} className="block animate-rise" style={{ animationDelay: `${200 + i * 90}ms` }}>
+                  {line}
+                </span>
+              ),
+            )}
           </h1>
-          <p className="mt-7 max-w-xl animate-rise text-lede text-paper/80 [animation-delay:420ms]">{lede}</p>
-          <div className="mt-9 flex animate-rise flex-col gap-3 [animation-delay:540ms] sm:flex-row sm:flex-wrap">
+          <p className="mt-7 max-w-xl animate-rise text-lede text-paper/80 [animation-delay:480ms]">{lede}</p>
+          <div className="mt-9 flex animate-rise flex-col gap-3 [animation-delay:580ms] sm:flex-row sm:flex-wrap">
             <ButtonLink href={primary.href} variant="gold" arrow>
               {primary.label}
             </ButtonLink>

@@ -1,0 +1,21 @@
+TEN AMBASSADORS — CURATED PHOTO ASSET MAP
+
+PRIMARY
+IMG_4004 — Network Partners / “One Community. Many Networks.”
+IMG_4006 — Mentorship
+IMG_4007 — Community / About / Founding Ecosystem
+
+OPTIONAL
+IMG_4001 — Starlight / culture / sophisticated social experience
+
+EDITING POLICY
+The ENHANCED files received only restrained photographic correction:
+- mild tonal balancing
+- slight contrast improvement
+- slight color improvement
+- gentle sharpening
+
+No faces, body shapes, skin texture, facial features, expressions, clothing, people, or scene content were altered.
+Original files are included beside each enhanced version for comparison.
+
+Claude should prefer the enhanced files where they look natural in the actual layout, but may use the originals if a particular crop/rendering looks more authentic.

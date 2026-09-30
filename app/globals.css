@@ -735,3 +735,14 @@
     animation-delay: calc(var(--i, 0) * 40ms);
   }
 }
+
+/* ---------- Why Ten: network lines draw outward when revealed ---------- */
+.js-reveal [data-reveal] .ten-network .net-line {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  transition: stroke-dashoffset 1.4s var(--ease-editorial) 0.2s;
+}
+
+.js-reveal [data-reveal].is-visible .ten-network .net-line {
+  stroke-dashoffset: 0;
+}

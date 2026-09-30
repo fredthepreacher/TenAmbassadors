@@ -15,7 +15,7 @@ export function GetInvolved({ pathways, headingLevel = "h2" }: { pathways: Pathw
               Every pathway needs <em className="text-royal-700">people to open it.</em>
             </Heading>
           </div>
-          <p className="text-lede text-ink-2 lg:col-span-5">Mentor, volunteer, partner, or give — there is a place for you in the cycle.</p>
+          <p className="text-lede text-ink-2 lg:col-span-5">Lead, nominate, mentor, partner, volunteer, sponsor or give — there is a place for you in the cycle.</p>
         </header>
 
         <ol className="mt-14 border-t border-line-strong">

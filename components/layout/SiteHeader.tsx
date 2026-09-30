@@ -10,7 +10,7 @@ import { Wordmark } from "./Wordmark";
 
 /** Routes whose first screen is dark: the header starts transparent with light text. */
 function isDarkTop(pathname: string) {
-  return pathname === "/" || pathname === "/service" || /^\/scholarship\/.+/.test(pathname);
+  return pathname === "/" || pathname === "/service" || pathname === "/network-partners" || /^\/scholarship\/.+/.test(pathname);
 }
 
 export function SiteHeader({ nav, cta, secondary }: { nav: NavItem[]; cta: NavItem; secondary: NavItem[] }) {

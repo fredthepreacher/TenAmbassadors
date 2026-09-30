@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/pages/ContactForm";
+import { IntakeForm } from "@/components/forms/IntakeForm";
 import { PageHero } from "@/components/pages/PageHero";
 import { PendingNote } from "@/components/ui/Pending";
 import { pageMetadata } from "@/lib/seo";
@@ -27,9 +27,10 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
-            <h2 className="font-serif text-h3">Send a message</h2>
-            <div className="mt-6">
-              <ContactForm />
+            <h2 className="sr-only">Send a message</h2>
+            <IntakeForm formId="general-contact" />
+            <div className="mt-12 border-t border-line pt-10">
+              <IntakeForm formId="media-inquiry" />
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { PageHero } from "@/components/pages/PageHero";
 import { ButtonLink } from "@/components/ui/Button";
 import { PendingNote } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AreaList } from "@/components/pages/AreaList";
 import { getPrograms } from "@/lib/content";
 import { mentorshipFeature } from "@/content/home";
 import { media } from "@/content/media";
@@ -16,7 +17,7 @@ export const metadata = pageMetadata({
 });
 
 export default async function MentorshipPage() {
-  const { mentorship } = await getPrograms();
+  const { mentorship, mentorshipIndustries, mentorshipFormats } = await getPrograms();
 
   return (
     <>
@@ -61,6 +62,26 @@ export default async function MentorshipPage() {
         ) : null}
       </section>
 
+      <AreaList
+        id="industries"
+        tone="ivory"
+        eyebrow="Across industries"
+        title={
+          <>
+            Accomplished professionals, <em className="text-royal-700">many fields.</em>
+          </>
+        }
+        intro="Ten Ambassadors intends to connect emerging leaders with mentors across:"
+        areas={mentorshipIndustries}
+      />
+      <AreaList
+        id="formats"
+        eyebrow="Future programming"
+        title="Ways mentorship may take shape"
+        intro="Potential formats include:"
+        areas={mentorshipFormats}
+      />
+
       <section aria-label="Mentorship pathways" className="bg-ivory">
         {mentorship.tracks.map((t, i) => (
           <div key={t.id} id={t.id} className="scroll-mt-24 border-b border-line">
@@ -71,8 +92,8 @@ export default async function MentorshipPage() {
                 <p className="mt-6 text-lede text-ink-2">{t.body}</p>
                 <PendingNote className="mt-6">{t.pending}</PendingNote>
                 <div className="mt-8">
-                  <ButtonLink href="/contact" variant="outline" arrow>
-                    Register interest
+                  <ButtonLink href={t.id === "become-a-mentor" ? "/get-involved/mentor" : "/get-involved/ambassador"} variant="outline" arrow>
+                    {t.id === "become-a-mentor" ? "Mentor application" : "Ambassador pathway"}
                   </ButtonLink>
                 </div>
               </div>
