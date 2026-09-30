@@ -16,6 +16,7 @@ export function NetworkFeature({
   body,
   image,
   video,
+  videoCinematic,
   videoCaption,
   types,
 }: {
@@ -25,6 +26,7 @@ export function NetworkFeature({
   body: string;
   image: Media;
   video?: VideoAsset;
+  videoCinematic?: { src: string; poster: Media };
   videoCaption?: string;
   types: string[];
 }) {
@@ -67,9 +69,10 @@ export function NetworkFeature({
         {video ? (
           <AmbientVideo
             video={video}
+            cinematic={videoCinematic}
             caption={videoCaption ?? ""}
             sizes="(max-width: 1024px) 100vw, 36vw"
-            className="sm:mx-auto sm:w-4/5 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:w-auto"
+            className="w-full sm:mx-auto sm:w-4/5 cine:mx-auto cine:max-w-[calc((100svh-7rem)*16/9)] lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:w-auto lg:max-w-none"
           />
         ) : null}
         <div className={video ? "lg:col-span-6 lg:row-start-2" : "lg:col-span-5 lg:col-start-8"} data-reveal>

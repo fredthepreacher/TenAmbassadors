@@ -69,6 +69,13 @@ export const media = {
     height: 1080,
     focus: "50% 45%",
   },
+  recapPosterWide: {
+    src: "/media/community/ta-recap-community-poster-wide.jpg",
+    alt: "Guests seated on a leather banquette listen to a speaker at an evening gathering.",
+    width: 1920,
+    height: 1080,
+    focus: "50% 50%",
+  },
   phangPoster30: {
     src: "/media/scholarship/dr-phang-30s-poster.jpg",
     alt: "Still from the Dr. Christopher A. Phang scholarship film: two men talk seated by a sunlit window.",
@@ -132,3 +139,12 @@ export const communityVideos = {
       "A speaker asks: “Are you only using AI just to make money? If so, I invite you to consider that perhaps you could do more.” Guests then meet, talk and exchange contacts.",
   },
 } satisfies Record<string, VideoAsset>;
+
+/**
+ * V2.4 mobile-media pass — cinematic 16:9 derivative for tablets and landscape
+ * phones: the full master frame (vertical footage on its blurred fill) scaled
+ * to 1280×720, H.264 High CRF 26, AAC 128k, faststart, ~2.6 MB.
+ */
+export const communityVideoCinematic = {
+  recap: { src: "/media/community/ta-recap-community-wide.mp4", poster: media.recapPosterWide },
+};

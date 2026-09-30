@@ -10,6 +10,10 @@ of its blurred fill — at native 864×1080 (no scaling), H.264 High CRF 25, AAC
 faststart. The edit, fades and open captions are unchanged. The homepage frame is 4:5
 (object-cover), so the full 16:9 frame would only waste bytes on off-screen fill.
 
+Cinematic derivative (V2.4 mobile-media pass): the full master frame scaled to
+1280×720, CRF 26 — used for the 16:9 art direction on tablets and landscape phones.
+Its poster is the supplied 16:9 poster.
+
   python scripts/prepare_v24_recap.py
 """
 import subprocess
@@ -31,6 +35,22 @@ subprocess.run(
         str(out / "ta-recap-community.mp4"),
     ],
     check=True,
+)
+
+subprocess.run(
+    [
+        "ffmpeg", "-y", "-i", str(src / "TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4"),
+        "-vf", "scale=1280:720:flags=lanczos,format=yuv420p",
+        "-c:v", "libx264", "-preset", "slow", "-crf", "26", "-profile:v", "high", "-level", "4.0",
+        "-maxrate", "3000k", "-bufsize", "6000k",
+        "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
+        str(out / "ta-recap-community-wide.mp4"),
+    ],
+    check=True,
+)
+
+Image.open(src / "TenAmbassadors_Recap_16-35_Poster.jpg").save(
+    out / "ta-recap-community-poster-wide.jpg", quality=86, optimize=True, progressive=True
 )
 
 Image.open(src / "TenAmbassadors_Recap_16-35_Poster.jpg").crop((528, 0, 1392, 1080)).save(

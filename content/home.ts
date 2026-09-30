@@ -1,6 +1,6 @@
 import type { SmsStage } from "@/lib/types";
 import { site } from "@/lib/site";
-import { communityVideos, media } from "./media";
+import { communityVideoCinematic, communityVideos, media } from "./media";
 
 /*
  * Homepage copy.
@@ -122,6 +122,7 @@ export const networkFeature = {
   image: media.communityGroup,
   /** V2.4 — ambient recap film; footage is from the wider Upmixer event community. */
   video: communityVideos.recap,
+  videoCinematic: communityVideoCinematic.recap,
   videoCaption:
     "Scenes from gatherings across the wider Upmixer event community — the kind of rooms, conversations and connections Ten Ambassadors is being built to extend.",
 };

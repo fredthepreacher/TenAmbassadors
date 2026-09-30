@@ -77,5 +77,21 @@ Source: `Ten_Ambassadors_V2_4_Video_SEO_AEO_Handoff.zip`. It is 00:16–00:35 of
 | Placement | Homepage, **"One community. Many networks."** section (`#network`), in the right column beside the Network Partner copy. IMG_4007 stays as the section's wide image. |
 | Behavior | `components/ui/AmbientVideo.tsx`: the source is attached only near the viewport. The film plays muted, inline and looping while at least 40% visible, and pauses off-screen. There is a visible Pause/Play control plus "Play with sound" (native controls, from the start). With reduced motion or Save-Data it does not autoplay and shows the poster with a Play control. There is never autoplay audio. |
 | Pipeline | `scripts/prepare_v24_recap.py` |
+| Cinematic derivative (mobile-media pass) | `public/media/community/ta-recap-community-wide.mp4`: the full 16:9 master frame at **1280×720**, CRF 26, AAC 128k, faststart, **2.63 MB**. Its poster is `ta-recap-community-poster-wide.jpg`, the supplied 16:9 poster (131 KB). |
+
+**Art direction (mobile-media pass):**
+
+- **Phones in portrait and the desktop column:** 4:5 frame with the 4:5 derivative and poster.
+- **Tablets (640–1023 px) and phones in landscape:** 16:9 cinematic frame with the wide derivative and poster. It is capped so the frame always fits the screen height.
+- **Selection:** one media query (`cine` in `globals.css`, `CINE_QUERY` in `AmbientVideo.tsx`) chooses both the poster (`<picture>`, one download) and the MP4.
+- **Rotation:** turning the device across the breakpoint swaps the file and keeps the playback position.
+- **Controls:** in the 16:9 frame the controls sit in the blurred left fill, so faces and burned-in captions stay clear. In the 4:5 frame they sit in one row below the captions, down to 320 px.
+
+**Playback details:**
+
+- The muted loop starts after the film's 0.4 s fade from black and restarts before the audio-only tail (0.7 s), so there is no black dip or frozen frame.
+- The poster is held until a post-fade frame has been painted.
+- "Play with sound" plays the film exactly as edited, from 0:00.
+- Every user-initiated play() runs inside the tap, as iOS Safari requires. The Phang film player works the same way.
 
 The client should confirm that everyone shown in the recap agreed to appear in promotional use.

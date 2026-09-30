@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/*
+ * "cine" — art direction for the wide/cinematic media composition: tablets
+ * (640–1023px) and phones in landscape. Keep in sync with CINE_QUERY in
+ * components/ui/AmbientVideo.tsx.
+ */
+@custom-variant cine {
+  @media (min-width: 640px) and (max-width: 1023.98px) {
+    @slot;
+  }
+  @media (orientation: landscape) and (max-height: 540px) and (max-width: 1023.98px) {
+    @slot;
+  }
+}
+
 /* ==========================================================================
    Ten Ambassadors — design tokens (Tailwind v4, CSS-first) · V2.1
    Brand world:    royal blue (confidence) · warm white (possibility)
