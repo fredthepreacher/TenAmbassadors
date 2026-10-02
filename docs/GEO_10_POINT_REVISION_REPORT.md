@@ -227,3 +227,45 @@ No existing photo was altered. No face, body or clothing was edited anywhere.
 - `app/robots.ts` still returns `Allow: /` in every environment (unchanged by this pass). The preview is kept out of search by Vercel's `x-robots-tag: noindex` header and by Deployment Protection.
 
 Preview only (no `--prod`), with no change to the production alias, the custom domain or indexing. Vercel previews are served with `x-robots-tag: noindex`.
+
+
+---
+
+## Asset-package pass (2026-10-02, afternoon)
+
+**Source:** `Ten_Ambassadors_Geo_Requested_Assets.zip`, the client's mapped package of 8 photos with a manifest. Originals are kept, unchanged, in `assets/geo-revision-originals/` and are not served.
+
+**Client decision for the interim:** show the four-photo collage now. Until the hero film exists, the business-card photo (IMG_3977) stays in the hero as well.
+
+| Geo point | Section | Asset | Web file | Edit |
+|---|---|---|---|---|
+| 2 · Collage, tile a | Home `#in-the-room` | IMG_3977 (business card) | `/media/hero/ta-hero-img-3977.jpg` | none |
+| 2 · Collage, tile b | Home `#in-the-room` | AllseeinJah.com (15 of 424) | `/media/geo/ta-geo-collage-two-women.jpg` (1300×1625) | crop only |
+| 2 · Collage, tile c | Home `#in-the-room` | A7306914 | `/media/geo/ta-geo-collage-panel.jpg` (1024×819) | none (re-encoded) |
+| 2 · Collage, tile d | Home `#in-the-room` | AllseeinJah.com (11 of 424), the mixed group (**replaces IMG_4001** per the client's manifest) | `/media/geo/ta-geo-collage-group.jpg` (2048×1536) | crop only; the frame ends above the man's hand, so the drink is out of frame |
+| 5 · Future Ambassador pathway | `/mentorship` Pathway B | AllseeinJah.com (139 of 424) | `/media/geo/ta-geo-stage-aaia.jpg` | none |
+| 6 · Network Partners ("all orgs") | `/network-partners` wide image | IMG_4061 | `/media/geo/ta-geo-network-all-orgs.jpg` | none: no DJ equipment or wires are present in this file |
+| 7 · Mentorship | `/mentorship` Pathway A | 010-AllseeinJah.com (13 of 639) | `/media/geo/ta-geo-mentorship-table.jpg` (1748×1365) | **two drinks removed** (see below), then cropped to exclude a background guest's glass on the far left |
+| 8 · Corporate Partners & Sponsors | `/partners` hero, right side | AllseeinJah.com (16 of 424), Jopwell | `/media/geo/ta-geo-sponsor-jopwell.jpg` | none |
+| 9 · About | `/about` hero | AllseeinJah.com (130 of 424), Geo on stage | `/media/geo/ta-geo-stage-red.jpg` | none |
+
+**Drink removal on 13 of 639:**
+
+- Big-LaMa inpainting (`scripts/geo_inpaint_lama.py`) in three passes, limited to a hand-drawn mask over the two glasses, the straw and their reflections on the table.
+- The result is composited over the untouched original. Every changed pixel lies inside x 454–684, y 901–1341 of the 2048×1365 frame; nothing outside that box differs.
+- No face, skin, body shape, clothing or pose was altered. The only person-adjacent pixels touched are the fingertip edge where it overlapped a glass.
+- Records: `assets/geo-revision-edits/` holds the edited master and the first-pass mask.
+
+**Attribution labels added** (`content/attributions.ts`):
+
+- **"Circa Upmixer Holiday Event, 2018":** the 424 series (11, 15, 16, 130, 139). Camera metadata reads 2018-12-11, and the wording is Geo's own example. **Geo to confirm the event name.**
+- **"Circa Upmixer event, 2023":** A7306914. Camera metadata reads 2023-02-25, and the UPMIXER backdrop is visible.
+- **"Upmixer event":** IMG_4061. The UPMIXER mark is on the backdrop; there is no date metadata.
+- **"Photo: AllseeinJah.com":** 13 of 639. Photographer's file naming; no date metadata.
+- **Still pending:** IMG_3977, IMG_4004 and IMG_4007, as before.
+
+**Mobile:** in the collage, the two side-by-side phone frames carry their label just below the frame instead of over the photo. The phone layout no longer overlaps vertically, so those labels stay readable. The seated-panel tile is landscape (5:4) on phones so all four people stay in frame.
+
+**Mapping note:** this morning's written brief described the Future Ambassador photo as "red stage lighting". The client's manifest puts 130 (red stage) on About and 139 (AAIA New York screen) on Future Ambassador, and that mapping is followed. To swap them, exchange `aboutGeoStage` and `futureAmbassadorStage` in `content/media.ts`.
+
+**Still missing:** the hero "organization at work" film (it cannot be generated in this environment; the slot is ready, see point 2), plus final social URLs and email.

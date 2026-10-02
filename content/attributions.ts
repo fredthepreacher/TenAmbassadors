@@ -75,10 +75,45 @@ export const attributions: Record<string, PhotoAttribution> = {
     status: "confirmed",
     basis: "The #UPMIXER stage screen is visible in the full frame (IMG_4006). The year is unknown, so it is omitted.",
   },
-  "/media/collage/ta-collage-4001.jpg": {
-    label: null,
-    status: "pending",
-    basis: "V2.2 handoff (IMG_4001), Geo-selected for the collage. No metadata.",
+  "/media/geo/ta-geo-collage-group.jpg": {
+    label: "Circa Upmixer Holiday Event, 2018",
+    status: "confirmed",
+    basis: "AllseeinJah.com (11 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+  },
+  "/media/geo/ta-geo-collage-two-women.jpg": {
+    label: "Circa Upmixer Holiday Event, 2018",
+    status: "confirmed",
+    basis: "AllseeinJah.com (15 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+  },
+  "/media/geo/ta-geo-stage-aaia.jpg": {
+    label: "Circa Upmixer Holiday Event, 2018",
+    status: "confirmed",
+    basis: "AllseeinJah.com (139 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+  },
+  "/media/geo/ta-geo-stage-red.jpg": {
+    label: "Circa Upmixer Holiday Event, 2018",
+    status: "confirmed",
+    basis: "AllseeinJah.com (130 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+  },
+  "/media/geo/ta-geo-sponsor-jopwell.jpg": {
+    label: "Circa Upmixer Holiday Event, 2018",
+    status: "confirmed",
+    basis: "AllseeinJah.com (16 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+  },
+  "/media/geo/ta-geo-collage-panel.jpg": {
+    label: "Circa Upmixer event, 2023",
+    status: "confirmed",
+    basis: "A7306914 (Geo package). Camera metadata: Sony ILCE-7M3, 2023-02-25; the UPMIXER stage backdrop is visible in the frame.",
+  },
+  "/media/geo/ta-geo-network-all-orgs.jpg": {
+    label: "Upmixer event",
+    status: "confirmed",
+    basis: "IMG_4061 (Geo package, 'all orgs'). The UPMIXER mark is on the step-and-repeat backdrop. No date metadata, so no year.",
+  },
+  "/media/geo/ta-geo-mentorship-table.jpg": {
+    label: "Photo: AllseeinJah.com",
+    status: "confirmed",
+    basis: "010-AllseeinJah.com (13 of 639) (Geo package). Photographer's own file naming; no date metadata, so no event or year.",
   },
   "/media/community/ta-recap-community-poster.jpg": {
     label: "Upmixer event recap",

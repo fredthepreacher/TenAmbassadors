@@ -117,3 +117,13 @@ Source: `TenAmbassadors_Geo_Revision_Assets` (45 images). Full reconciliation: `
 - Geo on stage
 
 Source / context labels for every photo: `content/attributions.ts`.
+
+
+## Geo requested assets (2026-10-02)
+
+See `docs/GEO_10_POINT_REVISION_REPORT.md` → "Asset-package pass" for the full mapping and edits.
+
+- Web files: `public/media/geo/` (8 files, JPEG q86, EXIF stripped).
+- Originals: `assets/geo-revision-originals/`.
+- Edit records: `assets/geo-revision-edits/`.
+- `public/media/collage/ta-collage-4001.jpg` was removed from the site: IMG_4001 was replaced in the collage by AllseeinJah.com (11 of 424), per the client's manifest. Its original stays in `assets/geo-revision-originals/`.

@@ -127,9 +127,11 @@ export const collage = {
   tiles: [
     {
       id: "a",
-      // While there is no hero film, this photo IS the hero, so it is not repeated here.
-      media: heroFilm ? media.hero : null,
-      awaiting: "The business-card photo (IMG_3977). It moves here from the hero once the hero film is delivered.",
+      // Client decision 2026-10-02: show the collage now. Until the hero film is delivered the
+      // business-card photo also remains the hero; once `heroFilm` is set, `media.hero` becomes a
+      // film poster frame and this tile keeps the business-card photo.
+      media: media.businessCard,
+      awaiting: "",
     },
     { id: "b", media: geoPending.collageTwoWomen.media, awaiting: `Geo\u2019s ${geoPending.collageTwoWomen.awaiting}` },
     { id: "c", media: geoPending.collageSeated.media, awaiting: `Geo\u2019s ${geoPending.collageSeated.awaiting}` },

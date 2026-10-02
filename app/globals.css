@@ -798,6 +798,20 @@
   left: 0.75rem;
 }
 
+/* Phone collage: the same label, set just below a narrow frame (bottom-right), never over faces. */
+.photo-credit--below {
+  position: static;
+  max-width: none;
+  margin-top: 0.4rem;
+  padding: 0;
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--color-muted);
+  text-align: right;
+  font-size: 0.625rem;
+}
+
 .photo-credit--pending {
   border: 1px dashed rgb(230 207 147 / 0.7);
   background: rgb(4 14 30 / 0.55);
@@ -892,7 +906,8 @@
 }
 .collage-tile--d {
   grid-column: 2 / span 11;
-  margin-top: -1.5rem;
+  /* Phones: no vertical overlap, so the labels under the two side-by-side frames stay readable. */
+  margin-top: 0.5rem;
   z-index: 1;
 }
 

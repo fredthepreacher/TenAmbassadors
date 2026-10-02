@@ -5,6 +5,14 @@ import type { HeroFilm, Media, VideoAsset } from "@/lib/types";
  * Alt text describes only what is visible — no names or roles are assumed.
  */
 export const media = {
+  /** IMG_3977 — the business-card exchange. Hero photo until the hero film exists; always the collage lead. */
+  businessCard: {
+    src: "/media/hero/ta-hero-img-3977.jpg",
+    alt: "At a professional gathering, a man in a blue windowpane suit studies a business card while a woman beside him gestures mid-conversation.",
+    width: 1536,
+    height: 1025,
+    focus: "44% 38%",
+  },
   hero: {
     src: "/media/hero/ta-hero-img-3977.jpg",
     alt: "At a professional gathering, a man in a blue windowpane suit studies a business card while a woman beside him gestures mid-conversation.",
@@ -63,14 +71,72 @@ export const media = {
     focus: "50% 40%",
   },
   /* ---- Geo revision 2026-10-02 (see docs/GEO_10_POINT_REVISION_REPORT.md) ---- */
-  /** IMG_4001 (Geo-selected for the collage). Crop only: the frame stops above the man's hand,
-   *  so the drink he holds is gone without retouching a hand or body. */
+  /** AllseeinJah.com (11 of 424), Geo-selected for the collage (mixed group). Crop only: the frame
+   *  stops above the man's hand, so the drink he holds is out of frame — no retouching. */
   collageGroup: {
-    src: "/media/collage/ta-collage-4001.jpg",
-    alt: "A young man in a dark blazer and two smiling women stand together at an evening gathering.",
+    src: "/media/geo/ta-geo-collage-group.jpg",
+    alt: "A young man in a dark blazer stands with two smiling women at an evening event.",
     width: 2048,
-    height: 1530,
-    focus: "42% 30%",
+    height: 1536,
+    focus: "50% 30%",
+  },
+  /* ---- Geo asset package (Ten_Ambassadors_Geo_Requested_Assets, 2026-10-02) ---- */
+  /** AllseeinJah.com (15 of 424) — crop only (two women). */
+  geoTwoWomen: {
+    src: "/media/geo/ta-geo-collage-two-women.jpg",
+    alt: "Two smiling women stand close together at an evening event.",
+    width: 1300,
+    height: 1625,
+    focus: "50% 25%",
+  },
+  /** A7306914 — seated panel conversation, as supplied. */
+  geoPanel: {
+    src: "/media/geo/ta-geo-collage-panel.jpg",
+    alt: "Four people sit on stage in a panel conversation; one speaks into a microphone while the others listen.",
+    width: 1024,
+    height: 819,
+    focus: "50% 62%",
+  },
+  /** 010-AllseeinJah.com (13 of 639) — the two drinks on the table removed (inpainted, table/arm area
+   *  only; see docs/ASSET_MAP.md), then cropped to exclude a background guest's glass on the far left. */
+  geoMentorshipTable: {
+    src: "/media/geo/ta-geo-mentorship-table.jpg",
+    alt: "Two men lean over a table looking at a phone together at an evening gathering; one wears a white shirt and a backpack, the other a dark suit.",
+    width: 1748,
+    height: 1365,
+    focus: "45% 35%",
+  },
+  /** AllseeinJah.com (139 of 424) — speaker on stage, as supplied. */
+  geoStageAaia: {
+    src: "/media/geo/ta-geo-stage-aaia.jpg",
+    alt: "A man in a blue suit speaks into a microphone on stage in front of a large screen while a woman holding papers looks on.",
+    width: 2048,
+    height: 1365,
+    focus: "52% 30%",
+  },
+  /** AllseeinJah.com (130 of 424) — speaker on a red-lit stage, as supplied. */
+  geoStageRed: {
+    src: "/media/geo/ta-geo-stage-red.jpg",
+    alt: "A man in a grey coat speaks into a microphone on a stage lit in red.",
+    width: 2048,
+    height: 1365,
+    focus: "68% 35%",
+  },
+  /** AllseeinJah.com (16 of 424) — three people in Jopwell shirts, as supplied. */
+  geoSponsorJopwell: {
+    src: "/media/geo/ta-geo-sponsor-jopwell.jpg",
+    alt: "Three smiling people wearing blue Jopwell T-shirts pose together in front of a Jopwell banner.",
+    width: 2048,
+    height: 1846,
+    focus: "42% 35%",
+  },
+  /** IMG_4061 — the “all orgs” group photo, as supplied (no DJ gear or wires in this frame). */
+  geoAllOrgs: {
+    src: "/media/geo/ta-geo-network-all-orgs.jpg",
+    alt: "A large group of professionals in suits and evening wear stand together on a red carpet in front of an event backdrop.",
+    width: 2149,
+    height: 1249,
+    focus: "50% 40%",
   },
   recapPoster: {
     src: "/media/community/ta-recap-community-poster.jpg",
@@ -168,11 +234,10 @@ export const communityVideoCinematic = {
 export const heroFilm: HeroFilm | null = null;
 
 /**
- * Geo-requested photographs not yet supplied (checked 2026-10-02 against
- * TenAmbassadors_Geo_Revision_Assets, 45 images). Each slot stays `null`, so
- * the section keeps its current approved image (or, in the collage, shows a
- * reviewer-only placeholder) until the actual client file arrives. Never fill
- * one with a look-alike.
+ * Geo-requested photographs. Filled 2026-10-02 from
+ * Ten_Ambassadors_Geo_Requested_Assets (client asset manifest). A slot set back
+ * to `null` restores the section's previous approved image. Never fill one
+ * with a look-alike.
  */
 export const geoPending: Record<
   | "collageTwoWomen"
@@ -184,19 +249,19 @@ export const geoPending: Record<
   | "aboutGeoStage",
   { media: Media | null; awaiting: string; edit?: string }
 > = {
-  collageTwoWomen: { media: null, awaiting: "\u201cAllseeinJah.com (15 of 424)[84].jpg\u201d \u2014 the two-women photo" },
-  collageSeated: { media: null, awaiting: "\u201cA7306914.jpg\u201d \u2014 people sitting and talking" },
-  futureAmbassadorStage: { media: null, awaiting: "The photo of the man speaking on stage (red stage lighting)" },
+  collageTwoWomen: { media: media.geoTwoWomen, awaiting: "\u201cAllseeinJah.com (15 of 424)[84].jpg\u201d \u2014 the two-women photo" },
+  collageSeated: { media: media.geoPanel, awaiting: "\u201cA7306914.jpg\u201d \u2014 people sitting and talking" },
+  futureAmbassadorStage: { media: media.geoStageAaia, awaiting: "The photo of the man speaking on stage (red stage lighting)" },
   networkAllOrgs: {
-    media: null,
+    media: media.geoAllOrgs,
     awaiting: "The \u201call orgs\u201d group photo",
     edit: "Remove only the DJ equipment and wires on the left; keep every person unchanged",
   },
   mentorshipTable: {
-    media: null,
+    media: media.geoMentorshipTable,
     awaiting: "\u201c010-AllseeinJah.com (13 of 639).jpg\u201d",
     edit: "Remove only the two drinks on the table; rebuild the table surface",
   },
-  sponsorJopwell: { media: null, awaiting: "The photo of three people wearing Jopwell shirts" },
-  aboutGeoStage: { media: null, awaiting: "The photo of Geo speaking on stage" },
+  sponsorJopwell: { media: media.geoSponsorJopwell, awaiting: "The photo of three people wearing Jopwell shirts" },
+  aboutGeoStage: { media: media.geoStageRed, awaiting: "The photo of Geo speaking on stage" },
 };
