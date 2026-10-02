@@ -4,3 +4,5 @@ Claude outputs/
 docs/
 scripts/
 *.bundle
+.env*
+!.env.example
