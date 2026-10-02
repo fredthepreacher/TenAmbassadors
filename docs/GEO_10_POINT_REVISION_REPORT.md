@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-02
 **Branch:** `geo-revision-2026-10-02`, based on `phase1-v2-visual` @ `6d3102b`, which is the same commit production runs.
-**Preview:** see *Deployment*. Preview only; production and the production alias are untouched.
+**Preview:** https://tenambassadors-idku143kp-wavysites-projects.vercel.app (`dpl_A1kLzKBAzKP83iMTwTLZgCJzUyzZ`, target: preview, Vercel Authentication on, served with `x-robots-tag: noindex`). Preview only; production and the production alias are untouched.
 
 **Source of requests:** Geo's Oct 2 screen recording, as written up in the revision brief.
 
@@ -221,4 +221,9 @@ No existing photo was altered. No face, body or clothing was edited anywhere.
 
 ## Deployment
 
-See the top of this file and the final hand-off message. Preview only (no `--prod`), with no change to the production alias, the custom domain or indexing. Vercel previews are served with `x-robots-tag: noindex`.
+- Preview `tenambassadors-idku143kp-wavysites-projects.vercel.app` was deployed from the local branch `geo-revision-2026-10-02` with the Vercel CLI (no `--prod`).
+- Production is still `dpl_6XNmvSHMgv7aRnnCcwUYwapjFkgN`, serving `main` @ `6d3102b`.
+- The branch has not been pushed to GitHub. Push it, or merge to `main`, only after client approval.
+- `app/robots.ts` still returns `Allow: /` in every environment (unchanged by this pass). The preview is kept out of search by Vercel's `x-robots-tag: noindex` header and by Deployment Protection.
+
+Preview only (no `--prod`), with no change to the production alias, the custom domain or indexing. Vercel previews are served with `x-robots-tag: noindex`.
