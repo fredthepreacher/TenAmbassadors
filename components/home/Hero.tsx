@@ -56,7 +56,7 @@ export function Hero({
             {film ? <HeroFilm film={film} focus={image.focus} /> : null}
             {/* Blue seam and base: controlled gradients at the edges only — faces stay natural. */}
             <div
-              className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0)_32%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.55)_9%,rgb(8_27_51/0)_24%),linear-gradient(0deg,rgb(8_27_51/0.55)_0%,rgb(8_27_51/0)_22%)]"
+              className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0.9)_20%,rgb(8_27_51/0.45)_36%,rgb(8_27_51/0)_52%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.55)_9%,rgb(8_27_51/0)_24%),linear-gradient(0deg,rgb(8_27_51/0.55)_0%,rgb(8_27_51/0)_22%)]"
               aria-hidden="true"
             />
             {/* On phones the copy overlaps the photo's lower edge, so the label sits above it. */}

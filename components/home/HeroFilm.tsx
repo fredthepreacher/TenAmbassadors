@@ -40,13 +40,32 @@ export function HeroFilm({ film, focus }: { film: HeroFilmT; focus?: string }) {
     v.load();
     v.play().catch(() => setPlaying(false));
     // Pause off-screen to save battery; resume when the hero is back in view.
+    let inView = true;
     const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !("held" in v.dataset)) v.play().catch(() => undefined);
+      inView = e.isIntersecting;
+      if (inView && !document.hidden && !("held" in v.dataset)) v.play().catch(() => undefined);
       else v.pause();
     });
     io.observe(v);
-    return () => io.disconnect();
+    // Background tab: pause; resume on return (unless the visitor paused it).
+    const onVisibility = () => {
+      if (document.hidden) v.pause();
+      else if (inView && !("held" in v.dataset)) v.play().catch(() => undefined);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, [src]);
+
+  /** Reveal the film only once a real frame has been painted (no black flash on iOS/Android). */
+  const onPlaying = (v: HTMLVideoElement) => {
+    type RVFC = HTMLVideoElement & { requestVideoFrameCallback?: (cb: () => void) => number };
+    const rv = v as RVFC;
+    if (rv.requestVideoFrameCallback) rv.requestVideoFrameCallback(() => setPlaying(true));
+    else setPlaying(true);
+  };
 
   const toggle = () => {
     const v = ref.current;
@@ -76,7 +95,7 @@ export function HeroFilm({ film, focus }: { film: HeroFilmT; focus?: string }) {
       aria-hidden="true"
       tabIndex={-1}
       data-playing={playing ? "" : undefined}
-      onPlaying={() => setPlaying(true)}
+      onPlaying={(e) => onPlaying(e.currentTarget)}
       onError={() => setPlaying(false)}
     >
       {src.webm ? <source src={src.webm} type="video/webm" /> : null}

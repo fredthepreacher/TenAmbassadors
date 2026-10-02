@@ -13,12 +13,17 @@ export const media = {
     height: 1025,
     focus: "44% 38%",
   },
+  /**
+   * Hero poster: a frame (04.4 s) from the real-photo hero film — the full group, faces visible.
+   * Chosen over the supplied poster (a faceless torso crop) with Freddie's approval, 2026-10-02.
+   * It is the LCP image and the static hero for reduced motion / Data Saver.
+   */
   hero: {
-    src: "/media/hero/ta-hero-img-3977.jpg",
-    alt: "At a professional gathering, a man in a blue windowpane suit studies a business card while a woman beside him gestures mid-conversation.",
-    width: 1536,
-    height: 1025,
-    focus: "44% 38%",
+    src: "/media/hero/ta-hero-film-poster.jpg",
+    alt: "Five smiling women and a man in a pink shirt and dark blazer stand together at an evening event.",
+    width: 1920,
+    height: 1080,
+    focus: "50% 30%",
   },
   mentorshipGenerational: {
     src: "/media/mentorship/ta-mentorship-2292.jpg",
@@ -226,12 +231,18 @@ export const communityVideoCinematic = {
 };
 
 /**
- * Hero film (Geo revision point 2): a human-centered "organization at work"
- * cut. `null` until the final film is delivered. The hero then keeps the
- * approved photograph (IMG_3977). When a film is set, also set `media.hero` to
- * a poster frame from that film, so the business-card photo lives only in the collage.
+ * Hero film (Geo revision point 2): real-photo cinematic hero (Ten_Ambassadors_Real_Photo_Hero_Handoff,
+ * 2026-10-02) — slow push/pan and dissolves over older event photography, chosen so it does not reuse the
+ * Geo-revision photos. Silent, 11.2 s, served as the supplied 1280×720 web derivative (H.264, no audio,
+ * faststart, 1.8 MB). The 1080p master stays in assets/hero-film-master/. `media.hero` is a frame from
+ * this film, so the business-card photo (IMG_3977) now lives only in the collage.
  */
-export const heroFilm: HeroFilm | null = null;
+export const heroFilm: HeroFilm | null = {
+  mp4: "/media/hero/ta-hero-film-720p.mp4",
+  webm: null,
+  mobileMp4: null,
+  label: "Silent film made from past event photographs: a group of guests posing together, then two men greeting each other warmly.",
+};
 
 /**
  * Geo-requested photographs. Filled 2026-10-02 from

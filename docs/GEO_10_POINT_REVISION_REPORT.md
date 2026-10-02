@@ -58,7 +58,7 @@ These are most likely the files Geo attached to his email or screen recording, n
 
 ### 2 · Human-centered hero video and four-photo collage
 
-**Status: hero film slot done. The film itself is not yet produced. The collage is built but hidden until all four photos exist.**
+**Status: hero film live (client handoff, see "Real-photo hero film" below). Collage live.**
 
 - **Hero film**
   - `HeroFilm` is a silent, muted, `playsInline`, looping layer above the poster.
@@ -268,4 +268,57 @@ Preview only (no `--prod`), with no change to the production alias, the custom d
 
 **Mapping note:** this morning's written brief described the Future Ambassador photo as "red stage lighting". The client's manifest puts 130 (red stage) on About and 139 (AAIA New York screen) on Future Ambassador, and that mapping is followed. To swap them, exchange `aboutGeoStage` and `futureAmbassadorStage` in `content/media.ts`.
 
-**Still missing:** the hero "organization at work" film (it cannot be generated in this environment; the slot is ready, see point 2), plus final social URLs and email.
+**Still missing:** final social URLs and email. (The hero film arrived later the same day; see "Real-photo hero film" below.)
+
+## Real-photo hero film (2026-10-02, evening)
+
+**Source:** `Ten_Ambassadors_Real_Photo_Hero_Handoff.zip` plus `CLAUDE_HERO_IMPLEMENTATION.md`. The film is made from older real event photographs and deliberately reuses none of the Geo-revision photos. Media replacement only: the headline, copy, CTAs, layout and navigation are unchanged.
+
+| File | Role | Notes |
+|---|---|---|
+| `public/media/hero/ta-hero-film-720p.mp4` | Served film | The supplied 720p web derivative, **byte-for-byte unchanged**: 1280×720 H.264 High, 30 fps, 11.2 s, no audio track, faststart, 1.83 MB |
+| `public/media/hero/ta-hero-film-poster.jpg` | Poster, static hero, LCP | Frame at 4.4 s from the 1080p master (1920×1080, q86): the full group with faces visible |
+| `assets/hero-film-master/` | Source, not served | 1080p master, the supplied poster, the handoff instructions |
+
+**Poster choice (Freddie, 2026-10-02):** the supplied poster and the film's first 3 s are a tight torso crop with no faces. As the static hero, that would be what reduced-motion and Data Saver visitors see permanently. The poster is therefore the full-group frame at about 5 s. The film itself is not edited.
+
+**Wiring:**
+- `content/media.ts`: `heroFilm` points at the 720p MP4, with no WebM or portrait cut, because none was supplied. `media.hero` points at the new poster.
+- The business-card photo (IMG_3977) is no longer in the hero. It remains collage tile a.
+- `content/attributions.ts`: the poster is registered as pending and has no label. The source photographs carry no event or date information, so no caption is invented. While a film is active, the hero shows no photo credit.
+
+**Behavior** (`components/home/HeroFilm.tsx`; the playback model is unchanged from point 2):
+- Muted, `playsInline`, loop, `preload="none"`, no `autoplay` attribute and no audio.
+- `play()` starts only after the window `load` event, so the MP4 is never preloaded.
+- New: the film fades in only after its first frame is actually painted (`requestVideoFrameCallback`, with a fallback to `playing`). The poster shows until then, so there is no black flash.
+- New: it pauses when the tab is hidden and resumes when the tab is visible again, if it is still in view and the visitor hasn't paused it. It already paused offscreen.
+- The only control is the existing 44 px WCAG 2.2.2 pause/play button. It appears only while the film plays.
+- Reduced motion and Data Saver: no `<video>` element and no MP4 request.
+- Blocked autoplay: the poster stays, no control appears, no errors.
+
+**Readability and crop:**
+- Below `lg`, the hero copy overlaps the bottom of the media, and the film has bright frames (white dresses).
+- The bottom navy ramp is now taller and denser: navy-900 at 0%, 90% at 20%, 45% at 36%, 0% at 52%.
+- The `lg` side gradients are unchanged. `object-fit: cover`, `object-position: 50% 30%`. Faces sit in the upper half on phones, clear of the headline and CTAs.
+
+**QA** (Chromium; the H.264 MP4 was replaced in tests by a WebM rendered from the same film, served with range support):
+
+| Check | Result |
+|---|---|
+| Sizes | 320, 375, 390, 430, 768, 1024, 1440, 1920 and 844×390: copy is readable on every frame; faces are clear of the copy on the poster and the group frames |
+| MP4 timing | First request at about 306 ms, after `load` at about 241 ms. No MP4 before `load` |
+| Black flash | 0 samples with the film visible before its first frame |
+| Offscreen, hidden tab, user pause | All pause; resume rules hold |
+| Reduced motion, Data Saver | No video, 0 MP4 requests |
+| Blocked autoplay | Poster stays at opacity 1, no control, no page errors |
+| CLS | 0 on phones and tablet. 0.0003 on desktop from a pre-existing font swap in the pathway strip, identical with video blocked |
+| Lighthouse mobile A/B, 6 alternating runs each | bb0a046: perf 92, LCP 3.27 s, TBT 68 ms. This pass: perf 96, LCP 2.51 s, TBT 121 ms. CLS 0 in both. The LCP element is the poster `<img>` |
+| Community Recap and Dr. Phang | Unchanged behavior at all 11 sizes: art direction, poster gating, reduced motion, Data Saver, background pause, tap-to-sound |
+| Links, anchors, overflow, axe | 20 pages, 44 anchors: 0 broken, 0 overflow, 0 violations |
+
+**Flags for review:**
+1. **Content:** the opening 3 s are a faceless torso crop with carafes and bottles. The 6.5–11 s section is a red-lit club with a man holding a beer bottle. Both are kept as supplied.
+2. **Loop:** the cut from the last shot back to the torso shot is hard, not a dissolve.
+3. **Color:** the MP4 is tagged `yuvj420p` (full-range JPEG color). Most browsers handle it; some Android and older Safari decoders may show slightly crushed or lifted blacks. Re-encoding to `yuv420p` limited range would avoid this, but the file was kept as supplied.
+4. **No portrait cut:** phones crop the 16:9 film to about 4:4.4. A supplied 9:16 or 4:5 cut would slot into `mobileMp4` with no code change.
+5. **Not real-device tested:** iOS Safari (inline autoplay, Low Power Mode) and Android Chrome were not tested on hardware. Low Power Mode on iOS blocks autoplay, so those visitors see the poster.

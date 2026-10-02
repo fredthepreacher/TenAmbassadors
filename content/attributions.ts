@@ -31,6 +31,11 @@ export interface PhotoAttribution {
 }
 
 export const attributions: Record<string, PhotoAttribution> = {
+  "/media/hero/ta-hero-film-poster.jpg": {
+    label: null,
+    status: "pending",
+    basis: "Frame from the real-photo hero film (client handoff 2026-10-02). The film's source photographs carry no event or date information.",
+  },
   "/media/hero/ta-hero-img-3977.jpg": {
     label: null,
     status: "pending",

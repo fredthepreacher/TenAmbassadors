@@ -127,3 +127,13 @@ See `docs/GEO_10_POINT_REVISION_REPORT.md` → "Asset-package pass" for the full
 - Originals: `assets/geo-revision-originals/`.
 - Edit records: `assets/geo-revision-edits/`.
 - `public/media/collage/ta-collage-4001.jpg` was removed from the site: IMG_4001 was replaced in the collage by AllseeinJah.com (11 of 424), per the client's manifest. Its original stays in `assets/geo-revision-originals/`.
+
+## Real-photo hero film (2026-10-02)
+
+See `docs/GEO_10_POINT_REVISION_REPORT.md` → "Real-photo hero film".
+
+- `public/media/hero/ta-hero-film-720p.mp4`: the supplied web derivative, unchanged (1280×720, 11.2 s, silent, 1.83 MB).
+- `public/media/hero/ta-hero-film-poster.jpg`: the 4.4 s full-group frame from the 1080p master (1920×1080). It is the hero poster, the static hero and the LCP image.
+- `assets/hero-film-master/`: the 1080p master, the supplied torso-crop poster (not used) and the handoff notes. Not served.
+- `public/media/hero/ta-hero-img-3977.jpg` (business card) now appears only in the collage (tile a).
+
