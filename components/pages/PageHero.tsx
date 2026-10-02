@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import type { Media } from "@/lib/types";
 import { cn } from "@/lib/cn";
 import { RingOfTen } from "@/components/ui/Motifs";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 type Tone = "light" | "royal" | "navy" | "night";
 
@@ -48,7 +49,7 @@ export function PageHero({
           {children ? <div className="mt-9 animate-rise [animation-delay:240ms]">{children}</div> : null}
         </div>
         {image ? (
-          <div className="photo relative aspect-[4/3] bg-stone lg:col-span-6 lg:aspect-[5/4]">
+          <div className="photo group relative aspect-[4/3] bg-stone lg:col-span-6 lg:aspect-[5/4]">
             <Image
               src={image.src}
               alt={image.alt}
@@ -59,6 +60,7 @@ export function PageHero({
               className="animate-settle object-cover"
               style={{ objectPosition: image.focus }}
             />
+            <PhotoCredit src={image.src} />
           </div>
         ) : null}
       </div>

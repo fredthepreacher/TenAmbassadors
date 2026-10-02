@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
+import { Collage } from "@/components/home/Collage";
 import { Purpose } from "@/components/home/Purpose";
 import { SmsStory } from "@/components/home/SmsStory";
 import { FeaturedScholarship } from "@/components/home/FeaturedScholarship";
@@ -38,6 +39,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero {...home.hero} stages={home.smsStages} />
+      <Collage {...home.collage} />
       <Purpose {...home.purpose} />
       <WhyTen {...org.whyTen} ecosystem={org.ecosystem} />
       <SmsStory {...home.smsIntro} stages={home.smsStages} />

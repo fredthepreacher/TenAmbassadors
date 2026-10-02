@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import type { NavItem, SocialLink } from "@/lib/types";
+import type { ContactDestination, NavItem, SocialLink } from "@/lib/types";
 import { PendingNote } from "@/components/ui/Pending";
 import { NewsletterForm } from "./NewsletterForm";
 import { Wordmark } from "./Wordmark";
@@ -9,10 +9,12 @@ export function SiteFooter({
   columns,
   legal,
   social,
+  other = [],
 }: {
   columns: { heading: string; links: NavItem[] }[];
   legal: NavItem[];
   social: SocialLink[];
+  other?: ContactDestination[];
 }) {
   const year = new Date().getFullYear();
   const { contact, nonprofitDisclosure } = site;
@@ -49,36 +51,46 @@ export function SiteFooter({
         <div className="col-span-2 lg:col-span-1">
           <h2 className="eyebrow text-gold-300">Connect</h2>
           <div className="mt-5 grid justify-items-start gap-4">
+            {/* Geo point 10: email, social and other destinations all come from content/navigation.ts + lib/site.ts. */}
             {contact.email ? (
-              <a href={`mailto:${contact.email}`} className="text-paper/75 hover:text-paper">
+              <a href={`mailto:${contact.email}`} className="connect-chip text-paper/90">
+                <MailGlyph />
                 {contact.email}
               </a>
             ) : (
-              <PendingNote tone="dark">Contact details pending</PendingNote>
+              <span className="connect-chip" aria-disabled="true">
+                <MailGlyph />
+                Email
+                <span className="sr-only"> (address coming soon)</span>
+              </span>
             )}
             <ul className="flex flex-wrap gap-2" aria-label="Social media">
               {social.map((s) =>
                 s.url ? (
                   <li key={s.platform}>
-                    <a
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex rounded-full border border-paper/25 px-3 py-1.5 text-sm hover:border-paper"
-                    >
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" className="connect-chip">
                       {s.platform}
+                      <span className="sr-only"> (opens in a new tab)</span>
                     </a>
                   </li>
                 ) : (
                   <li key={s.platform}>
-                    <span className="inline-flex cursor-default rounded-full border border-dashed border-paper/25 px-3 py-1.5 text-sm text-paper/60">
+                    <span className="connect-chip" aria-disabled="true">
                       {s.platform}
                       <span className="sr-only"> (link coming soon)</span>
                     </span>
                   </li>
                 ),
               )}
+              {other.map((o) => (
+                <li key={o.href}>
+                  <a href={o.href} className="connect-chip" {...(/^https?:/.test(o.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                    {o.label}
+                  </a>
+                </li>
+              ))}
             </ul>
+            {!contact.email || social.some((s) => !s.url) ? <PendingNote tone="dark">Connection links pending from the client</PendingNote> : null}
           </div>
         </div>
       </div>
@@ -105,5 +117,14 @@ export function SiteFooter({
         </ul>
       </div>
     </footer>
+  );
+}
+
+function MailGlyph() {
+  return (
+    <svg viewBox="0 0 20 20" className="size-4 shrink-0" aria-hidden="true">
+      <rect x="2.5" y="4.5" width="15" height="11" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M3 5.5l7 5.5 7-5.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+    </svg>
   );
 }

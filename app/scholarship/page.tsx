@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AreaList } from "@/components/pages/AreaList";
 import { getPrograms, getScholarships } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 export const metadata = pageMetadata({
   title: "Scholarship & the Dr. Phang Scholarship",
@@ -49,6 +50,7 @@ export default async function ScholarshipPage() {
                         sizes="(max-width: 1024px) 100vw, 55vw"
                         className="object-cover transition-transform duration-[1.4s] group-hover:scale-[1.03]"
                       />
+                      <PhotoCredit src={s.video.featured.poster.src} />
                     </div>
                   ) : null}
                   <div className="flex flex-col justify-center lg:col-span-5">

@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Link as LinkT, Media, SmsStage } from "@/lib/types";
+import type { HeroFilm as HeroFilmT, Link as LinkT, Media, SmsStage } from "@/lib/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { RingOfTen } from "@/components/ui/Motifs";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { HeroFilm } from "./HeroFilm";
 
 /**
  * Hero — people + possibility + leadership in the first seconds.
@@ -15,6 +17,7 @@ export function Hero({
   headline,
   lede,
   image,
+  film,
   primary,
   secondary,
   stages,
@@ -23,6 +26,8 @@ export function Hero({
   headline: string[];
   lede: string;
   image: Media;
+  /** Optional silent hero film. `null` keeps the photograph as the hero. */
+  film?: HeroFilmT | null;
   primary: LinkT;
   secondary: LinkT;
   stages: SmsStage[];
@@ -48,11 +53,14 @@ export function Hero({
               className="object-cover animate-settle"
               style={{ objectPosition: image.focus }}
             />
+            {film ? <HeroFilm film={film} focus={image.focus} /> : null}
             {/* Blue seam and base: controlled gradients at the edges only — faces stay natural. */}
             <div
               className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0)_32%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.55)_9%,rgb(8_27_51/0)_24%),linear-gradient(0deg,rgb(8_27_51/0.55)_0%,rgb(8_27_51/0)_22%)]"
               aria-hidden="true"
             />
+            {/* On phones the copy overlaps the photo's lower edge, so the label sits above it. */}
+            {film ? null : <PhotoCredit src={image.src} className="photo-credit--hero" />}
           </div>
           <span className="pointer-events-none absolute top-4 bottom-0 left-0 hidden w-px bg-gradient-to-b from-gold-400/0 via-gold-400/70 to-gold-400/0 lg:block" aria-hidden="true" />
         </div>

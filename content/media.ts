@@ -1,4 +1,4 @@
-import type { Media, VideoAsset } from "@/lib/types";
+import type { HeroFilm, Media, VideoAsset } from "@/lib/types";
 
 /**
  * Approved asset package V2 (creative-reviewed). See docs/ASSET_MAP.md.
@@ -61,6 +61,16 @@ export const media = {
     width: 420,
     height: 300,
     focus: "50% 40%",
+  },
+  /* ---- Geo revision 2026-10-02 (see docs/GEO_10_POINT_REVISION_REPORT.md) ---- */
+  /** IMG_4001 (Geo-selected for the collage). Crop only: the frame stops above the man's hand,
+   *  so the drink he holds is gone without retouching a hand or body. */
+  collageGroup: {
+    src: "/media/collage/ta-collage-4001.jpg",
+    alt: "A young man in a dark blazer and two smiling women stand together at an evening gathering.",
+    width: 2048,
+    height: 1530,
+    focus: "42% 30%",
   },
   recapPoster: {
     src: "/media/community/ta-recap-community-poster.jpg",
@@ -147,4 +157,46 @@ export const communityVideos = {
  */
 export const communityVideoCinematic = {
   recap: { src: "/media/community/ta-recap-community-wide.mp4", poster: media.recapPosterWide },
+};
+
+/**
+ * Hero film (Geo revision point 2): a human-centered "organization at work"
+ * cut. `null` until the final film is delivered. The hero then keeps the
+ * approved photograph (IMG_3977). When a film is set, also set `media.hero` to
+ * a poster frame from that film, so the business-card photo lives only in the collage.
+ */
+export const heroFilm: HeroFilm | null = null;
+
+/**
+ * Geo-requested photographs not yet supplied (checked 2026-10-02 against
+ * TenAmbassadors_Geo_Revision_Assets, 45 images). Each slot stays `null`, so
+ * the section keeps its current approved image (or, in the collage, shows a
+ * reviewer-only placeholder) until the actual client file arrives. Never fill
+ * one with a look-alike.
+ */
+export const geoPending: Record<
+  | "collageTwoWomen"
+  | "collageSeated"
+  | "futureAmbassadorStage"
+  | "networkAllOrgs"
+  | "mentorshipTable"
+  | "sponsorJopwell"
+  | "aboutGeoStage",
+  { media: Media | null; awaiting: string; edit?: string }
+> = {
+  collageTwoWomen: { media: null, awaiting: "\u201cAllseeinJah.com (15 of 424)[84].jpg\u201d \u2014 the two-women photo" },
+  collageSeated: { media: null, awaiting: "\u201cA7306914.jpg\u201d \u2014 people sitting and talking" },
+  futureAmbassadorStage: { media: null, awaiting: "The photo of the man speaking on stage (red stage lighting)" },
+  networkAllOrgs: {
+    media: null,
+    awaiting: "The \u201call orgs\u201d group photo",
+    edit: "Remove only the DJ equipment and wires on the left; keep every person unchanged",
+  },
+  mentorshipTable: {
+    media: null,
+    awaiting: "\u201c010-AllseeinJah.com (13 of 639).jpg\u201d",
+    edit: "Remove only the two drinks on the table; rebuild the table surface",
+  },
+  sponsorJopwell: { media: null, awaiting: "The photo of three people wearing Jopwell shirts" },
+  aboutGeoStage: { media: null, awaiting: "The photo of Geo speaking on stage" },
 };

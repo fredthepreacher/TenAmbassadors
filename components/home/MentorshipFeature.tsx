@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Media } from "@/lib/types";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { PendingNote } from "@/components/ui/Pending";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 /** Mentorship — the chapter that breathes: human scale, overlapping portraits, a connecting line. */
 export function MentorshipFeature({
@@ -22,8 +23,8 @@ export function MentorshipFeature({
     <section id="mentorship" aria-labelledby="mentorship-title" className="section-y relative overflow-hidden bg-ivory">
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-12">
         <div className="relative self-start pb-20 sm:pb-28 lg:col-span-6 lg:pb-24">
-          <figure className="group relative w-[82%] sm:w-[70%] lg:w-[78%]">
-            <div className="photo relative aspect-[4/5] bg-stone" data-reveal="image">
+          <figure className="group relative w-[82%] sm:w-[70%] lg:w-[78%]" data-touch-lit>
+            <div className="photo photo-edge relative aspect-[4/5] bg-stone" data-reveal="image">
               <Image
                 src={images.generational.src}
                 alt={images.generational.alt}
@@ -35,6 +36,7 @@ export function MentorshipFeature({
               <span className="photo-caption absolute top-4 left-4 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-semibold tracking-[0.12em] text-royal-800 uppercase">
                 Across generations
               </span>
+              <PhotoCredit src={images.generational.src} />
             </div>
           </figure>
 
@@ -45,9 +47,9 @@ export function MentorshipFeature({
             <circle cx="180" cy="190" r="4" fill="var(--color-gold-500)" />
           </svg>
 
-          <figure className="group absolute right-0 bottom-0 w-[62%] sm:w-[52%] lg:w-[58%]">
+          <figure className="group absolute right-0 bottom-0 w-[62%] sm:w-[52%] lg:w-[58%]" data-touch-lit>
             <div
-              className="photo relative aspect-[7/5] border-[6px] border-ivory bg-stone shadow-[0_30px_60px_-30px_rgb(8_27_51/0.5)] sm:border-8"
+              className="photo photo-edge relative aspect-[7/5] border-[6px] border-ivory bg-stone shadow-[0_30px_60px_-30px_rgb(8_27_51/0.5)] sm:border-8"
               data-reveal="image"
               style={{ ["--reveal-delay" as string]: "140ms" }}
             >
@@ -62,6 +64,7 @@ export function MentorshipFeature({
               <span className="photo-caption absolute bottom-3 left-3 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-semibold tracking-[0.12em] text-royal-800 uppercase">
                 In conversation
               </span>
+              <PhotoCredit src={images.conversation.src} />
             </div>
           </figure>
         </div>

@@ -4,6 +4,7 @@ import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { PendingBlock } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getPartners } from "@/lib/content";
+import { geoPending } from "@/content/media";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -26,6 +27,8 @@ export default async function PartnersPage() {
           </>
         }
         intro="Ten Ambassadors is preparing partnership pathways for organizations that want to invest in Scholarship, Mentorship and Service. These are pathways — no sponsors have been announced yet."
+        /* Geo point 8: the Jopwell photo sits on the right (copy and CTAs left) once supplied. */
+        image={geoPending.sponsorJopwell.media ?? undefined}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <ButtonLink href="/get-involved/sponsor" arrow>

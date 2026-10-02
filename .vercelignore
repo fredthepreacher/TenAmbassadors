@@ -1,0 +1,6 @@
+assets/
+handoff/
+Claude outputs/
+docs/
+scripts/
+*.bundle

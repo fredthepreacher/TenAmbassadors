@@ -74,7 +74,7 @@ export function SiteHeader({ nav, cta, secondary }: { nav: NavItem[]; cta: NavIt
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-500",
+        "site-header fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-500",
         // Note: no backdrop-filter while the menu is open — it would become the
         // containing block for the fixed menu panel and collapse it.
         night

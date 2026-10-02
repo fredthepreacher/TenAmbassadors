@@ -91,3 +91,13 @@ Confirmed Network Partners and sponsors are also still needed.
 - **"Questions, answered"** (`content/about.ts` → `faqs`, shown on `/about#questions`): every answer restates existing site facts. The client should approve the wording, especially the Upmixer relationship ("Upmixer Inc. … event-production and experience partner").
 - **Meta titles and descriptions** (search snippets only; no visible copy changed): please review.
 - **Contact geography / headquarters:** still unconfirmed. No office, city or chapter is claimed anywhere.
+
+## Geo revision (2026-10-02): needs from Geo
+
+| Area | Needed | File |
+|---|---|---|
+| Photo sources | Event / source and year for IMG_3977, IMG_4001, IMG_4004, IMG_4007, A7R00711 (A7R00711 metadata says 2018-12-12; confirm whether it was the Upmixer Holiday Event), plus the event for the AllseeinJah 2016 set | `content/attributions.ts` |
+| Hero film | Human-centered organization-at-work cut, as a 16:9 MP4 (plus an optional WebM and a portrait cut for phones) | `content/media.ts` → `heroFilm` |
+| Photos | Two-women AllseeinJah (15 of 424)[84]; A7306914; man on stage; "all orgs"; 010-AllseeinJah (13 of 639); Jopwell; Geo on stage | `content/media.ts` → `geoPending` |
+| Connections | Final social, LinkedIn, email and other destination URLs | `content/navigation.ts`, `lib/site.ts` → `contact.email` |
+| Legal | Approve the Privacy, Terms and Accessibility drafts, then set `status: "approved"` (pages become indexable) | `content/legal.ts` |

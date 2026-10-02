@@ -1,20 +1,19 @@
-import Image from "next/image";
 import type { Media, VideoAsset } from "@/lib/types";
+import { NetworkConstellation } from "@/components/ui/NetworkConstellation";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { PendingNote } from "@/components/ui/Pending";
 import { AmbientVideo } from "@/components/ui/AmbientVideo";
 
 /**
- * "One Community. Many Networks." — wide cinematic photograph (IMG_4007),
- * then the network-of-networks idea. No organization is presented as a
- * partner until confirmed.
+ * "One Community. Many Networks." Geo point 3 replaces the wide group
+ * photograph with abstract network artwork (no people). The network-of-networks
+ * idea follows. No organization is presented as a partner until confirmed.
  */
 export function NetworkFeature({
   eyebrow,
   title,
   lede,
   body,
-  image,
   video,
   videoCinematic,
   videoCaption,
@@ -24,7 +23,6 @@ export function NetworkFeature({
   title: string[];
   lede: string;
   body: string;
-  image: Media;
   video?: VideoAsset;
   videoCinematic?: { src: string; poster: Media };
   videoCaption?: string;
@@ -34,16 +32,9 @@ export function NetworkFeature({
     <section id="network" aria-labelledby="network-title" className="relative bg-ivory">
       <figure className="group relative">
         <div className="photo relative aspect-[4/3] bg-navy-900 sm:aspect-[16/8] lg:aspect-[21/8.5]" data-reveal="image">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            sizes="100vw"
-            className="drift object-cover"
-            style={{ objectPosition: image.focus }}
-          />
-          {/* Base gradient only (below faces) for the title overlap. */}
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(8_27_51/0.92)_0%,rgb(8_27_51/0.5)_22%,rgb(8_27_51/0)_45%)]" aria-hidden="true" />
+          <NetworkConstellation className="drift absolute inset-0 h-full w-full" />
+          {/* Base gradient for the title overlap. */}
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(8_27_51/0.92)_0%,rgb(8_27_51/0.45)_24%,rgb(8_27_51/0)_48%)]" aria-hidden="true" />
         </div>
         <div className="absolute inset-x-0 bottom-0">
           <div className="container-x pb-8 text-paper sm:pb-12" data-reveal>

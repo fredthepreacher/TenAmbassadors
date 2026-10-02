@@ -117,12 +117,13 @@
 
 /* ---------- Layout utilities ---------- */
 @utility container-x {
-  width: min(1280px, 100% - 2 * clamp(1.25rem, 0.6rem + 3vw, 3rem));
+  /* Gutter never smaller than the safe-area inset (landscape notch). */
+  width: min(1280px, 100% - 2 * max(clamp(1.25rem, 0.6rem + 3vw, 3rem), env(safe-area-inset-left), env(safe-area-inset-right)));
   margin-inline: auto;
 }
 
 @utility container-narrow {
-  width: min(880px, 100% - 2 * clamp(1.25rem, 0.6rem + 3vw, 3rem));
+  width: min(880px, 100% - 2 * max(clamp(1.25rem, 0.6rem + 3vw, 3rem), env(safe-area-inset-left), env(safe-area-inset-right)));
   margin-inline: auto;
 }
 
@@ -735,11 +736,11 @@
 
 /* Aligns full-bleed split layouts with the container's left edge. */
 .pl-container {
-  padding-left: max(clamp(1.25rem, 0.6rem + 3vw, 3rem), calc((100vw - 1280px) / 2));
+  padding-left: max(clamp(1.25rem, 0.6rem + 3vw, 3rem), env(safe-area-inset-left), calc((100vw - 1280px) / 2));
 }
 
 .pr-container {
-  padding-right: max(clamp(1.25rem, 0.6rem + 3vw, 3rem), calc((100vw - 1280px) / 2));
+  padding-right: max(clamp(1.25rem, 0.6rem + 3vw, 3rem), env(safe-area-inset-right), calc((100vw - 1280px) / 2));
 }
 
 /* ---------- Mobile menu: short staggered reveal ---------- */
@@ -759,4 +760,361 @@
 
 .js-reveal [data-reveal].is-visible .ten-network .net-line {
   stroke-dashoffset: 0;
+}
+
+/* =====================================================================
+   Geo 10-point revision (2026-10-02)
+   ===================================================================== */
+
+/* ---------- 1 · Photo source / context labels ----------
+   Small editorial label, bottom-right of the frame. The dark translucent
+   backing keeps it at least 7:1 over any part of the photo; it never takes pointer events. */
+.photo-credit {
+  position: absolute;
+  z-index: 3;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.28rem 0.62rem 0.3rem;
+  border-radius: 999px;
+  background: rgb(4 14 30 / 0.62);
+  -webkit-backdrop-filter: blur(6px) saturate(1.1);
+  backdrop-filter: blur(6px) saturate(1.1);
+  color: rgb(255 255 255 / 0.94);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem; /* 11px: legible at 360px, never a headline */
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+  pointer-events: none;
+  transition:
+    background-color 0.25s var(--ease-tactile),
+    color 0.25s var(--ease-tactile);
+}
+
+.photo-credit--bl {
+  right: auto;
+  left: 0.75rem;
+}
+
+.photo-credit--pending {
+  border: 1px dashed rgb(230 207 147 / 0.7);
+  background: rgb(4 14 30 / 0.55);
+  color: var(--color-gold-300);
+}
+
+@media (min-width: 1024px) {
+  .photo-credit {
+    right: 1rem;
+    bottom: 1rem;
+  }
+  .photo-credit--bl {
+    right: auto;
+    left: 1rem;
+  }
+}
+
+/* Label brightens with the photo's hover/lit state: a small acknowledgment. */
+@media (hover: hover) {
+  .group:hover .photo-credit:not(.photo-credit--pending) {
+    background: rgb(4 14 30 / 0.78);
+    color: #fff;
+  }
+}
+
+/* ---------- Edge illumination (hover on pointer devices, mid-screen on touch) ---------- */
+.photo-edge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgb(216 184 102 / 0),
+    inset 0 0 0 0 rgb(61 114 214 / 0);
+  transition: box-shadow 0.3s var(--ease-tactile);
+}
+
+@media (hover: hover) {
+  .group:hover .photo-edge::after,
+  .photo-edge:hover::after {
+    box-shadow:
+      inset 0 0 0 1px rgb(216 184 102 / 0.75),
+      inset 0 -40px 60px -40px rgb(61 114 214 / 0.35);
+  }
+}
+
+/* Touch equivalent: TouchLit sets data-lit as the frame crosses mid-screen. */
+[data-lit] .photo-edge::after,
+.photo-edge[data-lit]::after {
+  box-shadow:
+    inset 0 0 0 1px rgb(216 184 102 / 0.75),
+    inset 0 -40px 60px -40px rgb(61 114 214 / 0.35);
+}
+
+[data-lit] .photo img {
+  transform: scale(1.025);
+}
+
+/* ---------- 2 · Hero film slot ---------- */
+.hero-film {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-editorial);
+}
+
+.hero-film[data-playing] {
+  opacity: 1;
+}
+
+/* ---------- 2 · Collage below the hero ---------- */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(0.75rem, 2vw, 1.5rem);
+  row-gap: 1rem;
+}
+
+.collage-tile {
+  position: relative;
+  grid-column: span 12;
+}
+
+.collage-tile--a {
+  grid-column: 1 / span 12;
+}
+.collage-tile--b {
+  grid-column: 1 / span 6;
+}
+.collage-tile--c {
+  grid-column: 7 / span 6;
+  margin-top: 2.5rem;
+}
+.collage-tile--d {
+  grid-column: 2 / span 11;
+  margin-top: -1.5rem;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .collage {
+    row-gap: 0;
+  }
+  .collage-tile--a {
+    grid-column: 1 / span 7;
+    grid-row: 1;
+  }
+  .collage-tile--b {
+    grid-column: 9 / span 4;
+    grid-row: 1;
+    margin-top: 5rem;
+  }
+  .collage-tile--c {
+    grid-column: 8 / span 5;
+    grid-row: 2;
+    margin-top: 2.5rem;
+  }
+  .collage-tile--d {
+    grid-column: 3 / span 5;
+    grid-row: 2;
+    margin-top: -5.5rem;
+    z-index: 1;
+  }
+}
+
+/* Inset frame for the overlapping tile so the layers read as depth, not a collision. */
+.collage-tile--d .photo {
+  box-shadow:
+    0 0 0 6px var(--color-ivory),
+    0 30px 60px -30px rgb(8 27 51 / 0.55);
+}
+
+@media (min-width: 640px) {
+  .collage-tile--d .photo {
+    box-shadow:
+      0 0 0 10px var(--color-ivory),
+      0 40px 80px -40px rgb(8 27 51 / 0.55);
+  }
+}
+
+.collage-pending {
+  display: grid;
+  place-content: center;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px dashed var(--color-line-strong);
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgb(61 114 214 / 0.08), transparent 60%),
+    var(--color-stone);
+  color: var(--color-ink-2);
+  text-align: center;
+}
+
+/* ---------- 3 · Network constellation (abstract, no people) ---------- */
+.constellation .pulse {
+  stroke-dasharray: 0.06 0.94;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal .is-visible .constellation .pulse,
+  .constellation.is-visible .pulse {
+    animation: constellation-pulse 7s var(--ease-editorial) infinite;
+    animation-delay: var(--pd, 0s);
+  }
+
+  .js-reveal .is-visible .constellation .hub-glow {
+    animation: hub-breathe 6s ease-in-out infinite;
+    animation-delay: var(--pd, 0s);
+  }
+}
+
+@keyframes constellation-pulse {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  45% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  55%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes hub-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- Footer connect row ---------- */
+.connect-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  font-size: 0.875rem;
+  transition:
+    border-color 0.2s var(--ease-tactile),
+    background-color 0.2s var(--ease-tactile),
+    transform 0.18s var(--ease-tactile);
+}
+
+a.connect-chip:hover {
+  border-color: var(--color-gold-300);
+  background: rgb(255 255 255 / 0.06);
+}
+
+a.connect-chip:active {
+  transform: scale(0.97);
+}
+
+.connect-chip[aria-disabled="true"] {
+  border-style: dashed;
+  color: rgb(255 255 255 / 0.6);
+  cursor: default;
+}
+
+/* ---------- Legal / utility pages: readable long-form ---------- */
+.legal-prose > section + section {
+  margin-top: 3rem;
+}
+
+.legal-prose h2 {
+  font-size: clamp(1.35rem, 1.2rem + 0.6vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-navy-900);
+}
+
+.legal-prose p,
+.legal-prose ul {
+  margin-top: 1rem;
+  color: var(--color-ink-2);
+}
+
+.legal-prose ul {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.legal-prose li::marker {
+  color: var(--color-gold-500);
+}
+
+/* ---------- Safe areas (viewport-fit=cover) ---------- */
+.site-header {
+  padding-top: env(safe-area-inset-top);
+}
+
+#mobile-menu nav {
+  padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
+}
+
+footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#mobile-menu {
+  top: calc(76px + env(safe-area-inset-top));
+}
+
+/* Hero: the copy overlaps the photo's lower edge on phones/tablets, so the label rides above it. */
+.photo-credit--hero {
+  bottom: 5.75rem;
+}
+@media (min-width: 640px) {
+  .photo-credit--hero {
+    bottom: 7.75rem;
+  }
+}
+@media (min-width: 1024px) {
+  .photo-credit--hero {
+    bottom: 1rem;
+  }
+}
+
+/* Sticky in-page nav sits under the header, including its safe-area padding. */
+.sticky.top-\[76px\] {
+  top: calc(76px + env(safe-area-inset-top));
+}
+
+/* ---------- Mobile parity: 44px tap targets for footer links ---------- */
+@media (max-width: 1023.98px) {
+  footer nav ul {
+    gap: 0;
+  }
+  footer ul a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 0.4rem;
+    line-height: 1.35;
+  }
+}
+
+/* Horizontal rails scroll without a visible scrollbar (still keyboard/touch scrollable). */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

@@ -95,3 +95,25 @@ Source: `Ten_Ambassadors_V2_4_Video_SEO_AEO_Handoff.zip`. It is 00:16–00:35 of
 - Every user-initiated play() runs inside the tap, as iOS Safari requires. The Phang film player works the same way.
 
 The client should confirm that everyone shown in the recap agreed to appear in promotional use.
+
+## Geo 10-point revision (2026-10-02)
+
+Source: `TenAmbassadors_Geo_Revision_Assets` (45 images). Full reconciliation: `docs/GEO_10_POINT_REVISION_REPORT.md`.
+
+| File | Use | Treatment |
+|---|---|---|
+| `IMG_4001_ORIGINAL.jpeg` → `public/media/collage/ta-collage-4001.jpg` (2048×1530) | Homepage collage (Geo point 2). It renders only once all four collage photos exist. | **Crop only.** The frame ends above the man's hand, so the drink is excluded without retouching. The original is kept in `assets/geo-revision-originals/`. The bar shelf at top right stays (it can't be cropped without cutting a person). |
+| `TA_Hero_IMG_3977` | Hero now; moves to the collage when the hero film arrives | Unchanged |
+| Homepage "One community. Many networks." | `components/ui/NetworkConstellation.tsx` replaces IMG_4007 there (Geo point 3) | Code-generated abstract SVG; no people. IMG_4007 is still used on `/network-partners` until Geo's "all orgs" photo arrives. |
+
+**Missing Geo files** (slots in `content/media.ts` → `geoPending`):
+
+- two-women AllseeinJah (15 of 424)
+- A7306914
+- man on stage
+- "all orgs"
+- 010-AllseeinJah (13 of 639)
+- Jopwell
+- Geo on stage
+
+Source / context labels for every photo: `content/attributions.ts`.

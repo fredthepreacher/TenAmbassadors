@@ -5,8 +5,12 @@ import { ButtonLink } from "@/components/ui/Button";
 import { PendingNote } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getPartners } from "@/lib/content";
-import { media } from "@/content/media";
+import { geoPending, media } from "@/content/media";
+
+/* Geo point 6: the cleaned "all orgs" group photo replaces this once supplied. */
+const groupPhoto = geoPending.networkAllOrgs.media ?? media.communityGroup;
 import { pageMetadata } from "@/lib/seo";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 export const metadata = pageMetadata({
   title: "Network Partners: A Network of Networks",
@@ -38,7 +42,8 @@ export default async function NetworkPartnersPage() {
 
       <figure className="relative bg-navy-900">
         <div className="relative aspect-[4/3] sm:aspect-[16/7]">
-          <Image src={media.communityGroup.src} alt={media.communityGroup.alt} fill sizes="100vw" className="object-cover" style={{ objectPosition: media.communityGroup.focus }} />
+          <Image src={groupPhoto.src} alt={groupPhoto.alt} fill sizes="100vw" className="object-cover" style={{ objectPosition: groupPhoto.focus }} />
+          <PhotoCredit src={groupPhoto.src} />
         </div>
       </figure>
 

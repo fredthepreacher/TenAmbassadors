@@ -59,9 +59,9 @@ export default async function ScholarshipDetail({ params }: Props) {
       <section aria-labelledby="page-title" className="relative overflow-hidden bg-navy-900 pt-[76px] text-paper">
         <div className="container-x pt-14 pb-16 md:pt-20 lg:pb-20">
           <nav aria-label="Breadcrumb" className="text-sm text-paper/70">
-            <ol className="flex flex-wrap gap-2">
+            <ol className="-my-3 flex flex-wrap items-center gap-2">
               <li>
-                <Link href="/scholarship" className="underline underline-offset-4 hover:text-paper">
+                <Link href="/scholarship" className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-paper">
                   Scholarship
                 </Link>
                 <span aria-hidden="true"> /</span>
@@ -110,10 +110,11 @@ export default async function ScholarshipDetail({ params }: Props) {
       </section>
 
       <nav aria-label="On this page" className="sticky top-[76px] z-30 border-b border-line bg-ivory/95 backdrop-blur">
-        <ul className="container-x flex gap-6 overflow-x-auto py-3 text-sm font-medium whitespace-nowrap">
+        <ul className="no-scrollbar container-x flex gap-2 overflow-x-auto text-sm font-medium whitespace-nowrap sm:gap-4">
           {sections.map((sec) => (
             <li key={sec.id}>
-              <a href={`#${sec.id}`} className="text-ink-2 hover:text-royal-700">
+              {/* 44px tap height (mobile parity) without changing the bar's look */}
+              <a href={`#${sec.id}`} className="inline-flex min-h-11 items-center px-1.5 text-ink-2 transition-colors hover:text-royal-700">
                 {sec.label}
               </a>
             </li>

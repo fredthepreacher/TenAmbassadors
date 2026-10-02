@@ -1,4 +1,4 @@
-import type { NavItem, SocialLink } from "@/lib/types";
+import type { ContactDestination, NavItem, SocialLink } from "@/lib/types";
 
 export const primaryNav: NavItem[] = [
   { label: "About", href: "/about" },
@@ -51,10 +51,18 @@ export const legalNav: NavItem[] = [
   { label: "Accessibility", href: "/accessibility" },
 ];
 
-/** PENDING: verified URLs. `null` renders a disabled, labelled chip. */
+/**
+ * Geo point 10: connection links. Geo will supply the final URLs. Paste each
+ * one here and the footer, contact page and Organization schema (sameAs)
+ * update together. Never invent an account URL. `null` renders a disabled
+ * "coming soon" chip. The email address lives in lib/site.ts → contact.email.
+ */
 export const socialLinks: SocialLink[] = [
-  { platform: "Instagram", url: null },
   { platform: "LinkedIn", url: null },
+  { platform: "Instagram", url: null },
   { platform: "Facebook", url: null },
   { platform: "YouTube", url: null },
 ];
+
+/** Other approved destinations (label + absolute URL or mailto:). Empty until supplied. */
+export const otherContacts: ContactDestination[] = [];

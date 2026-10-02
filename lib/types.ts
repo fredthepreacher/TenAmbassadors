@@ -20,6 +20,22 @@ export interface Media {
   focus?: string;
 }
 
+/**
+ * Silent, looping hero film (Geo revision point 2). Swap files in content/media.ts;
+ * the layout never changes. The poster remains the LCP image and the fallback
+ * for reduced motion, Data Saver, blocked autoplay and load errors.
+ */
+export interface HeroFilm {
+  /** H.264 MP4, 16:9 (desktop and tablet). */
+  mp4: string;
+  /** Optional VP9/AV1 WebM of the same cut. */
+  webm?: string | null;
+  /** Optional portrait cut (e.g. 1080×1350 or 1080×1920) served to phones. */
+  mobileMp4?: string | null;
+  /** Accessible description of what the film shows (it is decorative motion; the poster carries the alt text). */
+  label: string;
+}
+
 export interface VideoAsset {
   title: string;
   src: string;
@@ -122,8 +138,15 @@ export interface Leader {
 }
 
 export interface SocialLink {
-  platform: "Instagram" | "Facebook" | "LinkedIn" | "YouTube";
+  platform: "LinkedIn" | "Instagram" | "Facebook" | "YouTube" | "X" | "TikTok";
+  /** Verified profile URL from the client. `null` renders a disabled "coming soon" chip. */
   url: string | null;
+}
+
+/** Any other client-approved contact destination (e.g. a booking page or press inbox). */
+export interface ContactDestination {
+  label: string;
+  href: string;
 }
 
 export interface NavItem {
@@ -131,11 +154,22 @@ export interface NavItem {
   href: string;
 }
 
+export interface LegalSection {
+  heading: string;
+  paragraphs?: string[];
+  list?: string[];
+}
+
 export interface LegalDoc {
   slug: "privacy" | "terms" | "accessibility";
   title: string;
   summary: string;
-  body: string | null;
+  /** Plain-language text written from what the site actually does. `null` = not written. */
+  sections: LegalSection[] | null;
+  /** "draft" until the organization (and its counsel, if any) approves the text. Draft pages stay noindex. */
+  status: "draft" | "approved";
+  /** Date the text was last revised (ISO). */
+  updated: string;
 }
 
 /** A role in the founding ecosystem (About / homepage "Why Ten?"). */

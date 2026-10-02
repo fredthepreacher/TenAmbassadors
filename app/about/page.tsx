@@ -5,10 +5,11 @@ import { ButtonLink } from "@/components/ui/Button";
 import { PendingBlock, PendingNote } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getAbout } from "@/lib/content";
-import { media } from "@/content/media";
+import { geoPending, media } from "@/content/media";
 import { TextLink } from "@/components/ui/Button";
 import { jsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 export const metadata = pageMetadata({
   title: "About",
@@ -38,7 +39,8 @@ export default async function AboutPage() {
           </>
         }
         intro={about.positioning}
-        image={media.communityNetwork}
+        /* Geo point 9: Geo speaking on stage replaces this once supplied (geoPending.aboutGeoStage). */
+        image={geoPending.aboutGeoStage.media ?? media.communityNetwork}
       />
 
       <section id="mission" aria-labelledby="mission-title" className="section-y bg-paper">
@@ -82,8 +84,9 @@ export default async function AboutPage() {
             }
             intro="Ten Ambassadors is being organized around a set of connected roles. Each will be introduced as it is confirmed."
           />
-          <figure className="photo relative mt-12 aspect-[1250/435] overflow-hidden bg-stone" data-reveal="image">
+          <figure className="photo photo-edge group relative mt-12 aspect-[1250/435] overflow-hidden bg-stone" data-reveal="image" data-touch-lit>
             <Image src={media.communityPortrait.src} alt={media.communityPortrait.alt} fill sizes="(max-width: 1280px) 100vw, 1280px" className="object-cover" />
+            <PhotoCredit src={media.communityPortrait.src} />
           </figure>
           <ol className="mt-12 grid border-t border-line-strong md:grid-cols-2 md:gap-x-12">
             {ecosystem.map((r, i) => (

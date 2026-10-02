@@ -6,8 +6,15 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AreaList } from "@/components/pages/AreaList";
 import { getPrograms } from "@/lib/content";
 import { mentorshipFeature } from "@/content/home";
-import { media } from "@/content/media";
+import { geoPending, media } from "@/content/media";
+
+/* Geo points 7 (Become a Mentor) and 5 (Future Ambassador pathway): client photos drop in here when supplied. */
+const pathwayImages = [
+  geoPending.mentorshipTable.media ?? media.mentorshipPeers,
+  geoPending.futureAmbassadorStage.media ?? { ...media.communityProfessionals, focus: "50% 20%" },
+];
 import { pageMetadata } from "@/lib/seo";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 export const metadata = pageMetadata({
   title: "Professional Mentorship for Emerging Leaders",
@@ -98,15 +105,16 @@ export default async function MentorshipPage() {
                 </div>
               </div>
               <div className={i === 0 ? "lg:col-span-5 lg:col-start-8" : "lg:order-1 lg:col-span-5"} data-reveal="image">
-                <div className="relative aspect-[4/3] overflow-hidden bg-stone">
+                <div className="photo photo-edge group relative aspect-[4/3] overflow-hidden bg-stone" data-touch-lit>
                   <Image
-                    src={i === 0 ? media.mentorshipPeers.src : media.communityProfessionals.src}
-                    alt={i === 0 ? media.mentorshipPeers.alt : media.communityProfessionals.alt}
+                    src={pathwayImages[i].src}
+                    alt={pathwayImages[i].alt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover"
-                    style={{ objectPosition: i === 0 ? media.mentorshipPeers.focus : "50% 20%" }}
+                    style={{ objectPosition: pathwayImages[i].focus }}
                   />
+                  <PhotoCredit src={pathwayImages[i].src} />
                 </div>
               </div>
             </div>

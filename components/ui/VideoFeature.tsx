@@ -6,6 +6,7 @@ import { flushSync } from "react-dom";
 import type { VideoAsset } from "@/lib/types";
 import { cn } from "@/lib/cn";
 import { PlayIcon } from "./Icons";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 /**
  * Click-to-play editorial video. Only the poster (optimized by next/image)
@@ -87,6 +88,7 @@ export function VideoFeature({
             style={{ objectPosition: video.poster.focus }}
           />
           <span className="absolute inset-0 bg-gradient-to-t from-night-950/75 via-night-950/10 to-transparent" aria-hidden="true" />
+          <PhotoCredit src={video.poster.src} />
         </div>
 
         {!active ? (

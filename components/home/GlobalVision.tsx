@@ -4,7 +4,7 @@ import { RingOfTen } from "@/components/ui/Motifs";
  * Global vision — immersive navy. Framed explicitly as aspiration.
  * The meridian graphic is abstract and deliberately carries no locations.
  */
-export function GlobalVision({ eyebrow, title, body, note }: { eyebrow: string; title: string; body: string; note: string }) {
+export function GlobalVision({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
   const [a, b] = title.split(" of ");
   return (
     <section aria-labelledby="vision-title" className="section-y relative overflow-hidden bg-navy-900 text-paper">
@@ -39,7 +39,8 @@ export function GlobalVision({ eyebrow, title, body, note }: { eyebrow: string; 
             )}
           </h2>
           <p className="mt-8 max-w-2xl text-lede text-paper/80">{body}</p>
-          <p className="mt-8 max-w-xl border-l-2 border-gold-400 pl-4 text-sm text-paper/70 italic">{note}</p>
+          {/* Geo point 4: the foundation-year disclaimer is removed. A gold rule closes the thought instead. */}
+          <span className="mt-12 block h-px w-24 origin-left bg-gold-400" data-reveal="rule" aria-hidden="true" />
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import type { SmsStage } from "@/lib/types";
 import { site } from "@/lib/site";
-import { communityVideoCinematic, communityVideos, media } from "./media";
+import { communityVideoCinematic, communityVideos, geoPending, heroFilm, media } from "./media";
 
 /*
  * Homepage copy.
@@ -16,6 +16,8 @@ export const hero = {
   /** [brief] supporting direction */
   lede: "Through Scholarship, Mentorship and Service, Ten Ambassadors brings together leaders, organizations and communities committed to preparing the next generation for meaningful impact.",
   image: media.hero,
+  /** Geo point 2: silent organization-at-work film. Null → the photograph stays. */
+  film: heroFilm,
   primary: { label: "Explore the pathway", href: "/#sms" },
   secondary: { label: "Get involved", href: "/get-involved" },
 };
@@ -109,8 +111,30 @@ export const globalVision = {
   /** [draft] title; [brief] approved body */
   title: "Built for a world of emerging leaders.",
   body: "Our communities are increasingly connected across industries, generations, cultures and borders. Ten Ambassadors is being built to prepare leaders for that reality — strengthening relationships locally while laying the foundation for future global collaboration.",
-  note: "This is where Ten Ambassadors is going — not a claim about where it is today. 2026 is our foundation year.",
   image: media.communityNetwork,
+};
+
+/**
+ * Geo point 2: four-photo editorial collage directly below the hero.
+ * Tiles: a = business-card exchange (lead), b = two women, c = seated conversation,
+ * d = IMG_4001 group (overlapping inset). A tile with `media: null` shows a
+ * reviewer-only placeholder naming the awaited file; the public build hides it.
+ */
+export const collage = {
+  eyebrow: "In the room",
+  /** [draft] presentation line; makes no factual claim. */
+  title: ["Introductions, conversations", "and the relationships that follow."],
+  tiles: [
+    {
+      id: "a",
+      // While there is no hero film, this photo IS the hero, so it is not repeated here.
+      media: heroFilm ? media.hero : null,
+      awaiting: "The business-card photo (IMG_3977). It moves here from the hero once the hero film is delivered.",
+    },
+    { id: "b", media: geoPending.collageTwoWomen.media, awaiting: `Geo\u2019s ${geoPending.collageTwoWomen.awaiting}` },
+    { id: "c", media: geoPending.collageSeated.media, awaiting: `Geo\u2019s ${geoPending.collageSeated.awaiting}` },
+    { id: "d", media: media.collageGroup, awaiting: "" },
+  ] as const,
 };
 
 /** "One Community. Many Networks." [brief] */
@@ -119,7 +143,7 @@ export const networkFeature = {
   title: ["One community.", "Many networks."],
   lede: "Leadership becomes more powerful when networks collaborate.",
   body: "Ten Ambassadors is designed as a network of networks — professional associations, alumni groups, universities, civic and cultural organizations, young-professional groups and more, sharing opportunities and developing leaders together.",
-  image: media.communityGroup,
+  /* Geo point 3: the group photograph is replaced by abstract artwork (components/ui/NetworkConstellation). */
   /** V2.4 — ambient recap film; footage is from the wider Upmixer event community. */
   video: communityVideos.recap,
   videoCinematic: communityVideoCinematic.recap,

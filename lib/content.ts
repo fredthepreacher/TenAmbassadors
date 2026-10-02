@@ -9,7 +9,7 @@ import { about, ecosystem, faqs, globalDirection, horizon, leadership, whyTen } 
 import { givingPathways, impact } from "@/content/impact";
 import { getPathwayPage, pathwayPages } from "@/content/getInvolved";
 import { getLegalDoc, legalDocs } from "@/content/legal";
-import { footerNav, headerCta, legalNav, primaryNav, socialLinks } from "@/content/navigation";
+import { footerNav, headerCta, legalNav, otherContacts, primaryNav, socialLinks } from "@/content/navigation";
 import { networkPartnerRoles, networkPartnerTypes, networkPartners, partnerCategories, partners } from "@/content/partners";
 import { pathways } from "@/content/involvement";
 import {
@@ -29,7 +29,7 @@ export async function getHomepage() {
 }
 
 export async function getNavigation() {
-  return { primaryNav, headerCta, footerNav, legalNav, socialLinks };
+  return { primaryNav, headerCta, footerNav, legalNav, socialLinks, otherContacts };
 }
 
 export async function getScholarships() {

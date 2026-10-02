@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { RevealObserver } from "@/components/ui/RevealObserver";
+import { TouchLit } from "@/components/ui/TouchLit";
 import { getNavigation } from "@/lib/content";
 import { site } from "@/lib/site";
 import { ids, jsonLd } from "@/lib/seo";
@@ -59,6 +60,8 @@ export const viewport: Viewport = {
   themeColor: "#081b33",
   width: "device-width",
   initialScale: 1,
+  // Lets safe-area insets (notch, home indicator) reach the page; padding handles them.
+  viewportFit: "cover",
 };
 
 /** Adds the reveal class before first paint so content doesn't flash. */
@@ -66,6 +69,7 @@ const revealBootstrap = `try{if(!matchMedia('(prefers-reduced-motion: reduce)').
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const nav = await getNavigation();
+  const sameAs = nav.socialLinks.map((s) => s.url).filter((u): u is string => Boolean(u && /^https?:/.test(u)));
 
   // Verified fields only: no logo, founding date, legal/tax status, address, people or sameAs until confirmed.
   const siteJsonLd = {
@@ -78,6 +82,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         url: site.url,
         description: site.description,
         slogan: site.coreMessage.join(" "),
+        // Only verified, published profiles (content/navigation.ts). Empty until Geo supplies them.
+        ...(sameAs.length ? { sameAs } : {}),
         knowsAbout: [
           "Leadership development",
           "Scholarship",
@@ -121,8 +127,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <main id="main" tabIndex={-1}>
           {children}
         </main>
-        <SiteFooter columns={nav.footerNav} legal={nav.legalNav} social={nav.socialLinks} />
+        <SiteFooter columns={nav.footerNav} legal={nav.legalNav} social={nav.socialLinks} other={nav.otherContacts} />
         <RevealObserver />
+        <TouchLit />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLd(siteJsonLd)}
