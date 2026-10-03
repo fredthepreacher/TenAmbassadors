@@ -18,7 +18,7 @@ export const media = {
    * breakpoint's framing; this entry is the fallback when no film is set.
    */
   hero: {
-    src: "/media/hero/ta-hero-square-poster.jpg",
+    src: "/media/hero/ta-hero-sizzle-square-poster.jpg",
     alt: "Guests at an evening professional gathering.",
     width: 720,
     height: 720,
@@ -29,7 +29,7 @@ export const media = {
     alt: "Two men in suits stand shoulder to shoulder, smiling; the man on the left gives a thumbs-up.",
     width: 1365,
     height: 1741,
-    focus: "50% 22%",
+    focus: "50% 0%",
   },
   mentorshipPeers: {
     src: "/media/mentorship/ta-mentorship-2321.jpg",
@@ -125,14 +125,21 @@ export const media = {
     width: 2048,
     height: 1365,
     focus: "68% 35%",
+  },  /** 4:5 art-directed derivative of 130 of 424 (crop only): Geo on stage, head to knee, for the About hero. */
+  geoStageRedPortrait: {
+    src: "/media/geo/ta-geo-stage-red-portrait.jpg",
+    alt: "A man in a grey coat speaks into a microphone on a stage lit in red.",
+    width: 960,
+    height: 1200,
+    focus: "50% 22%",
   },
   /** AllseeinJah.com (16 of 424) — three people in Jopwell shirts, as supplied. */
-  geoSponsorJopwell: {
-    src: "/media/geo/ta-geo-sponsor-jopwell.jpg",
+  geoJopwellEvent: {
+    src: "/media/geo/ta-geo-jopwell-event.jpg",
     alt: "Three smiling people wearing blue Jopwell T-shirts pose together in front of a Jopwell banner.",
     width: 2048,
     height: 1846,
-    focus: "42% 35%",
+    focus: "42% 0%",
   },
   /** IMG_4061 — the “all orgs” group photo, as supplied (no DJ gear or wires in this frame). */
   geoAllOrgs: {
@@ -140,7 +147,7 @@ export const media = {
     alt: "A large group of professionals in suits and evening wear stand together on a red carpet in front of an event backdrop.",
     width: 2149,
     height: 1249,
-    focus: "50% 40%",
+    focus: "50% 8%",
   },
   recapPoster: {
     src: "/media/community/ta-recap-community-poster.jpg",
@@ -251,25 +258,25 @@ export const heroFilm: HeroFilm | null = {
     {
       id: "phone",
       media: "(max-width: 639px) and (orientation: portrait)",
-      mp4: "/media/hero/ta-hero-phone.mp4",
-      poster: { src: "/media/hero/ta-hero-phone-poster.jpg", alt: heroAlt, width: 720, height: 792, focus: "50% 0%" },
+      mp4: "/media/hero/ta-hero-sizzle-phone.mp4",
+      poster: { src: "/media/hero/ta-hero-sizzle-phone-poster.jpg", alt: heroAlt, width: 720, height: 792, focus: "50% 0%" },
     },
     {
       id: "tablet-portrait",
       media: "(min-width: 640px) and (max-width: 1023px) and (orientation: portrait)",
-      mp4: "/media/hero/ta-hero-square.mp4",
+      mp4: "/media/hero/ta-hero-sizzle-square.mp4",
       poster: { ...media.hero, alt: heroAlt },
     },
     {
       id: "tablet-landscape",
       media: "(max-width: 1023px) and (orientation: landscape)",
       mp4: null,
-      poster: { src: "/media/hero/ta-hero-landscape-poster.jpg", alt: heroAlt, width: 1600, height: 1100, focus: "50% 0%" },
+      poster: { src: "/media/hero/ta-hero-landscape-a7r00711.jpg", alt: heroAlt, width: 1600, height: 1100, focus: "50% 0%" },
     },
     {
       id: "desktop",
       media: "(min-width: 1024px)",
-      mp4: "/media/hero/ta-hero-square.mp4",
+      mp4: "/media/hero/ta-hero-sizzle-square.mp4",
       poster: { ...media.hero, alt: heroAlt },
     },
   ],
@@ -287,7 +294,7 @@ export const geoPending: Record<
   | "futureAmbassadorStage"
   | "networkAllOrgs"
   | "mentorshipTable"
-  | "sponsorJopwell"
+  | "partnersJopwellEvent"
   | "aboutGeoStage",
   { media: Media | null; awaiting: string; edit?: string }
 > = {
@@ -304,6 +311,6 @@ export const geoPending: Record<
     awaiting: "\u201c010-AllseeinJah.com (13 of 639).jpg\u201d",
     edit: "Remove only the two drinks on the table; rebuild the table surface",
   },
-  sponsorJopwell: { media: media.geoSponsorJopwell, awaiting: "The photo of three people wearing Jopwell shirts" },
-  aboutGeoStage: { media: media.geoStageRed, awaiting: "The photo of Geo speaking on stage" },
+  partnersJopwellEvent: { media: media.geoJopwellEvent, awaiting: "The photo of three people wearing Jopwell shirts" },
+  aboutGeoStage: { media: media.geoStageRedPortrait, awaiting: "The photo of Geo speaking on stage" },
 };

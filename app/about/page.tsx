@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PageHero } from "@/components/pages/PageHero";
 import { WhyTen } from "@/components/home/WhyTen";
 import { ButtonLink } from "@/components/ui/Button";
-import { PendingBlock, PendingNote } from "@/components/ui/Pending";
+import { PendingBlock } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getAbout } from "@/lib/content";
 import { geoPending, media } from "@/content/media";
@@ -10,6 +11,7 @@ import { TextLink } from "@/components/ui/Button";
 import { jsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { smsStages } from "@/content/home";
 
 export const metadata = pageMetadata({
   title: "About",
@@ -41,6 +43,7 @@ export default async function AboutPage() {
         intro={about.positioning}
         /* Geo point 9: Geo speaking on stage replaces this once supplied (geoPending.aboutGeoStage). */
         image={geoPending.aboutGeoStage.media ?? media.communityNetwork}
+        imageShape="portrait"
       />
 
       <section id="mission" aria-labelledby="mission-title" className="section-y bg-paper">
@@ -50,7 +53,6 @@ export default async function AboutPage() {
             <h2 id="mission-title" className="mt-5 text-h3 font-sans font-semibold tracking-[-0.02em] text-navy-900">
               {about.mission}
             </h2>
-            <PendingNote className="mt-6">Proposed mission · final approval pending</PendingNote>
           </div>
           <div data-reveal>
             <p className="eyebrow rule-before text-gold-ink">Vision</p>
@@ -67,6 +69,36 @@ export default async function AboutPage() {
         </div>
         <div className="container-x mt-14 text-sm text-muted">
           <p>{site.formationStatus}</p>
+        </div>
+      </section>
+
+      {/* SMS in one line of sight: the three pillars as one connected progression. */}
+      <section id="sms" aria-labelledby="about-sms-title" className="bg-ivory py-14 md:py-20">
+        <div className="container-x">
+          <div className="flex flex-wrap items-end justify-between gap-6" data-reveal>
+            <div>
+              <p className="eyebrow rule-before text-gold-ink">Scholarship · Mentorship · Service</p>
+              <h2 id="about-sms-title" className="mt-4 text-h2 text-navy-900">
+                One pathway, <em className="text-royal-700">three doors.</em>
+              </h2>
+            </div>
+            <TextLink href="/#sms">The SMS pathway</TextLink>
+          </div>
+          <ol className="mt-10 grid gap-px overflow-hidden rounded-2xl bg-line md:grid-cols-3">
+            {smsStages.map((st, i) => (
+              <li key={st.id} className="relative bg-paper p-6 md:p-8" data-reveal style={{ ["--reveal-delay" as string]: `${i * 80}ms` }}>
+                <p className="flex items-baseline gap-3">
+                  <span className="text-xs font-semibold tracking-[0.14em] text-gold-ink">{st.index}</span>
+                  <span className="eyebrow text-royal-700">{st.title}</span>
+                </p>
+                <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.02em] text-navy-900">{st.line}</h3>
+                <p className="mt-3 text-ink-2">{st.body}</p>
+                <p className="mt-5">
+                  <TextLink href={st.href}>Explore {st.title.toLowerCase()}</TextLink>
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -131,7 +163,7 @@ export default async function AboutPage() {
             ))}
           </ol>
           <p className="mt-12 max-w-2xl border-l-2 border-gold-400 pl-4 text-sm text-paper/70 italic">
-            A development horizon, not a record of accomplishments. Ten Ambassadors does not yet operate internationally.
+            A development horizon — intentions for the years ahead, not a record of current operations. Ten Ambassadors does not yet operate internationally.
           </p>
         </div>
       </section>
@@ -141,10 +173,15 @@ export default async function AboutPage() {
           <SectionHeading id="story-title" eyebrow="Our story" title="Rooted in relationships. Built for impact." className="lg:col-span-5" />
           <div className="grid gap-8 lg:col-span-6 lg:col-start-7" data-reveal>
             <p className="text-lede text-ink-2">{about.origin}</p>
+            <p className="text-ink-2">
+              The <Link href="/starlight" className="font-semibold text-green-700 underline decoration-green-500/40 underline-offset-4 hover:decoration-green-500">Starlight Awards</Link> are
+              Ten Ambassadors&rsquo; signature annual celebration of leadership and impact — one program within the organization, not the
+              whole of it — with Upmixer Inc. as event-production and experience partner.
+            </p>
             {about.story ? (
               <p className="text-lede">{about.story}</p>
             ) : (
-              <PendingBlock title="The founding story">The full story of how and why Ten Ambassadors began will be published here.</PendingBlock>
+              <PendingBlock title="The founding story">The full story of how and why Ten Ambassadors began — in the words of those who started it — will be shared here.</PendingBlock>
             )}
           </div>
         </div>
@@ -156,9 +193,9 @@ export default async function AboutPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {leadership.length === 0 ? (
               <>
-                <PendingBlock title="Founding Ambassadors">The ten founding Ambassadors will be introduced here once confirmed.</PendingBlock>
-                <PendingBlock title="Board & leadership">Board members and organizational leadership will be listed once governance is finalized.</PendingBlock>
-                <PendingBlock title="Institutional Host Committee">Host Committee members will be listed once confirmed.</PendingBlock>
+                <PendingBlock title="Founding Ambassadors">The ten founding Ambassadors will be introduced here as they are confirmed.</PendingBlock>
+                <PendingBlock title="Board & leadership">Board members and organizational leadership will be introduced as governance is established.</PendingBlock>
+                <PendingBlock title="Institutional Host Committee">Host Committee members will be introduced as they are confirmed.</PendingBlock>
               </>
             ) : null}
           </div>
@@ -200,7 +237,7 @@ export default async function AboutPage() {
             Find your place <em className="text-gold-300">in the circle.</em>
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/get-involved" variant="gold" arrow>
+            <ButtonLink href="/get-involved" variant="glass" arrow>
               Get involved
             </ButtonLink>
             <ButtonLink href="/network-partners" variant="outline-light">

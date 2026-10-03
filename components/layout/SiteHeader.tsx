@@ -108,8 +108,8 @@ export function SiteHeader({ nav, cta, secondary }: { nav: NavItem[]; cta: NavIt
                         ? "text-champagne/85 hover:text-champagne"
                         : light
                           ? "text-paper/85 hover:text-paper"
-                          : "text-ink-2 hover:text-royal-700",
-                      active && (night ? "text-champagne" : light ? "text-paper" : "text-royal-700"),
+                          : "text-ink-2 hover:text-green-700",
+                      active && (night ? "text-champagne" : light ? "text-paper" : "text-navy-900"),
                     )}
                   >
                     {item.label}
@@ -117,7 +117,7 @@ export function SiteHeader({ nav, cta, secondary }: { nav: NavItem[]; cta: NavIt
                     <span
                       className={cn(
                         "absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100",
-                        active && "scale-x-100 bg-gold-500",
+                        active && (night ? "scale-x-100 bg-starlight" : "scale-x-100 bg-green-400"),
                       )}
                       aria-hidden="true"
                     />
@@ -133,7 +133,7 @@ export function SiteHeader({ nav, cta, secondary }: { nav: NavItem[]; cta: NavIt
             href={cta.href}
             className={cn(
               "btn hidden min-h-11 px-5 text-sm sm:inline-flex",
-              night || light ? "btn-gold" : "btn-primary",
+              night ? "btn-gold" : light ? "btn-glass" : "btn-primary",
             )}
           >
             {cta.label}
@@ -183,7 +183,7 @@ export function SiteHeader({ nav, cta, secondary }: { nav: NavItem[]; cta: NavIt
                     onClick={() => setOpen(false)}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "flex items-baseline gap-4 py-4 text-[1.9rem] leading-tight font-semibold tracking-[-0.03em] transition-colors active:text-royal-700",
+                      "flex items-baseline gap-4 py-4 text-[1.9rem] leading-tight font-semibold tracking-[-0.03em] transition-colors active:text-green-700",
                       active && (night ? "text-starlight" : "text-royal-700"),
                     )}
                   >

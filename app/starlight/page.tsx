@@ -81,8 +81,8 @@ export default async function StarlightPage() {
                 ["Date", <time key="d" dateTime={e.dateISO}>{e.date}</time>],
                 ["Venue", e.venue],
                 ["Address", `${e.street}, ${e.city}`],
-                ["Time", e.time ?? "To be announced"],
-                ["Tickets", "To be announced"],
+                ["Time", e.time ?? "Announced with tickets"],
+                ["Tickets", s.externalUrl ? "On the event site" : "Details to come"],
               ].map(([label, value]) => (
                 <div key={label as string} className="flex items-baseline justify-between gap-6 border-b border-starlight/20 py-4">
                   <dt className="text-champagne/70">{label}</dt>
@@ -133,19 +133,19 @@ export default async function StarlightPage() {
             tone="night"
             eyebrow="Awards"
             title="Honoring leadership and impact"
-            intro="Award categories under consideration. Final categories and criteria are pending approval."
+            intro="Award categories under consideration for 2026. Additional award details will be announced as the program develops."
           />
           <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-starlight/15 sm:grid-cols-2 lg:grid-cols-4">
             {s.awards.map((a, i) => (
               <li key={a.id} className="bg-night-900 p-6" data-reveal style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}>
                 <StarIcon className="size-5 text-starlight" />
                 <h3 className="mt-4 text-2xl text-champagne">{a.title}</h3>
-                <p className="mt-3 text-xs font-semibold tracking-[0.14em] text-starlight/80 uppercase">{a.status === "concept" ? "Concept · pending approval" : "Confirmed"}</p>
+                <p className="mt-3 text-xs font-semibold tracking-[0.14em] text-starlight/80 uppercase">{a.status === "concept" ? "Under consideration" : "Confirmed"}</p>
               </li>
             ))}
           </ul>
           <div className="mt-10">
-            {s.honorees ? null : <PendingBlock tone="night" title="Honorees">Honorees will be announced here.</PendingBlock>}
+            {s.honorees ? null : <PendingBlock tone="night" title="Honorees">This year&rsquo;s honorees will be announced ahead of the evening.</PendingBlock>}
           </div>
         </div>
       </section>
@@ -191,7 +191,7 @@ export default async function StarlightPage() {
             className="lg:col-span-6"
           />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            <PendingBlock tone="night" title="Sponsorship opportunities">Sponsorship levels and benefits will be published here.</PendingBlock>
+            <PendingBlock tone="night" title="Sponsorship opportunities">Sponsorship levels and benefits are being finalized. Reach out now to be part of the evening.</PendingBlock>
             <ButtonLink href="/get-involved/sponsor" variant="gold" arrow className="w-fit">
               Sponsorship inquiry
             </ButtonLink>

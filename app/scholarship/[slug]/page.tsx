@@ -114,7 +114,7 @@ export default async function ScholarshipDetail({ params }: Props) {
           {sections.map((sec) => (
             <li key={sec.id}>
               {/* 44px tap height (mobile parity) without changing the bar's look */}
-              <a href={`#${sec.id}`} className="inline-flex min-h-11 items-center px-1.5 text-ink-2 transition-colors hover:text-royal-700">
+              <a href={`#${sec.id}`} className="inline-flex min-h-11 items-center px-1.5 text-ink-2 transition-colors hover:text-green-700">
                 {sec.label}
               </a>
             </li>
@@ -124,26 +124,32 @@ export default async function ScholarshipDetail({ params }: Props) {
 
       <div className="bg-ivory">
         <DetailSection id="story" eyebrow="The story" title="Why this scholarship exists" index={1}>
-          {s.story ? <p className="text-lede">{s.story}</p> : <PendingBlock title="Scholarship story">The story behind the scholarship — in the words of those closest to it — will be published here.</PendingBlock>}
+          {s.story ? <p className="text-lede">{s.story}</p> : <PendingBlock title="Scholarship story">The story behind the scholarship — in the words of those closest to it — will be shared here.</PendingBlock>}
         </DetailSection>
 
         <DetailSection id="legacy" eyebrow="Legacy" title={`Remembering ${s.honoree.name}`} index={2}>
           {s.legacy ? (
             <p className="text-lede">{s.legacy}</p>
           ) : (
-            <PendingBlock title="Legacy & biography">A tribute to {s.honoree.name}&rsquo;s life, leadership, and influence will appear here, with approved photographs.</PendingBlock>
+            <PendingBlock title="Legacy & biography">A tribute to {s.honoree.name}&rsquo;s life, leadership and influence is being prepared with those closest to him.</PendingBlock>
           )}
         </DetailSection>
 
         <DetailSection id="details" eyebrow="Scholarship details" title="Eligibility, award, and timeline" index={3}>
+          {s.facts.some((f) => f.value) ? (
           <dl className="grid border-t border-line-strong sm:grid-cols-2">
-            {s.facts.map((f) => (
+            {s.facts.filter((f) => f.value).map((f) => (
               <div key={f.label} className="border-b border-line py-5 sm:odd:pr-8 sm:even:border-l sm:even:pl-8">
                 <dt className="eyebrow text-gold-ink">{f.label}</dt>
-                <dd className="mt-2 font-serif text-2xl text-royal-700">{f.value ?? "To be announced"}</dd>
+                <dd className="mt-2 font-serif text-2xl text-royal-700">{f.value}</dd>
               </div>
             ))}
           </dl>
+          ) : (
+            <PendingBlock title="Eligibility, award & timeline">
+              Eligibility, the award, selection and the application window will be announced as the scholarship is established.
+            </PendingBlock>
+          )}
           <div className="mt-8">
             {s.timeline ? (
               <ol className="grid gap-3">
@@ -161,7 +167,7 @@ export default async function ScholarshipDetail({ params }: Props) {
 
         <DetailSection id="recipients" eyebrow="Recipients & impact" title="Scholars" index={4}>
           {s.recipients && s.recipients.length > 0 ? null : (
-            <PendingBlock title="Scholarship recipients">Recipients and their stories will be featured here once announced and approved.</PendingBlock>
+            <PendingBlock title="Scholarship recipients">Recipients and their stories will be featured here as scholarships are awarded.</PendingBlock>
           )}
         </DetailSection>
 

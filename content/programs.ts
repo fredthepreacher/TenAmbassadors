@@ -9,19 +9,29 @@ export const mentorship = {
       id: "become-a-mentor",
       title: "Become a Mentor",
       body: "For professionals ready to share experience, open doors, and invest in the next generation.",
-      pending: "Mentor requirements and time commitment to be announced.",
+      pending: "Mentor requirements and time commitments will be shared when the program opens.",
     },
     {
       id: "ambassador-pathway",
       title: "Future Ambassador pathway",
       body: "For students and emerging professionals seeking guidance as they build their careers and leadership.",
-      pending: "Eligibility and how to join to be announced.",
+      pending: "Eligibility and how to join will be shared when the pathway opens.",
     },
   ],
   structure: null as string | null,
 };
 
-/** Service initiatives. None have been announced — slots only. */
+/**
+ * Service focus areas (from the brief: "from youth leadership and education to community development").
+ * Future-facing; shown until named initiatives are confirmed.
+ */
+export const serviceFocus = [
+  { title: "Youth leadership", body: "Helping young people see — and step into — their own leadership." },
+  { title: "Education", body: "Opening doors to learning, mentoring and opportunity." },
+  { title: "Community development", body: "Turning what leaders have gained into lasting local impact." },
+];
+
+/** Service initiatives. None have been announced — slots only (titles stay null until confirmed). */
 export const serviceInitiatives: Initiative[] = [
   { id: "initiative-1", title: null, summary: null, status: "planned" },
   { id: "initiative-2", title: null, summary: null, status: "planned" },

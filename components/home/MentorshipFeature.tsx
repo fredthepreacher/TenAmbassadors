@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { Media } from "@/lib/types";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
-import { PendingNote } from "@/components/ui/Pending";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 /** Mentorship — the chapter that breathes: human scale, overlapping portraits, a connecting line. */
@@ -21,9 +20,9 @@ export function MentorshipFeature({
   const [lead, tail] = title.split(" who have ");
   return (
     <section id="mentorship" aria-labelledby="mentorship-title" className="section-y relative overflow-hidden bg-ivory">
-      <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-12">
-        <div className="relative self-start pb-20 sm:pb-28 lg:col-span-6 lg:pb-24">
-          <figure className="group relative w-[82%] sm:w-[70%] lg:w-[78%]" data-touch-lit>
+      <div className="container-x grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="relative self-start pb-16 sm:pb-24 lg:col-span-6 lg:pb-20">
+          <figure className="group relative w-[74%] sm:w-[62%] lg:w-[74%]" data-touch-lit>
             <div className="photo photo-edge relative aspect-[4/5] bg-stone" data-reveal="image">
               <Image
                 src={images.generational.src}
@@ -83,11 +82,11 @@ export function MentorshipFeature({
             </h2>
             <p className="mt-6 text-lede text-ink-2">{body}</p>
           </div>
-          <ol className="mt-10 grid border-t border-line">
+          <ol className="mt-8 grid border-t border-line">
             {pillars.map((p, i) => (
               <li
                 key={p.title}
-                className="group grid grid-cols-[2.5rem_1fr] gap-x-4 border-b border-line py-5 sm:grid-cols-[2.5rem_10rem_1fr]"
+                className="group grid grid-cols-[2.5rem_1fr] gap-x-4 border-b border-line py-4 sm:grid-cols-[2.5rem_10rem_1fr]"
                 data-reveal
                 style={{ ["--reveal-delay" as string]: `${i * 80}ms` }}
               >
@@ -97,17 +96,6 @@ export function MentorshipFeature({
               </li>
             ))}
           </ol>
-
-          {/* Future mentor stories — architecture only; no invented quotes. */}
-          <figure className="mt-10 rounded-2xl border border-dashed border-line-strong bg-paper/70 p-6" data-reveal>
-            <span className="block font-serif text-5xl leading-none text-gold-500" aria-hidden="true">
-              &ldquo;
-            </span>
-            <blockquote className="-mt-2 font-serif text-xl text-ink-2 italic">A mentor&rsquo;s story, in their own words, will appear here.</blockquote>
-            <figcaption className="mt-4">
-              <PendingNote>Approved mentor and mentee stories pending</PendingNote>
-            </figcaption>
-          </figure>
 
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
             <ButtonLink href="/mentorship#become-a-mentor" arrow>

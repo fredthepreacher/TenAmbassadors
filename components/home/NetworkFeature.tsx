@@ -1,43 +1,37 @@
-import type { Media, VideoAsset } from "@/lib/types";
 import { NetworkConstellation } from "@/components/ui/NetworkConstellation";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
-import { PendingNote } from "@/components/ui/Pending";
-import { AmbientVideo } from "@/components/ui/AmbientVideo";
 
 /**
- * "One Community. Many Networks." Geo point 3 replaces the wide group
- * photograph with abstract network artwork (no people). The network-of-networks
- * idea follows. No organization is presented as a partner until confirmed.
+ * "One Community. Many Networks." George's point 3: the section image is abstract network
+ * artwork (no people). The network-of-networks idea follows. No organization is presented as a
+ * partner until confirmed. (The Upmixer community recap film now lives on /network-partners;
+ * its footage opens the homepage hero.)
  */
 export function NetworkFeature({
   eyebrow,
   title,
   lede,
   body,
-  video,
-  videoCinematic,
-  videoCaption,
   types,
+  note,
 }: {
   eyebrow: string;
   title: string[];
   lede: string;
   body: string;
-  video?: VideoAsset;
-  videoCinematic?: { src: string; poster: Media };
-  videoCaption?: string;
   types: string[];
+  note: string;
 }) {
   return (
     <section id="network" aria-labelledby="network-title" className="relative bg-ivory">
       <figure className="group relative">
-        <div className="photo relative aspect-[4/3] bg-navy-900 sm:aspect-[16/8] lg:aspect-[21/8.5]" data-reveal="image">
+        <div className="photo relative aspect-[16/10] bg-navy-900 sm:aspect-[16/7] lg:aspect-[21/7]" data-reveal="image">
           <NetworkConstellation className="drift absolute inset-0 h-full w-full" />
           {/* Base gradient for the title overlap. */}
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(8_27_51/0.92)_0%,rgb(8_27_51/0.45)_24%,rgb(8_27_51/0)_48%)]" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(8_27_51/0.92)_0%,rgb(8_27_51/0.45)_28%,rgb(8_27_51/0)_55%)]" aria-hidden="true" />
         </div>
         <div className="absolute inset-x-0 bottom-0">
-          <div className="container-x pb-8 text-paper sm:pb-12" data-reveal>
+          <div className="container-x pb-7 text-paper sm:pb-10" data-reveal>
             <p className="eyebrow text-gold-300">{eyebrow}</p>
             <h2 id="network-title" className="mt-3 text-h1">
               {title[0]} <em className="text-gold-300">{title[1]}</em>
@@ -46,27 +40,18 @@ export function NetworkFeature({
         </div>
       </figure>
 
-      <div className="container-x grid gap-12 py-16 md:py-24 lg:grid-cols-12 lg:gap-y-14">
-        <div className="lg:col-span-6 lg:row-start-1" data-reveal>
+      <div className="container-x grid gap-10 py-14 md:py-20 lg:grid-cols-12 lg:gap-14">
+        <div className="lg:col-span-6" data-reveal>
           <p className="font-serif text-h3 text-royal-700 italic">{lede}</p>
-          <p className="mt-6 text-lede text-ink-2">{body}</p>
-          <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+          <p className="mt-5 text-lede text-ink-2">{body}</p>
+          <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
             <ButtonLink href="/network-partners#apply" arrow>
               Become a Network Partner
             </ButtonLink>
             <TextLink href="/network-partners">How it works</TextLink>
           </div>
         </div>
-        {video ? (
-          <AmbientVideo
-            video={video}
-            cinematic={videoCinematic}
-            caption={videoCaption ?? ""}
-            sizes="(max-width: 1024px) 100vw, 36vw"
-            className="w-full sm:mx-auto sm:w-4/5 cine:mx-auto cine:max-w-[calc((100svh-7rem)*16/9)] lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:w-auto lg:max-w-none"
-          />
-        ) : null}
-        <div className={video ? "lg:col-span-6 lg:row-start-2" : "lg:col-span-5 lg:col-start-8"} data-reveal>
+        <div className="lg:col-span-5 lg:col-start-8" data-reveal>
           <h3 className="eyebrow text-gold-ink">Networks we hope to connect</h3>
           <ul className="mt-5 flex flex-wrap gap-2">
             {types.map((t) => (
@@ -75,7 +60,7 @@ export function NetworkFeature({
               </li>
             ))}
           </ul>
-          <PendingNote className="mt-6">No Network Partners have been announced yet</PendingNote>
+          <p className="mt-6 max-w-md text-[0.95rem] text-muted">{note}</p>
         </div>
       </div>
     </section>

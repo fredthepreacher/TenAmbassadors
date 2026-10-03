@@ -26,9 +26,11 @@ export default async function PartnersPage() {
             Invest in the next generation <em className="text-royal-700">of leaders.</em>
           </>
         }
-        intro="Ten Ambassadors is preparing partnership pathways for organizations that want to invest in Scholarship, Mentorship and Service. These are pathways — no sponsors have been announced yet."
-        /* Geo point 8: the Jopwell photo sits on the right (copy and CTAs left) once supplied. */
-        image={geoPending.sponsorJopwell.media ?? undefined}
+        intro="Ten Ambassadors is preparing partnership pathways for corporations, foundations, universities and professional and community organizations that want to invest in Scholarship, Mentorship and Service. Founding partners will be introduced as partnerships are confirmed."
+        /* Geo point 8: the Jopwell event photo sits on the right (copy and CTAs left). It is historical event
+           imagery only — the caption says so, and no copy, alt text, metadata or schema names a sponsor. */
+        image={geoPending.partnersJopwellEvent.media ?? undefined}
+        imageNote="From a past community event, shown for context. No sponsorship is implied."
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <ButtonLink href="/get-involved/sponsor" arrow>
@@ -47,7 +49,7 @@ export default async function PartnersPage() {
             {partnerCategories.map((c, i) => {
               const list = partners.filter((p) => p.category === c.id);
               return (
-                <li key={c.id} id={c.id} className="grid gap-6 border-b border-line py-10 lg:grid-cols-12" data-reveal>
+                <li key={c.id} id={c.id} className="grid gap-4 border-b border-line py-8 lg:grid-cols-12 lg:gap-6" data-reveal>
                   <p className="text-xs font-semibold tracking-[0.14em] text-gold-ink lg:col-span-1">0{i + 1}</p>
                   <div className="lg:col-span-5">
                     <h2 className="font-serif text-h3 text-royal-700">{c.title}</h2>
@@ -66,14 +68,13 @@ export default async function PartnersPage() {
                           </li>
                         ))}
                       </ul>
-                    ) : (
-                      <p className="text-sm text-muted">Partner recognition will appear here once partnerships are confirmed.</p>
-                    )}
+                    ) : null}
                   </div>
                 </li>
               );
             })}
           </ul>
+          {partners.length === 0 ? <p className="mt-6 text-sm text-muted">Partner recognition will appear with each pathway as partnerships are confirmed.</p> : null}
         </div>
       </section>
 
@@ -86,7 +87,7 @@ export default async function PartnersPage() {
             className="lg:col-span-6"
           />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            <PendingBlock title="Partnership & sponsorship packages">Partnership options and recognition benefits will be published here.</PendingBlock>
+            <PendingBlock title="Partnership & sponsorship packages">Options and recognition benefits are being prepared. Start a conversation now and we will shape a partnership around your goals.</PendingBlock>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
               <ButtonLink href="/get-involved/sponsor" arrow>
                 Partnership inquiry

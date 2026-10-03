@@ -7,9 +7,10 @@ import { ArrowIcon } from "./Icons";
 /**
  * Button variants map to the interaction language in globals.css (.btn-*):
  * tactile 1px lift, controlled fill, arrow travel and a single light sweep.
- * Gold is reserved for high-value actions.
+ * Green is the interaction colour (George brief); `glass` is the translucent green for
+ * blue/navy surfaces. Gold (`gold`, `night`) belongs to the Starlight Awards only.
  */
-export type ButtonVariant = "primary" | "gold" | "outline" | "outline-light" | "light" | "night";
+export type ButtonVariant = "primary" | "glass" | "gold" | "outline" | "outline-light" | "light" | "night";
 
 export function ButtonLink({
   href,
@@ -43,7 +44,7 @@ export function ButtonLink({
   );
 }
 
-/** Understated text link: gold underline extends and the arrow travels on hover. */
+/** Understated text link: a green underline extends and the arrow travels on hover. */
 export function TextLink({
   href,
   children,
@@ -55,7 +56,7 @@ export function TextLink({
   tone?: "dark" | "light" | "night";
   className?: string;
 }) {
-  const tones = { dark: "text-royal-700", light: "text-paper", night: "text-champagne" };
+  const tones = { dark: "text-green-700", light: "text-paper", night: "text-champagne" };
   return (
     <Link href={href} className={cn("link-reward", tones[tone], className)}>
       <span>{children}</span>
@@ -97,11 +98,11 @@ export function ActionButton({
     <span className="inline-flex flex-col gap-2">
       <span
         className={cn(
-          "inline-flex min-h-12 cursor-not-allowed items-center justify-center gap-2 rounded-full border border-dashed px-6 text-[0.95rem] font-semibold whitespace-nowrap",
+          "inline-flex min-h-12 cursor-default items-center justify-center gap-2 rounded-full border px-6 text-[0.95rem] font-semibold whitespace-nowrap",
           border[noteTone],
         )}
       >
-        {action.label} — coming soon
+        {action.unavailableLabel ?? `${action.label} · not yet open`}
       </span>
       {action.pendingNote ? <span className={cn("max-w-xs text-sm", tones[noteTone])}>{action.pendingNote}</span> : null}
     </span>

@@ -32,7 +32,7 @@ export const whyTen = {
   body: "Ten founding Ambassadors represent the leadership and impact philosophy of the organization — while the wider Ten Ambassadors community is designed to grow far beyond them.",
   notTitle: "Ambassadors are not honorary titles.",
   qualities: ["Scholarship", "Mentorship", "Service", "Leadership", "Community impact", "Collaboration"],
-  note: "Founding Ambassadors will be introduced once confirmed.",
+  note: "The ten founding Ambassadors will be introduced as they are confirmed.",
 };
 
 /** Founding ecosystem [brief]. Descriptions are draft and future-facing. */
@@ -96,7 +96,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Why is it called Ten Ambassadors?",
-    a: "Ten founding Ambassadors represent the organization’s leadership and impact philosophy, while the wider Ten Ambassadors community is designed to grow far beyond them. The Founding Ambassadors will be introduced once confirmed.",
+    a: "Ten founding Ambassadors represent the organization’s leadership and impact philosophy, while the wider Ten Ambassadors community is designed to grow far beyond them. The founding Ambassadors will be introduced as they are confirmed.",
     link: { label: "Why “Ten”?", href: "/about#why-ten" },
   },
   {
@@ -111,7 +111,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is a Network Partner, and how can an organization take part?",
-    a: "A Network Partner is an organization that already develops leaders — a professional association, alumni group, university, fraternity or sorority, young-professional group or community organization — collaborating with Ten Ambassadors as a network of networks. Corporations and foundations can explore sponsorship and partnership pathways. No partners have been announced yet.",
+    a: "A Network Partner is an organization that already develops leaders — a professional association, alumni group, university, fraternity or sorority, young-professional group or community organization — collaborating with Ten Ambassadors as a network of networks. Corporations and foundations can explore sponsorship and partnership pathways. Founding partners will be introduced as partnerships are confirmed.",
     link: { label: "Network Partners", href: "/network-partners" },
   },
   {

@@ -111,7 +111,7 @@ export function Hero({
           </h1>
           <p className="mt-7 max-w-xl animate-rise text-lede text-paper/80 [animation-delay:480ms]">{lede}</p>
           <div className="mt-9 flex animate-rise flex-col gap-3 [animation-delay:580ms] sm:flex-row sm:flex-wrap">
-            <ButtonLink href={primary.href} variant="gold" arrow>
+            <ButtonLink href={primary.href} variant="glass" arrow>
               {primary.label}
             </ButtonLink>
             <ButtonLink href={secondary.href} variant="outline-light">
@@ -135,7 +135,7 @@ export function Hero({
             <li key={s.id} className={i > 0 ? "border-l border-paper/10" : ""}>
               <Link
                 href={`/#${s.id}-stage`}
-                className="group flex h-full flex-col gap-1 py-5 pr-3 pl-3 transition-colors hover:bg-royal-700/25 sm:flex-row sm:items-baseline sm:gap-4 sm:py-6 sm:pl-6 first:pl-0 sm:first:pl-0"
+                className="group flex h-full flex-col gap-1 py-5 pr-3 pl-3 transition-colors hover:bg-green-500/15 sm:flex-row sm:items-baseline sm:gap-4 sm:py-6 sm:pl-6 first:pl-0 sm:first:pl-0"
               >
                 <span className="text-xs font-semibold tracking-[0.14em] text-gold-300">{s.index}</span>
                 <span className="font-serif text-xl text-paper sm:text-2xl">{s.title}</span>

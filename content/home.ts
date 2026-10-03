@@ -145,11 +145,15 @@ export const networkFeature = {
   title: ["One community.", "Many networks."],
   lede: "Leadership becomes more powerful when networks collaborate.",
   body: "Ten Ambassadors is designed as a network of networks — professional associations, alumni groups, universities, civic and cultural organizations, young-professional groups and more, sharing opportunities and developing leaders together.",
-  /* Geo point 3: the group photograph is replaced by abstract artwork (components/ui/NetworkConstellation). */
-  /** V2.4 — ambient recap film; footage is from the wider Upmixer event community. */
+  /** Launch-stage wording; partnership status stays in docs (none confirmed yet). */
+  note: "Founding Network Partners will be introduced as partnerships are confirmed.",
+};
+
+/** The Upmixer community recap film (V2.4) — now shown on /network-partners. */
+export const communityRecap = {
   video: communityVideos.recap,
   videoCinematic: communityVideoCinematic.recap,
-  videoCaption:
+  caption:
     "Scenes from gatherings across the wider Upmixer event community — the kind of rooms, conversations and connections Ten Ambassadors is being built to extend.",
 };
 

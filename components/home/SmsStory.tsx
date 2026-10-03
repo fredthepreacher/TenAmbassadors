@@ -78,7 +78,7 @@ export function SmsStory({
 
   return (
     <section id="sms" aria-labelledby="sms-title" className="relative bg-paper">
-      <div className="container-x section-y pb-4">
+      <div className="container-x section-y pb-2">
         <header className="max-w-3xl" data-reveal>
           <p className="eyebrow rule-before text-gold-ink">{eyebrow}</p>
           <h2 id="sms-title" className="mt-5 text-h2 text-navy-900">
@@ -136,7 +136,7 @@ export function SmsStory({
 
       <div className="container-x grid lg:grid-cols-12 lg:gap-16">
         <div className="hidden lg:col-span-5 lg:block">
-          <div className="sticky top-[16vh] py-12">
+          <div className="sticky top-[14vh] py-8">
             <SmsCycle
               stages={stages}
               progress={progress}
@@ -157,23 +157,23 @@ export function SmsStory({
                 key={s.id}
                 id={`${s.id}-stage`}
                 data-stage
-                className="relative flex min-h-[64svh] flex-col justify-center overflow-hidden border-b border-line py-16 lg:min-h-[78svh]"
+                className="relative flex flex-col justify-center overflow-hidden border-b border-line py-10 lg:min-h-[34svh] lg:py-11"
               >
-                <OutlineNumeral className="absolute right-0 bottom-6 text-[clamp(7rem,16vw,13rem)] opacity-60">{s.index}</OutlineNumeral>
+                <OutlineNumeral className="absolute right-0 bottom-4 text-[clamp(6rem,13vw,11rem)] opacity-60">{s.index}</OutlineNumeral>
                 <p className="relative flex items-baseline gap-4">
                   <span className="text-xs font-semibold tracking-[0.16em] text-gold-ink">{s.index}</span>
                   <span className="eyebrow text-royal-700">{s.title}</span>
                 </p>
                 <h3
                   className={cn(
-                    "relative mt-6 max-w-[15ch] font-sans text-h1 font-semibold tracking-[-0.035em] transition-colors duration-500",
+                    "relative mt-5 max-w-[15ch] font-sans text-[clamp(2rem,1.25rem+2.5vw,3.5rem)] leading-[1] font-semibold tracking-[-0.035em] transition-colors duration-500",
                     isActive || complete ? "text-navy-900" : "text-navy-900/55",
                   )}
                 >
                   {s.line}
                 </h3>
-                <p className="relative mt-6 max-w-xl text-lede text-ink-2">{s.body}</p>
-                <Link href={s.href} className="link-reward relative mt-8 w-fit text-royal-700">
+                <p className="relative mt-5 max-w-xl text-lede text-ink-2">{s.body}</p>
+                <Link href={s.href} className="link-reward relative mt-6 w-fit text-green-700">
                   Explore {s.title.toLowerCase()}
                   <ArrowIcon className="link-arrow" />
                 </Link>
@@ -185,7 +185,7 @@ export function SmsStory({
           <li
             id="cycle-complete"
             data-stage
-            className="relative flex min-h-[56svh] flex-col justify-center py-16 lg:min-h-[64svh]"
+            className="relative flex flex-col justify-center py-10 lg:min-h-[30svh] lg:py-12"
           >
             <p className="relative flex items-center gap-3">
               <span
@@ -202,7 +202,7 @@ export function SmsStory({
               </span>
               <span className="eyebrow text-gold-ink">New opportunity</span>
             </p>
-            <h3 className="mt-6 max-w-[14ch] font-serif text-h1 text-navy-900 italic">{finale.line}</h3>
+            <h3 className="mt-5 max-w-[14ch] font-serif text-[clamp(2rem,1.25rem+2.5vw,3.5rem)] leading-[1] text-navy-900 italic">{finale.line}</h3>
             <p className="mt-6 max-w-xl text-lede text-ink-2">{finale.body}</p>
           </li>
         </ol>

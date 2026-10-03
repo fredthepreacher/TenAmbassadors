@@ -1,6 +1,5 @@
 import { IntakeForm } from "@/components/forms/IntakeForm";
 import { PageHero } from "@/components/pages/PageHero";
-import { PendingNote } from "@/components/ui/Pending";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -23,7 +22,9 @@ export default function ContactPage() {
               {contact.email ? <a href={`mailto:${contact.email}`}>{contact.email}</a> : null}
               {contact.phone ? <a href={`tel:${contact.phone}`}>{contact.phone}</a> : null}
               {contact.address ? <p>{contact.address}</p> : null}
-              {!contact.email && !contact.phone && !contact.address ? <PendingNote>Email, phone, and address pending</PendingNote> : null}
+              {!contact.email && !contact.phone && !contact.address ? (
+                <p className="max-w-xs text-ink-2">Direct email and phone details will be listed here.</p>
+              ) : null}
             </div>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">

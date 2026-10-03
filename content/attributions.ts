@@ -19,7 +19,7 @@
 export type CreditStatus = "confirmed" | "pending";
 
 export interface PhotoAttribution {
-  /** Public label, e.g. "Circa Upmixer Holiday Event, 2018". Rendered only when confirmed. */
+  /** Public label, e.g. "Photo: AllseeinJah.com, 2018". Rendered only when confirmed. */
   label: string | null;
   status: CreditStatus;
   /** Internal: what is known and where it came from (not rendered). */
@@ -33,9 +33,9 @@ export interface PhotoAttribution {
 export const attributions: Record<string, PhotoAttribution> = {
   // Hero film stills (first frames of the recut). Footage context is client-supplied (V2.4):
   // "scenes from gatherings across the wider Upmixer event community".
-  "/media/hero/ta-hero-phone-poster.jpg": { label: "Upmixer community events", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community." },
-  "/media/hero/ta-hero-square-poster.jpg": { label: "Upmixer community events", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community." },
-  "/media/hero/ta-hero-landscape-poster.jpg": {
+  "/media/hero/ta-hero-sizzle-phone-poster.jpg": { label: "Upmixer event recap", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community." },
+  "/media/hero/ta-hero-sizzle-square-poster.jpg": { label: "Upmixer event recap", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community." },
+  "/media/hero/ta-hero-landscape-a7r00711.jpg": {
     label: null,
     status: "pending",
     basis: "Crop of A7R00711 (Approved Assets V2), exposure −6%. Static hero for landscape phones/tablets only.",
@@ -84,31 +84,43 @@ export const attributions: Record<string, PhotoAttribution> = {
     label: "Upmixer event",
     status: "confirmed",
     basis: "The #UPMIXER stage screen is visible in the full frame (IMG_4006). The year is unknown, so it is omitted.",
+    corner: "bl", // a guest's face sits in the bottom-right corner of the inset crop
   },
   "/media/geo/ta-geo-collage-group.jpg": {
-    label: "Circa Upmixer Holiday Event, 2018",
+    label: "Photo: AllseeinJah.com, 2018",
     status: "confirmed",
-    basis: "AllseeinJah.com (11 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+    lead: "Geo's suggested wording \u201cCirca Upmixer Holiday Event, 2018\u201d is not yet confirmed (139 of 424 shows an AAIA New York screen). Publish the event name only once Geo confirms it.",
+    basis: "AllseeinJah.com (11 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). The photographer credit comes from the file naming; the year from camera metadata.",
   },
   "/media/geo/ta-geo-collage-two-women.jpg": {
-    label: "Circa Upmixer Holiday Event, 2018",
+    label: "Photo: AllseeinJah.com, 2018",
     status: "confirmed",
-    basis: "AllseeinJah.com (15 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+    lead: "Geo's suggested wording \u201cCirca Upmixer Holiday Event, 2018\u201d is not yet confirmed (139 of 424 shows an AAIA New York screen). Publish the event name only once Geo confirms it.",
+    basis: "AllseeinJah.com (15 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). The photographer credit comes from the file naming; the year from camera metadata.",
   },
   "/media/geo/ta-geo-stage-aaia.jpg": {
-    label: "Circa Upmixer Holiday Event, 2018",
+    label: "Photo: AllseeinJah.com, 2018",
     status: "confirmed",
-    basis: "AllseeinJah.com (139 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+    lead: "Geo's suggested wording \u201cCirca Upmixer Holiday Event, 2018\u201d is not yet confirmed (139 of 424 shows an AAIA New York screen). Publish the event name only once Geo confirms it.",
+    basis: "AllseeinJah.com (139 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). The photographer credit comes from the file naming; the year from camera metadata.",
   },
   "/media/geo/ta-geo-stage-red.jpg": {
-    label: "Circa Upmixer Holiday Event, 2018",
+    label: "Photo: AllseeinJah.com, 2018",
     status: "confirmed",
-    basis: "AllseeinJah.com (130 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+    lead: "Geo's suggested wording \u201cCirca Upmixer Holiday Event, 2018\u201d is not yet confirmed (139 of 424 shows an AAIA New York screen). Publish the event name only once Geo confirms it.",
+    basis: "AllseeinJah.com (130 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). The photographer credit comes from the file naming; the year from camera metadata.",
   },
-  "/media/geo/ta-geo-sponsor-jopwell.jpg": {
-    label: "Circa Upmixer Holiday Event, 2018",
+  "/media/geo/ta-geo-stage-red-portrait.jpg": {
+    label: "Photo: AllseeinJah.com, 2018",
     status: "confirmed",
-    basis: "AllseeinJah.com (16 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). Label wording is Geo's own example from his revision notes; confirm the event name if it differs.",
+    lead: "Geo's suggested wording \u201cCirca Upmixer Holiday Event, 2018\u201d is not yet confirmed (139 of 424 shows an AAIA New York screen). Publish the event name only once Geo confirms it.",
+    basis: "AllseeinJah.com (130 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). The photographer credit comes from the file naming; the year from camera metadata.",
+  },
+  "/media/geo/ta-geo-jopwell-event.jpg": {
+    label: "Photo: AllseeinJah.com, 2018",
+    status: "confirmed",
+    lead: "Geo's suggested wording \u201cCirca Upmixer Holiday Event, 2018\u201d is not yet confirmed (139 of 424 shows an AAIA New York screen). Publish the event name only once Geo confirms it.",
+    basis: "AllseeinJah.com (16 of 424). Camera metadata: Canon EOS 5D Mark II, 2018-12-11 (AllseeinJah.com 424-image series). The photographer credit comes from the file naming; the year from camera metadata.",
   },
   "/media/geo/ta-geo-collage-panel.jpg": {
     label: "Circa Upmixer event, 2023",

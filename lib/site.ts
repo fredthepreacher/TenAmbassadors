@@ -65,8 +65,9 @@ export const site = {
   },
 
   /**
-   * When true, clearly labelled "pending" markers render so reviewers can see
-   * what content is outstanding. Set to false for launch once all are resolved.
+   * Reviewer-only "pending" markers (outstanding client content). OFF in every public build;
+   * set NEXT_PUBLIC_SHOW_REVIEW_NOTES=1 on a review deployment to see them. The full list of
+   * outstanding items lives in docs/CONTENT_STATUS.md and docs/GEORGE_FIDELITY_REPORT.md.
    */
-  showPlaceholderNotes: true,
+  showPlaceholderNotes: process.env.NEXT_PUBLIC_SHOW_REVIEW_NOTES === "1",
 } as const;

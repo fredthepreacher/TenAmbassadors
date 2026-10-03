@@ -64,6 +64,8 @@ export interface Action extends Link {
   available: boolean;
   /** Shown instead of a link when `available` is false. */
   pendingNote?: string;
+  /** Pill text while unavailable (default: "<label> · not yet open"). */
+  unavailableLabel?: string;
 }
 
 export interface SmsStage {

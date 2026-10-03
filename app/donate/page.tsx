@@ -1,6 +1,5 @@
 import { PageHero } from "@/components/pages/PageHero";
 import { ButtonLink } from "@/components/ui/Button";
-import { PendingNote } from "@/components/ui/Pending";
 import { getGiving } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -27,18 +26,18 @@ export default async function DonatePage() {
         intro="Giving will help build Scholarship, Mentorship and Service programs from the ground up. Online giving is being prepared."
       >
         {live ? (
-          <ButtonLink href={site.donation.url!} variant="gold" arrow>
+          <ButtonLink href={site.donation.url!} variant="glass" arrow>
             Give now
           </ButtonLink>
         ) : (
-          <PendingNote>Online giving is not open yet — no payment provider has been selected</PendingNote>
+          <p className="max-w-md text-[0.95rem] text-muted">Online giving will open once the giving platform is in place.</p>
         )}
       </PageHero>
 
       <section aria-labelledby="ways-title" className="section-y bg-paper">
         <div className="container-x">
           <h2 id="ways-title" className="text-h2 text-navy-900">
-            Ways to give <em className="text-royal-700">(coming soon)</em>
+            Ways to <em className="text-royal-700">give</em>
           </h2>
           <ul className="mt-10 grid border-t border-line-strong sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10">
             {giving.map((g, i) => (

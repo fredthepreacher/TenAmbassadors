@@ -53,14 +53,14 @@ export function IntakeForm({
         </Heading>
         {!live ? (
           <span className="rounded-full border border-dashed border-gold-ink/50 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-ink">
-            Preview · not collecting yet
+            Preview
           </span>
         ) : null}
       </div>
       <p id={`${id}-status-note`} className={cn("text-sm", tone === "light" ? "text-muted" : "text-paper/70")}>
         {live
           ? "Fields marked * are required."
-          : "This form will open once Ten Ambassadors' intake system is approved. Fields are shown so you know what we'll ask."}
+          : "This form opens with Ten Ambassadors' intake system. The fields are shown so you know what we'll ask."}
       </p>
 
       <fieldset disabled={!live} className="grid gap-5 sm:grid-cols-2">
@@ -106,7 +106,7 @@ export function IntakeForm({
         })}
         <div className="sm:col-span-2">
           <button type="submit" className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60">
-            {live ? "Submit" : "Submissions opening soon"}
+            {live ? "Submit" : "Not yet accepting submissions"}
           </button>
         </div>
       </fieldset>

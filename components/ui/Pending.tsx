@@ -32,12 +32,17 @@ export function PendingNote({ children, tone = "light", className }: { children:
 }
 
 const box: Record<Tone, string> = {
-  light: "border-line-strong bg-paper/60 text-ink-2",
-  dark: "border-paper/25 bg-paper/[0.04] text-paper/85",
-  night: "border-starlight/30 bg-night-800/40 text-champagne/85",
+  light: "border-line bg-paper/70 text-ink-2",
+  dark: "border-paper/15 bg-paper/[0.05] text-paper/85",
+  night: "border-starlight/20 bg-night-800/40 text-champagne/85",
 };
 
-/** A labelled placeholder block for a whole piece of pending content. */
+const label: Record<Tone, string> = { light: "text-gold-ink", dark: "text-gold-300", night: "text-starlight" };
+
+/**
+ * "In preparation" card for content that is being established (founding story, leadership,
+ * honorees…). Polished, truthful launch-stage presentation — not a placeholder box.
+ */
 export function PendingBlock({
   title,
   children,
@@ -50,8 +55,9 @@ export function PendingBlock({
   className?: string;
 }) {
   return (
-    <div className={cn("rounded-2xl border border-dashed p-6 md:p-8", box[tone], className)}>
-      <p className="font-serif text-h3/tight">{title}</p>
+    <div className={cn("rounded-2xl border p-6 md:p-8", box[tone], className)}>
+      <p className={cn("text-[0.7rem] font-semibold tracking-[0.18em] uppercase", label[tone])}>In preparation</p>
+      <p className="mt-3 font-serif text-h3/tight">{title}</p>
       {children ? <div className="mt-3 max-w-prose text-[0.95rem] opacity-90">{children}</div> : null}
       {site.showPlaceholderNotes ? (
         <p className="mt-4 text-xs font-semibold tracking-[0.14em] uppercase opacity-70">Placeholder · content pending</p>

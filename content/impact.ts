@@ -8,7 +8,7 @@ export const impact = {
   eyebrow: "Impact",
   title: "Building our first year of impact.",
   intro:
-    "Ten Ambassadors is in its foundation year. Rather than display numbers we don't have yet, here is what we intend to measure — and report — as programs begin.",
+    "Impact will be reported honestly, as it happens. These are the measures Ten Ambassadors is committing to track — and share — as its programs begin.",
   measures: [
     { id: "scholarships", label: "Scholarships awarded", description: "Education and professional-development support delivered." },
     { id: "mentorship-hours", label: "Mentorship hours", description: "Time invested by mentors in emerging leaders." },

@@ -1,5 +1,4 @@
 import { RingOfTen } from "@/components/ui/Motifs";
-import { PendingNote } from "@/components/ui/Pending";
 
 export function Purpose({
   eyebrow,
@@ -25,15 +24,14 @@ export function Purpose({
           <h2 id="purpose-title" className="text-display text-navy-900" data-reveal>
             {first}. <em className="block text-royal-700">{second}.</em>
           </h2>
-          <p className="mt-8 max-w-3xl text-[clamp(1.35rem,1.1rem+1vw,1.9rem)] leading-snug tracking-[-0.015em] text-ink-2" data-reveal>
+          <p className="mt-6 max-w-3xl text-[clamp(1.25rem,1.05rem+0.9vw,1.8rem)] leading-snug tracking-[-0.015em] text-ink-2" data-reveal>
             {rest.join(". ")}
           </p>
 
-          <div className="mt-14 grid gap-10 md:grid-cols-2 md:gap-16">
+          <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-16">
             <div data-reveal>
               <span className="block h-px w-16 bg-gold-500" data-reveal="rule" aria-hidden="true" />
               <p className="mt-6 text-lede text-ink-2">{origin}</p>
-              <PendingNote className="mt-6">Proposed mission &amp; headlines · final approval pending</PendingNote>
             </div>
             <ul className="grid gap-0 border-t border-line">
               {themes.map((t, i) => (

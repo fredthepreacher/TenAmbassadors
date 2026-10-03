@@ -13,6 +13,8 @@ export function PageHero({
   title,
   intro,
   image,
+  imageNote,
+  imageShape = "landscape",
   tone = "light",
   children,
 }: {
@@ -20,6 +22,10 @@ export function PageHero({
   title: ReactNode;
   intro?: ReactNode;
   image?: Media;
+  /** Optional context line under the image (e.g. "no sponsorship is implied"). */
+  imageNote?: string;
+  /** "portrait" = a 4:5 frame for a standing subject (narrower column on desktop). */
+  imageShape?: "landscape" | "portrait";
   tone?: Tone;
   children?: ReactNode;
 }) {
@@ -49,7 +55,8 @@ export function PageHero({
           {children ? <div className="mt-9 animate-rise [animation-delay:240ms]">{children}</div> : null}
         </div>
         {image ? (
-          <div className="photo group relative aspect-[4/3] bg-stone lg:col-span-6 lg:aspect-[5/4]">
+          <figure className={imageShape === "portrait" ? "lg:col-span-5 lg:col-start-8" : "lg:col-span-6"}>
+          <div className={cn("photo group relative bg-stone", imageShape === "portrait" ? "aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" : "aspect-[4/3] lg:aspect-[5/4]")}>
             <Image
               src={image.src}
               alt={image.alt}
@@ -62,6 +69,8 @@ export function PageHero({
             />
             <PhotoCredit src={image.src} />
           </div>
+          {imageNote ? <figcaption className="mt-3 text-right text-xs text-muted">{imageNote}</figcaption> : null}
+          </figure>
         ) : null}
       </div>
     </section>

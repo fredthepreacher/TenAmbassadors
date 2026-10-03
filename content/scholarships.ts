@@ -37,7 +37,7 @@ export const scholarships: Scholarship[] = [
       label: "Apply",
       href: "/scholarship/dr-christopher-a-phang#apply",
       available: false,
-      pendingNote: "Applications are not open yet. Criteria and dates will be announced here.",
+      pendingNote: "Criteria and dates will be announced as the scholarship is established.",
     },
   },
 ];

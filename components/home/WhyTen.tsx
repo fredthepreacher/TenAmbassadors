@@ -71,14 +71,14 @@ export function WhyTen({
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_55%_at_75%_40%,rgb(35_88_192/0.35),transparent_70%)]"
         aria-hidden="true"
       />
-      <div className="container-x relative grid gap-14 lg:grid-cols-12 lg:items-center">
+      <div className="container-x relative grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
         <div className="lg:col-span-6" data-reveal>
           <p className="eyebrow rule-before text-gold-300">{eyebrow}</p>
           <h2 id="why-ten-title" className="mt-5 text-h2">
             {a}. <em className="block text-gold-300">{b}</em>
           </h2>
           <p className="mt-6 max-w-xl text-lede text-paper/80">{body}</p>
-          <p className="mt-10 font-serif text-2xl text-paper">{notTitle}</p>
+          <p className="mt-8 font-serif text-2xl text-paper">{notTitle}</p>
           <p className="mt-2 text-paper/75">They should embody:</p>
           <ul className="mt-5 flex flex-wrap gap-2" aria-label="Qualities every Ambassador should embody">
             {qualities.map((q) => (
@@ -90,14 +90,14 @@ export function WhyTen({
           <p className="mt-6 text-sm text-paper/70">{note}</p>
         </div>
 
-        <div className="mx-auto w-full max-w-[520px] lg:col-span-6" data-reveal style={{ ["--reveal-delay" as string]: "120ms" }}>
+        <div className="mx-auto w-full max-w-[250px] sm:max-w-[380px] lg:col-span-6 lg:max-w-[460px]" data-reveal style={{ ["--reveal-delay" as string]: "120ms" }}>
           <TenNetwork />
         </div>
       </div>
 
       {/* Founding ecosystem — concise editorial list; details live on internal pages. */}
       {ecosystem?.length ? (
-      <div className="container-x relative mt-16 border-t border-paper/15 pt-10">
+      <div className="container-x relative mt-12 border-t border-paper/15 pt-8">
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <h3 className="eyebrow text-gold-300">The founding ecosystem</h3>
           <Link href="/about#ecosystem" className="link-reward text-sm text-paper">
@@ -105,14 +105,14 @@ export function WhyTen({
             <ArrowIcon className="link-arrow" />
           </Link>
         </div>
-        <ol className="mt-6 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-5 grid grid-cols-2 gap-x-5 sm:gap-x-8 lg:grid-cols-4">
           {ecosystem.map((r, i) => (
-            <li key={r.id} className="border-b border-paper/10 py-4" data-reveal style={{ ["--reveal-delay" as string]: `${(i % 4) * 60}ms` }}>
-              <p className="flex items-baseline gap-3">
+            <li key={r.id} className="border-b border-paper/10 py-3.5 sm:py-4" data-reveal style={{ ["--reveal-delay" as string]: `${(i % 4) * 60}ms` }}>
+              <p className="flex items-baseline gap-2 sm:gap-3">
                 <span className="text-xs font-semibold tracking-[0.14em] text-gold-300">{String(i + 1).padStart(2, "0")}</span>
-                <span className="font-semibold tracking-[-0.01em]">{r.title}</span>
+                <span className="text-[0.95rem] leading-snug font-semibold tracking-[-0.01em] sm:text-base">{r.title}</span>
               </p>
-              <p className="mt-1 pl-8 text-sm text-paper/70">{r.summary}</p>
+              <p className="mt-1 hidden pl-8 text-sm text-paper/70 sm:block">{r.summary}</p>
             </li>
           ))}
         </ol>

@@ -43,7 +43,7 @@ export const starlight = {
   honorees: null as { name: string; award: string; year: string }[] | null,
   actions: [
     { label: "Explore Starlight", href: "/starlight", available: true },
-    { label: "Attend", href: "/starlight#attend", available: false, pendingNote: "Tickets and event times to be announced." },
+    { label: "Attend", href: "/starlight#attend", available: false, unavailableLabel: "Tickets · details to come", pendingNote: "Start time and tickets will be announced." },
     { label: "Sponsor", href: "/starlight#sponsor", available: true },
   ] satisfies Action[],
   pillars: [

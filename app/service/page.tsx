@@ -1,6 +1,7 @@
 import { PageHero } from "@/components/pages/PageHero";
 import { ButtonLink } from "@/components/ui/Button";
-import { PendingBlock, PendingNote } from "@/components/ui/Pending";
+import { PendingBlock } from "@/components/ui/Pending";
+import { serviceFocus } from "@/content/programs";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AreaList } from "@/components/pages/AreaList";
 import { getPrograms } from "@/lib/content";
@@ -15,6 +16,7 @@ export const metadata = pageMetadata({
 
 export default async function ServicePage() {
   const { serviceInitiatives, volunteer, serviceAreas } = await getPrograms();
+  const confirmed = serviceInitiatives.filter((it) => it.title);
 
   return (
     <>
@@ -47,27 +49,27 @@ export default async function ServicePage() {
             className="lg:col-span-5"
           />
           <div className="lg:col-span-6 lg:col-start-7">
-            <div className="flex items-center justify-between gap-4 border-b border-line-strong pb-4">
-              <h3 className="eyebrow text-royal-700">Planned initiatives</h3>
-              <PendingNote>To be announced</PendingNote>
+            <div className="border-b border-line-strong pb-4">
+              <h3 className="eyebrow text-royal-700">{confirmed.length ? "Initiatives" : "Where service will focus"}</h3>
             </div>
             <ol>
-              {serviceInitiatives.map((it, i) => (
+              {(confirmed.length ? confirmed.map((it) => ({ title: it.title!, body: it.summary ?? "" })) : serviceFocus).map((it, i) => (
                 <li
-                  key={it.id}
-                  className="group grid grid-cols-[3.5rem_1fr_auto] items-center gap-3 border-b border-line py-7"
+                  key={it.title}
+                  className="group grid grid-cols-[3.5rem_1fr_auto] items-center gap-3 border-b border-line py-6"
                   data-reveal
                   style={{ ["--reveal-delay" as string]: `${i * 80}ms` }}
                 >
                   <span className="text-3xl font-semibold tracking-[-0.04em] text-royal-700/70">{String(i + 1).padStart(2, "0")}</span>
                   <div>
-                    <p className="font-serif text-2xl text-navy-900">{it.title ?? "Initiative to be announced"}</p>
-                    <p className="mt-1 text-sm text-muted">{it.summary ?? "Details will be published as service programs are confirmed."}</p>
+                    <p className="font-serif text-2xl text-navy-900">{it.title}</p>
+                    {it.body ? <p className="mt-1 text-sm text-muted">{it.body}</p> : null}
                   </div>
-                  <span className="h-px w-6 bg-line-strong transition-all duration-500 group-hover:w-12 group-hover:bg-gold-500" aria-hidden="true" />
+                  <span className="h-px w-6 bg-line-strong transition-all duration-500 group-hover:w-12 group-hover:bg-green-500" aria-hidden="true" />
                 </li>
               ))}
             </ol>
+            {confirmed.length ? null : <p className="mt-5 text-sm text-muted">Named service initiatives will be introduced as they are confirmed.</p>}
           </div>
         </div>
       </section>
@@ -85,7 +87,7 @@ export default async function ServicePage() {
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <SectionHeading id="volunteer-title" eyebrow="Volunteer" title="Give your time where it opens doors." intro={volunteer.intro} className="lg:col-span-6" />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            <PendingBlock title="Volunteer roles & sign-up">Volunteer roles, time commitments, and the sign-up form will be published here.</PendingBlock>
+            <PendingBlock title="Volunteer roles & sign-up">Volunteer roles and time commitments are being defined. Register your interest and we will reach out as opportunities open.</PendingBlock>
             <ButtonLink href="/get-involved/volunteer" variant="outline" arrow className="w-fit">
               Volunteer interest
             </ButtonLink>

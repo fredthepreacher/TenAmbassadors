@@ -25,11 +25,11 @@ export function AreaList({
             {areas.map((a, i) => (
               <li key={a} className="group flex items-baseline gap-3 border-b border-line py-3.5">
                 <span className="text-xs font-semibold tracking-[0.14em] text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-lg text-navy-900 transition-colors group-hover:text-royal-700">{a}</span>
+                <span className="text-lg text-navy-900 transition-colors group-hover:text-green-700">{a}</span>
               </li>
             ))}
           </ul>
-          <p className="mt-5 text-sm text-muted">Planned areas — not yet available. Each will be announced when funded and confirmed.</p>
+          <p className="mt-5 text-sm text-muted">Planned areas — each will be introduced as it is funded and confirmed.</p>
         </div>
       </div>
     </section>

@@ -1,6 +1,5 @@
 import type { Scholarship } from "@/lib/types";
 import { ActionButton, ButtonLink, TextLink } from "@/components/ui/Button";
-import { PendingNote } from "@/components/ui/Pending";
 import { VideoFeature } from "@/components/ui/VideoFeature";
 
 const ARC = ["Legacy", "Opportunity", "Future"];
@@ -37,7 +36,7 @@ export function FeaturedScholarship({ scholarship }: { scholarship: Scholarship 
         </header>
 
         {/* Legacy → Opportunity → Future */}
-        <ol className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-gold-400/25 py-4 text-sm font-semibold tracking-[0.18em] uppercase" aria-label="The scholarship's arc">
+        <ol className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-gold-400/25 py-4 text-sm font-semibold tracking-[0.18em] uppercase" aria-label="The scholarship's arc">
           {ARC.map((a, i) => (
             <li key={a} className="flex items-center gap-4" data-reveal style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}>
               <span className={i === 0 ? "text-gold-300" : "text-paper/80"}>{a}</span>
@@ -46,34 +45,36 @@ export function FeaturedScholarship({ scholarship }: { scholarship: Scholarship 
           ))}
         </ol>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-14">
+        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">
           {scholarship.video ? (
             <div className="lg:col-span-8" data-reveal>
               <div className="frame-ticks">
                 <VideoFeature video={scholarship.video.featured} />
               </div>
-              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm text-paper/70">
-                <p>Film · {scholarship.video.featured.durationLabel}</p>
-                <PendingNote tone="dark">Working cut: shows production timecode and watermark · media clearance &amp; captions pending</PendingNote>
-              </div>
+              <p className="mt-5 text-sm text-paper/70">Film · {scholarship.video.featured.durationLabel}</p>
             </div>
           ) : null}
 
           <div className="flex flex-col gap-8 lg:col-span-4" data-reveal>
             <p className="font-serif text-2xl leading-snug text-paper/90">{scholarship.summary}</p>
 
-            <dl className="grid border-t border-gold-400/25">
-              {scholarship.facts.slice(0, 3).map((f) => (
-                <div key={f.label} className="flex items-baseline justify-between gap-4 border-b border-paper/10 py-3 text-[0.95rem]">
-                  <dt className="text-paper/65">{f.label}</dt>
-                  <dd className="text-right font-medium">{f.value ?? "To be announced"}</dd>
-                </div>
-              ))}
-            </dl>
-            <PendingNote tone="dark">Scholarship story, criteria and timeline pending</PendingNote>
+            {scholarship.facts.some((f) => f.value) ? (
+              <dl className="grid border-t border-gold-400/25">
+                {scholarship.facts.filter((f) => f.value).slice(0, 3).map((f) => (
+                  <div key={f.label} className="flex items-baseline justify-between gap-4 border-b border-paper/10 py-3 text-[0.95rem]">
+                    <dt className="text-paper/65">{f.label}</dt>
+                    <dd className="text-right font-medium">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="border-t border-gold-400/25 pt-5 text-[0.95rem] text-paper/75">
+                Eligibility, award details and the application window will be announced as the scholarship is established.
+              </p>
+            )}
 
             <div className="flex flex-col items-start gap-5">
-              <ButtonLink href={`${detailHref}#details`} variant="gold" arrow>
+              <ButtonLink href={`${detailHref}#details`} variant="glass" arrow>
                 Scholarship details
               </ButtonLink>
               <TextLink href={detailHref} tone="light">
