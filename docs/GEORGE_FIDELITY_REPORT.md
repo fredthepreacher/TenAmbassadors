@@ -3,7 +3,7 @@
 - **Branch:** `george-fidelity-visual-polish`, from production `68ea38e`
 - **Date:** 2026-10-03
 - **Status:** Vercel Preview only. Not merged, not deployed to production.
-- **Preview:** see "Preview" at the end.
+- **Preview:** https://tenambassadors-l3fe5ksfz-wavysites-projects.vercel.app (built from `802f14e`)
 
 ## Summary
 
@@ -163,4 +163,10 @@ Real-device caveat: QA ran in Chromium. The MP4s were replaced by WebM stand-ins
 
 ## Preview
 
-See below. It is filled in after deployment.
+- **URL:** https://tenambassadors-l3fe5ksfz-wavysites-projects.vercel.app
+- **Deployment:** `dpl_B6hw9Ggm1Rr8NCTq3UGs5GEtzKxn`, Vercel Preview, built from `802f14e` (branch `george-fidelity-visual-polish`).
+- **Access:** protected by Vercel login.
+- **Code:** `802f14e` and the commit that adds this line deploy identical code; this commit changes `docs/` only, which is excluded from deployments.
+- **Production is unchanged:** `dpl_DCTgQusqxEx2pnecNT9TxMPCMPow`, `main` @ `68ea38e`.
+
+Production deployment, merging to `main`, aliases, DNS and the domain all wait for Freddie's explicit approval.
