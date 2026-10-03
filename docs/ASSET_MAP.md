@@ -137,3 +137,22 @@ See `docs/GEO_10_POINT_REVISION_REPORT.md` → "Real-photo hero film".
 - `assets/hero-film-master/`: the 1080p master, the supplied torso-crop poster (not used) and the handoff notes. Not served.
 - `public/media/hero/ta-hero-img-3977.jpg` (business card) now appears only in the collage (tile a).
 
+## George fidelity pass (2026-10-03)
+
+See `docs/PHOTO_ART_DIRECTION.md` for the full crop audit.
+
+**Hero recut.** The hero now uses `public/media/hero/ta-hero-sizzle-{phone,square}.mp4`, each with a matching `-poster.jpg`. Both are cut from `assets/recap-master/TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4`.
+
+| Cut | Size | Length | File size |
+|---|---|---|---|
+| Phone | 720×792 | 7.2 s | 1.27 MB |
+| Square | 720×720 | 7.2 s | 1.15 MB |
+
+- **Landscape still:** `ta-hero-landscape-a7r00711.jpg`, 1600×1100, a crop of A7R00711 with −6% exposure.
+- **Removed from `public/`:** the 2026-10-02 handoff film and its poster. The master is still in `assets/hero-film-master/`.
+
+**Other assets:**
+- **New derivative:** `public/media/geo/ta-geo-stage-red-portrait.jpg`. A 960×1200 crop of 130 of 424, used for the About hero.
+- **Renamed:** `ta-geo-sponsor-jopwell.jpg` → `ta-geo-jopwell-event.jpg`. Media keys `geoJopwellEvent` and `geoPending.partnersJopwellEvent`.
+- **Moved:** the community recap film is now on `/network-partners` instead of the homepage network section.
+

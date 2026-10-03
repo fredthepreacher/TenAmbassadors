@@ -135,7 +135,7 @@ These are most likely the files Geo attached to his email or screen recording, n
 ### 8 · Corporate Partners & Sponsors: Jopwell photo on the right
 
 - **Status: blocked on Geo's file.**
-- `/partners` passes `geoPending.sponsorJopwell` to the page hero's image panel. When the file is set, the layout becomes copy and CTAs on the left, image on the right; on phones the image sits directly under the CTAs. The CTA hierarchy is unchanged.
+- `/partners` passes `geoPending.partnersJopwellEvent` to the page hero's image panel. When the file is set, the layout becomes copy and CTAs on the left, image on the right; on phones the image sits directly under the CTAs. The CTA hierarchy is unchanged.
 
 ### 9 · About: Geo speaking on stage
 
@@ -246,7 +246,7 @@ Preview only (no `--prod`), with no change to the production alias, the custom d
 | 5 · Future Ambassador pathway | `/mentorship` Pathway B | AllseeinJah.com (139 of 424) | `/media/geo/ta-geo-stage-aaia.jpg` | none |
 | 6 · Network Partners ("all orgs") | `/network-partners` wide image | IMG_4061 | `/media/geo/ta-geo-network-all-orgs.jpg` | none: no DJ equipment or wires are present in this file |
 | 7 · Mentorship | `/mentorship` Pathway A | 010-AllseeinJah.com (13 of 639) | `/media/geo/ta-geo-mentorship-table.jpg` (1748×1365) | **two drinks removed** (see below), then cropped to exclude a background guest's glass on the far left |
-| 8 · Corporate Partners & Sponsors | `/partners` hero, right side | AllseeinJah.com (16 of 424), Jopwell | `/media/geo/ta-geo-sponsor-jopwell.jpg` | none |
+| 8 · Corporate Partners & Sponsors | `/partners` hero, right side | AllseeinJah.com (16 of 424), Jopwell | `/media/geo/ta-geo-jopwell-event.jpg` | none |
 | 9 · About | `/about` hero | AllseeinJah.com (130 of 424), Geo on stage | `/media/geo/ta-geo-stage-red.jpg` | none |
 
 **Drink removal on 13 of 639:**

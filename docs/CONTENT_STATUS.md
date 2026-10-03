@@ -1,8 +1,10 @@
-# Content Status — Phase 1 (V2)
+# Content Status
 
-Last updated: 2026-09-29 (V2.2)
+Last updated: 2026-10-03 (George fidelity pass; V2.2 baseline below)
 
-Everything below renders on the site as a **clearly labelled placeholder**. When the client supplies the content, update the listed file (or the CMS, once connected). To hide every marker at launch, set `lib/site.ts` → `showPlaceholderNotes: false`.
+**Update (2026-10-03, George fidelity pass).** Public pages no longer show reviewer "pending" markers. Outstanding items appear to visitors only as polished, truthful launch-stage wording, for example "will be introduced as partnerships are confirmed" or "In preparation" cards. To see the reviewer markers on a review deployment, set the environment variable `NEXT_PUBLIC_SHOW_REVIEW_NOTES=1`.
+
+This table is the internal source of truth for what is still outstanding. For how to update content, see `docs/CONTENT_UPDATES.md`.
 
 ## Needs client content
 
@@ -25,6 +27,9 @@ Everything below renders on the site as a **clearly labelled placeholder**. When
 | Legal | Nonprofit status and disclosure text; privacy policy; terms; accessibility statement | `lib/site.ts`, `content/legal.ts` |
 | The Upmixer | URL to link (after its Phase 2 redesign) | `lib/site.ts` → `parentOrg.url` |
 | Impact | Verified statistics and stories (no Impact page is built until they exist) | — |
+| Photo credits | Exact event names for the AllseeinJah.com 424 series; the label now reads "Photo: AllseeinJah.com, 2018". Sources for IMG_3977, IMG_4004, IMG_4007, A7R00711 | `content/attributions.ts` |
+| Hero film | Optional: a higher-resolution export of the vertical recap footage (the current sharp column is 608 px wide) | `scripts/hero_recut/`, `content/media.ts` |
+| Partners | Confirmation of any Jopwell relationship. Today the photo is historical event context only | `content/partners.ts` |
 
 ## Facts used on the site, and their sources
 
