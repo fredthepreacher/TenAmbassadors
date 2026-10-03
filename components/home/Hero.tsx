@@ -37,11 +37,22 @@ export function Hero({
 }) {
   const variants = film?.variants ?? [];
   const posters = variants.map((v) => {
-    const { props } = getImageProps({ src: v.poster.src, alt: v.poster.alt, width: v.poster.width, height: v.poster.height, sizes: HERO_SIZES, quality: 78 });
-    // One preload per breakpoint (mutually exclusive media queries), so each device fetches only its own still.
-    preload(props.src, { as: "image", imageSrcSet: props.srcSet, imageSizes: props.sizes, media: v.media, fetchPriority: "high" });
+    const { props } = getImageProps({ src: v.poster.src, alt: v.poster.alt, width: v.poster.width, height: v.poster.height, sizes: HERO_SIZES, quality: 78, loading: "eager" });
     return { media: v.media, srcSet: props.srcSet, sizes: props.sizes, width: props.width, height: props.height, img: props };
   });
+  // One high-priority preload per distinct still, scoped to exactly the breakpoints that show it
+  // (queries are mutually exclusive), so each device fetches only its own still — and stills shared by
+  // two breakpoints (portrait tablet + desktop) keep a single, combined preload.
+  const byStill = new Map<string, (typeof posters)[number] & { queries: string[] }>();
+  for (const p of posters) {
+    const key = p.img.src;
+    const hit = byStill.get(key);
+    if (hit) hit.queries.push(p.media);
+    else byStill.set(key, { ...p, queries: [p.media] });
+  }
+  for (const p of byStill.values()) {
+    preload(p.img.src, { as: "image", imageSrcSet: p.srcSet, imageSizes: p.sizes, media: p.queries.join(", "), fetchPriority: "high" });
+  }
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-navy-900 text-paper">
       {/* Depth: royal light from upper left + the ring-of-ten mark behind the copy. */}
