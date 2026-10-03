@@ -724,13 +724,38 @@
 
 .hero-media {
   grid-area: media;
+  /* Each frame matches its film cut exactly (see content/media.ts → heroFilm). */
+  aspect-ratio: 10 / 11;
+}
+@media (min-width: 640px) and (max-width: 1023px) and (orientation: portrait) {
+  .hero-media {
+    aspect-ratio: 1 / 1;
+  }
+}
+@media (max-width: 1023px) and (orientation: landscape) {
+  .hero-media {
+    aspect-ratio: 16 / 11;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-media {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
 }
 
 @media (min-width: 1024px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
     grid-template-areas: "copy media";
-    min-height: max(660px, calc(100svh - 84px));
+    /* Fill the first screen, but never let the media column grow much taller than it is wide:
+       the desktop film is framed square, so its faces stay clear of the edges at any desktop size. */
+    min-height: max(560px, min(calc(100svh - 84px), calc(54vw + 76px)));
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   }
 }
 
@@ -1132,4 +1157,21 @@ footer {
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ---------- V2.5 hero: art-directed poster framing (matches each film cut) ---------- */
+.hero-poster {
+  object-position: 50% 0%;
+}
+@media (min-width: 1024px) {
+  .hero-poster {
+    object-position: 50% 22%;
+  }
+}
+
+/* The landscape hero still is an unlabelled photograph; the film's credit does not apply to it. */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .photo-credit--hero {
+    display: none;
+  }
 }

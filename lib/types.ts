@@ -21,18 +21,25 @@ export interface Media {
 }
 
 /**
- * Silent, looping hero film (Geo revision point 2). Swap files in content/media.ts;
- * the layout never changes. The poster remains the LCP image and the fallback
- * for reduced motion, Data Saver, blocked autoplay and load errors.
+ * Silent, looping hero film. One art-directed cut per hero breakpoint, each
+ * framed for that container so faces never sit behind the headline or get
+ * cropped. The matching poster is the LCP image and the static hero for
+ * reduced motion, Data Saver, blocked autoplay and load errors.
  */
+export interface HeroFilmVariant {
+  id: "phone" | "tablet-portrait" | "tablet-landscape" | "desktop";
+  /** Media query that selects this cut — the poster <source> uses the same query. Queries must not overlap. */
+  media: string;
+  /** H.264 MP4 (yuv420p, faststart, no audio). `null` = this breakpoint shows the still only. */
+  mp4: string | null;
+  /** The film's first frame (or the static hero where there is no film). */
+  poster: Media;
+}
+
 export interface HeroFilm {
-  /** H.264 MP4, 16:9 (desktop and tablet). */
-  mp4: string;
-  /** Optional VP9/AV1 WebM of the same cut. */
-  webm?: string | null;
-  /** Optional portrait cut (e.g. 1080×1350 or 1080×1920) served to phones. */
-  mobileMp4?: string | null;
-  /** Accessible description of what the film shows (it is decorative motion; the poster carries the alt text). */
+  /** Ordered phone → tablet → desktop; the last one is the <img> fallback. */
+  variants: HeroFilmVariant[];
+  /** Accessible description of what the film shows (decorative motion; the poster carries the alt text). */
   label: string;
 }
 

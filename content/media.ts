@@ -14,16 +14,15 @@ export const media = {
     focus: "44% 38%",
   },
   /**
-   * Hero poster: a frame (04.4 s) from the real-photo hero film — the full group, faces visible.
-   * Chosen over the supplied poster (a faceless torso crop) with Freddie's approval, 2026-10-02.
-   * It is the LCP image and the static hero for reduced motion / Data Saver.
+   * Hero still: the first frame of the hero film (square cut). `heroFilm.variants` carries every
+   * breakpoint's framing; this entry is the fallback when no film is set.
    */
   hero: {
-    src: "/media/hero/ta-hero-film-poster.jpg",
-    alt: "Five smiling women and a man in a pink shirt and dark blazer stand together at an evening event.",
-    width: 1920,
-    height: 1080,
-    focus: "50% 30%",
+    src: "/media/hero/ta-hero-square-poster.jpg",
+    alt: "Guests at an evening professional gathering.",
+    width: 720,
+    height: 720,
+    focus: "50% 22%",
   },
   mentorshipGenerational: {
     src: "/media/mentorship/ta-mentorship-2292.jpg",
@@ -231,17 +230,49 @@ export const communityVideoCinematic = {
 };
 
 /**
- * Hero film (Geo revision point 2): real-photo cinematic hero (Ten_Ambassadors_Real_Photo_Hero_Handoff,
- * 2026-10-02) — slow push/pan and dissolves over older event photography, chosen so it does not reuse the
- * Geo-revision photos. Silent, 11.2 s, served as the supplied 1280×720 web derivative (H.264, no audio,
- * faststart, 1.8 MB). The 1080p master stays in assets/hero-film-master/. `media.hero` is a frame from
- * this film, so the business-card photo (IMG_3977) now lives only in the collage.
+ * Hero film (George fidelity pass, 2026-10-03) — recut from the client's own sizzle footage,
+ * TenAmbassadors_Recap_16-35 (George's suggested 16 s–35 s section; scenes from the wider
+ * Upmixer event community). It shows the organization's world at work rather than a party:
+ * a speaker addressing the room → engaged young professionals listening → two guests connecting.
+ *
+ * - Only the sharp vertical column of the master is used; every crop sits above the burned-in
+ *   captions, and no drinks are in frame. Faces were checked per frame (YuNet) for each crop.
+ * - 0.8× speed (frame-accurate, no synthetic in-between frames), soft dip-dissolves, and a closing
+ *   dissolve into the exact first frame, so the loop never resets visibly.
+ * - Cuts: phone 720×792 (0.909, the phone hero frame) and square 720×720 (portrait tablets and
+ *   desktop). Landscape phones/tablets (16:11 frame, any width below 1024) cannot hold this vertical footage without
+ *   faces dropping under the headline, so they get a static still (A7R00711, Approved Assets V2).
+ * - Source scripts: scripts/hero_recut/. Superseded handoff film: assets/hero-film-master/ (not served).
  */
+const heroAlt = "Guests at an evening professional gathering.";
 export const heroFilm: HeroFilm | null = {
-  mp4: "/media/hero/ta-hero-film-720p.mp4",
-  webm: null,
-  mobileMp4: null,
-  label: "Silent film made from past event photographs: a group of guests posing together, then two men greeting each other warmly.",
+  label: "Silent film of real community events: a speaker addresses the room, young professionals listen, and two guests connect.",
+  variants: [
+    {
+      id: "phone",
+      media: "(max-width: 639px) and (orientation: portrait)",
+      mp4: "/media/hero/ta-hero-phone.mp4",
+      poster: { src: "/media/hero/ta-hero-phone-poster.jpg", alt: heroAlt, width: 720, height: 792, focus: "50% 0%" },
+    },
+    {
+      id: "tablet-portrait",
+      media: "(min-width: 640px) and (max-width: 1023px) and (orientation: portrait)",
+      mp4: "/media/hero/ta-hero-square.mp4",
+      poster: { ...media.hero, alt: heroAlt },
+    },
+    {
+      id: "tablet-landscape",
+      media: "(max-width: 1023px) and (orientation: landscape)",
+      mp4: null,
+      poster: { src: "/media/hero/ta-hero-landscape-poster.jpg", alt: heroAlt, width: 1600, height: 1100, focus: "50% 0%" },
+    },
+    {
+      id: "desktop",
+      media: "(min-width: 1024px)",
+      mp4: "/media/hero/ta-hero-square.mp4",
+      poster: { ...media.hero, alt: heroAlt },
+    },
+  ],
 };
 
 /**

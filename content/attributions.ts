@@ -31,10 +31,15 @@ export interface PhotoAttribution {
 }
 
 export const attributions: Record<string, PhotoAttribution> = {
-  "/media/hero/ta-hero-film-poster.jpg": {
+  // Hero film stills (first frames of the recut). Footage context is client-supplied (V2.4):
+  // "scenes from gatherings across the wider Upmixer event community".
+  "/media/hero/ta-hero-phone-poster.jpg": { label: "Upmixer community events", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community." },
+  "/media/hero/ta-hero-square-poster.jpg": { label: "Upmixer community events", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community." },
+  "/media/hero/ta-hero-landscape-poster.jpg": {
     label: null,
     status: "pending",
-    basis: "Frame from the real-photo hero film (client handoff 2026-10-02). The film's source photographs carry no event or date information.",
+    basis: "Crop of A7R00711 (Approved Assets V2), exposure −6%. Static hero for landscape phones/tablets only.",
+    lead: "Camera metadata: Sony ILCE-7RM3, 2018-12-12 19:15 — may match the December 2018 Upmixer event. Confirm before publishing a label.",
   },
   "/media/hero/ta-hero-img-3977.jpg": {
     label: null,

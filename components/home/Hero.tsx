@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import Link from "next/link";
 import type { HeroFilm as HeroFilmT, Link as LinkT, Media, SmsStage } from "@/lib/types";
 import { ButtonLink } from "@/components/ui/Button";
@@ -12,6 +13,8 @@ import { HeroFilm } from "./HeroFilm";
  * SMS line → CTAs → scroll cue. Everything is readable immediately with
  * motion disabled, and text starts faintly visible so LCP is not delayed.
  */
+const HERO_SIZES = "(max-width: 1023px) 100vw, 51vw";
+
 export function Hero({
   eyebrow,
   headline,
@@ -32,6 +35,13 @@ export function Hero({
   secondary: LinkT;
   stages: SmsStage[];
 }) {
+  const variants = film?.variants ?? [];
+  const posters = variants.map((v) => {
+    const { props } = getImageProps({ src: v.poster.src, alt: v.poster.alt, width: v.poster.width, height: v.poster.height, sizes: HERO_SIZES, quality: 78 });
+    // One preload per breakpoint (mutually exclusive media queries), so each device fetches only its own still.
+    preload(props.src, { as: "image", imageSrcSet: props.srcSet, imageSizes: props.sizes, media: v.media, fetchPriority: "high" });
+    return { media: v.media, srcSet: props.srcSet, sizes: props.sizes, width: props.width, height: props.height, img: props };
+  });
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-navy-900 text-paper">
       {/* Depth: royal light from upper left + the ring-of-ten mark behind the copy. */}
@@ -41,31 +51,47 @@ export function Hero({
       />
 
       <div className="hero-grid relative pt-[76px]">
-        <div className="hero-media relative aspect-[4/4.4] sm:aspect-[16/11] lg:aspect-auto lg:min-h-full">
+        <div className="hero-media relative">
           <div className="absolute inset-0 overflow-hidden lg:top-4">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              preload
-              fetchPriority="high"
-              sizes="(max-width: 1024px) 100vw, 51vw"
-              className="object-cover animate-settle"
-              style={{ objectPosition: image.focus }}
-            />
-            {film ? <HeroFilm film={film} focus={image.focus} /> : null}
-            {/* Blue seam and base: controlled gradients at the edges only — faces stay natural. */}
+            {variants.length ? (
+              /* Art-directed poster: each breakpoint gets the first frame of its own film cut. */
+              <picture>
+                {posters.slice(0, -1).map((p) => (
+                  <source key={p.media} media={p.media} srcSet={p.srcSet} sizes={p.sizes} width={p.width} height={p.height} />
+                ))}
+                <img
+                  {...posters[posters.length - 1].img}
+                  alt={variants[variants.length - 1].poster.alt}
+                  fetchPriority="high"
+                  className="hero-poster absolute inset-0 h-full w-full object-cover animate-settle"
+                />
+              </picture>
+            ) : (
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                preload
+                fetchPriority="high"
+                sizes={HERO_SIZES}
+                className="object-cover animate-settle"
+                style={{ objectPosition: image.focus }}
+              />
+            )}
+            {film ? <HeroFilm film={film} /> : null}
+            {/* Readability: a navy base ramp under the copy on phones/tablets; on desktop a narrow seam into the
+                copy column and a soft horizon into the pathway strip. Faces sit above both by composition. */}
             <div
-              className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0.9)_20%,rgb(8_27_51/0.45)_36%,rgb(8_27_51/0)_52%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.55)_9%,rgb(8_27_51/0)_24%),linear-gradient(0deg,rgb(8_27_51/0.55)_0%,rgb(8_27_51/0)_22%)]"
+              className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0.9)_20%,rgb(8_27_51/0.45)_36%,rgb(8_27_51/0)_52%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.5)_4%,rgb(8_27_51/0)_11%),linear-gradient(0deg,rgb(8_27_51/0.85)_0%,rgb(8_27_51/0.35)_6%,rgb(8_27_51/0)_15%)]"
               aria-hidden="true"
             />
             {/* On phones the copy overlaps the photo's lower edge, so the label sits above it. */}
-            {film ? null : <PhotoCredit src={image.src} className="photo-credit--hero" />}
+            <PhotoCredit src={image.src} className="photo-credit--hero" />
           </div>
           <span className="pointer-events-none absolute top-4 bottom-0 left-0 hidden w-px bg-gradient-to-b from-gold-400/0 via-gold-400/70 to-gold-400/0 lg:block" aria-hidden="true" />
         </div>
 
-        <div className="hero-copy relative z-10 -mt-20 pl-container pr-5 pb-12 sm:-mt-28 sm:pr-10 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:py-16 lg:pr-14">
+        <div className="hero-copy relative z-10 -mt-20 pl-container pr-5 pb-12 sm:-mt-28 sm:pr-10 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:py-10 lg:pr-8 xl:py-16 xl:pr-14">
           <p className="eyebrow animate-rise text-[0.7rem] tracking-[0.14em] text-gold-300 [animation-delay:120ms] sm:text-eyebrow sm:tracking-[0.18em]">
             <RingOfTen className="size-5" strokeOpacity={0.6} highlight={0} />
             {eyebrow}
@@ -94,7 +120,7 @@ export function Hero({
           </div>
           <a
             href="#purpose"
-            className="mt-12 hidden w-fit items-center gap-3 text-xs font-semibold tracking-[0.18em] text-paper/60 uppercase transition-colors hover:text-paper lg:inline-flex"
+            className="mt-12 hidden w-fit items-center gap-3 text-xs font-semibold tracking-[0.18em] text-paper/60 uppercase transition-colors hover:text-paper xl:inline-flex"
           >
             <span className="scroll-cue-line block h-10 w-px bg-gold-400" aria-hidden="true" />
             Begin the journey
