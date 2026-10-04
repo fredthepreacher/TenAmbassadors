@@ -210,4 +210,8 @@ This is a small cleanup before Geo reviews the site. The approved George fidelit
   - CLS 0 to 0.0001.
 - **Unchanged:** SEO, schema and copy (no attribution data feeds the JSON-LD). There are still no sponsorship claims.
 
-**Preview.** See below. Production is still `dpl_DCTgQusqxEx2pnecNT9TxMPCMPow`, `main` @ `68ea38e`.
+**Preview for George's review.**
+- **URL:** https://tenambassadors-2dy9sg0g6-wavysites-projects.vercel.app (`dpl_HDus36Ghp3CYzEj9shWVGvK2S7ya`, Vercel Preview).
+- **Build:** from `a96265c`. The commit that records this URL changes `docs/` only, which is not deployed.
+- **Access:** protected by Vercel login.
+- **Production is unchanged:** `dpl_DCTgQusqxEx2pnecNT9TxMPCMPow`, `main` @ `68ea38e`. Nothing is merged or pushed, and aliases, DNS and the domain are untouched.
