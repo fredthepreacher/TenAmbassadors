@@ -754,8 +754,9 @@
 
 .hero-media {
   grid-area: media;
-  /* Each frame matches its film cut exactly (see content/media.ts → heroFilm). */
-  aspect-ratio: 10 / 11;
+  /* Portrait phones: the frame is the film's own 4:5, so the contained film fills it exactly
+     (see content/media.ts → heroFilm). Wider frames show the whole film over its backdrop. */
+  aspect-ratio: 4 / 5;
 }
 @media (min-width: 640px) and (max-width: 1023px) and (orientation: portrait) {
   .hero-media {
@@ -1119,7 +1120,7 @@ footer {
 
 /* Hero: the copy overlaps the photo's lower edge on phones/tablets, so the label rides above it. */
 .photo-credit--hero {
-  bottom: 5.75rem;
+  bottom: 4rem;
 }
 @media (min-width: 640px) {
   .photo-credit--hero {
@@ -1159,13 +1160,51 @@ footer {
   display: none;
 }
 
-/* ---------- V2.5 hero: art-directed poster framing (matches each film cut) ---------- */
+/* ---------- Hero: full-subject framing (2026-10-04) ----------
+   The film and its poster are shown whole (contain), never enlarged until people are cropped.
+   Where the panel is wider than 4:5, a softened plate of the film's first frame fills the sides. */
 .hero-poster {
-  object-position: 50% 0%;
+  object-fit: contain;
+  object-position: 50% 50%;
 }
-@media (min-width: 1024px) {
+.hero-backdrop {
+  position: absolute;
+  inset: -6%;
+  background-color: var(--color-navy-900);
+  background-size: cover;
+  background-position: 50% 40%;
+  filter: blur(22px) saturate(1.05);
+}
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 80% at 50% 45%, rgb(8 27 51 / 0.2), rgb(8 27 51 / 0.72));
+}
+/* Portrait phones: the 4:5 frame matches the film, so no backdrop is needed (and none is fetched).
+   The film fills the frame edge to edge here, so the pause control moves from the top corner (where
+   it could sit on someone's hair) to the lower band beside the credit, over clothing, never a head. */
+@media (max-width: 639px) and (orientation: portrait) {
+  .hero-backdrop {
+    display: none;
+  }
+  .hero-film-toggle {
+    top: auto;
+    right: 0.75rem;
+    bottom: calc(4rem + 0.74rem - 22px);
+  }
+  .photo-credit--hero {
+    right: calc(0.75rem + 44px + 0.5rem);
+  }
+}
+/* Landscape phones/tablets show the static still, art-directed for its 16:11 frame. */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .hero-backdrop {
+    display: none;
+  }
   .hero-poster {
-    object-position: 50% 22%;
+    object-fit: cover;
+    object-position: 50% 0%;
   }
 }
 

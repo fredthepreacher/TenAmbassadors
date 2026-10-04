@@ -34,8 +34,7 @@ Frame sizes below are CSS pixels at 390×844 and 1440×900.
 
 | Source | Route / section | Focal subject | Phone frame | Desktop frame | Position | Correction this pass | Credit |
 |---|---|---|---|---|---|---|---|
-| Recap footage (sizzle 16–35 s), phone cut | `/` hero | Speaker → listeners → two guests connecting | 390×429 (10:11) | — | 50% 0% | **New hero** (see below) | "Upmixer event recap" |
-| Recap footage, square cut | `/` hero (portrait tablet, desktop) | Same | 768×768 (tablet) | 727×724 | 50% 22% | **New hero** | "Upmixer event recap" |
+| Recap footage (sizzle 16–35 s), 4:5 cut | `/` hero (all portrait screens, desktop) | Speaker → listeners → two guests in conversation | 390×488 (4:5, fills exactly) | 579×724 shown whole in the 727×724 panel | contain, 50% 50% | **Full-subject framing, 2026-10-04** (see below) | "Footage: The Upmixer event archive" |
 | A7R00711 (landscape still) | `/` hero, landscape phones/tablets only | Two men in suits | 844×580 (16:11) | — | 50% 0% | New static still; exposure −6% for the white backdrop | Pending, so no label |
 | IMG_3977 business card | `/` collage, lead | Card exchange, both faces, hands | 347×261 (4:3) | 738×558 | 100% 50% | Lead frame. It no longer has an overlapping inset across the hands | Pending (no source) |
 | 15 of 424, two women | `/` collage, support | Both faces and shoulders | 187×187 (1:1) | 413×413 | 50% 0% | Square from the top | Photo: AllseeinJah.com, 2018 |
@@ -53,6 +52,14 @@ Frame sizes below are CSS pixels at 390×844 and 1440×900.
 | Phang posters | `/`, `/scholarship`, scholarship page | Two-shot | 16:9 | 16:9 | 50% 50% | — | Still from the Dr. Christopher A. Phang Scholarship film |
 
 ## Hero film (recut)
+
+> **Superseded in part (2026-10-04, full-subject framing).** The phone and square cuts were replaced by one 4:5 cut, 608×760, crop only. It is shown with `object-fit: contain`, so the browser never crops it. On portrait phones the hero frame is 4:5 and the film fills it exactly; tablets and desktop show it whole over a softened backdrop.
+>
+> **Shot changes:**
+> - The speaker shot now starts at 5.22 s, after the close-up whose hair touches the source's top edge.
+> - The contact-exchange shot was replaced by two guests in conversation (15.12–15.74 s). The source column cuts through the face of the woman on the left, so no crop could show her whole head.
+>
+> See `docs/GEORGE_FIDELITY_REPORT.md` → "Hero full-subject framing" and `scripts/hero_recut/render_v.py`. The notes below describe the 2026-10-03 cut.
 
 **Source:** `assets/recap-master/TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4`. This is the client's sizzle section, George's suggested 16 s to 35 s, from the wider Upmixer community.
 
@@ -89,7 +96,7 @@ Each cut has a matching still, chosen by mutually exclusive media queries in bot
 
 George asked for visible Black, white, Asian and Latino representation. It is spread across the site rather than carried by one section:
 
-- **Hero:** a South Asian speaker; white and South Asian young professionals; a Black guest connecting with a white guest. The landscape still shows a Black man and an East Asian man.
+- **Hero:** a South Asian speaker; white and South Asian young professionals; two Black guests in conversation (since 2026-10-04). The landscape still shows a Black man and an East Asian man.
 - **Collage:** Black (card exchange), Latina (two women), white (group), mixed (panel).
 - **Mentorship:** Black (2292, 13 of 639).
 - **Partners:** the Jopwell group.

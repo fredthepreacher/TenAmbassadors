@@ -14,15 +14,16 @@ export const media = {
     focus: "44% 38%",
   },
   /**
-   * Hero still: the first frame of the hero film (square cut). `heroFilm.variants` carries every
-   * breakpoint's framing; this entry is the fallback when no film is set.
+   * Hero still: the first frame of the hero film (4:5 cut). It is shown whole (`object-fit: contain`),
+   * never cropped by its frame. `heroFilm.variants` carries every breakpoint; this entry is also the
+   * fallback when no film is set.
    */
   hero: {
-    src: "/media/hero/ta-hero-sizzle-square-poster.jpg",
+    src: "/media/hero/ta-hero-film-45-poster.jpg",
     alt: "Guests at an evening professional gathering.",
-    width: 720,
-    height: 720,
-    focus: "50% 22%",
+    width: 608,
+    height: 760,
+    focus: "50% 50%",
   },
   mentorshipGenerational: {
     src: "/media/mentorship/ta-mentorship-2292.jpg",
@@ -237,34 +238,39 @@ export const communityVideoCinematic = {
 };
 
 /**
- * Hero film (George fidelity pass, 2026-10-03) — recut from the client's own sizzle footage,
- * TenAmbassadors_Recap_16-35 (George's suggested 16 s–35 s section; scenes from the wider
- * Upmixer event community). It shows the organization's world at work rather than a party:
- * a speaker addressing the room → engaged young professionals listening → two guests connecting.
+ * Hero film — recut from the client's own sizzle footage, TenAmbassadors_Recap_16-35 (George's
+ * suggested 16 s–35 s section; scenes from the wider Upmixer event community): a speaker addressing
+ * the room → engaged young professionals listening → two guests in conversation.
  *
- * - Only the sharp vertical column of the master is used; every crop sits above the burned-in
- *   captions, and no drinks are in frame. Faces were checked per frame (YuNet) for each crop.
- * - 0.8× speed (frame-accurate, no synthetic in-between frames), soft dip-dissolves, and a closing
- *   dissolve into the exact first frame, so the loop never resets visibly.
- * - Cuts: phone 720×792 (0.909, the phone hero frame) and square 720×720 (portrait tablets and
- *   desktop). Landscape phones/tablets (16:11 frame, any width below 1024) cannot hold this vertical footage without
- *   faces dropping under the headline, so they get a static still (A7R00711, Approved Assets V2).
- * - Source scripts: scripts/hero_recut/. Superseded handoff film: assets/hero-film-master/ (not served).
+ * Full-subject framing (2026-10-04): one 4:5 cut, 608×760, taken pixel-for-pixel from the sharp
+ * vertical column of the master (no upscaling, no generative fill). Every head stays inside the frame
+ * with the most headroom the source allows, every crop sits above the burned-in captions, and no
+ * drinks are in frame.
+ * The site never crops it: the film and its poster use `object-fit: contain`.
+ * - Portrait phones: the hero frame is 4:5, so the film fills it exactly.
+ * - Portrait tablets and desktop: the film sits whole inside the panel, over `backdrop` (its own
+ *   first frame, reduced to a tiny softened, darkened plate) so the panel still reads as filled.
+ * - Landscape phones/tablets (16:11 frame below 1024 px) keep the static still (A7R00711).
+ * - 0.8× / 0.65× speed (frame-accurate, no synthetic in-between frames), soft dip-dissolves, and a
+ *   closing dissolve into the exact first frame, so the loop never resets visibly.
+ * - Source script: scripts/hero_recut/render_v.py. Superseded handoff film: assets/hero-film-master/.
  */
 const heroAlt = "Guests at an evening professional gathering.";
+const heroFilm45 = "/media/hero/ta-hero-film-45.mp4";
 export const heroFilm: HeroFilm | null = {
-  label: "Silent film of real community events: a speaker addresses the room, young professionals listen, and two guests connect.",
+  label: "Silent film of real community events: a speaker addresses the room, young professionals listen, and two guests talk.",
+  backdrop: "/media/hero/ta-hero-film-45-backdrop.jpg",
   variants: [
     {
       id: "phone",
       media: "(max-width: 639px) and (orientation: portrait)",
-      mp4: "/media/hero/ta-hero-sizzle-phone.mp4",
-      poster: { src: "/media/hero/ta-hero-sizzle-phone-poster.jpg", alt: heroAlt, width: 720, height: 792, focus: "50% 0%" },
+      mp4: heroFilm45,
+      poster: { ...media.hero, alt: heroAlt },
     },
     {
       id: "tablet-portrait",
       media: "(min-width: 640px) and (max-width: 1023px) and (orientation: portrait)",
-      mp4: "/media/hero/ta-hero-sizzle-square.mp4",
+      mp4: heroFilm45,
       poster: { ...media.hero, alt: heroAlt },
     },
     {
@@ -276,7 +282,7 @@ export const heroFilm: HeroFilm | null = {
     {
       id: "desktop",
       media: "(min-width: 1024px)",
-      mp4: "/media/hero/ta-hero-sizzle-square.mp4",
+      mp4: heroFilm45,
       poster: { ...media.hero, alt: heroAlt },
     },
   ],

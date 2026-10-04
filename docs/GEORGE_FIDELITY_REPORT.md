@@ -70,8 +70,7 @@ Phones land slightly under the 25% target. The remaining length is content Georg
 
 | File | Source and treatment |
 |---|---|
-| `public/media/hero/ta-hero-sizzle-phone.mp4` + poster | Recap 16–35, 720×792, 7.2 s, 1.27 MB |
-| `public/media/hero/ta-hero-sizzle-square.mp4` + poster | Recap 16–35, 720×720, 7.2 s, 1.15 MB |
+| `public/media/hero/ta-hero-film-45.mp4` + poster + backdrop | Recap 16–35, one 4:5 cut, 608×760 (crop only), 6.2 s, 1.09 MB. Replaced the phone (720×792) and square (720×720) cuts on 2026-10-04; see "Hero full-subject framing" |
 | `public/media/hero/ta-hero-landscape-a7r00711.jpg` | A7R00711, 1600×1100, −6% exposure |
 | `public/media/geo/ta-geo-stage-red-portrait.jpg` | 130 of 424, 960×1200, crop only |
 | `public/media/geo/ta-geo-jopwell-event.jpg` | Renamed from `ta-geo-sponsor-jopwell.jpg`, unchanged |
@@ -215,3 +214,70 @@ This is a small cleanup before Geo reviews the site. The approved George fidelit
 - **Build:** from `a96265c`. The commit that records this URL changes `docs/` only, which is not deployed.
 - **Access:** protected by Vercel login.
 - **Production is unchanged:** `dpl_DCTgQusqxEx2pnecNT9TxMPCMPow`, `main` @ `68ea38e`. Nothing is merged or pushed, and aliases, DNS and the domain are untouched.
+
+## Hero full-subject framing (2026-10-04)
+
+One isolated fix to the homepage hero; nothing else on the site changed. Freddie's rule: never crop a person's head or body to fill the hero.
+
+**Root cause.**
+- The film and its poster used `object-fit: cover`, so the browser enlarged the footage until it filled the media box and cut off whatever did not fit.
+- The derivatives themselves were also tight: the phone cut used only 669 of the 1,080 source rows, and the square cut only 608.
+
+**Fit strategy.**
+- The film and its poster now use `object-fit: contain` (`object-position: 50% 50%`), so the hero frame never crops the footage.
+- **Portrait phones:** the hero frame is now 4:5, the film's own shape, so the film fills it edge to edge with nothing cut.
+- **Portrait tablets and desktop:** the panel keeps its size, and the whole film sits centered in it. The sides show `ta-hero-film-45-backdrop.jpg`: the film's first frame reduced to 24×30 px (0.7 KB), stretched, blurred, darkened and vignetted in navy. It reads as a deep-navy frame with a hint of the room's colour, not a social-video blur.
+  - The backdrop is CSS-hidden on phones, where it is never needed, and on landscape screens.
+  - Its intrinsic size is tiny, so it never competes for LCP.
+- **Landscape phones and tablets:** unchanged. They keep the static A7R00711 still, art-directed for its 16:11 frame (`cover`), which passes the crop audit.
+
+**Derivative regenerated** (`scripts/hero_recut/render_v.py`).
+- **What:** one 4:5 cut, 608×760, taken pixel-for-pixel from the sharp vertical column of the master.
+- **Not done:** no upscaling, sharpening beyond the previous light encode treatment, generative fill or face manipulation.
+- **Captions:** each shot's crop window sits above the burned-in captions, which start at about y 825.
+
+| Shot | Source | Speed | Crop window | Headroom above the highest head |
+|---|---|---|---|---|
+| Speaker | 5.22–7.52 s | 0.8× | y 0–760 | about 11% |
+| Listeners | 7.60–10.10 s | 0.8× | y 40–800 | about 15% |
+| Two guests in conversation | 15.12–15.74 s | 0.65× | y 50–810 | about 10% |
+
+- **Shots dropped,** because the source itself leaves no room:
+  - **Speaker close-up (4.02–5.20 s):** his hair touches the top of the source frame.
+  - **Contact exchange (10.16–11.10 s):** the vertical source column cuts through the face of the woman on the left, so no crop could show her whole head.
+- **Replacement shot:** two guests in conversation (15.12–15.74 s). Both heads and faces are whole, there is clear headroom, and no drinks are in frame. The loop is now 6.2 s (was 7.2 s).
+- **Edges that remain:** the outer edge of a shoulder or back where a person stands at the edge of the original vertical footage. Every head and face is inside the frame.
+
+**Mobile hero dimensions.**
+
+| | Before | After |
+|---|---|---|
+| Hero media frame (portrait phones) | 10:11, 390×429 at 390 px wide | **4:5, 390×488** (320×400 at 320; 430×538 at 430) |
+| Copy overlap onto the media | 80 px (`-mt-20`) | 48 px (`-mt-12`) |
+| Base readability ramp | navy up to 52% of the frame | navy up to 34% of the frame, below every head |
+| Headline top at 390×844 | 477 px | 568 px, starting 4 px below the media |
+| Credit | bottom-right, 92 px up | bottom-right, 64 px up, beside the pause control |
+| Pause control | top-right | bottom-right on portrait phones, over clothing, never a head; top-right elsewhere |
+
+The tablet-portrait frame (1:1) and the desktop panel keep their sizes.
+
+**QA.**
+- **Visual composition:** frames at 0.2, 1.5, 3.0, 4.5, 5.6 and 6.0 s, at 320×568, 360×800, 375×812, 390×844, 393×852, 430×932, 768×1024, 1024×768, 1280×800, 1440×900 and 1920×1080 (66 frames). Every frame was reviewed by eye for hair, forehead, face, chin, shoulders and body position.
+- **Face projection, same frames:** 110 face checks, 0 cut faces, 0 cut heads, 0 credits over a face, 0 pause-control-over-head.
+- **Site-wide crop audit (11 routes × 13 viewports):** 0 flags.
+- **Before/after boards:** `docs/review/hero-framing-before-after-1440.jpg` and `-390.jpg` show the speaker, listener and connection frames.
+- **Hero safeguards:**
+  - Poster stays until the first painted frame, with no black flash.
+  - The MP4 is requested only after `load`.
+  - Pauses offscreen and in background tabs; the pause button holds.
+  - Reduced motion and Data Saver: no video, 0 MP4 requests.
+  - Blocked autoplay: the poster stays, with no errors.
+  - CLS 0–0.0003, identical to the previous build at every size tested.
+- **Site checks:**
+  - Typecheck, lint and production build pass.
+  - 16 routes at 390 and 1440: 0 axe violations, 0 horizontal overflow, 0 broken images.
+  - Console: only the expected 404 on the test URL.
+  - All anchors resolve.
+- **Unchanged:** the credit ("Footage: The Upmixer event archive"), SEO/schema, copy, typography, CTAs, the green system, the navbar, the SMS strip, the collage and every other page.
+- **Weight:** each device now loads one 1.09 MB film (was 1.27 MB on phones, 1.15 MB elsewhere).
+

@@ -11,7 +11,8 @@ import { PauseIcon, PlayIcon } from "@/components/ui/Icons";
  * autoplay — the poster simply stays. Loading starts after the window `load`
  * event so the poster stays the LCP element. Each breakpoint plays its own cut
  * (the same media queries as the poster), and a rotation/resize across a
- * breakpoint swaps the cut so the framing always matches the container.
+ * breakpoint swaps the cut so the framing always matches the container. The film is
+ * shown whole (`object-fit: contain`): the frame never crops a person to fill itself.
  */
 export function HeroFilm({ film }: { film: HeroFilmT }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -101,7 +102,7 @@ export function HeroFilm({ film }: { film: HeroFilmT }) {
       <video
         ref={ref}
         key={variant.id}
-        className="hero-film absolute inset-0 h-full w-full object-cover"
+        className="hero-film absolute inset-0 h-full w-full object-contain"
         style={{ objectPosition: variant.poster.focus }}
         muted
         playsInline

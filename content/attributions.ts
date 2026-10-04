@@ -33,8 +33,7 @@ export interface PhotoAttribution {
 export const attributions: Record<string, PhotoAttribution> = {
   // Hero film stills (first frames of the recut). Footage context is client-supplied (V2.4):
   // "scenes from gatherings across the wider Upmixer event community".
-  "/media/hero/ta-hero-sizzle-phone-poster.jpg": { label: "Footage: The Upmixer event archive", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community. Credited to The Upmixer's event archive (pre-client pass, 2026-10-03) so Ten Ambassadors stays the primary brand; no event name or date is claimed, and the people shown are not presented as Ten Ambassadors participants." },
-  "/media/hero/ta-hero-sizzle-square-poster.jpg": { label: "Footage: The Upmixer event archive", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community. Credited to The Upmixer's event archive (pre-client pass, 2026-10-03) so Ten Ambassadors stays the primary brand; no event name or date is claimed, and the people shown are not presented as Ten Ambassadors participants." },
+  "/media/hero/ta-hero-film-45-poster.jpg": { label: "Footage: The Upmixer event archive", status: "confirmed", basis: "Frame from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35), described by the client as scenes from the wider Upmixer event community. Credited to The Upmixer's event archive (pre-client pass, 2026-10-03) so Ten Ambassadors stays the primary brand; no event name or date is claimed, and the people shown are not presented as Ten Ambassadors participants." },
   "/media/hero/ta-hero-landscape-a7r00711.jpg": {
     label: null,
     status: "pending",

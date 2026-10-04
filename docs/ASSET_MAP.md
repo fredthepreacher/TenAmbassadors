@@ -141,12 +141,16 @@ See `docs/GEO_10_POINT_REVISION_REPORT.md` → "Real-photo hero film".
 
 See `docs/PHOTO_ART_DIRECTION.md` for the full crop audit.
 
-**Hero recut.** The hero now uses `public/media/hero/ta-hero-sizzle-{phone,square}.mp4`, each with a matching `-poster.jpg`. Both are cut from `assets/recap-master/TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4`.
+**Hero recut.** Since the full-subject framing fix (2026-10-04), the hero uses one 4:5 cut. It is shown whole (`object-fit: contain`) at every breakpoint. All three files are cut from `assets/recap-master/TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4` by `scripts/hero_recut/render_v.py`:
+- `public/media/hero/ta-hero-film-45.mp4`
+- `ta-hero-film-45-poster.jpg`
+- `ta-hero-film-45-backdrop.jpg`
 
 | Cut | Size | Length | File size |
 |---|---|---|---|
-| Phone | 720×792 | 7.2 s | 1.27 MB |
-| Square | 720×720 | 7.2 s | 1.15 MB |
+| 4:5 (all portrait screens and desktop) | 608×760, crop only | 6.2 s | 1.09 MB |
+
+It replaced the phone (720×792) and square (720×720) `ta-hero-sizzle-*` cuts.
 
 - **Landscape still:** `ta-hero-landscape-a7r00711.jpg`, 1600×1100, a crop of A7R00711 with −6% exposure.
 - **Removed from `public/`:** the 2026-10-02 handoff film and its poster. The master is still in `assets/hero-film-master/`.

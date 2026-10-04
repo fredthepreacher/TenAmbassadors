@@ -64,8 +64,13 @@ export function Hero({
       <div className="hero-grid relative pt-[76px]">
         <div className="hero-media relative">
           <div className="absolute inset-0 overflow-hidden lg:top-4">
+            {/* Where the panel is wider than the 4:5 film (portrait tablets, desktop), a softened, darkened
+                plate of the film's own first frame fills the sides, so the film is never enlarged into a crop. */}
+            {film?.backdrop ? (
+              <div className="hero-backdrop" style={{ backgroundImage: `url(${film.backdrop})` }} aria-hidden="true" />
+            ) : null}
             {variants.length ? (
-              /* Art-directed poster: each breakpoint gets the first frame of its own film cut. */
+              /* Art-directed poster: each breakpoint gets the first frame of its own cut, shown whole (contain). */
               <picture>
                 {posters.slice(0, -1).map((p) => (
                   <source key={p.media} media={p.media} srcSet={p.srcSet} sizes={p.sizes} width={p.width} height={p.height} />
@@ -74,7 +79,7 @@ export function Hero({
                   {...posters[posters.length - 1].img}
                   alt={variants[variants.length - 1].poster.alt}
                   fetchPriority="high"
-                  className="hero-poster absolute inset-0 h-full w-full object-cover animate-settle"
+                  className="hero-poster absolute inset-0 h-full w-full animate-settle"
                 />
               </picture>
             ) : (
@@ -90,10 +95,10 @@ export function Hero({
               />
             )}
             {film ? <HeroFilm film={film} /> : null}
-            {/* Readability: a navy base ramp under the copy on phones/tablets; on desktop a narrow seam into the
-                copy column and a soft horizon into the pathway strip. Faces sit above both by composition. */}
+            {/* Readability: a short navy base ramp under the copy on phones/tablets; on desktop a narrow seam into
+                the copy column and a soft horizon into the pathway strip. Both stay below every head. */}
             <div
-              className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0.9)_20%,rgb(8_27_51/0.45)_36%,rgb(8_27_51/0)_52%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.5)_4%,rgb(8_27_51/0)_11%),linear-gradient(0deg,rgb(8_27_51/0.85)_0%,rgb(8_27_51/0.35)_6%,rgb(8_27_51/0)_15%)]"
+              className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-navy-900)_0%,rgb(8_27_51/0.86)_11%,rgb(8_27_51/0.35)_23%,rgb(8_27_51/0)_34%)] lg:bg-[linear-gradient(90deg,var(--color-navy-900)_0%,rgb(8_27_51/0.5)_4%,rgb(8_27_51/0)_11%),linear-gradient(0deg,rgb(8_27_51/0.85)_0%,rgb(8_27_51/0.35)_6%,rgb(8_27_51/0)_15%)]"
               aria-hidden="true"
             />
             {/* On phones the copy overlaps the photo's lower edge, so the label sits above it. */}
@@ -102,7 +107,7 @@ export function Hero({
           <span className="pointer-events-none absolute top-4 bottom-0 left-0 hidden w-px bg-gradient-to-b from-gold-400/0 via-gold-400/70 to-gold-400/0 lg:block" aria-hidden="true" />
         </div>
 
-        <div className="hero-copy relative z-10 -mt-20 pl-container pr-5 pb-12 sm:-mt-28 sm:pr-10 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:py-10 lg:pr-8 xl:py-16 xl:pr-14">
+        <div className="hero-copy relative z-10 -mt-12 pl-container pr-5 pb-12 sm:-mt-28 sm:pr-10 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:py-10 lg:pr-8 xl:py-16 xl:pr-14">
           <p className="eyebrow animate-rise text-[0.7rem] tracking-[0.14em] text-gold-300 [animation-delay:120ms] sm:text-eyebrow sm:tracking-[0.18em]">
             <RingOfTen className="size-5" strokeOpacity={0.6} highlight={0} />
             {eyebrow}

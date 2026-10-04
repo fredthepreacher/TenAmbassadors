@@ -41,6 +41,8 @@ export interface HeroFilm {
   variants: HeroFilmVariant[];
   /** Accessible description of what the film shows (decorative motion; the poster carries the alt text). */
   label: string;
+  /** Tiny softened plate laid under the contained film where the panel is wider than 4:5. */
+  backdrop?: string;
 }
 
 export interface VideoAsset {
