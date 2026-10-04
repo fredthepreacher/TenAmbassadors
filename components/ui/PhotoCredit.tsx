@@ -18,7 +18,7 @@ export function PhotoCredit({ src, className }: { src: string; className?: strin
   if (credit.status === "confirmed" && credit.label) {
     return (
       <small className={cn("photo-credit", corner, className)}>
-        <span className="sr-only">Photo source: </span>
+        <span className="sr-only">Source: </span>
         {credit.label}
       </small>
     );

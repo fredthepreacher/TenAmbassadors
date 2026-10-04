@@ -170,3 +170,44 @@ Real-device caveat: QA ran in Chromium. The MP4s were replaced by WebM stand-ins
 - **Production is unchanged:** `dpl_DCTgQusqxEx2pnecNT9TxMPCMPow`, `main` @ `68ea38e`.
 
 Production deployment, merging to `main`, aliases, DNS and the domain all wait for Freddie's explicit approval.
+
+## Pre-client micro-pass (2026-10-03)
+
+This is a small cleanup before Geo reviews the site. The approved George fidelity build is otherwise unchanged: no redesign, and no change to crops, layout, palette, copy, SEO/schema or video behavior.
+
+**Hero attribution.**
+- The visible credit changed from "Upmixer event recap" to **"Footage: The Upmixer event archive"** (phone and square stills, and the film).
+- **Why:** Ten Ambassadors stays the primary brand, and the credit now reads as historical source footage rather than an Upmixer page.
+- **Accuracy:** it rests on the client's own description of the footage, "scenes from gatherings across the wider Upmixer event community". It names no event or date, and it does not present the people shown as Ten Ambassadors participants.
+- **Position:** still bottom-right. The credit sits over the speaker's torso on phones, above the copy band, and on desktop it sits in the bottom-right corner. It never covers a face in any shot; this was checked on the poster at 13 viewports and on the playing film at 390, 430, 1440 and 1920.
+- **Screen readers:** the hidden prefix now reads "Source:" rather than "Photo source:", so footage credits read naturally.
+- **Scope:** the /network-partners recap film keeps "Upmixer event recap", since it sits beside its own descriptive caption.
+
+**Hero source quality.**
+- The current optimized cuts are unchanged. Nothing was upscaled, sharpened or AI-enhanced, and no face was manipulated.
+- **Higher-resolution source footage is recommended before final public launch, for maximum quality on Retina and other high-density displays.** The usable vertical column of the current source is 608 px wide. This does not block the client preview.
+
+**Repo cleanup.**
+- `.gitignore` now ignores `/handoff/` and `/Claude outputs/`:
+  - `handoff/` holds client source drops: the hero handoff zip and masters, and the V1.1 asset-pass zip. They are kept on the working machine, untouched, but never committed. The hero master already used in the repo stays in `assets/hero-film-master/`.
+  - `Claude outputs/` holds about 38 MB of earlier QA screenshots and audit exports. They are kept on disk but not committed.
+- `Claude outputs/ten-ambassadors-v1-preview.png` had been committed in V1. It is now untracked; the file stays on disk.
+- Nothing was deleted, and no other project files changed.
+- The intentional review package remains in `docs/review/`.
+
+**Final QA.**
+- **Build checks:** typecheck, lint and production build pass.
+- **Site audit (20 pages):** 0 broken links, all 44 anchors resolve, 0 horizontal overflow, 0 axe violations.
+- **Console (17 routes):** no errors; only the expected 404 on the test URL.
+- **Images and crops (11 routes × 13 viewports):** no broken images; 0 cut faces, 0 cut heads, 0 credits over faces.
+- **Hero:**
+  - Poster until the first painted frame, with no black flash.
+  - MP4 requested only after `load`.
+  - Pauses offscreen and in background tabs.
+  - Pause button present and holds.
+  - Reduced motion and Data Saver: no video, 0 MP4 requests.
+  - Blocked autoplay: the still stays, with no errors.
+  - CLS 0 to 0.0001.
+- **Unchanged:** SEO, schema and copy (no attribution data feeds the JSON-LD). There are still no sponsorship claims.
+
+**Preview.** See below. Production is still `dpl_DCTgQusqxEx2pnecNT9TxMPCMPow`, `main` @ `68ea38e`.

@@ -6,3 +6,9 @@ out
 next-env.d.ts
 .DS_Store
 .vercel
+
+# Local working folders — never part of the site or the repo:
+#   handoff/          client source drops (zips, masters) kept on the working machine
+#   Claude outputs/   QA screenshots and review exports written by Claude sessions
+/handoff/
+/Claude outputs/
