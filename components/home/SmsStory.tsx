@@ -173,7 +173,7 @@ export function SmsStory({
                   {s.line}
                 </h3>
                 <p className="relative mt-5 max-w-xl text-lede text-ink-2">{s.body}</p>
-                <Link href={s.href} className="link-reward relative mt-6 w-fit text-green-700">
+                <Link href={s.href} className="link-reward relative mt-6 w-fit text-gold-ink">
                   Explore {s.title.toLowerCase()}
                   <ArrowIcon className="link-arrow" />
                 </Link>

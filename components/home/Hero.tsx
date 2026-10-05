@@ -157,7 +157,7 @@ export function Hero({
             <li key={s.id} className={i > 0 ? "border-l border-paper/10" : ""}>
               <Link
                 href={`/#${s.id}-stage`}
-                className="group flex h-full flex-col gap-1 py-5 pr-3 pl-3 transition-colors hover:bg-green-500/15 sm:flex-row sm:items-baseline sm:gap-4 sm:py-6 sm:pl-6 first:pl-0 sm:first:pl-0"
+                className="group flex h-full flex-col gap-1 py-5 pr-3 pl-3 transition-colors hover:bg-gold-400/12 sm:flex-row sm:items-baseline sm:gap-4 sm:py-6 sm:pl-6 first:pl-0 sm:first:pl-0"
               >
                 <span className="text-xs font-semibold tracking-[0.14em] text-gold-300">{s.index}</span>
                 <span className="font-serif text-xl text-paper sm:text-2xl">{s.title}</span>

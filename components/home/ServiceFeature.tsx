@@ -74,7 +74,7 @@ export function ServiceFeature({
                   <p className="mt-1 text-sm text-paper/75">{f.body}</p>
                 </div>
                 <span
-                  className="h-px w-6 bg-paper/40 transition-all duration-500 group-hover:w-12 group-hover:bg-green-300"
+                  className="h-px w-6 bg-paper/40 transition-all duration-500 group-hover:w-12 group-hover:bg-gold-300"
                   aria-hidden="true"
                 />
               </li>

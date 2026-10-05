@@ -38,7 +38,7 @@ export default async function PathwayPage({ params }: Props) {
       />
       <PageHero eyebrow={p.eyebrow} title={p.title} intro={p.intro}>
         <nav aria-label="Breadcrumb" className="text-sm text-muted">
-          <Link href="/get-involved" className="underline underline-offset-4 hover:text-green-700">
+          <Link href="/get-involved" className="underline underline-offset-4 hover:text-gold-ink">
             Get involved
           </Link>{" "}
           / <span aria-current="page">{p.eyebrow}</span>

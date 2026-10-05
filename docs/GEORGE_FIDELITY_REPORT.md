@@ -1,5 +1,7 @@
 # George fidelity + premium visual polish: report
 
+> **Superseded in part (2026-10-05):** the green interaction system described here was replaced by gold at Geo's direction. See `docs/GOLD_CTA_CLIENT_OVERRIDE_REPORT.md`. The rest of this report is unchanged history.
+
 - **Branch:** `george-fidelity-visual-polish`, from production `68ea38e`
 - **Date:** 2026-10-03
 - **Status:** Vercel Preview only. Not merged, not deployed to production.

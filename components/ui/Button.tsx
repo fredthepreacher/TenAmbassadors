@@ -8,8 +8,10 @@ import { ArrowIcon } from "./Icons";
 /**
  * Button variants map to the interaction language in globals.css (.btn-*):
  * tactile 1px lift, controlled fill, arrow travel and a single light sweep.
- * Green is the interaction colour (George brief); `glass` is the translucent green for
- * blue/navy surfaces. Gold (`gold`, `night`) belongs to the Starlight Awards only.
+ * Gold is the interaction colour (Geo, 2026-10-05; it replaced George's green, which is retired, so do not
+ * bring green back): `primary` is solid gold on light surfaces, `glass` is translucent gold on blue/navy,
+ * `light` is the white button on royal, `outline` / `outline-light` are the secondary actions, and
+ * `gold` / `night` keep the Starlight Awards' evening palette.
  */
 export type ButtonVariant = "primary" | "glass" | "gold" | "outline" | "outline-light" | "light" | "night";
 
@@ -45,7 +47,7 @@ export function ButtonLink({
   );
 }
 
-/** Understated text link: a green underline extends and the arrow travels on hover. */
+/** Understated text link: a gold underline extends and the arrow travels on hover (gold-ink text on light). */
 export function TextLink({
   href,
   children,
@@ -57,7 +59,7 @@ export function TextLink({
   tone?: "dark" | "light" | "night";
   className?: string;
 }) {
-  const tones = { dark: "text-green-700", light: "text-paper", night: "text-champagne" };
+  const tones = { dark: "text-gold-ink", light: "text-paper", night: "text-champagne" };
   return (
     <Link href={href} className={cn("link-reward", tones[tone], className)}>
       <span>{children}</span>

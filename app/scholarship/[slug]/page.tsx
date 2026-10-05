@@ -131,7 +131,7 @@ export default async function ScholarshipDetail({ params }: Props) {
           {sections.map((sec) => (
             <li key={sec.id}>
               {/* 44px tap height (mobile parity) without changing the bar's look */}
-              <a href={`#${sec.id}`} className="inline-flex min-h-11 items-center px-1.5 text-ink-2 transition-colors hover:text-green-700">
+              <a href={`#${sec.id}`} className="inline-flex min-h-11 items-center px-1.5 text-ink-2 transition-colors hover:text-gold-ink">
                 {sec.label}
               </a>
             </li>

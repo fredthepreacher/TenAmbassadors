@@ -19,7 +19,7 @@ export default function ContactPage() {
           <div className="lg:col-span-4">
             <h2 className="eyebrow text-gold-ink">Direct contact</h2>
             <div className="mt-5 grid justify-items-start gap-3">
-              <a href={`mailto:${contact.email ?? inbox.address}`} className="font-semibold text-green-700 underline decoration-green-500/40 underline-offset-4 hover:decoration-green-500">
+              <a href={`mailto:${contact.email ?? inbox.address}`} className="font-semibold text-gold-ink underline decoration-gold-500/50 underline-offset-4 hover:decoration-gold-500">
                 {contact.email ?? inbox.address}
               </a>
               {!contact.email && inbox.interim ? (

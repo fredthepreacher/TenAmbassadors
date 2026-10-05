@@ -65,7 +65,7 @@ export default async function ServicePage() {
                     <p className="font-serif text-2xl text-navy-900">{it.title}</p>
                     {it.body ? <p className="mt-1 text-sm text-muted">{it.body}</p> : null}
                   </div>
-                  <span className="h-px w-6 bg-line-strong transition-all duration-500 group-hover:w-12 group-hover:bg-green-500" aria-hidden="true" />
+                  <span className="h-px w-6 bg-line-strong transition-all duration-500 group-hover:w-12 group-hover:bg-gold-500" aria-hidden="true" />
                 </li>
               ))}
             </ol>

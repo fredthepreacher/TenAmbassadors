@@ -52,7 +52,8 @@
   --color-navy-800: #0d2747;
   --color-navy-700: #15365f;
 
-  /* Gold — achievement, recognition, reward */
+  /* Gold — achievement, recognition, reward, and (Geo, 2026-10-05) the interaction colour: every button and
+     call to action uses this family. Pairings and contrast: docs/GOLD_CTA_CLIENT_OVERRIDE_REPORT.md. */
   --color-gold-200: #f1e3bd;
   --color-gold-300: #e6cf93;
   --color-gold-400: #d8b866;
@@ -60,17 +61,10 @@
   --color-gold-600: #a8862f;
   --color-gold-ink: #7a5b12; /* gold for text on light surfaces (AA) */
 
-  /* Green — interaction (George's brief: translucent green buttons and links).
-     Blue and ivory stay the foundation; green marks what you can act on. */
-  --color-green-50: #edf8f2;
-  --color-green-100: #d5efe2;
-  --color-green-200: #ace0c8;
-  --color-green-300: #7fd1ad;
-  --color-green-400: #3fb383;
-  --color-green-500: #1f9a6c;
-  --color-green-600: #137f58; /* solid buttons on light: white text 5.0:1 */
-  --color-green-700: #0e6a4a; /* links on ivory 6.1:1 */
-  --color-green-800: #0b553c;
+  /* Green — retired (Geo, 2026-10-05). The client replaced the green interaction system (George's brief) with
+     gold. The namespace is cleared so no green utility exists, Tailwind's default greens included: do not
+     reintroduce green for buttons, CTAs or links. */
+  --color-green-*: initial;
 
   /* Starlight — night environment */
   --color-night-950: #03060d;
@@ -306,12 +300,13 @@
   transform: translateX(120%);
 }
 
-/* Keep the two-tone focus ring visible over the button's own shadow. */
+/* Two-tone focus ring over the button's own shadow: the navy ring shows on light surfaces (17.9:1 on ivory),
+   the gold ring on navy, royal and night (5.6:1 on royal, 11.3:1 on navy, 13.2:1 on night). */
 .btn:focus-visible {
   outline: 2px solid transparent; /* keeps a ring in forced-colors mode */
   box-shadow:
     0 0 0 3px var(--color-navy-950),
-    0 0 0 6px var(--color-paper);
+    0 0 0 6px var(--color-gold-300);
 }
 
 .btn:active {
@@ -330,34 +325,52 @@
   transform: translateX(4px);
 }
 
-/* Primary on light surfaces: solid interaction green with a soft translucent glow. */
+/* Interaction colour: gold (Geo, 2026-10-05; replaces George's green). Hierarchy, from most to least weight:
+   primary (solid gold, light surfaces) · glass (translucent gold, navy/royal surfaces) · light (white on royal)
+   · outline / outline-light (gold edge) · gold / night (the Starlight evening palette, unchanged). */
+
+/* Primary on light surfaces: solid brand gold with navy text (8.1:1; 10.1:1 on hover) and a soft gold glow. */
 .btn-primary {
-  background: var(--color-green-600);
-  color: var(--color-paper);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.16) inset, 0 8px 24px -14px rgb(19 127 88 / 0.85);
+  background-color: var(--color-gold-500);
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0) 65%);
+  color: var(--color-navy-950);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.35) inset, 0 8px 24px -14px rgb(168 134 47 / 0.9);
 }
 
 .btn-primary:hover {
-  background: var(--color-green-700);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.16) inset, 0 14px 30px -14px rgb(19 127 88 / 0.95);
+  background-color: var(--color-gold-400);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.4) inset, 0 14px 30px -14px rgb(168 134 47 / 1);
 }
 
-/* Primary on blue/navy: translucent green glass (white text ≥ 6.8:1 on royal, 11.6:1 on navy). */
+/* Primary on blue/navy: gold glass. A light translucent gold fill, a gold edge, pale-gold text (≥ 5:1 on the
+   lightest royal surface, ≥ 9:1 on navy) and a gold arrow, turning champagne on hover. A heavier translucent gold
+   reads grey-olive over blue, so the gold lives in the edge, the text, the arrow and the glow. */
 .btn-glass {
-  border: 1px solid rgb(127 209 173 / 0.7);
-  background: rgb(31 154 108 / 0.4);
-  color: var(--color-paper);
+  border: 1px solid rgb(230 207 147 / 0.95);
+  background-color: rgb(199 163 75 / 0.08);
+  background-image: linear-gradient(180deg, rgb(246 236 210 / 0.07), rgb(246 236 210 / 0) 70%);
+  color: var(--color-gold-200);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.14) inset, 0 10px 28px -16px rgb(31 154 108 / 0.9);
+  box-shadow: 0 1px 0 rgb(246 236 210 / 0.25) inset, 0 12px 30px -16px rgb(216 184 102 / 0.75);
+}
+
+.btn-glass .btn-arrow {
+  color: var(--color-gold-300);
 }
 
 .btn-glass:hover {
-  border-color: var(--color-green-200);
-  background: rgb(31 154 108 / 0.56);
+  border-color: var(--color-champagne);
+  background-color: rgb(199 163 75 / 0.14);
+  color: var(--color-champagne);
+  box-shadow: 0 1px 0 rgb(246 236 210 / 0.3) inset, 0 14px 34px -14px rgb(216 184 102 / 0.95);
 }
 
-/* Gold is now reserved for the Starlight Awards (the evening world). */
+.btn-glass:hover .btn-arrow {
+  color: var(--color-champagne);
+}
+
+/* Starlight Awards (the evening world): brighter gold on the night palette. Unchanged by the gold CTA pass. */
 .btn-gold {
   background: var(--color-gold-400);
   color: var(--color-navy-950);
@@ -369,34 +382,38 @@
   box-shadow: 0 16px 34px -16px rgb(199 163 75 / 1);
 }
 
+/* Secondary on light surfaces: gold edge, gold-ink text (≥ 4.6:1 on ivory, paper and stone, hover included). */
 .btn-outline {
-  border: 1px solid rgb(19 127 88 / 0.45);
-  background: rgb(31 154 108 / 0.06);
-  color: var(--color-green-700);
+  border: 1px solid rgb(168 134 47 / 0.8);
+  background: rgb(199 163 75 / 0.08);
+  color: var(--color-gold-ink);
 }
 
 .btn-outline:hover {
-  border-color: var(--color-green-600);
-  background: rgb(31 154 108 / 0.12);
+  border-color: var(--color-gold-600);
+  background: rgb(199 163 75 / 0.16);
 }
 
+/* Secondary on navy/royal: white text, the edge and a soft fill turn gold on hover. */
 .btn-outline-light {
   border: 1px solid rgb(255 255 255 / 0.4);
   color: var(--color-paper);
 }
 
 .btn-outline-light:hover {
-  border-color: var(--color-green-200);
-  background: rgb(63 179 131 / 0.14);
+  border-color: var(--color-gold-300);
+  background: rgb(230 207 147 / 0.14);
 }
 
+/* White button on the royal chapters: gold-ink text (6.3:1), champagne on hover (5.4:1). */
 .btn-light {
   background: var(--color-paper);
-  color: var(--color-green-800);
+  color: var(--color-gold-ink);
+  box-shadow: 0 10px 28px -18px rgb(4 14 30 / 0.55);
 }
 
 .btn-light:hover {
-  background: var(--color-green-50);
+  background: var(--color-champagne);
 }
 
 .btn-night {
@@ -409,7 +426,7 @@
   background: rgb(233 205 134 / 0.1);
 }
 
-/* Text links: a green underline extends on hover, the arrow travels. */
+/* Text links: a gold underline extends on hover, the arrow travels (gold-500 on light, gold-300 on dark). */
 .link-reward {
   position: relative;
   display: inline-flex;
@@ -438,7 +455,12 @@
 .link-reward:focus-visible::after {
   right: 0;
   opacity: 1;
-  background: var(--color-green-500);
+  background: var(--link-accent, var(--color-gold-500));
+}
+
+.link-reward.text-paper,
+.link-reward.text-champagne {
+  --link-accent: var(--color-gold-300);
 }
 
 .link-reward .link-arrow {

@@ -173,7 +173,7 @@ export default async function AboutPage() {
           <div className="grid gap-8 lg:col-span-6 lg:col-start-7" data-reveal>
             <p className="text-lede text-ink-2">{about.origin}</p>
             <p className="text-ink-2">
-              The <Link href="/starlight" className="font-semibold text-green-700 underline decoration-green-500/40 underline-offset-4 hover:decoration-green-500">Starlight Awards</Link> are
+              The <Link href="/starlight" className="font-semibold text-gold-ink underline decoration-gold-500/50 underline-offset-4 hover:decoration-gold-500">Starlight Awards</Link> are
               Ten Ambassadors&rsquo; signature annual celebration of leadership and impact. It is one program within the organization, not the
               whole of it, with Upmixer Inc. as event-production and experience partner.
             </p>
