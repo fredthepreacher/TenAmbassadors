@@ -7,10 +7,17 @@ import { VideoFeature } from "@/components/ui/VideoFeature";
 import { OutlineNumeral } from "@/components/ui/Motifs";
 import { getScholarship, getScholarships } from "@/lib/content";
 import { breadcrumbJsonLd, jsonLd, pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 /**
- * Reusable scholarship detail template. Every section renders real content
- * when supplied, and a labelled placeholder when it is still pending.
+ * Reusable scholarship detail template (more scholarships will use it).
+ *
+ * Geo meeting revision (2026-10-04): below the film, a section renders ONLY when it has real,
+ * approved content (story, legacy, details, recipients, an open application). Nothing unfinished is
+ * shown to visitors: no empty story blocks, no recipients, metrics, award amounts or timelines that
+ * do not exist yet. The data model (content/scholarships.ts) and the sections are kept, so filling a
+ * field brings its section back with no code change. Reviewers can still see every section with
+ * NEXT_PUBLIC_SHOW_REVIEW_NOTES=1.
  */
 export const dynamicParams = false;
 
@@ -31,19 +38,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-const statusLabel = { "in-development": "In development", open: "Applications open", closed: "Applications closed" } as const;
+const statusLabel = { "in-development": "Named scholarship", open: "Applications open", closed: "Applications closed" } as const;
 
 export default async function ScholarshipDetail({ params }: Props) {
   const s = await getScholarship((await params).slug);
   if (!s) notFound();
 
+  const review = site.showPlaceholderNotes;
+  const has = {
+    story: Boolean(s.story) || review,
+    legacy: Boolean(s.legacy) || review,
+    details: s.facts.some((f) => f.value) || Boolean(s.timeline) || review,
+    recipients: Boolean(s.recipients?.length) || review,
+    apply: s.apply.available || review,
+  };
   const sections = [
     { id: "story", label: "Story" },
     { id: "legacy", label: "Legacy" },
     { id: "details", label: "Details" },
     { id: "recipients", label: "Recipients" },
     { id: "apply", label: "Apply" },
-  ];
+  ].filter((sec) => has[sec.id as keyof typeof has]);
+  let n = 0;
 
   return (
     <>
@@ -109,6 +125,7 @@ export default async function ScholarshipDetail({ params }: Props) {
         ) : null}
       </section>
 
+      {sections.length > 1 ? (
       <nav aria-label="On this page" className="sticky top-[76px] z-30 border-b border-line bg-ivory/95 backdrop-blur">
         <ul className="no-scrollbar container-x flex gap-2 overflow-x-auto text-sm font-medium whitespace-nowrap sm:gap-4">
           {sections.map((sec) => (
@@ -121,21 +138,27 @@ export default async function ScholarshipDetail({ params }: Props) {
           ))}
         </ul>
       </nav>
+      ) : null}
 
       <div className="bg-ivory">
-        <DetailSection id="story" eyebrow="The story" title="Why this scholarship exists" index={1}>
-          {s.story ? <p className="text-lede">{s.story}</p> : <PendingBlock title="Scholarship story">The story behind the scholarship — in the words of those closest to it — will be shared here.</PendingBlock>}
+        {has.story ? (
+        <DetailSection id="story" eyebrow="The story" title="Why this scholarship exists" index={++n}>
+          {s.story ? <p className="text-lede">{s.story}</p> : <PendingBlock title="Scholarship story">The story behind the scholarship, in the words of those closest to it, will be shared here.</PendingBlock>}
         </DetailSection>
+        ) : null}
 
-        <DetailSection id="legacy" eyebrow="Legacy" title={`Remembering ${s.honoree.name}`} index={2}>
+        {has.legacy ? (
+        <DetailSection id="legacy" eyebrow="Legacy" title={`Remembering ${s.honoree.name}`} index={++n}>
           {s.legacy ? (
             <p className="text-lede">{s.legacy}</p>
           ) : (
             <PendingBlock title="Legacy & biography">A tribute to {s.honoree.name}&rsquo;s life, leadership and influence is being prepared with those closest to him.</PendingBlock>
           )}
         </DetailSection>
+        ) : null}
 
-        <DetailSection id="details" eyebrow="Scholarship details" title="Eligibility, award, and timeline" index={3}>
+        {has.details ? (
+        <DetailSection id="details" eyebrow="Scholarship details" title="Eligibility, award, and timeline" index={++n}>
           {s.facts.some((f) => f.value) ? (
           <dl className="grid border-t border-line-strong sm:grid-cols-2">
             {s.facts.filter((f) => f.value).map((f) => (
@@ -164,14 +187,18 @@ export default async function ScholarshipDetail({ params }: Props) {
             )}
           </div>
         </DetailSection>
+        ) : null}
 
-        <DetailSection id="recipients" eyebrow="Recipients & impact" title="Scholars" index={4}>
+        {has.recipients ? (
+        <DetailSection id="recipients" eyebrow="Recipients & impact" title="Scholars" index={++n}>
           {s.recipients && s.recipients.length > 0 ? null : (
             <PendingBlock title="Scholarship recipients">Recipients and their stories will be featured here as scholarships are awarded.</PendingBlock>
           )}
         </DetailSection>
+        ) : null}
 
-        <DetailSection id="apply" eyebrow="Apply" title="Applications" index={5}>
+        {has.apply ? (
+        <DetailSection id="apply" eyebrow="Apply" title="Applications" index={++n}>
           <div className="flex flex-col items-start gap-8">
             <ActionButton action={s.apply} />
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
@@ -182,6 +209,17 @@ export default async function ScholarshipDetail({ params }: Props) {
             </div>
           </div>
         </DetailSection>
+        ) : (
+          /* Until the scholarship is open, the page closes with the two truthful next steps. */
+          <section aria-label="Support and more scholarships" className="py-14 md:py-20">
+            <div className="container-x flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+              <ButtonLink href="/get-involved#support" variant="outline" arrow>
+                Support this scholarship
+              </ButtonLink>
+              <TextLink href="/scholarship">All scholarships</TextLink>
+            </div>
+          </section>
+        )}
       </div>
     </>
   );

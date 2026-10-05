@@ -28,11 +28,28 @@ export const site = {
     url: null as string | null,
   },
 
-  /** PENDING: contact details must come from the client. */
+  /**
+   * Contact details. `email` is Ten Ambassadors' OWN address and is not created yet (PENDING from Geo).
+   * Until it exists, `inbox` (below) is the address visitors and forms use.
+   */
   contact: {
     email: null as string | null,
     phone: null as string | null,
     address: null as string | null,
+  },
+
+  /**
+   * Where messages and form submissions go — ONE setting for the whole site (forms, newsletter,
+   * footer, contact page, legal pages).
+   *
+   * Interim (Geo meeting, 2026-10-04): The Upmixer's inbox, info@theupmixer.com, until Ten Ambassadors
+   * has its own address. To switch: set NEXT_PUBLIC_FORM_RECIPIENT in Vercel (or edit the fallback
+   * below) and set `interim` to false. See docs/GEO_MEETING_REVISION_REPORT.md → "Contact and forms".
+   */
+  inbox: {
+    address: process.env.NEXT_PUBLIC_FORM_RECIPIENT?.trim() || "info@theupmixer.com",
+    /** True while the address belongs to The Upmixer rather than Ten Ambassadors. */
+    interim: !process.env.NEXT_PUBLIC_FORM_RECIPIENT?.trim(),
   },
 
   /**
@@ -55,13 +72,14 @@ export const site = {
   nonprofitDisclosure: null as string | null,
 
   /**
-   * Intake (forms → CRM). OFF until a backend / CRM destination is approved.
-   * See lib/forms.ts and docs/FORMS_CRM_ANALYTICS.md.
+   * Intake. With no `endpoint`, every form is delivered by email: submitting opens the visitor's
+   * email app with the message addressed to `inbox.address` (no server, no secrets, nothing stored).
+   * When a server route or CRM is approved, set NEXT_PUBLIC_INTAKE_ENDPOINT (e.g. "/api/intake") and
+   * forms POST JSON there instead. See lib/forms.ts and docs/FORMS_CRM_ANALYTICS.md.
    */
   intake: {
-    enabled: false,
-    /** e.g. "/api/intake" once a route handler + CRM adapter is approved. */
-    endpoint: null as string | null,
+    enabled: true,
+    endpoint: (process.env.NEXT_PUBLIC_INTAKE_ENDPOINT?.trim() || null) as string | null,
   },
 
   /**

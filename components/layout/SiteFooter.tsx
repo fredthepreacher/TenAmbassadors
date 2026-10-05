@@ -17,7 +17,9 @@ export function SiteFooter({
   other?: ContactDestination[];
 }) {
   const year = new Date().getFullYear();
-  const { contact, nonprofitDisclosure } = site;
+  const { contact, inbox, nonprofitDisclosure } = site;
+  const email = contact.email ?? inbox.address;
+  const liveSocial = social.filter((s) => s.url);
 
   return (
     <footer className="bg-navy-950 text-paper" id="newsletter">
@@ -52,36 +54,22 @@ export function SiteFooter({
           <h2 className="eyebrow text-gold-300">Connect</h2>
           <div className="mt-5 grid justify-items-start gap-4">
             {/* Geo point 10: email, social and other destinations all come from content/navigation.ts + lib/site.ts. */}
-            {contact.email ? (
-              <a href={`mailto:${contact.email}`} className="connect-chip text-paper/90">
-                <MailGlyph />
-                {contact.email}
-              </a>
-            ) : (
-              <span className="connect-chip" aria-disabled="true">
-                <MailGlyph />
-                Email
-                <span className="sr-only"> (address coming soon)</span>
-              </span>
-            )}
-            <ul className="flex flex-wrap gap-2" aria-label="Social media">
-              {social.map((s) =>
-                s.url ? (
-                  <li key={s.platform}>
-                    <a href={s.url} target="_blank" rel="noopener noreferrer" className="connect-chip">
-                      {s.platform}
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  </li>
-                ) : (
-                  <li key={s.platform}>
-                    <span className="connect-chip" aria-disabled="true">
-                      {s.platform}
-                      <span className="sr-only"> (link coming soon)</span>
-                    </span>
-                  </li>
-                ),
-              )}
+            {/* Interim: until Ten Ambassadors has its own address, the chip uses site.inbox (The Upmixer's inbox). */}
+            <a href={`mailto:${email}`} className="connect-chip text-paper/90">
+              <MailGlyph />
+              {contact.email ? contact.email : "Email us"}
+            </a>
+            {/* Social accounts appear only once Geo supplies verified URLs (content/navigation.ts). */}
+            {liveSocial.length || other.length ? (
+            <ul className="flex flex-wrap gap-2" aria-label="Social media and other links">
+              {liveSocial.map((s) => (
+                <li key={s.platform}>
+                  <a href={s.url!} target="_blank" rel="noopener noreferrer" className="connect-chip">
+                    {s.platform}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
               {other.map((o) => (
                 <li key={o.href}>
                   <a href={o.href} className="connect-chip" {...(/^https?:/.test(o.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
@@ -90,6 +78,7 @@ export function SiteFooter({
                 </li>
               ))}
             </ul>
+            ) : null}
             {!contact.email || social.some((s) => !s.url) ? <PendingNote tone="dark">Connection links pending from the client</PendingNote> : null}
           </div>
         </div>

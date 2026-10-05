@@ -40,8 +40,10 @@ const box: Record<Tone, string> = {
 const label: Record<Tone, string> = { light: "text-gold-ink", dark: "text-gold-300", night: "text-starlight" };
 
 /**
- * "In preparation" card for content that is being established (founding story, leadership,
- * honorees…). Polished, truthful launch-stage presentation — not a placeholder box.
+ * Launch-stage card for content that is being established (honorees, sponsorship, volunteer roles…):
+ * a title and one polished, truthful sentence. Since the Geo meeting revision (2026-10-04) the public
+ * build shows no "In preparation" or "pending" label; reviewers (NEXT_PUBLIC_SHOW_REVIEW_NOTES=1)
+ * still see one.
  */
 export function PendingBlock({
   title,
@@ -56,8 +58,10 @@ export function PendingBlock({
 }) {
   return (
     <div className={cn("rounded-2xl border p-6 md:p-8", box[tone], className)}>
-      <p className={cn("text-[0.7rem] font-semibold tracking-[0.18em] uppercase", label[tone])}>In preparation</p>
-      <p className="mt-3 font-serif text-h3/tight">{title}</p>
+      {site.showPlaceholderNotes ? (
+        <p className={cn("mb-3 text-[0.7rem] font-semibold tracking-[0.18em] uppercase", label[tone])}>In preparation</p>
+      ) : null}
+      <p className="font-serif text-h3/tight">{title}</p>
       {children ? <div className="mt-3 max-w-prose text-[0.95rem] opacity-90">{children}</div> : null}
       {site.showPlaceholderNotes ? (
         <p className="mt-4 text-xs font-semibold tracking-[0.14em] uppercase opacity-70">Placeholder · content pending</p>

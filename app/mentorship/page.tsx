@@ -23,9 +23,9 @@ import { pageMetadata } from "@/lib/seo";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 
 export const metadata = pageMetadata({
-  title: "Professional Mentorship for Emerging Leaders",
+  title: "Professional Mentorship for Young Professionals",
   description:
-    "Ten Ambassadors mentorship connects emerging leaders with experienced professionals for guidance and lasting relationships. Become a mentor or learn more.",
+    "Ten Ambassadors mentorship connects emerging young professionals with experienced, accomplished professionals for guidance, perspective, access and lasting relationships.",
   path: "/mentorship",
 });
 
@@ -84,7 +84,7 @@ export default async function MentorshipPage() {
             Accomplished professionals, <em className="text-royal-700">many fields.</em>
           </>
         }
-        intro="Ten Ambassadors intends to connect emerging leaders with mentors across:"
+        intro="Ten Ambassadors intends to connect emerging young professionals with mentors across:"
         areas={mentorshipIndustries}
       />
       <AreaList

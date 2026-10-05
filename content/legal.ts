@@ -6,12 +6,12 @@ import { site } from "@/lib/site";
  *
  * Written in plain language from what this website actually does today
  * (verified in code, 2026-10-02):
- * - forms are previews: submission is disabled and nothing is sent or stored
- *   (site.intake.enabled = false; the newsletter has no provider);
+ * - forms are delivered by email: sending opens the visitor's own email app with the message
+ *   addressed to site.inbox (interim: info@theupmixer.com, handled by The Upmixer team); the
+ *   website itself sends and stores nothing (no form backend, no newsletter provider);
  * - no analytics, advertising or tracking scripts, and no cookies set by the site;
  * - fonts, images and films are served from this site, with no third-party embeds;
- * - contact details are pending, so the "how to reach us" lines point to the
- *   Contact page until an address is supplied.
+ * - Ten Ambassadors' own address is pending, so the "how to reach us" lines use the interim inbox.
  *
  * Deliberately NOT claimed: security standards, retention periods,
  * data-selling statements, regulatory compliance or accessibility certification.
@@ -21,7 +21,7 @@ import { site } from "@/lib/site";
 
 const contactLine = site.contact.email
   ? `You can reach us at ${site.contact.email}.`
-  : "Contact details are being finalized. Until they are published, please use the Contact page on this site.";
+  : `You can reach us at ${site.inbox.address}. Until Ten Ambassadors has its own address, messages are handled by The Upmixer team.`;
 
 export const legalDocs: LegalDoc[] = [
   {
@@ -29,7 +29,7 @@ export const legalDocs: LegalDoc[] = [
     title: "Privacy",
     summary: "What information this website collects, how it is used, and how to reach us about it.",
     status: "draft",
-    updated: "2026-10-02",
+    updated: "2026-10-04",
     sections: [
       {
         heading: "The short version",
@@ -40,8 +40,8 @@ export const legalDocs: LegalDoc[] = [
       {
         heading: "Forms on this site",
         paragraphs: [
-          "Some pages show forms, such as applications, nominations, partner inquiries and newsletter sign-up. These forms are previews while our intake system is being set up: they cannot be submitted, and nothing you type into them is sent or stored.",
-          "When forms open, this page will be updated before they go live. It will explain what each form collects, why, who receives it and how to ask us to update or delete it.",
+          "Some pages have forms, such as applications, nominations, partner inquiries and newsletter sign-up. When you send one, your own email app opens with your message already written and addressed to us. Nothing is sent until you press send in your email app, and this website does not store what you type.",
+          `Messages go to ${site.inbox.address}. Until Ten Ambassadors has its own address, they are handled by The Upmixer team. We use what you send only to reply to you and to follow up on the request you made. To ask us to update or delete a message, email the same address.`,
         ],
       },
       {
@@ -78,7 +78,7 @@ export const legalDocs: LegalDoc[] = [
     title: "Terms of Use",
     summary: "The simple ground rules for using this website.",
     status: "draft",
-    updated: "2026-10-02",
+    updated: "2026-10-04",
     sections: [
       {
         heading: "About this website",
@@ -129,7 +129,7 @@ export const legalDocs: LegalDoc[] = [
     title: "Accessibility",
     summary: "Our commitment to a website everyone can use, and how to tell us when something gets in your way.",
     status: "draft",
-    updated: "2026-10-02",
+    updated: "2026-10-04",
     sections: [
       {
         heading: "Our commitment",

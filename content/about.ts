@@ -12,14 +12,14 @@ export const about = {
     "A leadership and impact organization built around Scholarship, Mentorship and Service, using community, partnerships and shared experiences to develop and connect the next generation of leaders.",
   /** [brief] proposed mission */
   mission:
-    "Ten Ambassadors connects emerging and established leaders through scholarship, mentorship, service, shared experiences, and professional engagement to strengthen communities and prepare the next generation of leaders.",
+    "Ten Ambassadors connects emerging young professionals and established leaders through scholarship, mentorship, service, shared experiences and professional engagement to strengthen communities and prepare the next generation of leaders.",
   /** [brief] supporting direction */
   vision:
     "Through Scholarship, Mentorship and Service, Ten Ambassadors brings together leaders, organizations and communities committed to preparing the next generation for meaningful impact.",
   /** [brief] what it is not */
   notList: ["an awards show", "a networking club", "a scholarship fund alone", "an event company", "a members-only social club"],
   /** Historical relationship — kept accurate and secondary. */
-  origin: `${site.name} is historically connected to ${site.parentOrg.name}, an established professional networking, events and marketing organization. The two are distinct brands, intentionally connected — ${site.name} carries its own identity and nonprofit-facing mission.`,
+  origin: `${site.name} is historically connected to ${site.parentOrg.name}, an established professional networking, events and marketing organization. The two are distinct brands, intentionally connected: ${site.name} carries its own identity and nonprofit-facing mission.`,
   /** PENDING: the full founding story. */
   story: null as string | null,
   values: site.coreMessage as readonly string[],
@@ -29,7 +29,7 @@ export const about = {
 export const whyTen = {
   eyebrow: "Why “Ten”?",
   title: "Ten founding leaders. One growing community.",
-  body: "Ten founding Ambassadors represent the leadership and impact philosophy of the organization — while the wider Ten Ambassadors community is designed to grow far beyond them.",
+  body: "Ten founding Ambassadors represent the leadership and impact philosophy of the organization, while the wider Ten Ambassadors community is designed to grow far beyond them.",
   notTitle: "Ambassadors are not honorary titles.",
   qualities: ["Scholarship", "Mentorship", "Service", "Leadership", "Community impact", "Collaboration"],
   note: "The ten founding Ambassadors will be introduced as they are confirmed.",
@@ -42,7 +42,7 @@ export const ecosystem: EcosystemRole[] = [
   { id: "board", title: "Board & Leadership", summary: "Governance and stewardship of the mission.", href: "/about#leadership" },
   { id: "network", title: "Network Partners", summary: "Organizations that collaborate as a network of networks.", href: "/network-partners" },
   { id: "host", title: "Institutional Host Committee", summary: "Institutions that help convene and host.", href: "/about#ecosystem" },
-  { id: "mentors", title: "Mentors", summary: "Accomplished professionals guiding emerging leaders.", href: "/get-involved/mentor" },
+  { id: "mentors", title: "Mentors", summary: "Accomplished professionals guiding emerging young professionals.", href: "/get-involved/mentor" },
   { id: "volunteers", title: "Volunteers", summary: "People who turn leadership into action.", href: "/get-involved/volunteer" },
   { id: "sponsors", title: "Sponsors & Corporate Partners", summary: "Organizations investing in the mission.", href: "/partners" },
 ];
@@ -68,7 +68,7 @@ export const horizon: HorizonPhase[] = [
 
 /** [brief] approved global direction */
 export const globalDirection =
-  "Our communities are increasingly connected across industries, generations, cultures and borders. Ten Ambassadors is being built to prepare leaders for that reality — creating opportunities for mentorship, service, professional engagement and shared experiences that strengthen relationships locally while laying the foundation for future global collaboration.";
+  "Our communities are increasingly connected across industries, generations, cultures and borders. Ten Ambassadors is being built to prepare young professionals for that reality, creating opportunities for mentorship, service, professional engagement and shared experiences that strengthen relationships locally while laying the foundation for future global collaboration.";
 
 /** PENDING: Leadership / Founding Ambassadors / Board — names, roles, photos, bios. */
 export const leadership: Leader[] = [];
@@ -87,11 +87,11 @@ export interface Faq {
 export const faqs: Faq[] = [
   {
     q: "What is Ten Ambassadors?",
-    a: "Ten Ambassadors is a leadership and impact organization being established around three pillars — Scholarship, Mentorship and Service — using community, partnerships and shared experiences to develop and connect the next generation of leaders.",
+    a: "Ten Ambassadors is a leadership and impact organization being established around three pillars: Scholarship, Mentorship and Service. It uses community, partnerships and shared experiences to develop and connect the next generation of leaders.",
   },
   {
     q: "What do Scholarship, Mentorship and Service mean here?",
-    a: "They form one connected pathway. Scholarship opens the door to opportunity; Mentorship connects emerging leaders with people who have walked the road before; Service turns what leaders have gained into opportunity for others — and the cycle begins again.",
+    a: "They form one connected pathway. Scholarship opens the door to opportunity; Mentorship connects emerging young professionals with people who have walked the road before; Service turns what they have gained into opportunity for others, and the cycle begins again.",
     link: { label: "The SMS pathway", href: "/#sms" },
   },
   {
@@ -106,16 +106,16 @@ export const faqs: Faq[] = [
   },
   {
     q: "How can I become a mentor?",
-    a: "Ten Ambassadors intends to connect emerging leaders with accomplished professionals across business, finance, technology, healthcare, public service, law, media, sports and more. The mentor application is previewed on the Become a Mentor page and opens once the intake system is approved.",
+    a: "Ten Ambassadors intends to connect emerging young professionals with accomplished professionals across business, finance, technology, healthcare, public service, law, media, sports and more. Mentors can apply on the Become a Mentor page.",
     link: { label: "Become a Mentor", href: "/get-involved/mentor" },
   },
   {
     q: "What is a Network Partner, and how can an organization take part?",
-    a: "A Network Partner is an organization that already develops leaders — a professional association, alumni group, university, fraternity or sorority, young-professional group or community organization — collaborating with Ten Ambassadors as a network of networks. Corporations and foundations can explore sponsorship and partnership pathways. Founding partners will be introduced as partnerships are confirmed.",
+    a: "A Network Partner is an organization that already develops leaders, such as a professional association, alumni group, university, fraternity or sorority, young-professional group or community organization, collaborating with Ten Ambassadors as a network of networks. Corporations and foundations can explore sponsorship and partnership pathways. Founding partners will be introduced as partnerships are confirmed.",
     link: { label: "Network Partners", href: "/network-partners" },
   },
   {
-    q: "What are the Starlight Awards — and are they the whole organization?",
+    q: "What are the Starlight Awards, and are they the whole organization?",
     a: "Starlight is Ten Ambassadors’ signature annual celebration of leadership and impact. It is one program, not the whole organization. Upmixer Inc. is its event-production and experience partner.",
     link: { label: "Starlight Awards", href: "/starlight" },
   },
@@ -130,12 +130,12 @@ export const faqs: Faq[] = [
   },
   {
     q: "Does Ten Ambassadors operate internationally?",
-    a: "Not yet. Its global outlook is a development horizon — potential exchanges, international speakers and partnerships in future years — not a record of current operations.",
+    a: "Not yet. Its global outlook is a development horizon of potential exchanges, international speakers and partnerships in future years, not a record of current operations.",
     link: { label: "Development horizon", href: "/about#vision" },
   },
   {
     q: "How can I support the work?",
-    a: "Nominate a leader, mentor, volunteer, bring your organization in as a Network Partner or sponsor, or support scholarship, mentorship and service. Online giving is being set up. Ten Ambassadors is being established, and its legal and tax-exempt status has not yet been finalized.",
+    a: "Nominate a leader, mentor, volunteer, bring your organization in as a Network Partner or sponsor, or support scholarship, mentorship and service. Online giving will open soon. Ten Ambassadors is being established, and its legal and tax-exempt status has not yet been finalized.",
     link: { label: "Ways to get involved", href: "/get-involved" },
   },
 ];

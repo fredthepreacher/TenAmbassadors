@@ -26,10 +26,10 @@ export const purpose = {
   eyebrow: "What is Ten Ambassadors?",
   /** [draft] headline + [brief] positioning */
   statement:
-    "Talent is everywhere. Access is not. Ten Ambassadors is a leadership and impact organization being established around Scholarship, Mentorship and Service — using community, partnerships and shared experiences to develop and connect the next generation of leaders.",
+    "Talent is everywhere. Access is not. Ten Ambassadors is a leadership and impact organization being established around Scholarship, Mentorship and Service, using community, partnerships and shared experiences to develop and connect the next generation of leaders.",
   /** [brief] proposed mission */
   origin:
-    "Our mission: to connect emerging and established leaders through scholarship, mentorship, service, shared experiences and professional engagement — strengthening communities and preparing the next generation of leaders.",
+    "Our mission: to connect emerging young professionals and established leaders through scholarship, mentorship, service, shared experiences and professional engagement, strengthening communities and preparing the next generation of leaders.",
   /** [brief] core message */
   themes: [...site.coreMessage],
 };
@@ -41,7 +41,7 @@ export const smsStages: SmsStage[] = [
     index: "01",
     title: "Scholarship",
     line: "Opportunity opens the door.",
-    body: "Scholarship removes barriers — so talent and ambition can meet education, access, and possibility.",
+    body: "Scholarship removes barriers, so talent and ambition can meet education, access and possibility.",
     href: "/scholarship",
   },
   {
@@ -49,7 +49,7 @@ export const smsStages: SmsStage[] = [
     index: "02",
     title: "Mentorship",
     line: "Someone helps you walk through it.",
-    body: "Mentorship connects emerging leaders with people who have walked the road before — guidance, perspective, and relationships that last.",
+    body: "Mentorship connects emerging young professionals with experienced, accomplished professionals for guidance, perspective, access and relationships that last.",
     href: "/mentorship",
   },
   {
@@ -57,7 +57,7 @@ export const smsStages: SmsStage[] = [
     index: "03",
     title: "Service",
     line: "You hold the door open for someone else.",
-    body: "Service turns development into impact — each ambassador creating opportunity for the next.",
+    body: "Service turns development into impact, creating opportunity for the next person and the next generation through service to the community.",
     href: "/service",
   },
 ];
@@ -69,7 +69,7 @@ export const smsIntro = {
   /** [draft] */
   finale: {
     line: "The cycle begins again.",
-    body: "Every ambassador who is served becomes someone who serves — and a new door opens for the next leader.",
+    body: "Those who are served become those who serve, and a new door opens for the next generation.",
   },
 };
 
@@ -78,10 +78,10 @@ export const mentorshipFeature = {
   /** [source — V1 baseline copy] */
   title: "Leadership grows through access to people who have walked the road before.",
   /** [draft] — the network relationship is supplied context (The Upmixer). */
-  body: "Ten Ambassadors intends to connect emerging leaders with accomplished professionals across business, finance, technology, healthcare, public service, law, media, sports and more — people who can offer what no classroom can: perspective, introductions, and honest guidance.",
+  body: "Ten Ambassadors intends to connect emerging young professionals with accomplished professionals across business, finance, technology, healthcare, public service, law, media, sports and more: people who can offer what no classroom can, including perspective, introductions and honest guidance.",
   pillars: [
     { title: "Access", body: "Rooms, conversations, and introductions that are hard to reach alone." },
-    { title: "Guidance", body: "Perspective from people a few steps — or a generation — further along." },
+    { title: "Guidance", body: "Perspective from people a few steps, or a generation, further along." },
     { title: "Relationships", body: "Connections that outlast a single program or event." },
   ],
   images: {
@@ -95,7 +95,7 @@ export const serviceFeature = {
   eyebrow: "Service",
   /** [draft] */
   title: "Leadership becomes action.",
-  body: "Leadership carries responsibility. Ten Ambassadors is developing service initiatives — from youth leadership and education to community development — that turn what leaders have gained into opportunity for their communities.",
+  body: "Leadership carries responsibility. Ten Ambassadors is developing service initiatives, from youth leadership and education to community development, that turn what people have gained into opportunity for the next generation in their communities.",
 };
 
 export const starlightFeature = {
@@ -103,14 +103,14 @@ export const starlightFeature = {
   /** [brief concept] */
   title: ["Celebrate excellence.", "Fund opportunity."],
   /** [brief] */
-  body: "Our signature annual celebration of leadership and impact — the gathering where leadership, achievement, service, community and culture come together, and one of the ways Ten Ambassadors supports its programs.",
+  body: "Our signature annual celebration of leadership and impact: the gathering where leadership, achievement, service, community and culture come together, and one of the ways Ten Ambassadors supports its programs.",
 };
 
 export const globalVision = {
   eyebrow: "Global outlook",
   /** [draft] title; [brief] approved body */
-  title: "Built for a world of emerging leaders.",
-  body: "Our communities are increasingly connected across industries, generations, cultures and borders. Ten Ambassadors is being built to prepare leaders for that reality — strengthening relationships locally while laying the foundation for future global collaboration.",
+  title: "Built for a world of emerging young professionals.",
+  body: "Our communities are increasingly connected across industries, generations, cultures and borders. Ten Ambassadors is being built to prepare young professionals for that reality, strengthening relationships locally while laying the foundation for future global collaboration.",
   image: media.communityNetwork,
 };
 
@@ -139,7 +139,7 @@ export const networkFeature = {
   eyebrow: "Network Partners",
   title: ["One community.", "Many networks."],
   lede: "Leadership becomes more powerful when networks collaborate.",
-  body: "Ten Ambassadors is designed as a network of networks — professional associations, alumni groups, universities, civic and cultural organizations, young-professional groups and more, sharing opportunities and developing leaders together.",
+  body: "Ten Ambassadors is designed as a network of networks: professional associations, alumni groups, universities, civic and cultural organizations, young-professional groups and more, sharing opportunities and developing young professionals together.",
   /** Launch-stage wording; partnership status stays in docs (none confirmed yet). */
   note: "Founding Network Partners will be introduced as partnerships are confirmed.",
 };
@@ -149,12 +149,12 @@ export const communityRecap = {
   video: communityVideos.recap,
   videoCinematic: communityVideoCinematic.recap,
   caption:
-    "Scenes from gatherings across the wider Upmixer event community — the kind of rooms, conversations and connections Ten Ambassadors is being built to extend.",
+    "Scenes from gatherings across the wider Upmixer event community: the kind of rooms, conversations and connections Ten Ambassadors is being built to extend.",
 };
 
 export const closing = {
   /** [draft] */
-  title: "Someone opened a door for you. Hold it open for the next leader.",
+  title: "Someone opened a door for you. Hold it open for the next generation.",
   primary: { label: "Get involved", href: "/get-involved" },
   secondary: { label: "Stay in touch", href: "#newsletter" },
 };

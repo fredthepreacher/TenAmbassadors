@@ -32,9 +32,9 @@ export default async function GetInvolvedPage() {
           />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
             {site.donation.url ? null : (
-              <PendingBlock title="Online giving is being set up">
-                Giving pathways — one-time, recurring, the Scholarship Fund, program sponsorship, corporate giving and event
-                contributions — are being prepared.
+              <PendingBlock title="Online giving will open soon">
+                One-time and recurring gifts, the Scholarship Fund, program sponsorship, corporate giving and event contributions.
+                Until then, contact the team to talk about support.
               </PendingBlock>
             )}
             <ButtonLink href="/donate" arrow className="w-fit">

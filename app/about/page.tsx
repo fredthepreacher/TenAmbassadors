@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PageHero } from "@/components/pages/PageHero";
 import { WhyTen } from "@/components/home/WhyTen";
 import { ButtonLink } from "@/components/ui/Button";
-import { PendingBlock } from "@/components/ui/Pending";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getAbout } from "@/lib/content";
 import { geoPending, media } from "@/content/media";
@@ -163,7 +162,7 @@ export default async function AboutPage() {
             ))}
           </ol>
           <p className="mt-12 max-w-2xl border-l-2 border-gold-400 pl-4 text-sm text-paper/70 italic">
-            A development horizon — intentions for the years ahead, not a record of current operations. Ten Ambassadors does not yet operate internationally.
+            A development horizon: intentions for the years ahead, not a record of current operations. Ten Ambassadors does not yet operate internationally.
           </p>
         </div>
       </section>
@@ -175,14 +174,11 @@ export default async function AboutPage() {
             <p className="text-lede text-ink-2">{about.origin}</p>
             <p className="text-ink-2">
               The <Link href="/starlight" className="font-semibold text-green-700 underline decoration-green-500/40 underline-offset-4 hover:decoration-green-500">Starlight Awards</Link> are
-              Ten Ambassadors&rsquo; signature annual celebration of leadership and impact — one program within the organization, not the
-              whole of it — with Upmixer Inc. as event-production and experience partner.
+              Ten Ambassadors&rsquo; signature annual celebration of leadership and impact. It is one program within the organization, not the
+              whole of it, with Upmixer Inc. as event-production and experience partner.
             </p>
-            {about.story ? (
-              <p className="text-lede">{about.story}</p>
-            ) : (
-              <PendingBlock title="The founding story">The full story of how and why Ten Ambassadors began — in the words of those who started it — will be shared here.</PendingBlock>
-            )}
+            {/* The founding story renders here once Geo supplies it (content/about.ts → about.story). */}
+            {about.story ? <p className="text-lede">{about.story}</p> : null}
           </div>
         </div>
       </section>
@@ -190,15 +186,12 @@ export default async function AboutPage() {
       <section id="leadership" aria-labelledby="leadership-title" className="section-y scroll-mt-20 bg-ivory">
         <div className="container-x">
           <SectionHeading id="leadership-title" eyebrow="Leadership" title="Founding Ambassadors, Board & Host Committee" />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {leadership.length === 0 ? (
-              <>
-                <PendingBlock title="Founding Ambassadors">The ten founding Ambassadors will be introduced here as they are confirmed.</PendingBlock>
-                <PendingBlock title="Board & leadership">Board members and organizational leadership will be introduced as governance is established.</PendingBlock>
-                <PendingBlock title="Institutional Host Committee">Host Committee members will be introduced as they are confirmed.</PendingBlock>
-              </>
-            ) : null}
-          </div>
+          {/* Profiles (content/about.ts → leadership) render here once confirmed; no names, titles or bios are invented. */}
+          {leadership.length === 0 ? (
+            <p className="mt-8 max-w-2xl text-lede text-ink-2" data-reveal>
+              Profiles of the Founding Ambassadors, Board and Institutional Host Committee will be published soon.
+            </p>
+          ) : null}
         </div>
       </section>
 

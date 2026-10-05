@@ -87,7 +87,7 @@ export default async function PartnersPage() {
             className="lg:col-span-6"
           />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            <PendingBlock title="Partnership & sponsorship packages">Options and recognition benefits are being prepared. Start a conversation now and we will shape a partnership around your goals.</PendingBlock>
+            <PendingBlock title="Partnership & sponsorship">Start a conversation and we will shape a partnership around your goals.</PendingBlock>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
               <ButtonLink href="/get-involved/sponsor" arrow>
                 Partnership inquiry

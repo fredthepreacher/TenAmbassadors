@@ -6,8 +6,14 @@ import type { Action, AwardConcept } from "@/lib/types";
  * by the client, V2.2). Ticketing, times and honorees remain pending.
  */
 export const starlight = {
-  /** PENDING: URL of the existing Starlight event experience / ticketing. */
-  externalUrl: null as string | null,
+  /**
+   * The Starlight event site: where Starlight interest is sent directly (Geo meeting, 2026-10-04).
+   * Today this is the production URL of the Starlight Awards 2026 project in the Wavvy Sites Vercel
+   * team. It has no custom domain yet: when it does, change it here (or set
+   * NEXT_PUBLIC_STARLIGHT_SITE_URL) and every Starlight call to action follows. Set it to null to
+   * route everything back to the internal /starlight page.
+   */
+  externalUrl: (process.env.NEXT_PUBLIC_STARLIGHT_SITE_URL?.trim() || "https://starlight-awards-2026.vercel.app") as string | null,
   positioning: "The annual gathering where leadership, achievement, service, community and culture come together.",
   tagline: "Our Signature Annual Celebration of Leadership & Impact",
   nextEvent: {
@@ -26,7 +32,7 @@ export const starlight = {
   globalBlackTie: {
     title: "Global Black Tie",
     subtitle: "Around the World in Evening Excellence",
-    body: "An invitation to global elegance — formal and cocktail attire, culturally influenced formalwear, heritage fabrics, global fashion, modern eveningwear and international accents. Celebration, not costume.",
+    body: "An invitation to global elegance: formal and cocktail attire, culturally influenced formalwear, heritage fabrics, global fashion, modern eveningwear and international accents. Celebration, not costume.",
   },
   /** Award concepts — pending final approval. */
   awards: [
@@ -41,14 +47,21 @@ export const starlight = {
     upmixer: ["Event production lead", "Venue & vendors", "Creative & event direction", "Execution & run of show", "Guest experience & production logistics"],
   },
   honorees: null as { name: string; award: string; year: string }[] | null,
-  actions: [
-    { label: "Explore Starlight", href: "/starlight", available: true },
-    { label: "Attend", href: "/starlight#attend", available: false, unavailableLabel: "Tickets · details to come", pendingNote: "Start time and tickets will be announced." },
-    { label: "Sponsor", href: "/starlight#sponsor", available: true },
-  ] satisfies Action[],
+  actions: [] as Action[],
   pillars: [
     { title: "Celebrate", body: "Honor leadership, achievement and service across the community." },
-    { title: "Gather", body: "Bring together leaders, partners and supporters — culture included." },
+    { title: "Gather", body: "Bring together leaders, partners and supporters, culture included." },
     { title: "Fund", body: "Help power Scholarship, Mentorship and Service programming." },
   ],
 };
+
+/*
+ * Starlight calls to action. One direct step to the event experience: "Explore Starlight" goes
+ * straight to the Starlight event site when it is set, otherwise to /starlight. Attend stays hidden
+ * until tickets exist; Sponsor opens the Ten Ambassadors sponsorship section.
+ */
+starlight.actions = [
+  { label: "Explore Starlight", href: starlight.externalUrl ?? "/starlight", available: true },
+  { label: "Attend", href: "/starlight#attend", available: false, unavailableLabel: "Tickets · details to come", pendingNote: "Start time and tickets will be announced." },
+  { label: "Sponsor", href: "/starlight#sponsor", available: true },
+];

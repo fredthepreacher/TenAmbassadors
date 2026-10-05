@@ -2,6 +2,13 @@ import Image from "next/image";
 import type { Media } from "@/lib/types";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { site } from "@/lib/site";
+
+/**
+ * Hidden, not deleted (Geo meeting revision): the mentor-story caption labels on the two portraits.
+ * Set to true, or wire to a confirmed mentor story in content, when Geo supplies one.
+ */
+const showMentorStory = site.showPlaceholderNotes;
 
 /** Mentorship — the chapter that breathes: human scale, overlapping portraits, a connecting line. */
 export function MentorshipFeature({
@@ -32,9 +39,14 @@ export function MentorshipFeature({
                 className="object-cover"
                 style={{ objectPosition: images.generational.focus }}
               />
-              <span className="photo-caption absolute top-4 left-4 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-semibold tracking-[0.12em] text-royal-800 uppercase">
-                Across generations
-              </span>
+              {/* TODO: Restore mentor story/testimonial when Geo supplies a confirmed mentor and approved copy.
+                  (Geo meeting, 2026-10-04: the caption labels below told a mentor story about people who are not
+                  confirmed mentors, so they are hidden from the public site, not deleted.) */}
+              {showMentorStory ? (
+                <span className="photo-caption absolute top-4 left-4 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-semibold tracking-[0.12em] text-royal-800 uppercase">
+                  Across generations
+                </span>
+              ) : null}
               <PhotoCredit src={images.generational.src} />
             </div>
           </figure>
@@ -60,9 +72,11 @@ export function MentorshipFeature({
                 className="object-cover"
                 style={{ objectPosition: images.conversation.focus }}
               />
-              <span className="photo-caption absolute bottom-3 left-3 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-semibold tracking-[0.12em] text-royal-800 uppercase">
-                In conversation
-              </span>
+              {showMentorStory ? (
+                <span className="photo-caption absolute bottom-3 left-3 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-semibold tracking-[0.12em] text-royal-800 uppercase">
+                  In conversation
+                </span>
+              ) : null}
               <PhotoCredit src={images.conversation.src} />
             </div>
           </figure>

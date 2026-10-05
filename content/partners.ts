@@ -6,7 +6,7 @@ import type { Partner, PartnerCategory } from "@/lib/types";
  */
 export const partnerCategories: PartnerCategory[] = [
   { id: "scholarship", title: "Scholarship Partner", description: "Help fund education and professional-development opportunities as scholarship programs are established." },
-  { id: "mentorship", title: "Mentorship Partner", description: "Open your leaders, rooms and expertise to emerging professionals." },
+  { id: "mentorship", title: "Mentorship Partner", description: "Open your leaders, rooms and expertise to emerging young professionals." },
   { id: "service", title: "Service Partner", description: "Collaborate on community service and volunteer initiatives." },
   { id: "leadership", title: "Leadership Development Partner", description: "Support workshops, leadership circles and professional engagement." },
   { id: "starlight", title: "Starlight Awards Partner", description: "Partner on the signature annual celebration of leadership and impact." },
@@ -37,7 +37,7 @@ export const networkPartnerTypes = [
 /** What a Network Partner could do together with Ten Ambassadors. [draft] */
 export const networkPartnerRoles = [
   { title: "Share", body: "Share programs and opportunities with each other's communities." },
-  { title: "Recommend", body: "Recommend emerging leaders, Ambassadors and mentors." },
+  { title: "Recommend", body: "Recommend emerging young professionals, Ambassadors and mentors." },
   { title: "Collaborate", body: "Co-create programming and support events." },
   { title: "Serve", body: "Take part in service initiatives together." },
   { title: "Connect", body: "Identify sponsorship and partnership opportunities." },

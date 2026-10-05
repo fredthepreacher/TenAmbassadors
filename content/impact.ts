@@ -8,12 +8,12 @@ export const impact = {
   eyebrow: "Impact",
   title: "Building our first year of impact.",
   intro:
-    "Impact will be reported honestly, as it happens. These are the measures Ten Ambassadors is committing to track — and share — as its programs begin.",
+    "Impact will be reported honestly, as it happens. These are the measures Ten Ambassadors is committing to track and share as its programs begin.",
   measures: [
     { id: "scholarships", label: "Scholarships awarded", description: "Education and professional-development support delivered." },
-    { id: "mentorship-hours", label: "Mentorship hours", description: "Time invested by mentors in emerging leaders." },
+    { id: "mentorship-hours", label: "Mentorship hours", description: "Time invested by mentors in emerging young professionals." },
     { id: "service-hours", label: "Service hours", description: "Leadership turned into community action." },
-    { id: "leaders", label: "Young leaders supported", description: "Emerging leaders reached across all three pillars." },
+    { id: "leaders", label: "Young professionals supported", description: "Emerging young professionals reached across all three pillars." },
     { id: "partners", label: "Partner organizations", description: "Networks, institutions and sponsors collaborating." },
     { id: "countries", label: "Countries represented", description: "A measure for the future global network." },
   ] satisfies ImpactMeasure[],

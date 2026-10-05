@@ -1,5 +1,5 @@
 import type { Scholarship } from "@/lib/types";
-import { ActionButton, ButtonLink, TextLink } from "@/components/ui/Button";
+import { ActionButton, ButtonLink } from "@/components/ui/Button";
 import { VideoFeature } from "@/components/ui/VideoFeature";
 
 const ARC = ["Legacy", "Opportunity", "Future"];
@@ -74,12 +74,10 @@ export function FeaturedScholarship({ scholarship }: { scholarship: Scholarship 
             )}
 
             <div className="flex flex-col items-start gap-5">
-              <ButtonLink href={`${detailHref}#details`} variant="glass" arrow>
-                Scholarship details
+              <ButtonLink href={detailHref} variant="glass" arrow>
+                Learn about the scholarship
               </ButtonLink>
-              <TextLink href={detailHref} tone="light">
-                Learn more about the scholarship
-              </TextLink>
+              {/* Shown only once applications open (ActionButton hides unavailable actions). */}
               <ActionButton action={scholarship.apply} noteTone="light" />
             </div>
           </div>

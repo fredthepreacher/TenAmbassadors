@@ -89,8 +89,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           "Scholarship",
           "Professional mentorship",
           "Community service",
-          "Emerging leaders",
-          "Young professional leadership",
+          "Young professionals",
+          "Young professional development",
         ],
       },
       {

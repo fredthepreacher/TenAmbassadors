@@ -29,7 +29,7 @@ export function AreaList({
               </li>
             ))}
           </ul>
-          <p className="mt-5 text-sm text-muted">Planned areas — each will be introduced as it is funded and confirmed.</p>
+          <p className="mt-5 text-sm text-muted">Planned areas, each introduced as it is funded and confirmed.</p>
         </div>
       </div>
     </section>

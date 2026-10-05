@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Community Service & Leadership",
   description:
-    "Service is the third stage of the Ten Ambassadors pathway — turning leadership into community impact. Explore planned service areas and volunteer interest.",
+    "Service is the third stage of the Ten Ambassadors pathway, turning development into community impact. Explore planned service areas and volunteer interest.",
   path: "/service",
 });
 
@@ -28,7 +28,7 @@ export default async function ServicePage() {
             Hold the door open <em className="text-gold-300">for someone else.</em>
           </>
         }
-        intro="Leadership carries responsibility. Service completes the cycle: what an ambassador gains through scholarship and mentorship becomes opportunity for the next person — and the pathway begins again."
+        intro="Leadership carries responsibility. Service completes the cycle: what a young professional gains through scholarship and mentorship becomes opportunity for the next person, and the pathway begins again."
       >
         <ButtonLink href="#volunteer" variant="light" arrow>
           Serve with us
@@ -45,7 +45,7 @@ export default async function ServicePage() {
                 Leadership becomes <em className="text-royal-700">action.</em>
               </>
             }
-            intro="Service initiatives will let ambassadors turn what they have gained into opportunity for their communities."
+            intro="Service initiatives will turn what people have gained into opportunity for the next generation in their communities."
             className="lg:col-span-5"
           />
           <div className="lg:col-span-6 lg:col-start-7">
@@ -87,7 +87,7 @@ export default async function ServicePage() {
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <SectionHeading id="volunteer-title" eyebrow="Volunteer" title="Give your time where it opens doors." intro={volunteer.intro} className="lg:col-span-6" />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            <PendingBlock title="Volunteer roles & sign-up">Volunteer roles and time commitments are being defined. Register your interest and we will reach out as opportunities open.</PendingBlock>
+            <PendingBlock title="Volunteer with us">Register your interest and we will reach out as volunteer opportunities open.</PendingBlock>
             <ButtonLink href="/get-involved/volunteer" variant="outline" arrow className="w-fit">
               Volunteer interest
             </ButtonLink>

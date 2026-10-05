@@ -56,7 +56,7 @@ export default async function LegalPage({ params }: Props) {
               </article>
             </>
           ) : (
-            <PendingBlock title="Text pending">This page will publish the organization&rsquo;s {doc.title.toLowerCase()} text.</PendingBlock>
+            <PendingBlock title={doc.title}>This page will be published soon.</PendingBlock>
           )}
         </div>
       </section>

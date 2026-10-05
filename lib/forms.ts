@@ -2,9 +2,11 @@
  * Centralized intake architecture (V2.2).
  *
  * Every form on the site is defined here and submits through ONE function
- * (`submitIntake`) toward ONE destination (a CRM/database to be approved).
- * Nothing is collected yet: `site.intake.enabled` is false, so forms render
- * as previews and submission is disabled. No paid service has been added.
+ * (`submitIntake`) toward ONE destination. Today that destination is email: the
+ * visitor's email app opens with the message addressed to `site.inbox.address`
+ * (interim: info@theupmixer.com). When a CRM/database is approved, set
+ * NEXT_PUBLIC_INTAKE_ENDPOINT and the same forms POST there. No paid service
+ * has been added and no secret is needed.
  *
  * CRM mapping: every submission becomes a Contact (person or organization)
  * + an Interaction tagged with `formId`, `pathway` and optional `referral`
@@ -57,7 +59,7 @@ const referral: FormField = {
   name: "referral",
   label: "Referred by (person or Network Partner)",
   type: "text",
-  hint: "Optional — helps us recognize partner networks.",
+  hint: "Optional. Helps us recognize partner networks.",
 };
 
 export const forms: Record<FormId, FormDefinition> = {
@@ -105,7 +107,7 @@ export const forms: Record<FormId, FormDefinition> = {
         options: ["Business", "Finance", "Technology", "Healthcare", "Public service", "Entrepreneurship", "Law", "Engineering", "Media", "Sports", "Hospitality", "International affairs", "Other"],
       },
       { name: "experience", label: "Mentorship experience", type: "textarea" },
-      { name: "motivation", label: "What would you like to offer emerging leaders?", type: "textarea", required: true },
+      { name: "motivation", label: "What would you like to offer emerging young professionals?", type: "textarea", required: true },
       referral,
     ],
   },
@@ -199,16 +201,44 @@ export const forms: Record<FormId, FormDefinition> = {
   },
 };
 
-export type IntakeResult = { ok: true } | { ok: false; reason: "disabled" | "error"; message: string };
+export type IntakeResult =
+  | { ok: true; via: "email" | "endpoint"; mailto?: string }
+  | { ok: false; reason: "disabled" | "error"; message: string };
 
 /**
- * The single submission path for every form. When a CRM is approved,
- * implement a route handler at `site.intake.endpoint` that validates and
- * writes to it; no component changes are needed.
+ * Builds the email a submission becomes: addressed to `site.inbox.address`, subject naming the form,
+ * body listing every answered field by its label. Exported so the UI can offer the same link as a
+ * fallback ("if your email app didn't open…").
+ */
+export function intakeMailto(formId: FormId, data: Record<string, string>): string {
+  const def = forms[formId];
+  const lines = def.fields
+    .map((f) => {
+      const raw = (data[f.name] ?? "").trim();
+      if (!raw) return null;
+      const value = f.type === "checkbox" ? "Yes" : raw;
+      return `${f.label}: ${value}`;
+    })
+    .filter(Boolean) as string[];
+  const subject = `${site.name}: ${def.title}`;
+  const body = [`${def.title} (sent from the ${site.name} website)`, "", ...lines].join("\n");
+  return `mailto:${site.inbox.address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/**
+ * The single submission path for every form.
+ * - No endpoint (today): the submission is delivered by email. The visitor's email app opens with the
+ *   message addressed to the site inbox; nothing is sent until they press send, and nothing is stored.
+ * - Endpoint set (future CRM / route handler): POST { formId, data } as JSON; no component changes needed.
  */
 export async function submitIntake(formId: FormId, data: Record<string, string>): Promise<IntakeResult> {
-  if (!site.intake.enabled || !site.intake.endpoint) {
-    return { ok: false, reason: "disabled", message: "Submissions will open once our intake system is live." };
+  if (!site.intake.enabled) {
+    return { ok: false, reason: "disabled", message: "This form is not accepting messages right now." };
+  }
+  if (!site.intake.endpoint) {
+    const mailto = intakeMailto(formId, data);
+    if (typeof window !== "undefined") window.location.href = mailto;
+    return { ok: true, via: "email", mailto };
   }
   try {
     const res = await fetch(site.intake.endpoint, {
@@ -216,7 +246,7 @@ export async function submitIntake(formId: FormId, data: Record<string, string>)
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ formId, data }),
     });
-    return res.ok ? { ok: true } : { ok: false, reason: "error", message: "Something went wrong. Please try again." };
+    return res.ok ? { ok: true, via: "endpoint" } : { ok: false, reason: "error", message: "Something went wrong. Please try again." };
   } catch {
     return { ok: false, reason: "error", message: "Something went wrong. Please try again." };
   }

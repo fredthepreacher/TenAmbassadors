@@ -31,7 +31,7 @@ export const pathwayPages: PathwayPage[] = [
     eyebrow: "Become an Ambassador",
     title: "Leadership measured by contribution, not title.",
     intro:
-      "Ambassadors are not honorary titles. Ten Ambassadors is looking for emerging and established leaders whose work already strengthens their communities — and who are ready to invest in the next generation.",
+      "Ambassadors are not honorary titles. Ten Ambassadors is looking for emerging and established leaders whose work already strengthens their communities and who are ready to invest in the next generation.",
     metaDescription:
       "Who can become a Ten Ambassador: emerging and established leaders whose work strengthens their communities and who are ready to mentor and serve.",
     criteriaTitle: "What we will consider",
@@ -48,7 +48,7 @@ export const pathwayPages: PathwayPage[] = [
     title: "Know a leader others should know?",
     intro: "Nominations help Ten Ambassadors find leaders whose impact speaks louder than their profile.",
     metaDescription:
-      "Nominate an emerging or established leader for Ten Ambassadors — someone whose community impact speaks louder than their profile.",
+      "Nominate an emerging or established leader for Ten Ambassadors: someone whose community impact speaks louder than their profile.",
     criteriaTitle: "Nominees are considered for",
     criteria: ambassadorCriteria,
     formId: "ambassador-nomination",
@@ -62,11 +62,11 @@ export const pathwayPages: PathwayPage[] = [
     eyebrow: "Become a Mentor",
     title: "Share the road you have already walked.",
     intro:
-      "Ten Ambassadors intends to connect emerging leaders with accomplished professionals across business, finance, technology, healthcare, public service, entrepreneurship, law, engineering, media, sports, hospitality and international affairs.",
+      "Ten Ambassadors intends to connect emerging young professionals with accomplished professionals across business, finance, technology, healthcare, public service, entrepreneurship, law, engineering, media, sports, hospitality and international affairs.",
     metaDescription:
-      "Become a mentor with Ten Ambassadors: accomplished professionals in business, finance, tech, healthcare, law, media, sports and more, guiding emerging leaders.",
+      "Become a mentor with Ten Ambassadors: accomplished professionals in business, finance, tech, healthcare, law, media, sports and more, guiding emerging young professionals.",
     criteriaTitle: "Mentors we hope to meet",
-    criteria: ["Accomplished in their field", "Generous with time and perspective", "Committed to emerging leaders", "Open to cross-generational conversation"],
+    criteria: ["Accomplished in their field", "Generous with time and perspective", "Committed to emerging young professionals", "Open to cross-generational conversation"],
     formId: "mentor-application",
     nextSteps: [
       { label: "How mentorship will work", href: "/mentorship" },
@@ -79,7 +79,7 @@ export const pathwayPages: PathwayPage[] = [
     title: "Leadership becomes action.",
     intro: "Volunteers will help deliver service initiatives, programs and events as they are established.",
     metaDescription:
-      "Volunteer with Ten Ambassadors: help deliver service initiatives, programs and events as they are established. Roles and sign-up will be announced.",
+      "Volunteer with Ten Ambassadors: help deliver service initiatives, programs and events as they are established.",
     formId: "volunteer-application",
     nextSteps: [
       { label: "Planned service areas", href: "/service#initiatives" },

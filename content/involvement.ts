@@ -17,7 +17,7 @@ export const pathways: Pathway[] = [
   {
     id: "mentor",
     title: "Become a Mentor",
-    summary: "Share your experience and open doors for an emerging leader.",
+    summary: "Share your experience and open doors for an emerging young professional.",
     action: { label: "Mentor pathway", href: "/get-involved/mentor", available: true },
   },
   {
@@ -41,7 +41,7 @@ export const pathways: Pathway[] = [
   {
     id: "support",
     title: "Support the Mission",
-    summary: "Giving pathways are being prepared.",
+    summary: "Support Scholarship, Mentorship and Service.",
     action: { label: "Donate", href: "/donate", available: true },
   },
 ];

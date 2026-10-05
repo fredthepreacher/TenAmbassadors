@@ -65,8 +65,14 @@ export default async function StarlightPage() {
             <time dateTime={e.dateISO}>{e.date}</time> · New York
           </p>
           <div className="mt-8 flex animate-rise flex-col items-center gap-4 [animation-delay:240ms] sm:flex-row sm:items-start">
+            {/* Geo meeting revision: the event experience is one step away. */}
+            {s.externalUrl ? (
+              <ButtonLink href={s.externalUrl} variant="gold" arrow>
+                Visit the Starlight Awards site
+              </ButtonLink>
+            ) : null}
             {s.actions.slice(1).map((a, i) => (
-              <ActionButton key={a.label} action={a} variant={i === 0 ? "gold" : "night"} noteTone="night" />
+              <ActionButton key={a.label} action={a} variant={i === 0 && !s.externalUrl ? "gold" : "night"} noteTone="night" />
             ))}
           </div>
         </div>
@@ -82,7 +88,7 @@ export default async function StarlightPage() {
                 ["Venue", e.venue],
                 ["Address", `${e.street}, ${e.city}`],
                 ["Time", e.time ?? "Announced with tickets"],
-                ["Tickets", s.externalUrl ? "On the event site" : "Details to come"],
+                ["Tickets", s.externalUrl ? "Announced on the event site" : "Details to come"],
               ].map(([label, value]) => (
                 <div key={label as string} className="flex items-baseline justify-between gap-6 border-b border-starlight/20 py-4">
                   <dt className="text-champagne/70">{label}</dt>
@@ -157,7 +163,7 @@ export default async function StarlightPage() {
             tone="night"
             eyebrow="Two brands, one evening"
             title="Distinct organizations, intentionally connected."
-            intro={`Starlight is one signature program of ${site.name} — not the whole organization. ${site.parentOrg.legalName} is its ${site.parentOrg.starlightRole.replace(" for the Starlight Awards", "")}.`}
+            intro={`Starlight is one signature program of ${site.name}, not the whole organization. ${site.parentOrg.legalName} is its ${site.parentOrg.starlightRole.replace(" for the Starlight Awards", "")}.`}
           />
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {[
@@ -187,11 +193,11 @@ export default async function StarlightPage() {
             tone="night"
             eyebrow="Sponsor"
             title="Put your name behind opportunity."
-            intro="Starlight Awards partnership connects your organization with an evening of excellence — and with the programs it helps support."
+            intro="Starlight Awards partnership connects your organization with an evening of excellence and with the programs it helps support."
             className="lg:col-span-6"
           />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            <PendingBlock tone="night" title="Sponsorship opportunities">Sponsorship levels and benefits are being finalized. Reach out now to be part of the evening.</PendingBlock>
+            <PendingBlock tone="night" title="Sponsorship opportunities">Reach out to be part of the evening.</PendingBlock>
             <ButtonLink href="/get-involved/sponsor" variant="gold" arrow className="w-fit">
               Sponsorship inquiry
             </ButtonLink>

@@ -3,7 +3,7 @@ import type { Initiative } from "@/lib/types";
 /** Mentorship program architecture. Structure and dates are pending. [draft] */
 export const mentorship = {
   intro:
-    "Mentorship connects emerging leaders with experienced professionals for guidance, perspective, and relationships that last beyond a single program.",
+    "Mentorship connects emerging young professionals with experienced, accomplished professionals for guidance, perspective, access and relationships that last beyond a single program.",
   tracks: [
     {
       id: "become-a-mentor",
@@ -14,7 +14,7 @@ export const mentorship = {
     {
       id: "ambassador-pathway",
       title: "Future Ambassador pathway",
-      body: "For students and emerging professionals seeking guidance as they build their careers and leadership.",
+      body: "For students and young professionals seeking guidance as they build their careers and leadership.",
       pending: "Eligibility and how to join will be shared when the pathway opens.",
     },
   ],
@@ -26,9 +26,9 @@ export const mentorship = {
  * Future-facing; shown until named initiatives are confirmed.
  */
 export const serviceFocus = [
-  { title: "Youth leadership", body: "Helping young people see — and step into — their own leadership." },
+  { title: "Youth leadership", body: "Helping young people see, and step into, their own leadership." },
   { title: "Education", body: "Opening doors to learning, mentoring and opportunity." },
-  { title: "Community development", body: "Turning what leaders have gained into lasting local impact." },
+  { title: "Community development", body: "Turning what people have gained into lasting local impact." },
 ];
 
 /** Service initiatives. None have been announced — slots only (titles stay null until confirmed). */

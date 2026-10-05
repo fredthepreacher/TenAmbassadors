@@ -16,7 +16,7 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 export const metadata = pageMetadata({
   title: "Network Partners: A Network of Networks",
   description:
-    "Network Partners are organizations — associations, alumni groups, universities, community groups — that collaborate with Ten Ambassadors to develop leaders.",
+    "Network Partners are organizations, such as associations, alumni groups, universities and community groups, that collaborate with Ten Ambassadors to develop young professionals.",
   path: "/network-partners",
   image: geoPending.networkAllOrgs.media ?? media.communityGroup,
 });
@@ -34,7 +34,7 @@ export default async function NetworkPartnersPage() {
             One community. <em className="text-gold-300">Many networks.</em>
           </>
         }
-        intro="Leadership becomes more powerful when networks collaborate. Ten Ambassadors is being designed as a network of networks — connecting organizations that already develop leaders so their members can share opportunities, mentorship and service."
+        intro="Leadership becomes more powerful when networks collaborate. Ten Ambassadors is being designed as a network of networks, connecting organizations that already develop leaders so their members can share opportunities, mentorship and service."
       >
         <ButtonLink href="#apply" variant="glass" arrow>
           Become a Network Partner
@@ -98,7 +98,7 @@ export default async function NetworkPartnersPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-6 text-sm text-paper/75">Every partnership is shaped together — responsibilities are agreed with each partner.</p>
+          <p className="mt-6 text-sm text-paper/75">Every partnership is shaped together, with responsibilities agreed with each partner.</p>
         </div>
       </section>
 
@@ -113,7 +113,7 @@ export default async function NetworkPartnersPage() {
                 The rooms we are <em className="text-royal-700">building to extend.</em>
               </>
             }
-            intro="Talks, introductions and conversations across the wider Upmixer event community — the kind of connection Network Partners make possible at scale."
+            intro="Talks, introductions and conversations across the wider Upmixer event community: the kind of connection Network Partners make possible at scale."
             className="lg:col-span-5"
           />
           <AmbientVideo

@@ -10,21 +10,23 @@ export const metadata = pageMetadata({
 });
 
 export default function ContactPage() {
-  const { contact } = site;
+  const { contact, inbox } = site;
   return (
     <>
-      <PageHero eyebrow="Contact" title="Start a conversation." intro="Questions about scholarship, mentorship, service, partnership, or Starlight — we would like to hear from you." />
+      <PageHero eyebrow="Contact" title="Start a conversation." intro="Questions about scholarship, mentorship, service, partnership or Starlight? We would like to hear from you." />
       <section className="section-y bg-paper pt-12 md:pt-16">
         <div className="container-x grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h2 className="eyebrow text-gold-ink">Direct contact</h2>
             <div className="mt-5 grid justify-items-start gap-3">
-              {contact.email ? <a href={`mailto:${contact.email}`}>{contact.email}</a> : null}
+              <a href={`mailto:${contact.email ?? inbox.address}`} className="font-semibold text-green-700 underline decoration-green-500/40 underline-offset-4 hover:decoration-green-500">
+                {contact.email ?? inbox.address}
+              </a>
+              {!contact.email && inbox.interim ? (
+                <p className="max-w-xs text-sm text-muted">Messages to Ten Ambassadors are currently handled by The Upmixer team.</p>
+              ) : null}
               {contact.phone ? <a href={`tel:${contact.phone}`}>{contact.phone}</a> : null}
               {contact.address ? <p>{contact.address}</p> : null}
-              {!contact.email && !contact.phone && !contact.address ? (
-                <p className="max-w-xs text-ink-2">Direct email and phone details will be listed here.</p>
-              ) : null}
             </div>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">

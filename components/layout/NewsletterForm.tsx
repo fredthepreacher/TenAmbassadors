@@ -4,9 +4,9 @@ import { useId, useState } from "react";
 import { submitIntake } from "@/lib/forms";
 
 /**
- * Newsletter sign-up UI.
- * PENDING: no email provider is connected. Wire `onSubmit` to the chosen
- * provider (e.g. Mailchimp, Kit, Buttondown) or a Next.js route handler.
+ * Newsletter sign-up. Delivered through the same `submitIntake` path as every form: today it opens
+ * the visitor's email app with a sign-up request addressed to `site.inbox.address`. When a list
+ * provider (e.g. Mailchimp, Kit, Buttondown) is chosen, point NEXT_PUBLIC_INTAKE_ENDPOINT at it.
  */
 export function NewsletterForm() {
   const id = useId();
@@ -19,7 +19,9 @@ export function NewsletterForm() {
         e.preventDefault();
         const email = String(new FormData(e.currentTarget).get("email") ?? "");
         const res = await submitIntake("newsletter-signup", { email });
-        setMessage(res.ok ? "Thank you — you're on the list." : "Thank you. Newsletter sign-up isn't connected yet — it will be live before launch.");
+        setMessage(
+          !res.ok ? res.message : res.via === "email" ? "Your email app should now open with your sign-up request. Press send to join the list." : "Thank you. You're on the list.",
+        );
       }}
     >
       <label htmlFor={`${id}-email`} className="font-serif text-2xl text-paper">

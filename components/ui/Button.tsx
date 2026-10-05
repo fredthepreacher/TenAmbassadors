@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { site } from "@/lib/site";
 import type { Action } from "@/lib/types";
 import { ArrowIcon } from "./Icons";
 
@@ -88,6 +89,9 @@ export function ActionButton({
       </ButtonLink>
     );
   }
+  // Geo meeting revision: a call to action that is not open yet is not shown to visitors.
+  // Reviewers (NEXT_PUBLIC_SHOW_REVIEW_NOTES=1) still see the disabled chip and its note.
+  if (!site.showPlaceholderNotes) return null;
   const tones = { dark: "text-muted", light: "text-paper/75", night: "text-champagne/75" };
   const border = {
     dark: "border-line-strong text-muted",

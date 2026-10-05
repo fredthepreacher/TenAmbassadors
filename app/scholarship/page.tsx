@@ -13,11 +13,11 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 export const metadata = pageMetadata({
   title: "Scholarship & the Dr. Phang Scholarship",
   description:
-    "Scholarship is where the Ten Ambassadors pathway begins: a scholarship platform in development, starting with the Dr. Christopher A. Phang Scholarship.",
+    "Scholarship is where the Ten Ambassadors pathway begins: a scholarship platform being established, starting with the Dr. Christopher A. Phang Scholarship.",
   path: "/scholarship",
 });
 
-const statusLabel = { "in-development": "In development", open: "Applications open", closed: "Applications closed" } as const;
+const statusLabel = { "in-development": "Named scholarship", open: "Applications open", closed: "Applications closed" } as const;
 
 export default async function ScholarshipPage() {
   const [scholarships, programs] = await Promise.all([getScholarships(), getPrograms()]);
@@ -31,7 +31,7 @@ export default async function ScholarshipPage() {
             Opportunity <em className="text-royal-700">opens the door.</em>
           </>
         }
-        intro="Scholarship is the first stage of the Ten Ambassadors pathway — a platform being built to support education and professional-development opportunities, connected to mentorship and service."
+        intro="Scholarship is the first stage of the Ten Ambassadors pathway: a platform being built to support education and professional-development opportunities, connected to mentorship and service."
       />
 
       <section aria-labelledby="scholarships-title" className="section-y bg-paper">
@@ -87,11 +87,11 @@ export default async function ScholarshipPage() {
             id="future-title"
             eyebrow="Future scholarships"
             title="Room for more names on the door."
-            intro="Additional scholarships — named, sponsored, or partner-funded — can be added using the same scholarship template."
+            intro="Additional scholarships, whether named, sponsored or partner-funded, can join the Ten Ambassadors scholarship family over time."
             className="lg:col-span-6"
           />
           <div className="grid content-start gap-6 lg:col-span-5 lg:col-start-8" data-reveal>
-            <PendingBlock title="Additional scholarships">No additional scholarships have been announced yet.</PendingBlock>
+            <PendingBlock title="Additional scholarships">Further scholarships will be announced as they are established.</PendingBlock>
             <ButtonLink href="/partners" variant="outline" arrow className="w-fit">
               Fund a scholarship
             </ButtonLink>

@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Donate & Support the Mission",
-  description: "Ways to support Ten Ambassadors’ Scholarship, Mentorship and Service work, including the Scholarship Fund and corporate giving. Online giving is being prepared.",
+  description: "Ways to support Ten Ambassadors’ Scholarship, Mentorship and Service work, including the Scholarship Fund and corporate giving. Online giving will open soon.",
   path: "/donate",
 });
 
@@ -23,7 +23,7 @@ export default async function DonatePage() {
             Invest in the <em className="text-royal-700">next generation.</em>
           </>
         }
-        intro="Giving will help build Scholarship, Mentorship and Service programs from the ground up. Online giving is being prepared."
+        intro="Giving will help build Scholarship, Mentorship and Service programs from the ground up. Online giving will open soon."
       >
         {live ? (
           <ButtonLink href={site.donation.url!} variant="glass" arrow>
@@ -51,7 +51,7 @@ export default async function DonatePage() {
           <div className="mt-12 max-w-2xl rounded-2xl border border-line-strong bg-ivory p-6">
             <h3 className="text-xl text-navy-900">About tax treatment</h3>
             <p className="mt-2 text-ink-2">
-              {site.formationStatus} Information about giving — including any tax treatment — will be published once confirmed.
+              {site.formationStatus} Information about giving, including any tax treatment, will be published once confirmed.
             </p>
           </div>
           <div className="mt-10 flex flex-wrap gap-4">

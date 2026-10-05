@@ -20,7 +20,7 @@ export const scholarships: Scholarship[] = [
     },
     status: "in-development",
     summary:
-      "A scholarship carrying the name of Dr. Christopher A. Phang — and the belief that the right opportunity, at the right moment, can change the direction of a life.",
+      "A scholarship carrying the name of Dr. Christopher A. Phang, and the belief that the right opportunity, at the right moment, can change the direction of a life.",
     story: null,
     legacy: null,
     facts: [
