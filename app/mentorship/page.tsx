@@ -8,9 +8,15 @@ import { getPrograms } from "@/lib/content";
 import { mentorshipFeature } from "@/content/home";
 import { geoPending, media } from "@/content/media";
 
-/* Geo points 7 (Become a Mentor) and 5 (Future Ambassador pathway): client photos drop in here when supplied. */
+/*
+ * Geo meeting revision (2026-10-04): the client-selected Mentorship photo (13 of 639, the version with
+ * the two drinks removed) now leads the page, beside "Someone helps you walk through it." The Become a
+ * Mentor track takes the photo the hero used before (2292), so no photo repeats on this page.
+ * Geo point 5 (Future Ambassador pathway) is unchanged.
+ */
+const heroImage = geoPending.mentorshipTable.media ?? media.mentorshipGenerational;
 const pathwayImages = [
-  geoPending.mentorshipTable.media ?? media.mentorshipPeers,
+  { ...media.mentorshipGenerational, focus: "50% 0%" },
   geoPending.futureAmbassadorStage.media ?? { ...media.communityProfessionals, focus: "50% 20%" },
 ];
 import { pageMetadata } from "@/lib/seo";
@@ -36,7 +42,7 @@ export default async function MentorshipPage() {
           </>
         }
         intro={mentorship.intro}
-        image={media.mentorshipGenerational}
+        image={heroImage}
       >
         <ButtonLink href="#become-a-mentor" arrow>
           Become a mentor

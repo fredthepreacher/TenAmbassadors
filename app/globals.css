@@ -954,7 +954,8 @@
 .collage-tile--b { grid-area: b; }
 .collage-tile--c { grid-area: c; }
 .collage-tile--d { grid-area: d; }
-.collage-frame--a { aspect-ratio: 4 / 3; }
+/* Lead frame (two women, portrait photo): square on phones so it reads as the dominant image. */
+.collage-frame--a { aspect-ratio: 1 / 1; }
 .collage-frame--b,
 .collage-frame--d { aspect-ratio: 1 / 1; }
 .collage-frame--c { aspect-ratio: 16 / 9; }
@@ -1212,5 +1213,15 @@ footer {
 @media (max-width: 1023px) and (orientation: landscape) {
   .photo-credit--hero {
     display: none;
+  }
+}
+
+/* Homepage Starlight chapter: the event site's hero visual, anchored to the skyline and light tree. */
+.starlight-night {
+  object-position: 50% 100%;
+}
+@media (min-width: 768px) {
+  .starlight-night {
+    object-position: 60% 100%;
   }
 }

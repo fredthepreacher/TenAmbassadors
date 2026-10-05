@@ -1,6 +1,17 @@
+import { getImageProps } from "next/image";
 import type { Action } from "@/lib/types";
 import { ActionButton } from "@/components/ui/Button";
 import { StarIcon } from "@/components/ui/Icons";
+
+/*
+ * Geo meeting revision (2026-10-04): the Starlight event site's own hero visual (night sky, the
+ * Manhattan skyline and the light tree) as a static background, so this chapter feels like the
+ * event it leads to. Rendered once from the Starlight site's art (assets/starlight-art/) to two
+ * light JPEGs: wide for tablets/desktop, tall for phones. Decorative only (empty alt).
+ */
+const NIGHT = { sizes: "100vw", alt: "", quality: 70 } as const;
+const nightWide = getImageProps({ ...NIGHT, src: "/media/starlight/ta-starlight-night-wide.jpg", width: 2400, height: 1350 }).props;
+const nightTall = getImageProps({ ...NIGHT, src: "/media/starlight/ta-starlight-night-tall.jpg", width: 900, height: 1600 }).props;
 
 /**
  * The Starlight Awards — "day becomes night".
@@ -34,7 +45,18 @@ export function StarlightFeature({
       </div>
 
       <div className="relative overflow-hidden bg-night-950 pb-[clamp(3.5rem,2rem+5vw,6.5rem)]">
-        <div className="starfield starfield-twinkle pointer-events-none absolute inset-0 opacity-70" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 767px)" srcSet={nightTall.srcSet} sizes={nightTall.sizes} width={900} height={1600} />
+            <img {...nightWide} alt="" loading="lazy" decoding="async" className="starlight-night absolute inset-0 h-full w-full object-cover" />
+          </picture>
+        </div>
+        {/* Readability: the dusk band fades into the image, and a soft dark field sits behind the copy. */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,var(--color-night-950)_0%,rgb(3_6_13/0.35)_14%,rgb(3_6_13/0)_32%),radial-gradient(ellipse_62%_58%_at_50%_42%,rgb(3_6_13/0.78),rgb(3_6_13/0.35)_70%,transparent)]"
+          aria-hidden="true"
+        />
+        <div className="starfield starfield-twinkle pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_32%_at_50%_20%,rgb(233_205_134/0.13),transparent_72%)]"
           aria-hidden="true"
@@ -72,7 +94,7 @@ export function StarlightFeature({
             <p className="mt-5 text-sm text-champagne/70">Start time and tickets will be announced.</p>
           </div>
 
-          <ul className="mx-auto mt-10 grid max-w-5xl border-y border-starlight/20 text-left sm:grid-cols-3">
+          <ul className="mx-auto mt-10 grid max-w-5xl border-y border-starlight/20 bg-night-950/55 text-left backdrop-blur-[3px] sm:grid-cols-3">
             {pillars.map((p, i) => (
               <li
                 key={p.title}

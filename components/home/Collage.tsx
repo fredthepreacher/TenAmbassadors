@@ -5,19 +5,20 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 type Tile = { id: string; media: Media | null; awaiting: string };
 
 /**
- * George's four-photo collage, directly below the hero — set as an editorial spread with a
- * clear hierarchy instead of four frames of equal weight:
- *   a  business-card exchange — the lead moment ("introductions")
- *   b  two women — the supporting human connection ("conversations")
+ * George's four-photo collage, directly below the hero, set as an editorial spread with a clear
+ * hierarchy instead of four frames of equal weight. Geo meeting revision (2026-10-04):
+ *   a  two women — the lead, dominant frame
+ *   b  business-card exchange — the smaller supporting frame
  *   d  mixed group · c seated conversation — context ("the relationships that follow")
  * Frames never overlap, and every frame shape was chosen for its photograph: each crop keeps
  * all faces and the card-exchange hands (docs/PHOTO_ART_DIRECTION.md).
  */
 const frame: Record<string, { cls: string; sizes: string; focus: string; narrow?: boolean }> = {
-  // 1536×1025: anchor right so the woman at the right edge stays whole; the card and hands stay centred.
-  a: { cls: "collage-frame--a", sizes: "(max-width: 1023px) 92vw, 52vw", focus: "100% 50%" },
-  // 1300×1625: square from the top keeps both faces and shoulders.
-  b: { cls: "collage-frame--b", sizes: "(max-width: 1023px) 46vw, 30vw", focus: "50% 0%", narrow: true },
+  // 1300×1625 portrait: framed from the top, so both faces, hair and shoulders stay whole at every width.
+  a: { cls: "collage-frame--a", sizes: "(max-width: 1023px) 92vw, 52vw", focus: "50% 0%" },
+  // 1536×1025: a square centred on the exchange keeps both faces and the hands with the card; the guest
+  // at the photo's right edge (already cut by the original frame) falls fully outside the square.
+  b: { cls: "collage-frame--b", sizes: "(max-width: 1023px) 46vw, 30vw", focus: "48% 50%", narrow: true },
   // 2048×1536: three people across the upper half; centred crop keeps all three.
   d: { cls: "collage-frame--d", sizes: "(max-width: 1023px) 46vw, 38vw", focus: "50% 0%", narrow: true },
   // 1024×819: four seated speakers; a wide crop from near the top keeps every head.

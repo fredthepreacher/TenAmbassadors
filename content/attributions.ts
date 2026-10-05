@@ -85,7 +85,7 @@ export const attributions: Record<string, PhotoAttribution> = {
     basis: "The #UPMIXER stage screen is visible in the full frame (IMG_4006). The year is unknown, so it is omitted.",
     corner: "bl", // a guest's face sits in the bottom-right corner of the inset crop
   },
-  "/media/geo/ta-geo-collage-group.jpg": {
+  "/media/geo/ta-geo-collage-group-clean.jpg": {
     label: "Photo: AllseeinJah.com, 2018",
     status: "confirmed",
     lead: "Geo's suggested wording \u201cCirca Upmixer Holiday Event, 2018\u201d is not yet confirmed (139 of 424 shows an AAIA New York screen). Publish the event name only once Geo confirms it.",

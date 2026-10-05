@@ -78,8 +78,13 @@ export const media = {
   /* ---- Geo revision 2026-10-02 (see docs/GEO_10_POINT_REVISION_REPORT.md) ---- */
   /** AllseeinJah.com (11 of 424), Geo-selected for the collage (mixed group). Crop only: the frame
    *  stops above the man's hand, so the drink he holds is out of frame — no retouching. */
+  /**
+   * AllseeinJah.com (11 of 424). Geo meeting revision (2026-10-04): the liquor bottles on the back-bar
+   * shelf behind the guests were removed (scripts/geo_inpaint_lama.py; mask and result in
+   * assets/geo-revision-edits/). Only the shelf was changed: the people are untouched.
+   */
   collageGroup: {
-    src: "/media/geo/ta-geo-collage-group.jpg",
+    src: "/media/geo/ta-geo-collage-group-clean.jpg",
     alt: "A young man in a dark blazer stands with two smiling women at an evening event.",
     width: 2048,
     height: 1536,
@@ -181,27 +186,27 @@ export const media = {
 } satisfies Record<string, Media>;
 
 export const phangVideos = {
+  /*
+   * Geo meeting revision (2026-10-04): both cuts come from one edit of the approved source
+   * (Dr_Phang_Scholarship_01m00s-02m00s.mp4, kept in assets/phang-master/) that removes the single
+   * narration line "unexpectedly passed away this year" (scripts/edit_phang_statement.py). Nothing
+   * else changes: framing, music, end card and the burned-in timecode/watermark are untouched
+   * (no clean export has been supplied). The homepage and the scholarship page always match.
+   */
   featured: {
-    /*
-     * V2.2 homepage cut: 01:19.00 → 02:00.00 of the source — the natural end of
-     * the supplied 01:00–02:00 segment (exactly 41.00s; nothing looped or
-     * extended). It closes on the held end card. Fades: video+audio in 0.9s,
-     * cinematic out 1.75s. Framing untouched; burned-in timecode and watermark
-     * untouched (media clearance still pending). Replace with a full ~45s cut
-     * if clean footage past 02:00 is supplied.
-     */
-    title: "The Dr. Christopher A. Phang Scholarship — film excerpt",
-    src: "/media/scholarship/dr-phang-featured.mp4",
+    /* Homepage excerpt: 01:19 → the source's natural end at 02:00, minus the removed line. Fades 0.9 s in, 1.75 s out. */
+    title: "The Dr. Christopher A. Phang Scholarship film (excerpt)",
+    src: "/media/scholarship/dr-phang-excerpt.mp4",
     poster: media.phangPoster30,
-    durationLabel: "0:41",
+    durationLabel: "0:38",
     captions: null,
     transcript: null,
   },
   full: {
-    title: "The Dr. Christopher A. Phang Scholarship — 60-second film",
-    src: "/media/scholarship/dr-phang-60s.mp4",
+    title: "The Dr. Christopher A. Phang Scholarship film",
+    src: "/media/scholarship/dr-phang-film.mp4",
     poster: media.phangPoster60,
-    durationLabel: "1:00",
+    durationLabel: "0:57",
     captions: null,
     transcript: null,
   },

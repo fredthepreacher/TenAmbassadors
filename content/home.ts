@@ -116,24 +116,19 @@ export const globalVision = {
 
 /**
  * Geo point 2: four-photo editorial collage directly below the hero.
- * Tiles: a = business-card exchange (lead), b = two women, c = seated conversation,
- * d = IMG_4001 group (overlapping inset). A tile with `media: null` shows a
- * reviewer-only placeholder naming the awaited file; the public build hides it.
+ * Geo meeting revision (2026-10-04): the two-women photo (AllseeinJah.com 15 of 424) is now the
+ * lead, dominant frame; the business-card exchange (IMG_3977) is the smaller supporting frame.
+ * Tiles: a = two women (lead), b = business-card exchange (support), c = seated panel, d = mixed group.
+ * A tile with `media: null` hides the whole collage (no placeholders in the public build).
+ * The two-women photo is used only here, so it is not repeated in a nearby section.
  */
 export const collage = {
   eyebrow: "In the room",
   /** [draft] presentation line; makes no factual claim. */
   title: ["Introductions, conversations", "and the relationships that follow."],
   tiles: [
-    {
-      id: "a",
-      // Client decision 2026-10-02: show the collage now. Until the hero film is delivered the
-      // business-card photo also remains the hero; once `heroFilm` is set, `media.hero` becomes a
-      // film poster frame and this tile keeps the business-card photo.
-      media: media.businessCard,
-      awaiting: "",
-    },
-    { id: "b", media: geoPending.collageTwoWomen.media, awaiting: `Geo\u2019s ${geoPending.collageTwoWomen.awaiting}` },
+    { id: "a", media: geoPending.collageTwoWomen.media, awaiting: `Geo\u2019s ${geoPending.collageTwoWomen.awaiting}` },
+    { id: "b", media: media.businessCard, awaiting: "" },
     { id: "c", media: geoPending.collageSeated.media, awaiting: `Geo\u2019s ${geoPending.collageSeated.awaiting}` },
     { id: "d", media: media.collageGroup, awaiting: "" },
   ] as const,
