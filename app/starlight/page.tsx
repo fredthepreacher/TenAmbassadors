@@ -102,7 +102,7 @@ export default async function StarlightPage() {
             {s.externalUrl ? (
               <div className="mt-8">
                 <ButtonLink href={s.externalUrl} variant="night" arrow>
-                  Visit the Starlight event site
+                  Visit the Starlight Awards site
                 </ButtonLink>
               </div>
             ) : null}

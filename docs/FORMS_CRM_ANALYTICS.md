@@ -15,7 +15,10 @@
   - media inquiry
 - **Rendering:** `components/forms/IntakeForm.tsx` renders any registered form, with labels, hints, required markers and a live status region.
 - **Submission:** every form, including the footer newsletter, calls `submitIntake(formId, data)`.
-- **Status:** intake is **off**. `site.intake.enabled` is false, so forms show as labelled previews ("Preview · not collecting yet") with disabled fields. **Nothing is collected**, and no paid service has been added.
+- **Status (Geo meeting revision, 2026-10-04):** forms are **live by email**. With no endpoint set, `submitIntake` opens the visitor's own email app with the message written and addressed to `site.inbox.address`. Nothing is sent until the visitor presses send, and the website stores nothing. No paid service and no secret is involved.
+  - **Interim inbox:** `info@theupmixer.com` (Geo approved routing to The Upmixer until Ten Ambassadors has its own address). The contact page, footer chip, newsletter and legal pages all read the same setting.
+  - **To switch to the Ten Ambassadors address:** set `NEXT_PUBLIC_FORM_RECIPIENT` in Vercel (Production and Preview) and redeploy, or change the fallback in `lib/site.ts → inbox`. `interim` turns false automatically when the variable is set, which removes the "handled by The Upmixer team" note.
+  - **To deliver without the visitor's email app** (server-side): follow "Turning intake on" below and set `NEXT_PUBLIC_INTAKE_ENDPOINT=/api/intake`. A mail provider key (for example `RESEND_API_KEY`) then lives only in Vercel environment variables, never in the repo.
 
 **Ambassador application fields:**
 
@@ -31,7 +34,7 @@
    - validate the payload server-side against `forms[formId]`
    - add spam protection (a honeypot plus rate limiting, or Turnstile)
    - write a **Contact** (person or organization) and an **Interaction** `{formId, pathway, referral, createdAt}`.
-3. Set `site.intake = { enabled: true, endpoint: "/api/intake" }`.
+3. Set `NEXT_PUBLIC_INTAKE_ENDPOINT=/api/intake` (forms then POST there instead of opening email).
 4. Publish the privacy policy (`/privacy`) first, and add consent text for the newsletter.
 
 **Low-cost CRM options** (verify current pricing before choosing):
