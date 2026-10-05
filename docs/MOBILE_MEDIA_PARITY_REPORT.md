@@ -189,6 +189,7 @@ On the same Slow 4G link, the old file paused to rebuffer 8 times in the first 2
 |---|---|---|---|
 | **Electron 44 (Chromium 152)** with phone emulation (touch, mobile viewport, DPR, Android UA) | Cloud | Yes | Every playback test below. This is emulation of a phone in Blink, not a phone |
 | **Bundled Playwright Chromium (Lighthouse)** | Cloud | No | LCP, CLS, TBT. The film cannot decode there, which does not affect the poster metrics |
+| **Microsoft Edge on Windows** (playwright-core, headless; phone emulation for phones) | Freddie's machine | Yes | The Vercel Preview, plus the policy cases on the same build (§6) |
 | **Real iPhone Safari** | — | — | **Not available in this session, so there is no device pass.** No WebKit engine was available either |
 
 ### Refused autoplay
@@ -304,13 +305,52 @@ Accessibility, Best Practices and SEO stayed at 100 throughout. The differences 
 
 ## 6. Push and Preview
 
-The branch is pushed as `mobile-media-parity`, and a **Vercel Preview** is deployed from it. Nothing is merged and production is not touched.
+### What was pushed and deployed
 
-The Preview URL and the checks run against it are recorded below once it is live.
+| Item | Value |
+|---|---|
+| Branch | `mobile-media-parity` (`e9cb1cd`), pushed to GitHub from Freddie's machine |
+| Preview | Built by Vercel's Git integration: `dpl_DQc3KhbJxJHULQm5DpDw8DVqB9fh`, ready in 25 s |
+| Preview URL | https://tenambassadors-9k7g9gj2j-wavysites-projects.vercel.app |
+| Branch alias | `tenambassadors-git-mobile-media-parity-wavysites-projects.vercel.app` |
+| Access | Previews are behind Vercel Authentication: open them while signed in to Vercel |
+| Production | Untouched: still `7f6917a` (`dpl_BSnhY2HwmwQH26ZFwH23h2eeck8r`) |
 
-*(Preview results: see the follow-up commit on this branch.)*
+On Freddie's machine (Windows, branch checkout), `npm run typecheck`, `npm run lint`, `git diff --check origin/main...HEAD` and `npm run build` all pass.
 
----
+### Microsoft Edge on Windows against the Preview
+
+Real H.264, headless, phone emulation for the phones. Readings are `currentTime` in seconds after navigation:
+
+| Viewport | File | 8 s | 15 s |
+|---|---|---|---|
+| 320×568 | mobile | 2.83 | 9.79 |
+| 390×844 | mobile | 3.56 | 10.53 |
+| 430×932 | mobile | 3.70 | 10.70 |
+| 768×1024 | approved | 3.34 | 10.34 |
+| 1440×900 | approved | 3.62 | 10.61 |
+| 1920×1080 | approved | 4.77 (0.10 at 3 s) | 11.77 |
+| 844×390 | — | approved still, no film | |
+
+- `readyState` was 4, the film was revealed, and the pause control was shown at every playing reading.
+- No console errors, no failed requests, no horizontal overflow.
+- On this first, uncached visit the film started 4–5 s after navigation. That includes the cold Vercel edge and the share-link redirect; locally it starts in about 0.5 s.
+- `/media/hero/ta-hero-film-geo.mp4` returns **404** on the Preview, as expected after the rename. It will also 404 on production once this branch is deployed there; nothing on the site references it.
+
+### Policy cases in Edge (same build, run locally on Windows)
+
+The Preview's share link stopped authenticating partway through the run (Vercel's sign-in page appeared), so these cases ran against the same branch build served locally with `next start`:
+
+| Case | Result |
+|---|---|
+| Reduced Motion | "Play film", `readyState` 0 (nothing loaded); tap → `playing`, 3.39 s |
+| Autoplay refused, tap "Play film" | `blocked`; tap → `playing`, 3.38 s |
+| Autoplay refused, tap elsewhere | `blocked`; page tap → `playing`, 3.53 s |
+| Back/forward navigation | `playing` after back |
+| `?mediadebug=1` | Read-out present: `playing (phone)`, `ready 4`, mobile file 720×1280 |
+| Media range requests | `206 video/mp4` with byte ranges for both films; `206 image/jpeg` for the poster and backdrop |
+
+Evidence: `06-edge-windows-preview.jpg`.
 
 ## 7. Preserved
 
@@ -352,4 +392,4 @@ No copy changed.
 | `scripts/hero_recut/render_geo_v4.py`, `scripts/hero_recut/ta-hero-film-v4.plan.json` | Output name / rename |
 | `docs/ASSET_MAP.md` | Hero file list |
 | `docs/MOBILE_MEDIA_PARITY_REPORT.md` | This report |
-| `docs/review/mobile-media-parity/*.jpg` | Evidence |
+| `docs/review/mobile-media-parity/*.jpg` | Evidence (01–05 cloud Chromium, 06 Edge on Windows and the Preview) |
