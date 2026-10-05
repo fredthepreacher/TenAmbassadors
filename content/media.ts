@@ -14,12 +14,12 @@ export const media = {
     focus: "44% 38%",
   },
   /**
-   * Hero still: the first frame of the hero film (4:5 cut). It is shown whole (`object-fit: contain`),
-   * never cropped by its frame. `heroFilm.variants` carries every breakpoint; this entry is also the
-   * fallback when no film is set.
+   * Hero still: the first frame of the hero film (Geo's cut, 4:5). It is shown whole
+   * (`object-fit: contain`), never cropped by its frame. `heroFilm.variants` carries every
+   * breakpoint; this entry is also the fallback when no film is set.
    */
   hero: {
-    src: "/media/hero/ta-hero-film-45-poster.jpg",
+    src: "/media/hero/ta-hero-film-geo-poster.jpg",
     alt: "Guests at an evening professional gathering.",
     width: 608,
     height: 760,
@@ -243,39 +243,37 @@ export const communityVideoCinematic = {
 };
 
 /**
- * Hero film — recut from the client's own sizzle footage, TenAmbassadors_Recap_16-35 (George's
- * suggested 16 s–35 s section; scenes from the wider Upmixer event community): a speaker addressing
- * the room → engaged young professionals listening → two guests in conversation.
+ * Hero film — Geo's own cut (Geo meeting revision, 2026-10-04): reel seconds 16–20 spliced to
+ * 24–39 of the client's Recap Reel (20–24 left out on purpose), cut by scripts/hero_recut/render_geo.py.
+ * The shot plan (reel times, crop window per shot) is in scripts/hero_recut/ta-hero-film-geo.plan.json.
  *
- * Full-subject framing (2026-10-04): one 4:5 cut, 608×760, taken pixel-for-pixel from the sharp
- * vertical column of the master (no upscaling, no generative fill). Every head stays inside the frame
- * with the most headroom the source allows, every crop sits above the burned-in captions, and no
- * drinks are in frame.
- * The site never crops it: the film and its poster use `object-fit: contain`.
- * - Portrait phones: the hero frame is 4:5, so the film fills it exactly.
- * - Portrait tablets and desktop: the film sits whole inside the panel, over `backdrop` (its own
- *   first frame, reduced to a tiny softened, darkened plate) so the panel still reads as filled.
- * - Landscape phones/tablets (16:11 frame below 1024 px) keep the static still (A7R00711).
- * - 0.8× / 0.65× speed (frame-accurate, no synthetic in-between frames), soft dip-dissolves, and a
- *   closing dissolve into the exact first frame, so the loop never resets visibly.
- * - Source script: scripts/hero_recut/render_v.py. Superseded handoff film: assets/hero-film-master/.
+ * - Source: Geo named "Recap Reel V4.mp4" (Google Drive). Until that file is in the repo, the cut is
+ *   rendered from the 16–35 s extract already in assets/recap-master/ (Recap Reel V2), which covers
+ *   16–20 and 24–34.3; re-run the script on V4 (offset 0) and the full 24–39 range follows.
+ * - The reel's first 0.4 s (a close-up of a hand holding a drink) is trimmed: the cut starts at 16.4.
+ * - One 4:5 window per shot, 608×760, pixel-for-pixel from the sharp vertical column (no upscaling,
+ *   no generative fill); each window gives the highest head the most headroom the source allows and
+ *   stays above the burned-in captions. Real-time playback; Geo's hard cuts are kept.
+ * - Shown whole (`object-fit: contain`). Portrait phones: the 4:5 frame matches the film exactly.
+ *   Portrait tablets and desktop: the film sits inside the panel over `backdrop`, a tiny softened,
+ *   darkened plate of its first frame. Landscape phones/tablets keep the static still (A7R00711).
  */
 const heroAlt = "Guests at an evening professional gathering.";
-const heroFilm45 = "/media/hero/ta-hero-film-45.mp4";
+const heroFilmGeo = "/media/hero/ta-hero-film-geo.mp4";
 export const heroFilm: HeroFilm | null = {
-  label: "Silent film of real community events: a speaker addresses the room, young professionals listen, and two guests talk.",
-  backdrop: "/media/hero/ta-hero-film-45-backdrop.jpg",
+  label: "Silent film of real community gatherings: guests meet, listen and talk with one another.",
+  backdrop: "/media/hero/ta-hero-film-geo-backdrop.jpg",
   variants: [
     {
       id: "phone",
       media: "(max-width: 639px) and (orientation: portrait)",
-      mp4: heroFilm45,
+      mp4: heroFilmGeo,
       poster: { ...media.hero, alt: heroAlt },
     },
     {
       id: "tablet-portrait",
       media: "(min-width: 640px) and (max-width: 1023px) and (orientation: portrait)",
-      mp4: heroFilm45,
+      mp4: heroFilmGeo,
       poster: { ...media.hero, alt: heroAlt },
     },
     {
@@ -287,7 +285,7 @@ export const heroFilm: HeroFilm | null = {
     {
       id: "desktop",
       media: "(min-width: 1024px)",
-      mp4: heroFilm45,
+      mp4: heroFilmGeo,
       poster: { ...media.hero, alt: heroAlt },
     },
   ],

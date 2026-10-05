@@ -13,6 +13,12 @@ import { PauseIcon, PlayIcon } from "@/components/ui/Icons";
  * (the same media queries as the poster), and a rotation/resize across a
  * breakpoint swaps the cut so the framing always matches the container. The film is
  * shown whole (`object-fit: contain`): the frame never crops a person to fill itself.
+ *
+ * Mobile reliability (Geo meeting, 2026-10-04): muted/playsinline are set as real attributes
+ * before loading (iOS checks them), loading also starts after a short fallback delay when the
+ * window `load` event is slow, a failed first play is retried once the film can play, and when the
+ * browser refuses autoplay (iOS Low Power Mode, some Android data savers) the poster stays and a
+ * Play control appears, so the visitor can start it with a tap.
  */
 export function HeroFilm({ film }: { film: HeroFilmT }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -20,6 +26,8 @@ export function HeroFilm({ film }: { film: HeroFilmT }) {
   const [playing, setPlaying] = useState(false);
   /** The visitor paused the film (WCAG 2.2.2): never auto-resume after that. */
   const [held, setHeld] = useState(false);
+  /** The browser refused autoplay: the poster stays and the control offers Play. */
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -41,10 +49,19 @@ export function HeroFilm({ film }: { film: HeroFilmT }) {
       pick();
     };
     queries.forEach((q) => q.addEventListener("change", onChange));
+    // Start after `load` so the poster stays the LCP element; on slow mobile pages `load` can lag
+    // well behind the first paint, so start anyway after a short fallback delay.
+    let fallback = 0;
     if (document.readyState === "complete") start();
-    else window.addEventListener("load", start, { once: true });
+    else {
+      window.addEventListener("load", start, { once: true });
+      fallback = window.setTimeout(() => {
+        if (!started) start();
+      }, 3500);
+    }
     return () => {
       window.removeEventListener("load", start);
+      window.clearTimeout(fallback);
       queries.forEach((q) => q.removeEventListener("change", onChange));
     };
   }, [film]);
@@ -52,8 +69,28 @@ export function HeroFilm({ film }: { film: HeroFilmT }) {
   useEffect(() => {
     const v = ref.current;
     if (!v || !variant) return;
+    // iOS Safari only autoplays a video that is muted and inline *as attributes* when it loads.
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
+    const attempt = () =>
+      v
+        .play()
+        .then(() => setBlocked(false))
+        .catch((err: unknown) => {
+          setPlaying(false);
+          if ((err as { name?: string })?.name === "NotAllowedError") setBlocked(true);
+        });
     v.load();
-    if (!("held" in v.dataset)) v.play().catch(() => setPlaying(false));
+    if (!("held" in v.dataset)) attempt();
+    // A first play() can fail while the file is still opening (slow cellular): retry once it can play.
+    const onCanPlay = () => {
+      if (v.paused && !("held" in v.dataset) && !document.hidden) attempt();
+    };
+    v.addEventListener("canplay", onCanPlay, { once: true });
     // Pause off-screen to save battery; resume when the hero is back in view.
     let inView = true;
     const io = new IntersectionObserver(([e]) => {
@@ -71,6 +108,7 @@ export function HeroFilm({ film }: { film: HeroFilmT }) {
     return () => {
       io.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
+      v.removeEventListener("canplay", onCanPlay);
     };
   }, [variant]);
 
@@ -85,6 +123,15 @@ export function HeroFilm({ film }: { film: HeroFilmT }) {
   const toggle = () => {
     const v = ref.current;
     if (!v) return;
+    if (blocked) {
+      // A tap is a user gesture, so the browser now allows playback.
+      delete v.dataset.held;
+      setHeld(false);
+      v.play()
+        .then(() => setBlocked(false))
+        .catch(() => undefined);
+      return;
+    }
     if (held) {
       delete v.dataset.held;
       setHeld(false);
@@ -117,14 +164,14 @@ export function HeroFilm({ film }: { film: HeroFilmT }) {
       >
         <source src={variant.mp4} type="video/mp4" />
       </video>
-      {playing || held ? (
+      {playing || held || blocked ? (
         <button
           type="button"
           onClick={toggle}
           className="hero-film-toggle absolute top-4 right-4 z-[4] grid size-11 place-items-center rounded-full border border-paper/30 bg-navy-950/40 text-paper backdrop-blur-sm transition-[background-color,border-color,transform] duration-200 hover:border-paper/60 hover:bg-navy-950/70 active:scale-95"
-          aria-label={held ? "Play background film" : "Pause background film"}
+          aria-label={held || blocked ? "Play background film" : "Pause background film"}
         >
-          {held ? <PlayIcon className="ml-0.5 size-4" /> : <PauseIcon className="size-4" />}
+          {held || blocked ? <PlayIcon className="ml-0.5 size-4" /> : <PauseIcon className="size-4" />}
         </button>
       ) : null}
     </>

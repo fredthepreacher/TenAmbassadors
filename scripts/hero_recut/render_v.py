@@ -1,4 +1,7 @@
-"""Hero film recut from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35).
+"""SUPERSEDED (2026-10-04, Geo meeting): the homepage hero now uses Geo's own cut, rendered by
+render_geo.py. This script is kept as the record of the earlier full-subject framing cut (b223d8f).
+
+Hero film recut from the client's recap/sizzle footage (TenAmbassadors_Recap_16-35).
 
 Full-subject framing pass (2026-10-04). One 4:5 cut, taken pixel-for-pixel from the
 sharp vertical column (x 655-1263, 608 px wide): no upscaling, no generative fill, no
