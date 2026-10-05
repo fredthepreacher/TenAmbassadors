@@ -269,3 +269,8 @@ That difference is within run-to-run noise. Accessibility, Best Practices and SE
 7. **Legal sign-off** on Privacy, Terms and Accessibility (still drafts), nonprofit status and disclosure language.
 8. **A clean Dr. Phang film** with no timecode or watermark, plus captions and a transcript.
 9. **A confirmed mentor and approved copy**, if the mentor story should return (see Â§6).
+
+## Client reminder follow-up — 2026-10-05
+
+Geo reiterated that the secondary red-lit Upmixer event photo in the homepage Mentorship section should be deleted from the public site. The photo is no longer rendered in components/home/MentorshipFeature.tsx; the source asset remains in the repository only for archival/reference purposes. The approved primary Mentorship photo remains, and the single-image layout was rechecked at mobile and desktop widths.
+
