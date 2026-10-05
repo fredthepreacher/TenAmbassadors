@@ -100,7 +100,12 @@ export function AmbientVideo({
     else v.addEventListener("loadedmetadata", () => (v.currentTime = t), { once: true });
   };
 
-  /** Reveal the video only once a real (post-fade) frame has been painted — no black flash. */
+  /**
+   * Reveal the video only once a real (post-fade) frame has been painted — no black flash. Two independent
+   * signals (mobile media parity pass, 2026-10-05): the first painted frame past the fade
+   * (requestVideoFrameCallback) or the first `timeupdate` past it, whichever comes first, so a browser that
+   * never delivers one of them cannot leave the poster covering a playing film.
+   */
   const markStartedWhenPainted = (v: HTMLVideoElement) => {
     type Meta = { mediaTime: number };
     type RVFC = HTMLVideoElement & { requestVideoFrameCallback?: (cb: (now: number, meta: Meta) => void) => number };
@@ -112,16 +117,14 @@ export function AmbientVideo({
         else rv.requestVideoFrameCallback!(check);
       };
       rv.requestVideoFrameCallback(check);
-    } else {
-      const onTime = () => {
-        if (v.currentTime >= threshold) {
-          setStarted(true);
-          v.removeEventListener("timeupdate", onTime);
-        }
-      };
-      v.addEventListener("timeupdate", onTime);
-      onTime();
     }
+    const onTime = () => {
+      if (v.currentTime >= threshold + 0.05 && !v.paused) {
+        setStarted(true);
+        v.removeEventListener("timeupdate", onTime);
+      }
+    };
+    v.addEventListener("timeupdate", onTime);
   };
 
   const tryAmbient = () => {

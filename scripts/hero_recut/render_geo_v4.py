@@ -24,7 +24,7 @@ SOURCE = Path(sys.argv[1])
 OUT = Path(sys.argv[2])
 OUT.mkdir(parents=True, exist_ok=True)
 
-NAME = "ta-hero-film-geo"
+NAME = "ta-hero-film-v4"  # versioned (mobile media parity pass, 2026-10-05); was "ta-hero-film-geo"
 MP4 = OUT / f"{NAME}.mp4"
 POSTER = OUT / f"{NAME}-poster.jpg"
 BACKDROP = OUT / f"{NAME}-backdrop.jpg"

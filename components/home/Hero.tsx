@@ -14,6 +14,12 @@ import { HeroFilm } from "./HeroFilm";
  * motion disabled, and text starts faintly visible so LCP is not delayed.
  */
 const HERO_SIZES = "(max-width: 1023px) 100vw, 51vw";
+/**
+ * Where the panel has a fixed aspect, the contained 9:16 poster is narrower than the panel, so it asks for
+ * a smaller file: 4:5 phone frame → 9/16 × 5/4 ≈ 71vw; 1:1 portrait-tablet frame → 9/16 ≈ 57vw. Desktop's
+ * panel height varies, so it keeps the panel width. (Mobile media parity pass, 2026-10-05.)
+ */
+const POSTER_SIZES: Partial<Record<string, string>> = { phone: "71vw", "tablet-portrait": "57vw" };
 
 export function Hero({
   eyebrow,
@@ -37,15 +43,15 @@ export function Hero({
 }) {
   const variants = film?.variants ?? [];
   const posters = variants.map((v) => {
-    const { props } = getImageProps({ src: v.poster.src, alt: v.poster.alt, width: v.poster.width, height: v.poster.height, sizes: HERO_SIZES, quality: 78, loading: "eager" });
+    const { props } = getImageProps({ src: v.poster.src, alt: v.poster.alt, width: v.poster.width, height: v.poster.height, sizes: POSTER_SIZES[v.id] ?? HERO_SIZES, quality: 78, loading: "eager" });
     return { media: v.media, srcSet: props.srcSet, sizes: props.sizes, width: props.width, height: props.height, img: props };
   });
-  // One high-priority preload per distinct still, scoped to exactly the breakpoints that show it
-  // (queries are mutually exclusive), so each device fetches only its own still — and stills shared by
-  // two breakpoints (portrait tablet + desktop) keep a single, combined preload.
+  // One high-priority preload per distinct still and size, scoped to exactly the breakpoints that show it
+  // (queries are mutually exclusive), so each device fetches only its own still — and breakpoints that
+  // share a still and its sizes keep a single, combined preload.
   const byStill = new Map<string, (typeof posters)[number] & { queries: string[] }>();
   for (const p of posters) {
-    const key = p.img.src;
+    const key = `${p.img.src} ${p.sizes}`;
     const hit = byStill.get(key);
     if (hit) hit.queries.push(p.media);
     else byStill.set(key, { ...p, queries: [p.media] });
@@ -64,8 +70,8 @@ export function Hero({
       <div className="hero-grid relative pt-[76px]">
         <div className="hero-media relative">
           <div className="absolute inset-0 overflow-hidden lg:top-4">
-            {/* Where the panel is wider than the 4:5 film (portrait tablets, desktop), a softened, darkened
-                plate of the film's own first frame fills the sides, so the film is never enlarged into a crop. */}
+            {/* The 9:16 film is narrower than every hero panel (4:5 phones, 1:1 portrait tablets, desktop), so a
+                softened, darkened plate of its own first frame fills the sides: the film is never enlarged into a crop. */}
             {film?.backdrop ? (
               <div className="hero-backdrop" style={{ backgroundImage: `url(${film.backdrop})` }} aria-hidden="true" />
             ) : null}

@@ -20,7 +20,7 @@ export const media = {
    * when no film is set.
    */
   hero: {
-    src: "/media/hero/ta-hero-film-geo-poster.jpg",
+    src: "/media/hero/ta-hero-film-v4-poster.jpg",
     alt: "Guests at an evening professional gathering.",
     width: 720,
     height: 1280,
@@ -256,24 +256,32 @@ export const communityVideoCinematic = {
  *   darkened plate of its first frame. This keeps heads and bodies inside the media frame.
  * - Landscape phones/tablets keep the static still (A7R00711).
  * - Reproducible render: scripts/hero_recut/render_geo_v4.py. Exact ranges and metadata are in
- *   scripts/hero_recut/ta-hero-film-geo.plan.json.
+ *   scripts/hero_recut/ta-hero-film-v4.plan.json.
+ * - Mobile media parity pass (2026-10-05):
+ *   - versioned filenames (`ta-hero-film-v4*`, previously `ta-hero-film-geo*`), so no browser, CDN or
+ *     image-optimizer cache can serve an earlier cut's file or poster under the same URL;
+ *   - portrait phones play `ta-hero-film-v4-mobile.mp4`: the approved film re-encoded frame for frame (the
+ *     same 446 frames), with a capped bitrate (about 1.25 Mbps instead of 1.75 Mbps; 2.9 MB instead of
+ *     4.1 MB) and a key frame every 2 s, so it does not stall on slow cellular. Tablets and desktop keep the
+ *     approved encode. Render: scripts/hero_recut/encode_v4_mobile.py.
  */
 const heroAlt = "Guests at an evening professional gathering.";
-const heroFilmGeo = "/media/hero/ta-hero-film-geo.mp4";
+const heroFilmV4 = "/media/hero/ta-hero-film-v4.mp4";
+const heroFilmV4Mobile = "/media/hero/ta-hero-film-v4-mobile.mp4";
 export const heroFilm: HeroFilm | null = {
   label: "Silent film of real community gatherings: guests meet, listen and talk with one another.",
-  backdrop: "/media/hero/ta-hero-film-geo-backdrop.jpg",
+  backdrop: "/media/hero/ta-hero-film-v4-backdrop.jpg",
   variants: [
     {
       id: "phone",
       media: "(max-width: 639px) and (orientation: portrait)",
-      mp4: heroFilmGeo,
+      mp4: heroFilmV4Mobile,
       poster: { ...media.hero, alt: heroAlt },
     },
     {
       id: "tablet-portrait",
       media: "(min-width: 640px) and (max-width: 1023px) and (orientation: portrait)",
-      mp4: heroFilmGeo,
+      mp4: heroFilmV4,
       poster: { ...media.hero, alt: heroAlt },
     },
     {
@@ -285,7 +293,7 @@ export const heroFilm: HeroFilm | null = {
     {
       id: "desktop",
       media: "(min-width: 1024px)",
-      mp4: heroFilmGeo,
+      mp4: heroFilmV4,
       poster: { ...media.hero, alt: heroAlt },
     },
   ],

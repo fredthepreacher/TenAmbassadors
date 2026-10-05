@@ -754,8 +754,8 @@
 
 .hero-media {
   grid-area: media;
-  /* Portrait phones: the frame is the film's own 4:5, so the contained film fills it exactly
-     (see content/media.ts → heroFilm). Wider frames show the whole film over its backdrop. */
+  /* Portrait phones: a 4:5 frame. The 9:16 V4 film is shown whole inside it (contain) over its softened
+     backdrop, as on every other breakpoint (see content/media.ts → heroFilm). */
   aspect-ratio: 4 / 5;
 }
 @media (min-width: 640px) and (max-width: 1023px) and (orientation: portrait) {
@@ -935,6 +935,28 @@
 
 .hero-film[data-playing] {
   opacity: 1;
+}
+
+/* "Play film": shown when the browser refuses autoplay, or as an opt-in with Reduced Motion / Data Saver.
+   Centred on the frame: on the film's first frame that is the tables, clear of every face (checked against
+   face boxes from 320 to 1920 px wide). */
+.hero-film-cta {
+  animation: hero-cta-in 0.45s var(--ease-editorial) both;
+}
+.hero-film-cta:focus-visible,
+.hero-film-toggle:focus-visible {
+  outline: 2px solid var(--color-gold-300);
+  outline-offset: 3px;
+}
+@keyframes hero-cta-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-film-cta {
+    animation: none;
+  }
 }
 
 /* ---------- 2 · Collage below the hero ---------- */
@@ -1161,9 +1183,10 @@ footer {
   display: none;
 }
 
-/* ---------- Hero: full-subject framing (2026-10-04) ----------
+/* ---------- Hero: full-subject framing (2026-10-04; V4 film 2026-10-05) ----------
    The film and its poster are shown whole (contain), never enlarged until people are cropped.
-   Where the panel is wider than 4:5, a softened plate of the film's first frame fills the sides. */
+   Geo's V4 film is 9:16, narrower than every hero panel (4:5 phones, 1:1 portrait tablets, desktop), so a
+   softened plate of its first frame fills the sides at every breakpoint, as on desktop. */
 .hero-poster {
   object-fit: contain;
   object-position: 50% 50%;
@@ -1182,13 +1205,10 @@ footer {
   inset: 0;
   background: radial-gradient(70% 80% at 50% 45%, rgb(8 27 51 / 0.2), rgb(8 27 51 / 0.72));
 }
-/* Portrait phones: the 4:5 frame matches the film, so no backdrop is needed (and none is fetched).
-   The film fills the frame edge to edge here, so the pause control moves from the top corner (where
-   it could sit on someone's hair) to the lower band beside the credit, over clothing, never a head. */
+/* Portrait phones: the 9:16 film sits in the 4:5 frame with the softened plate in the side bands (mobile
+   media parity, 2026-10-05: the plate used to be hidden here, from when the film was 4:5, which left flat
+   navy bands). The pause control sits low on the right, in the band beside the credit, never on a head. */
 @media (max-width: 639px) and (orientation: portrait) {
-  .hero-backdrop {
-    display: none;
-  }
   .hero-film-toggle {
     top: auto;
     right: 0.75rem;

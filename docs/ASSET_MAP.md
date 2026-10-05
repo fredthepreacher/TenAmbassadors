@@ -143,12 +143,13 @@ See `docs/PHOTO_ART_DIRECTION.md` for the full crop audit.
 
 **Historical hero recut.** The 4:5 `ta-hero-film-45*` derivative was the full-subject framing fix used before Geo supplied his final V4 source. It came from the older 16–35 horizontal recap extract and is retained only as historical build context.
 
-**Geo meeting hero (current, 2026-10-04).** Geo emailed the actual `Recap Reel V4.mp4` and specified reel seconds **16–20, then 24–39**. The current public hero files are:
-- `public/media/hero/ta-hero-film-geo.mp4`
-- `public/media/hero/ta-hero-film-geo-poster.jpg`
-- `public/media/hero/ta-hero-film-geo-backdrop.jpg`
+**Geo meeting hero (current, 2026-10-04).** Geo emailed the actual `Recap Reel V4.mp4` and specified reel seconds **16–20, then 24–39**. The current public hero files (versioned names since the mobile media parity pass, 2026-10-05; previously `ta-hero-film-geo*`, same bytes) are:
+- `public/media/hero/ta-hero-film-v4.mp4`: the approved encode (1.75 Mbps), used on desktop and portrait tablets
+- `public/media/hero/ta-hero-film-v4-mobile.mp4`: the approved encode re-encoded frame for frame for phones (the same 446 frames; CRF 27 with a 1.2 Mbps VBV cap, ≈1.25 Mbps, 2.9 MB, key frame every 2 s); `scripts/hero_recut/encode_v4_mobile.py`
+- `public/media/hero/ta-hero-film-v4-poster.jpg`
+- `public/media/hero/ta-hero-film-v4-backdrop.jpg`
 
-The V4 master is 2160×3840 portrait at 24 fps. The derivative uses 16.4–20.0 (skipping the brief drink close-up) and 24.0–39.0, joined in that order. It preserves the **full portrait frame with no crop**, scales to 720×1280, removes audio for the muted autoplay hero, and is shown with `object-fit: contain`. Exact metadata is in `scripts/hero_recut/ta-hero-film-geo.plan.json`; `scripts/hero_recut/render_geo_v4.py` reproduces it.
+The V4 master is 2160×3840 portrait at 24 fps. The derivative uses 16.4–20.0 (skipping the brief drink close-up) and 24.0–39.0, joined in that order. It preserves the **full portrait frame with no crop**, scales to 720×1280, removes audio for the muted autoplay hero, and is shown with `object-fit: contain` over the softened backdrop at every breakpoint (portrait phones included since 2026-10-05). Exact metadata is in `scripts/hero_recut/ta-hero-film-v4.plan.json`; `scripts/hero_recut/render_geo_v4.py` reproduces it. Playback behaviour and the test matrix: `docs/MOBILE_MEDIA_PARITY_REPORT.md`.
 
 - **Landscape still:** `ta-hero-landscape-a7r00711.jpg`, 1600×1100, a crop of A7R00711 with −6% exposure.
 - **Removed from `public/`:** the 2026-10-02 handoff film and its poster. The master is still in `assets/hero-film-master/`.
