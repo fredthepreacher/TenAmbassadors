@@ -7,20 +7,21 @@ import { AreaList } from "@/components/pages/AreaList";
 import { getPrograms } from "@/lib/content";
 import { mentorshipFeature } from "@/content/home";
 import { geoPending, media } from "@/content/media";
-
-/*
- * Geo meeting revision (2026-10-04): the client-selected Mentorship photo (13 of 639, the version with
- * the two drinks removed) now leads the page, beside "Someone helps you walk through it." The Become a
- * Mentor track takes the photo the hero used before (2292), so no photo repeats on this page.
- * Geo point 5 (Future Ambassador pathway) is unchanged.
- */
-const heroImage = geoPending.mentorshipTable.media ?? media.mentorshipGenerational;
-const pathwayImages = [
-  { ...media.mentorshipGenerational, focus: "50% 0%" },
-  geoPending.futureAmbassadorStage.media ?? { ...media.communityProfessionals, focus: "50% 20%" },
-];
 import { pageMetadata } from "@/lib/seo";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
+
+/*
+ * Geo meeting revision (2026-10-04): the client-selected Mentorship photo (13 of 639,
+ * with the two drinks removed) leads the page beside "Someone helps you walk through it."
+ *
+ * Client follow-up (2026-10-05): remove ta-mentorship-2292.jpg from public display and
+ * leave its pathway intentionally text-led until a replacement image is supplied.
+ */
+const heroImage = geoPending.mentorshipTable.media ?? media.mentorshipPeers;
+const pathwayImages = [
+  null,
+  geoPending.futureAmbassadorStage.media ?? { ...media.communityProfessionals, focus: "50% 20%" },
+];
 
 export const metadata = pageMetadata({
   title: "Professional Mentorship for Young Professionals",
@@ -96,36 +97,64 @@ export default async function MentorshipPage() {
       />
 
       <section aria-label="Mentorship pathways" className="bg-ivory">
-        {mentorship.tracks.map((t, i) => (
-          <div key={t.id} id={t.id} className="scroll-mt-24 border-b border-line">
-            <div className="container-x grid gap-10 py-16 md:py-24 lg:grid-cols-12 lg:items-center">
-              <div className={i === 0 ? "lg:col-span-6" : "lg:order-2 lg:col-span-6 lg:col-start-7"} data-reveal>
-                <p className="eyebrow rule-before text-gold-ink">Pathway {String.fromCharCode(65 + i)}</p>
-                <h2 className="mt-5 text-h2">{t.title}</h2>
-                <p className="mt-6 text-lede text-ink-2">{t.body}</p>
-                <PendingNote className="mt-6">{t.pending}</PendingNote>
-                <div className="mt-8">
-                  <ButtonLink href={t.id === "become-a-mentor" ? "/get-involved/mentor" : "/get-involved/ambassador"} variant="outline" arrow>
-                    {t.id === "become-a-mentor" ? "Mentor application" : "Ambassador pathway"}
-                  </ButtonLink>
+        {mentorship.tracks.map((t, i) => {
+          const pathwayImage = pathwayImages[i];
+
+          return (
+            <div key={t.id} id={t.id} className="scroll-mt-24 border-b border-line">
+              <div
+                className={
+                  pathwayImage
+                    ? "container-x grid gap-10 py-16 md:py-24 lg:grid-cols-12 lg:items-center"
+                    : "container-narrow py-16 md:py-24"
+                }
+              >
+                <div
+                  className={
+                    pathwayImage
+                      ? i === 0
+                        ? "lg:col-span-6"
+                        : "lg:order-2 lg:col-span-6 lg:col-start-7"
+                      : ""
+                  }
+                  data-reveal
+                >
+                  <p className="eyebrow rule-before text-gold-ink">Pathway {String.fromCharCode(65 + i)}</p>
+                  <h2 className="mt-5 text-h2">{t.title}</h2>
+                  <p className="mt-6 text-lede text-ink-2">{t.body}</p>
+                  <PendingNote className="mt-6">{t.pending}</PendingNote>
+                  <div className="mt-8">
+                    <ButtonLink href={t.id === "become-a-mentor" ? "/get-involved/mentor" : "/get-involved/ambassador"} variant="outline" arrow>
+                      {t.id === "become-a-mentor" ? "Mentor application" : "Ambassador pathway"}
+                    </ButtonLink>
+                  </div>
+
+                  {!pathwayImage ? (
+                    <p className="sr-only">
+                      A replacement image for this mentorship pathway will be added after client approval.
+                    </p>
+                  ) : null}
                 </div>
-              </div>
-              <div className={i === 0 ? "lg:col-span-5 lg:col-start-8" : "lg:order-1 lg:col-span-5"} data-reveal="image">
-                <div className="photo photo-edge group relative aspect-[4/3] overflow-hidden bg-stone" data-touch-lit>
-                  <Image
-                    src={pathwayImages[i].src}
-                    alt={pathwayImages[i].alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover"
-                    style={{ objectPosition: pathwayImages[i].focus }}
-                  />
-                  <PhotoCredit src={pathwayImages[i].src} />
-                </div>
+
+                {pathwayImage ? (
+                  <div className={i === 0 ? "lg:col-span-5 lg:col-start-8" : "lg:order-1 lg:col-span-5"} data-reveal="image">
+                    <div className="photo photo-edge group relative aspect-[4/3] overflow-hidden bg-stone" data-touch-lit>
+                      <Image
+                        src={pathwayImage.src}
+                        alt={pathwayImage.alt}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        className="object-cover"
+                        style={{ objectPosition: pathwayImage.focus }}
+                      />
+                      <PhotoCredit src={pathwayImage.src} />
+                    </div>
+                  </div>
+                ) : null}
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </section>
     </>
   );

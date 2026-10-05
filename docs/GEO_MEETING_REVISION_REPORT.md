@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-04
 **Branch:** `george-fidelity-visual-polish`
-**Commits:** `b223d8f` → `8ee215d` → `a128c76` → `83d17fd` → this report. `b223d8f` was the starting point; none of the commits are squashed, and the final hash is the commit that adds this file.
+**Commits:** `b223d8f` â†’ `8ee215d` â†’ `a128c76` â†’ `83d17fd` â†’ this report. `b223d8f` was the starting point; none of the commits are squashed, and the final hash is the commit that adds this file.
 **Production:** unchanged at `68ea38e` (`dpl_DCTgQusqxEx2pnecNT9TxMPCMPow`). Nothing was merged, pushed or promoted, and no alias, DNS or domain was touched.
 
 This is a client-directed refinement pass, not a redesign. The approved structure is kept, including:
@@ -15,17 +15,17 @@ This is a client-directed refinement pass, not a redesign. The approved structur
 
 ## 1. Homepage hero: Geo's cut
 
-**Source.** Geo's emailed **"Recap Reel V4.mp4"** from Google Drive file `1-l63RzCcQjPWqbwm8yS3NyOp-VUk1M1B` is now integrated directly. The actual source is a 2160×3840 portrait HEVC master, 24 fps, 48.33 s.
+**Source.** Geo's emailed **"Recap Reel V4.mp4"** from Google Drive file `1-l63RzCcQjPWqbwm8yS3NyOp-VUk1M1B` is now integrated directly. The actual source is a 2160Ã—3840 portrait HEVC master, 24 fps, 48.33 s.
 
-**Cut.** Geo specified reel seconds **16–20**, then **24–39**. The build uses **16.4–20.0** and **24.0–39.0**:
-- 20–24 is omitted exactly as Geo requested.
-- 16.0–16.4 is a brief close-up of a drink, so playback begins at the next shot while remaining inside Geo's requested 16–20 range.
+**Cut.** Geo specified reel seconds **16â€“20**, then **24â€“39**. The build uses **16.4â€“20.0** and **24.0â€“39.0**:
+- 20â€“24 is omitted exactly as Geo requested.
+- 16.0â€“16.4 is a brief close-up of a drink, so playback begins at the next shot while remaining inside Geo's requested 16â€“20 range.
 
 **No fallback source remains.** The prior Recap Reel V2 extract was only a temporary stand-in because V4 had not yet been available locally. The public hero now comes from the actual V4 file Geo emailed.
 
 **Framing.**
 - V4 is already portrait, so the derivative preserves the complete source frame.
-- Output is 720×1280 at 24 fps.
+- Output is 720Ã—1280 at 24 fps.
 - There is **no crop**, no generative fill, and no face/body manipulation.
 - The browser renders the film with `object-fit: contain`, so heads and bodies are not cut off by responsive cover behavior.
 - Portrait tablet/desktop space around the narrow film is filled by the existing softened/darkened first-frame backdrop.
@@ -37,7 +37,7 @@ This is a client-directed refinement pass, not a redesign. The approved structur
 - **File:** `public/media/hero/ta-hero-film-geo.mp4`
 - **Duration:** 18.58 s
 - **File size:** 4.08 MB
-- **Codec:** H.264 High, 720×1280, 24 fps
+- **Codec:** H.264 High, 720Ã—1280, 24 fps
 - **Poster:** `public/media/hero/ta-hero-film-geo-poster.jpg`
 - **Backdrop:** `public/media/hero/ta-hero-film-geo-backdrop.jpg`
 
@@ -127,10 +127,10 @@ Dash-heavy mission and program sentences now use plain punctuation, with no chan
 
 **What was removed.** One narration line: "unexpectedly passed away this year".
 - **Found with:** a Whisper and voice-activity pass on the approved source (`Dr_Phang_Scholarship_01m00s-02m00s.mp4`).
-- **Where:** 54.49–56.62 s in that file, which is 01:54–01:57 of the film.
+- **Where:** 54.49â€“56.62 s in that file, which is 01:54â€“01:57 of the film.
 
 **The edit.**
-- The narration now reads: "Today we gather to remember and honor a true luminary in the medical world, physician Dr. Christopher Phang. Dr. Phang, born October 7, 1968. He was not just a doctor…"
+- The narration now reads: "Today we gather to remember and honor a true luminary in the medical world, physician Dr. Christopher Phang. Dr. Phang, born October 7, 1968. He was not just a doctorâ€¦"
 - The cut joins the natural pause after "1968" to the pause before "He was". A 0.24 s equal-power audio crossfade and a matching video dissolve sit over the static end card, so the join is invisible and silent.
 - Re-checked by transcribing the output: the line is gone and nothing else changed.
 
@@ -138,7 +138,7 @@ Dash-heavy mission and program sentences now use plain punctuation, with no chan
 
 | Where | File | Length |
 |---|---|---|
-| Homepage excerpt | `dr-phang-excerpt.mp4` (01:19 → end, same fades as before) | 0:38 |
+| Homepage excerpt | `dr-phang-excerpt.mp4` (01:19 â†’ end, same fades as before) | 0:38 |
 | Scholarship page | `dr-phang-film.mp4` | 0:57 |
 
 - The old cuts are no longer served.
@@ -160,10 +160,10 @@ Dash-heavy mission and program sentences now use plain punctuation, with no chan
 **Removed from what visitors see:**
 - the "In preparation" eyebrow on launch-stage cards
 - the "Preview" chip and "Not yet accepting submissions" button on forms
-- every "not yet open" call-to-action chip (for example "Apply · not yet open", "Tickets · details to come")
+- every "not yet open" call-to-action chip (for example "Apply Â· not yet open", "Tickets Â· details to come")
 - the disabled "Email" and social chips (and their "coming soon" screen-reader text) in the footer
 - "Direct email and phone details will be listed here"
-- "Newsletter sign-up isn't connected yet…"
+- "Newsletter sign-up isn't connected yetâ€¦"
 - the empty founding-story card
 
 **Rewritten:**
@@ -201,7 +201,7 @@ Geo approved routing to The Upmixer's inbox until Ten Ambassadors has its own ad
 - "Explore Starlight" (homepage) and a new "Visit the Starlight Awards site" button (top of /starlight and in its Attend section) go **straight to the Starlight event site**.
 - **The URL:** `https://starlight-awards-2026.vercel.app`, the production URL of the Starlight Awards 2026 project in the Wavvy Sites Vercel team.
 - **Why that one:** there are two Starlight projects (`starlight-awards`, `starlight-awards-2026`). Neither has a custom domain, and both currently disallow search engines. `starlight-awards-2026` is the actively developed one.
-- **Reversible:** change `content/starlight.ts → externalUrl`, or set `NEXT_PUBLIC_STARLIGHT_SITE_URL`. Setting it to `null` routes everything back to /starlight.
+- **Reversible:** change `content/starlight.ts â†’ externalUrl`, or set `NEXT_PUBLIC_STARLIGHT_SITE_URL`. Setting it to `null` routes everything back to /starlight.
 - **Kept:** /starlight, the "Starlight" navigation item, the footer link and the Event schema, for SEO and navigation.
 - **Before production:** confirm the final Starlight domain.
 
@@ -213,8 +213,8 @@ Every image on the site (24 files) was reviewed at the crops actually shown.
 |---|---|---|
 | Group photo, 11 of 424 (collage) | Liquor bottles on the back-bar shelf behind the guests | Removed with the same localized LaMa cleanup used for 13 of 639 (only shelf pixels changed; mask and result in `assets/geo-revision-edits/`) |
 | 13 of 639 (Mentorship) | Two drinks on the table | Already cleaned (Geo's request); the cleaned version is used |
-| Hero reel at 16.0–16.4 | Close-up of a hand holding a drink | Trimmed from the cut |
-| Hero lounge shot (16.4–17.9) | Drinks on the tables | Below the 4:5 window; not shown |
+| Hero reel at 16.0â€“16.4 | Close-up of a hand holding a drink | Trimmed from the cut |
+| Hero lounge shot (16.4â€“17.9) | Drinks on the tables | Below the 4:5 window; not shown |
 | IMG_4007 | Plastic cups in hand | Not displayed anywhere (fallback only) |
 | IMG_4006 (homepage Mentorship inset) | Magenta club lighting, no drinks | Kept (client-selected). Flag for Geo if it reads as too nightlife |
 
@@ -232,16 +232,16 @@ The favicon (`app/icon.svg`, a gold four-point star on green) is a **temporary p
 - 17 routes: no console errors beyond the expected 404 on the test URL, and 0 failed responses.
 - 29 anchors resolve, and 36 internal links all return 200.
 - External links: the Starlight site and the mailto.
-- **Photo crop audit** (11 routes × 13 viewports, YuNet): **0** cut faces, 0 cut heads, 0 credits over faces.
+- **Photo crop audit** (11 routes Ã— 13 viewports, YuNet): **0** cut faces, 0 cut heads, 0 credits over faces.
 - **SEO and schema:** JSON-LD parses on every checked page, with Organization, WebSite, FAQPage, Event and BreadcrumbList intact.
 
 **Hero:**
-- **Faces:** 54 projected checks across 6 viewports × 6 times: 0 cut by our frame, 0 credit or pause control over a face or head.
+- **Faces:** 54 projected checks across 6 viewports Ã— 6 times: 0 cut by our frame, 0 credit or pause control over a face or head.
 - **Loading:** poster until the first painted frame, with no black flash. The MP4 is requested only after `load`.
 - **Pausing:** offscreen and background-tab pause work, and the pause button holds.
 - **Reduced Motion and Data Saver:** 0 MP4 requests.
 - **Blocked autoplay:** the poster stays, a Play control appears, and tapping it plays the film.
-- **CLS:** 0–0.0003, unchanged.
+- **CLS:** 0â€“0.0003, unchanged.
 
 **Lighthouse (mobile, 3 alternating runs):**
 
@@ -254,7 +254,7 @@ That difference is within run-to-run noise. Accessibility, Best Practices and SE
 
 **Visual review:**
 - **Homepage:** reviewed at 320, 390, 430, 768, 1440 and 1920.
-- **Inner pages:** reviewed at 390 and 1440 — About, Scholarship, Dr. Phang, Mentorship, Network Partners, Partners, Contact, the mentor form and Starlight.
+- **Inner pages:** reviewed at 390 and 1440 â€” About, Scholarship, Dr. Phang, Mentorship, Network Partners, Partners, Contact, the mentor form and Starlight.
 
 ## 16. Still needed from Geo
 
@@ -262,15 +262,22 @@ That difference is within run-to-run noise. Accessibility, Best Practices and SE
 2. **The final Ten Ambassadors email** and contact details. Forms use `info@theupmixer.com` until then.
 3. **Final social links:** LinkedIn, Instagram, Facebook and YouTube.
 4. **Confirmed partners and sponsors.** Jopwell is still not described as a sponsor or partner.
-5. **The final Starlight event domain** (see §12).
+5. **The final Starlight event domain** (see Â§12).
 6. **Unresolved photo credits:**
    - the 424-series event name ("Circa Upmixer Holiday Event" is still unverified)
    - sources for IMG_3977, IMG_4004, IMG_4007 and A7R00711
 7. **Legal sign-off** on Privacy, Terms and Accessibility (still drafts), nonprofit status and disclosure language.
 8. **A clean Dr. Phang film** with no timecode or watermark, plus captions and a transcript.
-9. **A confirmed mentor and approved copy**, if the mentor story should return (see §6).
+9. **A confirmed mentor and approved copy**, if the mentor story should return (see Â§6).
 
-## Client reminder follow-up � 2026-10-05
+## Client reminder follow-up — 2026-10-05
 
 Geo reiterated that the secondary red-lit Upmixer event photo in the homepage Mentorship section should be deleted from the public site. The photo is no longer rendered in components/home/MentorshipFeature.tsx; the source asset remains in the repository only for archival/reference purposes. The approved primary Mentorship photo remains, and the single-image layout was rechecked at mobile and desktop widths.
 
+
+## Client photo removal follow-up - 2026-10-05
+
+- Geo asked to remove the AllseeinJah mentorship photo shown beside the homepage Mentorship chapter.
+- The homepage Mentorship section is now intentionally text-led, with its copy, three mentorship pillars and CTAs rebalanced so there is no empty image slot.
+- The same ta-mentorship-2292.jpg asset was also removed from the public Become a Mentor pathway on /mentorship so the rejected image does not reappear elsewhere.
+- The source asset remains archived in the repository for reference only. A replacement image can be added later when the client supplies one.

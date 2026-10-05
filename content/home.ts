@@ -84,11 +84,10 @@ export const mentorshipFeature = {
     { title: "Guidance", body: "Perspective from people a few steps, or a generation, further along." },
     { title: "Relationships", body: "Connections that outlast a single program or event." },
   ],
-  images: {
-    generational: media.mentorshipGenerational,
-    /** V2.2 follow-up: IMG_4006 (client-selected), cropped to the two-person conversation. */
-    conversation: media.mentorshipConversation,
-  },
+  /**
+   * Client follow-up, 2026-10-05: the current homepage Mentorship photo was removed.
+   * The section is intentionally text-led until Geo supplies a replacement image.
+   */
 };
 
 export const serviceFeature = {
