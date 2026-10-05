@@ -14,15 +14,16 @@ export const media = {
     focus: "44% 38%",
   },
   /**
-   * Hero still: the first frame of the hero film (Geo's cut, 4:5). It is shown whole
-   * (`object-fit: contain`), never cropped by its frame. `heroFilm.variants` carries every
-   * breakpoint; this entry is also the fallback when no film is set.
+   * Hero still: the first frame of Geo's approved V4 hero cut. The source is portrait
+   * and is shown whole (`object-fit: contain`), so the browser never crops heads or bodies.
+   * `heroFilm.variants` carries every breakpoint; this entry is also the fallback
+   * when no film is set.
    */
   hero: {
     src: "/media/hero/ta-hero-film-geo-poster.jpg",
     alt: "Guests at an evening professional gathering.",
-    width: 608,
-    height: 760,
+    width: 720,
+    height: 1280,
     focus: "50% 50%",
   },
   mentorshipGenerational: {
@@ -243,20 +244,19 @@ export const communityVideoCinematic = {
 };
 
 /**
- * Hero film — Geo's own cut (Geo meeting revision, 2026-10-04): reel seconds 16–20 spliced to
- * 24–39 of the client's Recap Reel (20–24 left out on purpose), cut by scripts/hero_recut/render_geo.py.
- * The shot plan (reel times, crop window per shot) is in scripts/hero_recut/ta-hero-film-geo.plan.json.
+ * Hero film — Geo's approved V4 cut (Geo meeting revision, 2026-10-04):
+ * reel seconds 16–20 followed by 24–39, with 20–24 intentionally omitted.
  *
- * - Source: Geo named "Recap Reel V4.mp4" (Google Drive). Until that file is in the repo, the cut is
- *   rendered from the 16–35 s extract already in assets/recap-master/ (Recap Reel V2), which covers
- *   16–20 and 24–34.3; re-run the script on V4 (offset 0) and the full 24–39 range follows.
- * - The reel's first 0.4 s (a close-up of a hand holding a drink) is trimmed: the cut starts at 16.4.
- * - One 4:5 window per shot, 608×760, pixel-for-pixel from the sharp vertical column (no upscaling,
- *   no generative fill); each window gives the highest head the most headroom the source allows and
- *   stays above the burned-in captions. Real-time playback; Geo's hard cuts are kept.
- * - Shown whole (`object-fit: contain`). Portrait phones: the 4:5 frame matches the film exactly.
- *   Portrait tablets and desktop: the film sits inside the panel over `backdrop`, a tiny softened,
- *   darkened plate of its first frame. Landscape phones/tablets keep the static still (A7R00711).
+ * - Source: Geo's emailed "Recap Reel V4.mp4" (Google Drive file
+ *   1-l63RzCcQjPWqbwm8yS3NyOp-VUk1M1B), integrated from the actual 2160×3840 portrait master.
+ * - The brief drink close-up at 16.0–16.4 is skipped, so the visible cut begins at the next shot.
+ * - The full portrait frame is preserved and scaled to 720×1280. There is no crop, no generative
+ *   fill and no face/body manipulation.
+ * - The site shows the film whole with `object-fit: contain` over `backdrop`, a softened,
+ *   darkened plate of its first frame. This keeps heads and bodies inside the media frame.
+ * - Landscape phones/tablets keep the static still (A7R00711).
+ * - Reproducible render: scripts/hero_recut/render_geo_v4.py. Exact ranges and metadata are in
+ *   scripts/hero_recut/ta-hero-film-geo.plan.json.
  */
 const heroAlt = "Guests at an evening professional gathering.";
 const heroFilmGeo = "/media/hero/ta-hero-film-geo.mp4";

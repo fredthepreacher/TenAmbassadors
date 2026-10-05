@@ -1,173 +1,59 @@
-{
- "source": "TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4",
- "offset": 16.0,
- "reel_end": 34.3,
- "frames": 407,
- "seconds": 13.57,
- "segments_requested": [
-  [
-   16.0,
-   20.0
-  ],
-  [
-   24.0,
-   39.0
-  ]
- ],
- "segments_used": [
-  [
-   16.4,
-   20.0
-  ],
-  [
-   24.0,
-   34.3
-  ]
- ],
- "shots": [
-  {
-   "seg": 0,
-   "f0": 12,
-   "f1": 58,
-   "y0": 78,
-   "caption": false,
-   "faces": 25,
-   "reel": [
-    16.4,
-    17.93
-   ]
-  },
-  {
-   "seg": 0,
-   "f0": 58,
-   "f1": 120,
-   "y0": 24,
-   "caption": true,
-   "faces": 27,
-   "reel": [
-    17.93,
-    20.0
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 240,
-   "f1": 304,
-   "y0": 65,
-   "caption": true,
-   "faces": 66,
-   "reel": [
-    24.0,
-    26.13
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 304,
-   "f1": 334,
-   "y0": 0,
-   "caption": false,
-   "faces": 16,
-   "reel": [
-    26.13,
-    27.13
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 334,
-   "f1": 370,
-   "y0": 0,
-   "caption": false,
-   "faces": 12,
-   "reel": [
-    27.13,
-    28.33
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 370,
-   "f1": 395,
-   "y0": 0,
-   "caption": false,
-   "faces": 9,
-   "reel": [
-    28.33,
-    29.17
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 395,
-   "f1": 424,
-   "y0": 0,
-   "caption": false,
-   "faces": 12,
-   "reel": [
-    29.17,
-    30.13
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 424,
-   "f1": 453,
-   "y0": 0,
-   "caption": false,
-   "faces": 10,
-   "reel": [
-    30.13,
-    31.1
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 453,
-   "f1": 473,
-   "y0": 45,
-   "caption": false,
-   "faces": 14,
-   "reel": [
-    31.1,
-    31.77
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 473,
-   "f1": 495,
-   "y0": 0,
-   "caption": true,
-   "faces": 8,
-   "reel": [
-    31.77,
-    32.5
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 495,
-   "f1": 520,
-   "y0": 0,
-   "caption": false,
-   "faces": 9,
-   "reel": [
-    32.5,
-    33.33
-   ]
-  },
-  {
-   "seg": 1,
-   "f0": 520,
-   "f1": 549,
-   "y0": 8,
-   "caption": false,
-   "faces": 10,
-   "reel": [
-    33.33,
-    34.3
-   ]
-  }
- ]
+﻿{
+    "source":  "Recap Reel V4.mp4",
+    "google_drive_file_id":  "1-l63RzCcQjPWqbwm8yS3NyOp-VUk1M1B",
+    "source_dimensions":  [
+                              2160,
+                              3840
+                          ],
+    "source_fps":  24,
+    "segments_requested":  [
+                               [
+                                   16.0,
+                                   20.0
+                               ],
+                               [
+                                   24.0,
+                                   39.0
+                               ]
+                           ],
+    "segments_used":  [
+                          [
+                              16.4,
+                              20.0
+                          ],
+                          [
+                              24.0,
+                              39.0
+                          ]
+                      ],
+    "omitted":  [
+                    {
+                        "range":  [
+                                      16.0,
+                                      16.4
+                                  ],
+                        "reason":  "brief drink close-up before the next shot"
+                    },
+                    {
+                        "range":  [
+                                      20.0,
+                                      24.0
+                                  ],
+                        "reason":  "client-directed omission"
+                    }
+                ],
+    "output_dimensions":  [
+                              720,
+                              1280
+                          ],
+    "output_fps":  24,
+    "duration_seconds":  18.58,
+    "file_size_bytes":  4075051,
+    "strategy":  "full portrait frame; no crop; site uses object-fit: contain over softened/darkened first-frame backdrop",
+    "audio":  "removed for muted autoplay hero",
+    "notes":  [
+                  "Uses Geo\u0027s emailed V4 source, not the prior V2 fallback extract.",
+                  "No generative fill and no face/body manipulation.",
+                  "The browser does not crop the film; full source framing is preserved."
+              ]
 }

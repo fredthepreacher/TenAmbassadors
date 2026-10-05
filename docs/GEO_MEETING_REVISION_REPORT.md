@@ -15,63 +15,40 @@ This is a client-directed refinement pass, not a redesign. The approved structur
 
 ## 1. Homepage hero: Geo's cut
 
-**Source.** Geo named "Recap Reel V4.mp4" (Google Drive, file `1-l63RzCcQjPWqbwm8yS3NyOp-VUk1M1B`).
+**Source.** Geo's emailed **"Recap Reel V4.mp4"** from Google Drive file `1-l63RzCcQjPWqbwm8yS3NyOp-VUk1M1B` is now integrated directly. The actual source is a 2160×3840 portrait HEVC master, 24 fps, 48.33 s.
 
-**Cut.** Reel seconds **16–20**, then **24–39**, spliced together. Seconds 20–24, the speaker Geo turned down, are left out.
+**Cut.** Geo specified reel seconds **16–20**, then **24–39**. The build uses **16.4–20.0** and **24.0–39.0**:
+- 20–24 is omitted exactly as Geo requested.
+- 16.0–16.4 is a brief close-up of a drink, so playback begins at the next shot while remaining inside Geo's requested 16–20 range.
 
-**What this build uses.**
-- This build environment cannot download from Google Drive: the network policy blocks `drive.usercontent.google.com`.
-- So this render uses the 16–35 s extract of the recap reel that is already in the repo: `assets/recap-master/TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4`, from Recap Reel **V2**.
-- That extract covers 16–20 and **24–34.3**. The last 4.7 s (34.3–39) are not in it.
-- **Action:** put "Recap Reel V4.mp4" in `assets/recap-master/` and run:
+**No fallback source remains.** The prior Recap Reel V2 extract was only a temporary stand-in because V4 had not yet been available locally. The public hero now comes from the actual V4 file Geo emailed.
 
-```
-python3 scripts/hero_recut/render_geo.py "assets/recap-master/Recap Reel V4.mp4" 0 /tmp/geo
-```
-
-  Then copy the three `ta-hero-film-geo*` files into `public/media/hero/`. Nothing else changes.
-- **Check first:** confirm that V4 has the same footage at these times as V2. If V4 differs, its own 16–20 and 24–39 are what the script uses.
-
-**Drinks rule.** The reel's first 0.4 s (16.0–16.4) is a close-up of a hand holding a drink, so the cut starts at the next shot, 16.4. Drinks appear in no other shot inside the 4:5 window.
-
-**Shot plan.** Every shot is framed in a 4:5 window (608×760) taken pixel-for-pixel from the sharp vertical column, with no upscaling and no generative fill. The window position (`y0`) is chosen per shot from face boxes. The full plan is in `scripts/hero_recut/ta-hero-film-geo.plan.json`.
-
-| Reel time | Shot | y0 | Note |
-|---|---|---|---|
-| 16.4–17.9 | Guests seated at the lounge tables | 78 | Table drinks fall below the window |
-| 17.9–20.0 | Young man listening | 24 | Window stays above the burned-in caption |
-| *(20–24 omitted, per Geo)* | | | |
-| 24.0–26.1 | Two young professionals listening | 65 | Above the caption |
-| 26.1–27.1 | Two guests with a phone (man in cap) | 0 | The source itself cuts the woman's face at the left edge and the cap at the top |
-| 27.1–28.3 | Guests exchanging contacts | 0 | The source cuts the woman at the right edge |
-| 28.3–29.2 | Host with a microphone | 0 | |
-| 29.2–30.1 | Guest in a blue suit | 0 | His hair touches the top of the source frame |
-| 30.1–31.1 | Guest in a white shirt | 0 | |
-| 31.1–31.8 | Two guests in conversation | 45 | |
-| 31.8–32.5 | Young man speaking | 0 | |
-| 32.5–33.3 | Guest in glasses | 0 | His head touches the top of the source frame |
-| 33.3–34.3 | Guest speaking | 8 | |
+**Framing.**
+- V4 is already portrait, so the derivative preserves the complete source frame.
+- Output is 720×1280 at 24 fps.
+- There is **no crop**, no generative fill, and no face/body manipulation.
+- The browser renders the film with `object-fit: contain`, so heads and bodies are not cut off by responsive cover behavior.
+- Portrait tablet/desktop space around the narrow film is filled by the existing softened/darkened first-frame backdrop.
+- Landscape phones/tablets keep the approved static A7R00711 still.
 
 **Edit.**
-- Playback is real-time: no slow motion and no synthetic frames. Geo's own hard cuts are kept.
-- One soft dissolve (0.35 s) joins 20 to 24, and a closing dissolve (0.5 s) returns to the exact first frame.
-- **File:** `public/media/hero/ta-hero-film-geo.mp4`, 13.6 s, 2.28 MB, H.264 High.
+- Geo's selected sections are joined directly in order.
+- Audio is removed because the homepage film is a muted autoplay visual.
+- **File:** `public/media/hero/ta-hero-film-geo.mp4`
+- **Duration:** 18.58 s
+- **File size:** 4.08 MB
+- **Codec:** H.264 High, 720×1280, 24 fps
+- **Poster:** `public/media/hero/ta-hero-film-geo-poster.jpg`
+- **Backdrop:** `public/media/hero/ta-hero-film-geo-backdrop.jpg`
 
-**Mobile strategy.**
-- **Framing.** The film and its poster use `object-fit: contain`, so the browser never crops a person.
-  - **Portrait phones:** the hero frame is 4:5, the film's own shape, so the film fills it edge to edge.
-  - **Portrait tablets and desktop:** the whole film sits inside the panel over a softened, darkened plate of its own first frame.
-  - **Landscape phones and tablets:** keep the static A7R00711 still.
-- **Reliability** (Geo saw the hero fail to play on his phone):
-  - `muted`, `playsinline` and `webkit-playsinline` are set as real attributes before loading. iOS checks these.
-  - Loading also starts after a 3.5 s fallback when the window `load` event is slow.
-  - A failed first `play()` is retried once the file can play.
-  - When the browser refuses autoplay (iOS Low Power Mode, some data savers), the poster stays and a **Play** control appears, so one tap starts the film.
-- **Unchanged:** Reduced Motion and Data Saver (no video, 0 MP4 requests), the pause control, and offscreen and background-tab pausing.
+**Reproducibility.** The exact render command is captured in `scripts/hero_recut/render_geo_v4.py`, and the source/range metadata is in `scripts/hero_recut/ta-hero-film-geo.plan.json`.
 
-**Limit: the framing the source allows.** Our frame never adds a crop. Where Geo's footage was filmed with a head at the very top or a guest half out of the vertical frame, the site shows it as filmed; there is no fabrication or fill. This affects four shots (26.1, 27.1, 29.2, 32.5 s).
-
-**Review images:** `docs/review/geo-hero-cut-phones.jpg` and `-desktop.jpg`, at 0.2, 1.5, 3, 6, 10 and 13.2 s.
+**Mobile reliability remains unchanged.**
+- `muted`, `playsinline` and `webkit-playsinline` are set before loading.
+- Loading has the existing fallback when the `load` event is slow.
+- A failed first `play()` can retry once the file can play.
+- When autoplay is refused, the poster remains and the Play control is available.
+- Reduced Motion and Data Saver still skip the video, and pause/offscreen/background-tab behavior remains intact.
 
 ## 2. Terminology: the primary audience is "young professionals"
 
@@ -281,17 +258,14 @@ That difference is within run-to-run noise. Accessibility, Best Practices and SE
 
 ## 16. Still needed from Geo
 
-1. **"Recap Reel V4.mp4"**, so the hero can use the full 24–39 range from his source (see §1).
-2. **Official Ten Ambassadors logo files**, including the favicon mark.
-3. **The final Ten Ambassadors email** and contact details. Forms use `info@theupmixer.com` until then.
-4. **Final social links:** LinkedIn, Instagram, Facebook and YouTube.
-5. **Confirmed partners and sponsors.** Jopwell is still not described as a sponsor or partner.
-6. **The final Starlight event domain** (see §12).
-7. **Unresolved photo credits:**
+1. **Official Ten Ambassadors logo files**, including the favicon mark.
+2. **The final Ten Ambassadors email** and contact details. Forms use `info@theupmixer.com` until then.
+3. **Final social links:** LinkedIn, Instagram, Facebook and YouTube.
+4. **Confirmed partners and sponsors.** Jopwell is still not described as a sponsor or partner.
+5. **The final Starlight event domain** (see §12).
+6. **Unresolved photo credits:**
    - the 424-series event name ("Circa Upmixer Holiday Event" is still unverified)
    - sources for IMG_3977, IMG_4004, IMG_4007 and A7R00711
-8. **Legal sign-off** on Privacy, Terms and Accessibility (still drafts), nonprofit status and disclosure language.
-9. **Higher-resolution media:**
-   - a higher-resolution export of the vertical recap footage (the sharp column is 608 px)
-   - a clean Dr. Phang film with no timecode or watermark, plus captions and a transcript
-10. **A confirmed mentor and approved copy**, if the mentor story should return (see §6).
+7. **Legal sign-off** on Privacy, Terms and Accessibility (still drafts), nonprofit status and disclosure language.
+8. **A clean Dr. Phang film** with no timecode or watermark, plus captions and a transcript.
+9. **A confirmed mentor and approved copy**, if the mentor story should return (see §6).

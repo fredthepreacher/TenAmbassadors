@@ -141,16 +141,14 @@ See `docs/GEO_10_POINT_REVISION_REPORT.md` → "Real-photo hero film".
 
 See `docs/PHOTO_ART_DIRECTION.md` for the full crop audit.
 
-**Hero recut.** Since the full-subject framing fix (2026-10-04), the hero uses one 4:5 cut. It is shown whole (`object-fit: contain`) at every breakpoint. All three files are cut from `assets/recap-master/TenAmbassadors_Recap_16-35_Horizontal_1080p.mp4` by `scripts/hero_recut/render_v.py`:
-- `public/media/hero/ta-hero-film-45.mp4`
-- `ta-hero-film-45-poster.jpg`
-- `ta-hero-film-45-backdrop.jpg`
+**Historical hero recut.** The 4:5 `ta-hero-film-45*` derivative was the full-subject framing fix used before Geo supplied his final V4 source. It came from the older 16–35 horizontal recap extract and is retained only as historical build context.
 
-| Cut | Size | Length | File size |
-|---|---|---|---|
-| 4:5 (all portrait screens and desktop) | 608×760, crop only | 6.2 s | 1.09 MB |
+**Geo meeting hero (current, 2026-10-04).** Geo emailed the actual `Recap Reel V4.mp4` and specified reel seconds **16–20, then 24–39**. The current public hero files are:
+- `public/media/hero/ta-hero-film-geo.mp4`
+- `public/media/hero/ta-hero-film-geo-poster.jpg`
+- `public/media/hero/ta-hero-film-geo-backdrop.jpg`
 
-It replaced the phone (720×792) and square (720×720) `ta-hero-sizzle-*` cuts.
+The V4 master is 2160×3840 portrait at 24 fps. The derivative uses 16.4–20.0 (skipping the brief drink close-up) and 24.0–39.0, joined in that order. It preserves the **full portrait frame with no crop**, scales to 720×1280, removes audio for the muted autoplay hero, and is shown with `object-fit: contain`. Exact metadata is in `scripts/hero_recut/ta-hero-film-geo.plan.json`; `scripts/hero_recut/render_geo_v4.py` reproduces it.
 
 - **Landscape still:** `ta-hero-landscape-a7r00711.jpg`, 1600×1100, a crop of A7R00711 with −6% exposure.
 - **Removed from `public/`:** the 2026-10-02 handoff film and its poster. The master is still in `assets/hero-film-master/`.
