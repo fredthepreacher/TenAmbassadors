@@ -40,7 +40,7 @@ This table is the internal source of truth for what is still outstanding. For ho
 | The Upmixer is a professional networking, events, and marketing organization | Phase 1 brief |
 | The Dr. Christopher A. Phang Scholarship exists | Phase 1 brief and approved asset package |
 | "1968–2023" beside Dr. Phang's name | End card of the approved film (confirm) |
-| Starlight Awards: celebrate excellence, fund opportunity | Phase 1 brief (presented as a vision: "envisioned as") |
+| Starlight Awards: celebrate excellence, fundraiser opportunity | Phase 1 brief (presented as a vision: "envisioned as") |
 
 No impact numbers, amounts, recipients, dates, deadlines, partners, leaders, testimonials, geographic reach, or nonprofit status have been stated anywhere.
 

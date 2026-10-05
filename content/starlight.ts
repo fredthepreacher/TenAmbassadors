@@ -51,7 +51,7 @@ export const starlight = {
   pillars: [
     { title: "Celebrate", body: "Honor leadership, achievement and service across the community." },
     { title: "Gather", body: "Bring together leaders, partners and supporters, culture included." },
-    { title: "Fund", body: "Help power Scholarship, Mentorship and Service programming." },
+    { title: "Fundraiser", body: "Help power Scholarship, Mentorship and Service programming." },
   ],
 };
 

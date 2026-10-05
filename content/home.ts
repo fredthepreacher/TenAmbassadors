@@ -101,7 +101,7 @@ export const serviceFeature = {
 export const starlightFeature = {
   eyebrow: "The Starlight Awards",
   /** [brief concept] */
-  title: ["Celebrate excellence.", "Fund opportunity."],
+  title: ["Celebrate excellence.", "Fundraiser opportunity."],
   /** [brief] */
   body: "Our signature annual celebration of leadership and impact: the gathering where leadership, achievement, service, community and culture come together, and one of the ways Ten Ambassadors supports its programs.",
 };
